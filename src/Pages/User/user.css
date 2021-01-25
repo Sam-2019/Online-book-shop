@@ -1,0 +1,18 @@
+@media (max-width: 540px) {
+  .user_wrapper {
+  }
+
+  .form-wrapper,
+  .verify-wrapper {
+    padding: 10px 20px 0px;
+  }
+
+  .forgotten_password_wrapper {
+    margin: 0px auto 20px 0;
+    text-align: right;
+  }
+
+  .forgotten_password {
+    padding: 0px 20px 0 0;
+  }
+}

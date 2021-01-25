@@ -1,0 +1,130 @@
+@media (max-width: 540px) {
+  .products {
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: 50% 50%;
+    padding-right: 10px;
+
+
+  }
+
+  .products-wrapper {
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin: 10px 0 0 10px;
+  }
+
+
+
+  .products-wrapper:hover,
+  .products-wrapper:focus {
+    box-shadow: 0rem 0rem 01rem 0rem #00000032 !important;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .products-group {
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .products-discount-rate {
+    z-index: 2;
+    border-radius: 10px 0 10px 0;
+    width: 60px;
+    text-align: center;
+    position: absolute;
+    padding: 5px;
+    color: white;
+    font-weight: 500;
+    background: linear-gradient(
+      45deg,
+      #18bc4c 0%,
+      #23cc3c 25%,
+      #27dc2d 50%,
+      #97e63c 75%,
+      #bef033 100%
+    );
+  }
+
+  .products-image {
+    background-color: aquamarine;
+    border-radius: 10px;
+    width: auto;
+    height: 200px;
+  }
+
+  .products-name {
+    font-size: 13px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .products-discount-price {
+    color: cadetblue;
+    font-size: 10px;
+    text-decoration: line-through;
+  }
+
+  .priceXcart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .products-price {
+    color: #00d919;
+  }
+
+  .products-add2cart {
+    border-radius: 50px;
+    background-color: #00d919;
+    padding: 1px 7px 5px;
+    align-items: center;
+    color: rgb(255, 255, 255);
+  }
+
+  .products-add2cart:active {
+    transform: scale(0.95);
+  }
+}
+
+@media (max-width: 320px) {
+  .products {
+  }
+
+  .products-wrapper {
+  }
+
+  .products-wrapper:hover,
+  .products-wrapper:focus {
+  }
+
+  .products-discount-rate {
+    width: 50px;
+    padding: 2px;
+
+    font-size: 15px;
+  }
+
+  .products-image {
+    height: 150px;
+  }
+
+  .products-name {
+  }
+
+  .products-discount-price {
+  }
+
+  .priceXcart {
+  }
+  .products-price {
+  }
+
+  .products-add2cart {
+  }
+}

@@ -1,0 +1,40 @@
+@media (max-width: 540px) {
+  .nav-header {
+    background-color: #ffffff;
+    width: 100%;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0rem 0rem 1rem 0rem #00000032 !important;
+    position: sticky;
+    margin-bottom: 8px;
+  }
+
+  .nav-category {
+  }
+
+  .okukus {
+    color: chartreuse;
+    font-weight: 600;
+    font-size: 28px;
+  }
+
+  .search,
+  .cart,
+  .user {
+    padding: 15px 15px;
+  }
+}
+
+@media (max-width: 320px) {
+  .okukus {
+    font-weight: 600;
+    font-size: 28px;
+  }
+
+  .search,
+  .cart,
+  .user {
+    padding: 11px 9px;
+  }
+}

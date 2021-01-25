@@ -1,0 +1,67 @@
+@media (max-width: 540px) {
+  .item-wrapper {
+    flex-direction: column;
+    padding: 10px 10px;
+    margin: 0 8px;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0rem 0rem 1rem 0rem #00000032 !important;
+    background-clip: border-box;
+  }
+
+  .item-wrapper:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  .item-detail {
+  }
+
+  .actionXstatus {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+  }
+
+  .cancel {
+    text-align: center;
+  }
+
+  .unknown {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .status {
+    padding: 2.5px 15px;
+    font-size: 4px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    align-self: center;
+  }
+
+  .pending {
+    background-color: yellow;
+    color: #777777;
+  }
+
+  .processed,
+  .shipped {
+    background-color: blue;
+    color: white;
+  }
+
+  .fulfilled {
+    background-color: green;
+    color: white;
+  }
+
+  .cancelled {
+    background-color: red;
+    color: white;
+    text-align: right;
+  }
+}
+
+@media (max-width: 320px) {
+}

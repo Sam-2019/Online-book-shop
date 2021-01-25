@@ -1,0 +1,23 @@
+@media (max-width: 540px) {
+  .notify {
+    background-color: tomato;
+    padding: 5px 5px;
+    position: absolute;
+    text-align: center;
+    z-index: 20;
+    left: 0;
+    right: 0;
+  }
+
+  .notify-close {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .notify-main {
+    color: white;
+  }
+}
+
+@media (max-width: 320px) {
+}

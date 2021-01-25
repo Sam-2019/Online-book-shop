@@ -1,0 +1,155 @@
+.cart_item_wrapper {
+  background-color: #ffffff;
+  margin-top: 65px;
+}
+
+
+.cart-item-detail {
+}
+
+@media (max-width: 540px) {
+  .cart_item_wrapper {
+    display: flex;
+width: auto;
+    padding: 10px;
+    margin: 0 8px;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0rem 0rem 1rem 0rem #00000032 !important;
+    background-clip: border-box;
+  }
+
+  .cart_item_wrapper:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  .checkBox {
+    width: 7%;
+  }
+
+  .cart-item-detail {
+
+    width: 95%;
+  }
+
+  .imageXname {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
+  .image-placeholder-original {
+    background: #cccccc;
+    width: 100px;
+    height: 100px;
+    margin-right: 3px;
+  }
+
+  .image-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+  .image-placeholder.loading {
+    width: 100px;
+    height: 100px;
+    margin-right: 4px;
+  }
+
+  .loading {
+    position: relative;
+    background: #cccccc;
+  }
+
+  .loading:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100px);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    animation: loading 1s infinite;
+  }
+
+  .item-name {
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .item-price {
+    font-size: 13px;
+  }
+
+  .priceXactions {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+
+  .love {
+    text-align: center;
+
+  }
+
+  .bin {
+    text-align: center;
+
+  }
+
+  .binXaddXsubtract {
+    width: 60%;
+    display: flex;
+    align-items: center;
+  }
+
+  .addXsubtract {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 100%;
+    align-items: center;
+    border: 1px solid yellow;
+    border-radius: 10px;
+  }
+
+  .add,
+  .quantity,
+  .subtract {
+    text-align: center;
+  }
+
+  .add {
+    border-left: 1px solid yellow;
+
+  }
+
+  .subtract {
+    border-right: 1px solid yellow;
+
+  }
+
+  .quantity {
+
+  }
+
+}
+
+@media (max-width: 320px) {
+  .checkBox {
+    width: 10%;
+  }
+}
+
+@keyframes loading {
+  100% {
+    transform: translateX(100%);
+  }
+}

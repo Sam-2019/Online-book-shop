@@ -1,0 +1,34 @@
+@media (max-width: 540px) {
+  .payment-instruction {
+    margin-bottom: 90px;
+  }
+
+  .pay-know-how {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  ol {
+    margin: 0;
+    padding: 0 20px;
+  }
+
+  li {
+    margin: 0;
+  }
+
+}
+
+@media (max-width: 320px) {
+  .payment-instruction {
+    margin-bottom: 5em;
+  }
+}
+
+@media (max-width: 280px) {
+  .payment-instruction {
+    margin-bottom: 6em;
+  }
+}

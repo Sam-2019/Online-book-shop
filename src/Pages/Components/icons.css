@@ -1,0 +1,60 @@
+@media (max-width: 540px) {
+  .bi-circle-fill {
+  }
+
+  .bi-arrow-left-circle {
+  }
+
+  .bi-trash {
+    color: red;
+  }
+
+  .bi-trash-fill {
+    color: red;
+  }
+
+  .bi-heart {
+    color: orange;
+  }
+
+  .bi-heart-fill {
+    color: orange;
+  }
+
+  .bi-dash-circle-fill {
+  }
+
+  .bi-chevron-up {
+  }
+
+  .bi-chevron-down {
+  }
+
+  #question-circle-fill{
+    color: gray;
+  }
+
+  .social{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .bi-facebook {
+    color: rgb(87, 87, 249);
+  }
+
+  .bi-twitter {
+    color: rgb(87, 87, 249);
+  }
+
+
+
+  .facebook,
+  .twitter {
+
+  }
+
+  .whatsapp {
+ 
+  }
+}

@@ -1,0 +1,240 @@
+@media (max-width: 540px) {
+  .product-wrapper {
+
+
+  }
+
+  .close-action {
+    display: flex;
+    justify-content: flex-end;
+
+    margin: 0 0 10px 0;
+    padding: 10px 10px 0 0;
+  }
+
+  .hide-action {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 0 0;
+    padding: 20px 0;
+    position: fixed;
+    top: 5%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+  }
+
+  .product-body {
+    padding: 0 10px 10px 10px;
+  }
+
+  .product-detail {
+    padding: 0 10px;
+    align-items: center;
+  }
+
+  .product-image {
+    background-color: orange;
+    width: auto;
+    height: 300px;
+  }
+
+  /* .nameXshare {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  } */
+
+  .product-name {
+  }
+
+  .by {
+    font-style: italic;
+  }
+
+  .product-author {
+    margin: 0 0 0 3px;
+  }
+
+  .priceXqytXreview {
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid blue;
+    border-radius: 10px;
+    padding: 12px 0;
+    margin: 0 0 10px 0;
+  }
+
+  .product-quantity {
+    text-align: center;
+  }
+
+  .line {
+    border: 1px solid blue;
+  }
+  .product-price {
+    text-align: center;
+  }
+
+  .share-social {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 12px 0;
+  }
+
+  .product-description-wrapper {
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
+    background-clip: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-description {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-wrap: break-word;
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .product-description-full {
+    overflow: hidden;
+    word-wrap: break-word;
+    text-align: justify;
+  }
+
+  .down {
+    text-align: center;
+  }
+
+  .numberXstars {
+    display: flex;
+  }
+
+  .numberXmore {
+    display: flex;
+    align-items: center;
+  }
+
+  .review-numbersXright {
+    margin-right: 5px;
+  }
+  .rating-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
+    background-clip: border-box;
+    align-items: center;
+  }
+
+  .review-wrapper {
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 15px;
+    box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
+    background-clip: border-box;
+  }
+
+
+  .product-action {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    background-color: #ffffff;
+    width: 100%;
+
+    padding: 10px;
+  }
+
+  .addCart {
+    width: 40%;
+    padding: 12px 15px;
+    font-size: 12px;
+  }
+
+  .buyNow {
+    width: 55%;
+    padding: 12px 15px;
+    font-size: 12px;
+  }
+
+  .facebook,
+  .twitter {
+    margin-left: 5px;
+  }
+
+  .fadeIn {
+    animation: fadeInUp 0.5s ease-out;
+  }
+
+  @-webkit-keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+    }
+    to {
+      opacity: 1;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+    }
+    to {
+      opacity: 1;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+  }
+
+  .fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+  }
+}
+
+@media (max-width: 320px) {
+  .product-wrapper {
+    top: 7%;
+  }
+
+  .rating-wrapper {
+    flex-direction: column;
+  }
+
+}
+
+@media (max-width: 280px) {
+  .product-wrapper {
+    top: 9.5%;
+  }
+  .product-quantity {
+  }
+  .product-price {
+  }
+
+  .addCart {
+    width: 42%;
+    padding: 12px 10px;
+  }
+
+  .buyNow {
+    width: 55%;
+    padding: 12px 10px;
+  }
+}
