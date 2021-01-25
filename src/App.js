@@ -2,9 +2,13 @@ import styled from "styled-components";
 import Okukus from "./Pages/Okukus";
 import "bootstrap/dist/css/bootstrap.css";
 import "./Pages/okukus.css";
+import { MediaQuery } from "../src/Pages/helper";
 
 function App() {
-  return <Okukus />;
+  const { width } = MediaQuery();
+  const breakpoint = 540;
+
+  return <>{breakpoint < width ? <Okukus /> : null}</>;
 }
 
 export default App;
