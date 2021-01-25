@@ -7,6 +7,7 @@ import { MediaQuery } from "../src/Pages/helper";
 function App() {
   const { width } = MediaQuery();
   const breakpoint = 540;
+  console.log(width)
 
   return <>{breakpoint < width ? <>Please view on mobile</> : <Okukus />}</>;
 }
