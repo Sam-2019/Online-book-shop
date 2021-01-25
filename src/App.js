@@ -8,7 +8,7 @@ function App() {
   const { width } = MediaQuery();
   const breakpoint = 540;
 
-  return <>{breakpoint < width ? null : <Okukus />}</>;
+  return <>{breakpoint < width ? <>Please view on mobile</> : <Okukus />}</>;
 }
 
 export default App;
