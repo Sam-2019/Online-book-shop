@@ -8,7 +8,7 @@ function App() {
   const { width } = MediaQuery();
   const breakpoint = 540;
 
-  return <>{breakpoint < width ? <Okukus /> : null}</>;
+  return <>{breakpoint < width ? null : <Okukus />}</>;
 }
 
 export default App;
