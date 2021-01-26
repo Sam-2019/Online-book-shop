@@ -1,11 +1,20 @@
-
 @media (max-width: 540px) {
- .item-wrapper{
-     background-color: #ffffff;
- }
+  .item-wrapper {
+  }
+
+  .bin-width {
+    width: 100%;
+  }
+
+  .nameXprice {
+    width: 100%;
+  }
+
+  .bin-width {
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 
-
 @media (max-width: 320px) {
-
 }
