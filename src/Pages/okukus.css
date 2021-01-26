@@ -3,10 +3,13 @@
 }
 
 @media (max-width: 540px) {
+  .home-wrapper,
   .cart-wrapper,
   .checkout-wrapper,
-  .order-wrapper {
-    margin-bottom: 70px;
+  .order-wrapper,
+  .profile-wrapper,
+  .search-wrapper,
+  .user-wrapper {
     min-height: 100vh;
   }
 
@@ -16,12 +19,6 @@
   .order-wrapper,
   .profile-wrapper,
   .search-wrapper,
-  .user-wrapper {
-    background-color: #ababab3c;
-    min-height: 100vh;
-    margin-bottom: 50px;
-  }
-
   .user-wrapper {
     margin-bottom: 0px;
   }
@@ -33,7 +30,6 @@
     display: flex;
     justify-content: space-between;
     box-shadow: 0rem 0rem 1rem 0rem #00000032 !important;
-    margin-bottom: 10px;
   }
 
   .category {
@@ -65,9 +61,10 @@
     padding: 0 3px 0 0;
   }
   .main {
-    padding: 0px 0px;
+  }
 
-    margin-bottom: 50px;
+  .wrapper {
+    margin: 10px 0;
   }
 
   .title {

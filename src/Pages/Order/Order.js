@@ -35,7 +35,7 @@ const Order = () => {
         </div>
       </div>
 
-      <div className="main">
+      <div className="main item">
         <form className="form-wrapper ">
           <div className="page_title"> Shipping Information</div>
           <Input class_name="input " placeholder="Location" onChange />

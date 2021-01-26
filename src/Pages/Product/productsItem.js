@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-const productsItem = () => {
+const productsItem = ({ key }) => {
   let history = useHistory();
   return (
     <div className="products-wrapper ">
@@ -10,13 +10,13 @@ const productsItem = () => {
         <div
           className="products-image "
           onClick={() => {
-            history.push(`/product/${index}`);
+            history.push(`/product/${key}`);
           }}
         ></div>
         <div
           className="products-name"
           onClick={() => {
-            history.push(`/product/${index}`);
+            history.push(`/product/${key}`);
           }}
         >
           Logest name ever you go fhrfghdgjhj djhgdjthjtyjrtyjryj see Longest

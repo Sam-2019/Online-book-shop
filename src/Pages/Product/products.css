@@ -4,8 +4,6 @@
     display: inline-grid;
     grid-template-columns: 50% 50%;
     padding-right: 10px;
-
-
   }
 
   .products-wrapper {
@@ -13,8 +11,6 @@
     border-radius: 10px;
     margin: 10px 0 0 10px;
   }
-
-
 
   .products-wrapper:hover,
   .products-wrapper:focus {

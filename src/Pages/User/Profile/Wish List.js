@@ -15,12 +15,14 @@ const WishList = () => {
         </div>
       </div>
 
-      <div className="main">
-        {Array(10)
-          .fill()
-          .map((item, index) => (
-            <WishItem key={index} />
-          ))}
+      <div className="main item">
+        <div className="wrapper">
+          {Array(8)
+            .fill()
+            .map((item, index) => (
+              <WishItem key={index} />
+            ))}
+        </div>
       </div>
     </div>
   );

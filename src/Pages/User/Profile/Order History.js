@@ -13,18 +13,16 @@ const OrderHistory = () => {
           </div>
           <div className="object-2"> Orders (1)</div>
         </div>
-
-    
       </div>
 
-      <div className="main">
- 
-
-        {Array(8)
-          .fill()
-          .map((item, index) => (
-            <OrderItem key={index} />
-          ))}
+      <div className="main item">
+        <div className="wrapper">
+          {Array(8)
+            .fill()
+            .map((item, index) => (
+              <OrderItem key={index} />
+            ))}
+        </div>
       </div>
     </div>
   );

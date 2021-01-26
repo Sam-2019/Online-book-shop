@@ -37,7 +37,7 @@ const Cart = () => {
         </div>
       </div>
 
-      <div className="main">
+      <div className="main item ">
         {Array(3)
           .fill()
           .map((item, index) => (

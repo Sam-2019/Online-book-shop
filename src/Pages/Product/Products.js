@@ -23,9 +23,9 @@ const Products = () => {
           <ProductsItem key={index} />
         ))}
 
-      {data.map((products, i) => (
+      {/* {data.map((products, i) => (
         <ProductsItem key={i} {...products} />
-      ))}
+      ))} */}
     </div>
   );
 };

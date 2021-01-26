@@ -3,11 +3,9 @@
     background-color: #ffffff;
     border-radius: 10px;
     padding: 10px;
-
-    margin: 0px 10px;
+    margin:  10px;
     display: flex;
     justify-content: space-between;
-    box-shadow: 0rem 0rem 1rem 0rem #00000032 !important;
   }
 
   .user-image {
@@ -46,7 +44,7 @@
     font-style: italic;
   }
   .options {
-    margin: 20px 10px;
+    margin: 10px 10px;
   }
 
   .option-list {

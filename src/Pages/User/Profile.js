@@ -26,7 +26,8 @@ const AccountVerify = () => {
         </div>
       </div>
 
-      <div className="main">
+      <div className="main ">
+
         <div className="user-detail ">
           <div className="category ">
             <div className="object-5">

@@ -3,24 +3,21 @@
   margin-top: 65px;
 }
 
-
 .cart-item-detail {
 }
 
 @media (max-width: 540px) {
   .cart_item_wrapper {
     display: flex;
-width: auto;
+    width: auto;
     padding: 10px;
     margin: 0 8px;
     align-items: center;
     border-radius: 10px;
-    box-shadow: 0rem 0rem 1rem 0rem #00000032 !important;
-    background-clip: border-box;
+    margin: 10px;
   }
 
-  .cart_item_wrapper:not(:last-child) {
-    margin-bottom: 10px;
+  .cart_item_wrapper:last-child {
   }
 
   .checkBox {
@@ -28,7 +25,6 @@ width: auto;
   }
 
   .cart-item-detail {
-
     width: 95%;
   }
 
@@ -92,17 +88,14 @@ width: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
   }
 
   .love {
     text-align: center;
-
   }
 
   .bin {
     text-align: center;
-
   }
 
   .binXaddXsubtract {
@@ -128,18 +121,14 @@ width: auto;
 
   .add {
     border-left: 1px solid yellow;
-
   }
 
   .subtract {
     border-right: 1px solid yellow;
-
   }
 
   .quantity {
-
   }
-
 }
 
 @media (max-width: 320px) {
