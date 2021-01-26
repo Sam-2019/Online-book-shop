@@ -1,0 +1,29 @@
+.cart-wrapper,
+.checkout-wrapper,
+.order-wrapper {
+  margin-bottom: 70px;
+  min-height: 100vh;
+}
+
+.home-wrapper,
+.cart-wrapper,
+.checkout-wrapper,
+.order-wrapper,
+.profile-wrapper,
+.search-wrapper,
+.user-wrapper {
+  background-color: #ababab3c;
+  min-height: 100vh;
+  margin-bottom: 50px;
+}
+
+.home-wrapper,
+.cart-wrapper,
+.checkout-wrapper,
+.order-wrapper,
+.profile-wrapper,
+.search-wrapper,
+.user-wrapper {
+  margin-bottom: 0px;
+}
+
