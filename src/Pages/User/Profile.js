@@ -79,6 +79,7 @@ const AccountVerify = () => {
             Invite a friend
           </div>
         </div>
+        
       </div>
     </div>
   );

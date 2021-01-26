@@ -32,7 +32,7 @@ const CartItem = ({ show }) => {
   };
 
   return (
-    <div className="cart_item_wrapper">
+    <div className="cart_item_wrapper ">
       <div className="checkBox  ">
         <input type="checkbox" value="0" />
       </div>

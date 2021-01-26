@@ -93,7 +93,7 @@ const Product = ({}) => {
             </div>
           </div>
 
-          <div className="product-action item">
+          <div className="product-action">
             <Button name="Add to Cart" class_name="addCart" />
             <Button name="Buy Now" class_name="buyNow" />
           </div>

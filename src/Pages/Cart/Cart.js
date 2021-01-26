@@ -37,12 +37,14 @@ const Cart = () => {
         </div>
       </div>
 
-      <div className="main item ">
-        {Array(3)
-          .fill()
-          .map((item, index) => (
-            <CartItem show={show} key={index} />
-          ))}
+      <div className="main-1  ">
+        <div className=" wrapper-item">
+          {Array(5)
+            .fill()
+            .map((item, index) => (
+              <CartItem show={show} key={index} />
+            ))}
+        </div>
 
         <Summary>
           <div className="amount ">Total ${amount}</div>

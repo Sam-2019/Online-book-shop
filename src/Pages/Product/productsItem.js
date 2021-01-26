@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import Cart from '../Components/Cart'
+import Cart from "../Components/Cart";
 
 const ProductsItem = ({ key }) => {
   let history = useHistory();
@@ -28,7 +28,7 @@ const ProductsItem = ({ key }) => {
         <div
           className="products-discount-price"
           onClick={() => {
-            history.push(`/product/${index}`);
+            history.push(`/product/${key}`);
           }}
         >
           Ghc999

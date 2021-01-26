@@ -24,8 +24,8 @@ const OrderItem = () => {
   }
 
   return (
-    <div className="item-wrapper ">
-      <div className="item-detail   ">
+    <div className="item-wrapper">
+      <div className="item-detail">
         <div className="imageXname ">
           <div className="image-placeholder  loading"></div>
 

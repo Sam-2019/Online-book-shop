@@ -15,9 +15,9 @@ const WishList = () => {
         </div>
       </div>
 
-      <div className="main item">
-        <div className="wrapper">
-          {Array(8)
+      <div className="main ">
+        <div className="wrapper-item">
+          {Array(10)
             .fill()
             .map((item, index) => (
               <WishItem key={index} />

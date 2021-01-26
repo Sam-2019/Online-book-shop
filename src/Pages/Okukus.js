@@ -77,13 +77,13 @@ export default Okukus;
 
 function Home() {
   return (
-    <div className="home-wrapper">
+    <>
       <Navigation />
 
-      <div className="main">
+      <div className="products ">
         <Products />
       </div>
-    </div>
+    </>
   );
 }
 

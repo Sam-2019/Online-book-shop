@@ -20,7 +20,6 @@
   .profile-wrapper,
   .search-wrapper,
   .user-wrapper {
-    margin-bottom: 0px;
   }
 
   .header {
@@ -29,7 +28,6 @@
     padding: 15px 10px;
     display: flex;
     justify-content: space-between;
-    box-shadow: 0rem 0rem 1rem 0rem #00000032 !important;
   }
 
   .category {
@@ -60,11 +58,12 @@
   .object-5 {
     padding: 0 3px 0 0;
   }
-  .main {
+
+  .main-1 {
+    margin: 0 0 47px 0;
   }
 
   .wrapper {
-    margin: 10px 0;
   }
 
   .title {

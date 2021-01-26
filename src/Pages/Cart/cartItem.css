@@ -11,13 +11,13 @@
     display: flex;
     width: auto;
     padding: 10px;
-    margin: 0 8px;
     align-items: center;
     border-radius: 10px;
-    margin: 10px;
+    margin: 10px 0;
   }
 
   .cart_item_wrapper:last-child {
+
   }
 
   .checkBox {

@@ -2,14 +2,13 @@
   .item-wrapper {
     flex-direction: column;
     padding: 10px 10px;
-    margin: 0 8px;
+    margin: 10px 0;
     align-items: center;
     border-radius: 10px;
     background-color: #ffffff;
   }
 
   .item-wrapper:not(:last-child) {
-    margin-bottom: 10px;
   }
 
   .item-detail {

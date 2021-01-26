@@ -4,13 +4,13 @@ import "./products.css";
 
 const Products = () => {
   return (
-    <div className="products">
-      {Array(2)
+    <>
+      {Array(10)
         .fill()
         .map((item, index) => (
           <ProductsItem key={item} />
         ))}
-    </div>
+    </>
   );
 };
 
