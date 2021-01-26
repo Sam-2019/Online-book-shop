@@ -17,6 +17,7 @@ const Product = ({}) => {
 
   return (
     <div className="product-wrapper ">
+
       <div className="header ">
         <div className="category ">
           <div className="object-1">
@@ -27,11 +28,12 @@ const Product = ({}) => {
       </div>
 
       <div className="main ">
+      <div className="wrapper">
         <div className="product-wrapper  ">
-          <div className="product-body ">
+          <div className="product-body  ">
             <div className="product-image "></div>
 
-            <div className="product-detail ">
+            <div className="product-detail  ">
               <div className="product-name">Name</div>
 
               <div className="author-wrapper">
@@ -91,10 +93,11 @@ const Product = ({}) => {
             </div>
           </div>
 
-          <div className="product-action">
+          <div className="product-action item">
             <Button name="Add to Cart" class_name="addCart" />
             <Button name="Buy Now" class_name="buyNow" />
           </div>
+        </div>
         </div>
       </div>
     </div>

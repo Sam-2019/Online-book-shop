@@ -1,5 +1,6 @@
 @media (max-width: 540px) {
   .product-wrapper {
+    background-color: white;
   }
 
   .close-action {
@@ -27,7 +28,6 @@
   }
 
   .product-detail {
-    padding: 0 10px;
     align-items: center;
   }
 
@@ -68,7 +68,7 @@
   }
 
   .line {
-    border: 1px solid blue;
+    border-left: 1px solid blue;
   }
   .product-price {
     text-align: center;
@@ -148,8 +148,7 @@
     align-items: center;
     background-color: #ffffff;
     width: 100%;
-
-    padding: 10px;
+    padding: 10px 10px 0;
   }
 
   .addCart {

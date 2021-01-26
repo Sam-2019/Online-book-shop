@@ -1,8 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import Cart from '../Components/Cart'
 
-const productsItem = ({ key }) => {
+const ProductsItem = ({ key }) => {
   let history = useHistory();
+
   return (
     <div className="products-wrapper ">
       <div className="products-discount-rate">-30%</div>
@@ -43,4 +45,4 @@ const productsItem = ({ key }) => {
   );
 };
 
-export default productsItem;
+export default ProductsItem;
