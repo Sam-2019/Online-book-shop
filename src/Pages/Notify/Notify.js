@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import Close from "../Components/Close";
 import "./notify.css";
 
-const Notify = ({ message }) => {
+const Notify = ({ message, close }) => {
   return (
-    <div className="notify">
-      <div className="notify-close">
-        <Close width="15" height="15" action />
-      </div>
+    <div className="notify ">
+      {/* <div className="notify-close ">
+        <Close width={25} height={25} action={close} />
+      </div> */}
 
-      <div className="notify-main ">{message}</div>
+      <div className="notify-main  ">{message}</div>
     </div>
   );
 };

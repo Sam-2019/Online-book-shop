@@ -1,10 +1,7 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import "./icons.css";
 
 const Share = ({ width, height, postTitle, postUrl, hashtags, via }) => {
-  let history = useHistory();
-
   let whatsapp = `https://api.whatsapp.com/send?text=${postTitle} ${postUrl} `;
   let facebook = `  https://www.facebook.com/sharer.php?u=${postUrl}  `;
   let twitter = `https://twitter.com/intent/tweet?url=${postUrl}&text=${postTitle}&via=${via}&hashtags=${hashtags} `;

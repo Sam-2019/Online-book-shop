@@ -1,8 +1,20 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
+import Notify from "../Notify/Notify";
 import Cart from "../Components/Cart";
 
 const ProductsItem = ({ index }) => {
+  const [notify, setNotify] = React.useState(false);
+
+  const showNotify = () => {
+    setNotify(true);
+
+    const timer = setTimeout(() => {
+      setNotify(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  };
+
   let history = useHistory();
 
   return (
@@ -37,10 +49,14 @@ const ProductsItem = ({ index }) => {
         <div className="priceXcart">
           <div className="products-price">Ghc699</div>
           <div className="products-add2cart">
-            <Cart width={17} height={17} />
+            <Cart width={17} height={17} action={showNotify} />
           </div>
         </div>
       </div>
+
+      {notify ? (
+        <Notify message="Item added to cart" close={() => setNotify(false)} />
+      ) : null}
     </div>
   );
 };
