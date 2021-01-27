@@ -20,7 +20,9 @@ const Search = () => {
 
       <div className="main ">
         <div className="title-makeshift ">Search Results for "{query}"</div>
+        <div className="products ">
         <Products />
+      </div>
       </div>
     </div>
   );

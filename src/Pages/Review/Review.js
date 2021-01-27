@@ -1,6 +1,5 @@
 import React from "react";
 import Back from "../Components/Back";
-import Bin from "../Components/Bin";
 import ReviewItem from "./reviewItem";
 import "./review.css";
 
@@ -21,7 +20,7 @@ const Review = () => {
           {Array(5)
             .fill()
             .map((item, index) => (
-              <ReviewItem />
+              <ReviewItem key={index} />
             ))}
         </div>
       </div>

@@ -11,7 +11,8 @@ const Up = ({ width, height, action }) => {
       id="chevron-up"
       xmlns="http://www.w3.org/2000/svg"
       width={width}
-      height={height}onClick={action}
+      height={height}
+      onClick={action}
     >
       <path
         fillRule="evenodd"
@@ -23,9 +24,8 @@ const Up = ({ width, height, action }) => {
 
 export default Up;
 
-
 Up.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
-  action: PropTypes.func
+  action: PropTypes.func,
 };

@@ -10,7 +10,6 @@ const AccountVerify = () => {
 
   return (
     <div className="user-wrapper">
-      
       <div className="header ">
         <div className="category ">
           <div className="object-1">
@@ -27,7 +26,6 @@ const AccountVerify = () => {
       </div>
 
       <div className="main ">
-
         <div className="user-detail ">
           <div className="category ">
             <div className="object-5">
@@ -37,7 +35,7 @@ const AccountVerify = () => {
             <div className="nameXeditXverify  ">
               <div className="nameXedit ">
                 <div className="user-name">Samuel Martey Akandor</div>
-                <Pen width="15" height="15" />
+                <Pen width={15} height={15} />
               </div>
 
               <div className="user-verify">
@@ -54,7 +52,7 @@ const AccountVerify = () => {
           <div
             className="option-list"
             onClick={() => {
-              history.push("/user/orderhistory");
+              history.push("/user/order history");
             }}
           >
             Order History
@@ -79,7 +77,6 @@ const AccountVerify = () => {
             Invite a friend
           </div>
         </div>
-        
       </div>
     </div>
   );

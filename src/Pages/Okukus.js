@@ -3,9 +3,8 @@ import {
   Route,
   Switch,
   useRouteMatch,
-  Redirect,
 } from "react-router-dom";
-import styled from "styled-components";
+// import styled from "styled-components";
 import Navigation from "./Navigation/Navigation";
 import Cart from "./Cart/Cart";
 import Login from "./User/Login";
@@ -116,7 +115,7 @@ function User() {
         <UserVerify />
       </Route>
 
-      <Route path={`${path}/orderhistory`}>
+      <Route path={`${path}/order history`}>
         <OrderHistory />
       </Route>
 

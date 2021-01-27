@@ -6,7 +6,7 @@ const Pen = ({ width, height, action }) => {
   return (
     <svg
       fill="currentColor"
-      class="bi bi-pen"
+      className="bi bi-pen"
       viewBox="0 0 16 16"
       id="pen"
       xmlns="http://www.w3.org/2000/svg"

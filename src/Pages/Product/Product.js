@@ -1,13 +1,14 @@
 import React from "react";
-import { useHistory, useParams, useRouteMatch, Link } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import Back from "../Components/Back";
 import Up from "../Components/Up";
 import Down from "../Components/Down";
 import Right from "../Components/Right";
 import Social from "../Components/Social";
 import Button from "../Components/Button";
-import "./product.css";
 import ReviewItem from "../Review/reviewItem";
+import "./product.css";
+
 
 const Product = () => {
   let history = useHistory();
@@ -82,10 +83,7 @@ const Product = () => {
                     <div className="rating-stars">********</div>
                   </div>
 
-                  <div className="numberXmore">
-                    <div className="review-numbersXright">64 Reviews</div>
-                    <Right width={20} height={20} />
-                  </div>
+                  <div className="review-numbersXright">64 Reviews</div>
                 </div>
 
                 {Array(1)
@@ -95,12 +93,13 @@ const Product = () => {
                   ))}
 
                 <div
-                  className="see-more"
+                  className=" see-more"
                   onClick={() => {
                     history.push(`${url}/review`);
                   }}
                 >
-                  See more
+                  <div className="review-numbersXright">See All Reviews</div>
+                  <Right width={20} height={20} />
                 </div>
               </div>
             </div>
