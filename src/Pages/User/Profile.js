@@ -94,7 +94,7 @@ const Proflie = () => {
           </div>
 
           <div className="option-list">
-            <a href="sms:+0240586043&body=Hi%there%here to text us!">
+            <a href="sms:+233240586043&body=Hi%there%here to text us!">
               Invite a friend
             </a>
           </div>
