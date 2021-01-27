@@ -40,18 +40,24 @@
   }
 
   .bi-facebook {
-    color: rgb(87, 87, 249);
+    color: #5757f9;
   }
 
   .bi-twitter {
-    color: rgb(87, 87, 249);
+    color: #5757f9;
   }
+
+  .bi-whatsapp {
+    color: #ffffff;
+  }
+
 
   .facebook,
   .twitter {
   }
 
   .whatsapp {
+
   }
 
   .message {
