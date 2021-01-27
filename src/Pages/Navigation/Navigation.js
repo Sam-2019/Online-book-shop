@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Cart from "../Components/Cart";
 import User from "../Components/User";
 import Search from "../Components/Search";
-import Input from "../Components/Input";
+import {Input} from "../Components/Input";
 import Button from "../Components/Button";
 import "./navigation.css";
 import Close from "../Components/Close";

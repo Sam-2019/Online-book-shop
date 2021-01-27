@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "../../Components/Input";
+import {Input} from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
 import "./change.css";

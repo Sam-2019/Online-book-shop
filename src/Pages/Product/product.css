@@ -168,11 +168,17 @@
     margin-left: 5px;
   }
 
-  .see-more {
-    padding: 10px;
+  .addReviewXseeMore {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 10px 10px 0; 
+  }
+
+  .see-more {
+    display: flex;
+    align-items: center;
+
   }
 
   .fadeIn {

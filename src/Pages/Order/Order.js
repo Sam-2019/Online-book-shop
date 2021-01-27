@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useParams, useHistory } from "react-router-dom";
 import Back from "../Components/Back";
-import Input from "../Components/Input";
+import {Input} from "../Components/Input";
 import Button from "../Components/Button";
 import Home from "../Components/Home";
 import Message from "../Components/Message";

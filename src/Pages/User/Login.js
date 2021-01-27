@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
-import Input from "../Components/Input";
+import {Input} from "../Components/Input";
 import Button from "../Components/Button";
 import Message from "../Components/Message";
 import "./user.css";

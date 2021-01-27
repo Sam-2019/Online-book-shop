@@ -6,7 +6,9 @@ import Down from "../Components/Down";
 import Right from "../Components/Right";
 import Social from "../Components/Social";
 import Button from "../Components/Button";
+import PopUp from "../Components/Popup";
 import ReviewItem from "../Review/reviewItem";
+import AddReview from "./addReview";
 import "./product.css";
 
 const Product = () => {
@@ -15,6 +17,7 @@ const Product = () => {
 
   let { url } = useRouteMatch();
   const [contractDescription, expandDescription] = React.useState(true);
+  const [review, addReview] = React.useState(false);
 
   const ToggleDescription = () => {
     expandDescription(!contractDescription);
@@ -92,17 +95,40 @@ const Product = () => {
                     <ReviewItem key={index} />
                   ))}
 
-                <div
-                  className=" see-more"
-                  onClick={() => {
-                    history.push(`${url}/review`);
-                  }}
-                >
-                  <div className="review-numbersXright">See All Reviews</div>
-                  <Right width={20} height={20} />
+                <div className=" addReviewXseeMore ">
+                  <div
+                    className=" addReview"
+                    onClick={() => {
+                      addReview(true);
+                    }}
+                  >
+                    Add Review
+                  </div>
+
+                  <div className=" see-more">
+                    <div
+                      className="review-numbersXright"
+                      onClick={() => {
+                        history.push(`${url}/review`);
+                      }}
+                    >
+                      See All Reviews
+                    </div>
+                    <Right width={20} height={20} />
+                  </div>
                 </div>
               </div>
             </div>
+
+            {review ? (
+              <PopUp close={() => addReview(false)}>
+                <AddReview
+                  close={() => {
+                    addReview(false);
+                  }}
+                />
+              </PopUp>
+            ) : null}
 
             <div className="product-action">
               <Button name="Add to Cart" class_name="addCart" />
