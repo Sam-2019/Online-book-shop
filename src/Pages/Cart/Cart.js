@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams, useHistory } from "react-router-dom";
 import "./cart.css";
 import Back from "../Components/Back";
 import Bin from "../Components/Bin";
@@ -10,6 +11,8 @@ import Summary from "../Summary/Summary";
 const Cart = () => {
   let amount = 10000;
   let quantity = 100;
+  let history = useHistory();
+  let { id } = useParams();
   const [state, setState] = React.useState(false);
 
   function show() {
@@ -48,7 +51,13 @@ const Cart = () => {
 
         <Summary>
           <div className="amount ">Total ${amount}</div>
-          <Button class_name="checkout" name={`Check Out  (${quantity})`} />
+          <Button
+            class_name="checkout"
+            name={`Check Out  (${quantity})`}
+            action={() => {
+              history.push(`/order/${id}`);
+            }}
+          />
         </Summary>
       </div>
     </div>

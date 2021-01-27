@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useParams, useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
@@ -14,6 +15,8 @@ import "./order.css";
 const Order = () => {
   let amount = 10000;
   let quantity = 100;
+  let history = useHistory();
+  let { id } = useParams();
   const [paymentMethod, setPaymentMethod] = React.useState("");
   const [state, setState] = React.useState(false);
 
@@ -40,7 +43,7 @@ const Order = () => {
 
       {state ? (
         <PopUp close={() => setState(false)}>
-          <ol>
+          <ol className="">
             <li>Dial *170# on your phone</li>
             <li>Select MoMoPay &amp; PayBill</li>
             <li>Select MoMoPay</li>
@@ -51,7 +54,7 @@ const Order = () => {
             <li>Enter Your Pin to confirm payment</li>
           </ol>
 
-          <div>
+          <div className="">
             Upon successful payment, please use the details of the payment to
             fill the fields below
           </div>
@@ -59,67 +62,66 @@ const Order = () => {
       ) : null}
 
       <div className="main-1">
-        <div className=" wrapper-item">
-          <form className="">
-            <div className="page_title"> Shipping Information</div>
-            <Input class_name="input " placeholder="Location" onChange />
-            <Input class_name="input " placeholder="Digital Address" onChange />
-            <Input class_name="input " placeholder="Phone Number" onChange />
+        <form className=" wrapper-item">
+          <div className="page_title"> Shipping Information</div>
+          <Input class_name="input " placeholder="Location" onChange />
+          <Input class_name="input " placeholder="Digital Address" onChange />
+          <Input class_name="input " placeholder="Phone Number" onChange />
 
-            <div className="page_title">Payment</div>
-            <div className="payment-method">
-              <div
-                className={selectedOption === "cash" ? "cash" : "select"}
-                onClick={() => {
-                  setPaymentMethod("Cash");
-                }}
-              >
-                Cash
-              </div>
-              <div
-                className={selectedOption === "momo" ? "momo" : "select"}
-                onClick={() => {
-                  setPaymentMethod("Momo");
-                }}
-              >
-                Momo
-              </div>
+          <div className="page_title">Payment</div>
+          <div className="payment-method">
+            <div
+              className={selectedOption === "cash" ? "cash" : "select"}
+              onClick={() => {
+                setPaymentMethod("Cash");
+              }}
+            >
+              Cash
             </div>
+            <div
+              className={selectedOption === "momo" ? "momo" : "select"}
+              onClick={() => {
+                setPaymentMethod("Momo");
+              }}
+            >
+              Momo
+            </div>
+          </div>
 
-            {selectedOption === "momo" ? (
-              <>
-                <div className="payment-instruction ">
-                  <div className="pay-know-how ">
-                    <div>HOW TO PAY WITH MOMO</div>
-                    <Question
-                      width={30}
-                      height={30}
-                      action={() => {
-                        setState(true);
-                      }}
-                    />
-                  </div>
-                  <Input class_name="input " placeholder="Name" onChange />
-                  <Input
-                    class_name="input "
-                    placeholder="Momo Number"
-                    onChange
-                  />
-                  <Input
-                    class_name="input "
-                    placeholder="Transaction ID"
-                    onChange
+          {selectedOption === "momo" ? (
+            <>
+              <div className="payment-instruction ">
+                <div className="pay-know-how ">
+                  <div>HOW TO PAY WITH MOMO</div>
+                  <Question
+                    width={30}
+                    height={30}
+                    action={() => {
+                      setState(true);
+                    }}
                   />
                 </div>
-              </>
-            ) : null}
-          </form>
-        </div>
+                <Input class_name="input " placeholder="Name" onChange />
+                <Input class_name="input " placeholder="Momo Number" onChange />
+                <Input
+                  class_name="input "
+                  placeholder="Transaction ID"
+                  onChange
+                />
+              </div>
+            </>
+          ) : null}
+        </form>
 
         <Summary>
           <div className="amount ">Total ${amount}</div>
-          <Button class_name="checkout" name={`Check Out  (${quantity})`} />
-        </Summary>
+          <Button
+            class_name="checkout"
+            name={`Check Out  (${quantity})`}
+            action={() => {
+              history.push(`/order/${id}`);
+            }}
+          /> </Summary>
       </div>
     </div>
   );

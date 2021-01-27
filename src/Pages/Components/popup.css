@@ -16,7 +16,6 @@
   .popup {
     background-color: #ffffff;
     width: auto;
-    max-width: 480px;
     margin: 150px 10px;
     transition: all 0.6s ease-in-out;
 
@@ -30,8 +29,8 @@
     justify-content: flex-end;
   }
 
-  .popup-action{
-margin-top: 10px;
+  .popup-action {
+    margin-top: 10px;
   }
 }
 
@@ -43,12 +42,12 @@ margin-top: 10px;
 
 @media (max-width: 320px) {
   .popup {
-    margin: 150px 10px;
+    margin: 80px 10px;
   }
 }
 
 @media (max-width: 280px) {
   .popup {
-    margin: 140px 10px;
+    margin: 100px 10px;
   }
 }
