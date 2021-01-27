@@ -21,7 +21,7 @@ const Navigation = () => {
   return (
     <header className="nav-header ">
       {state ? (
-        <div className="category2">
+        <div className="category2 ">
           <Input
             class_name="header-input  "
             placeholder="Search"

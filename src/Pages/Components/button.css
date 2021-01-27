@@ -34,9 +34,12 @@
   }
 
   .header-primary,
-  .header-primary2,
   .header-secondary {
     padding: 2px 9px;
+  }
+
+  .header-primary2 {
+    padding: 7px 9px;
   }
 
   .cancel-order {
