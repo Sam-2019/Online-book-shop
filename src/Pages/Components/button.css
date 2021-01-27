@@ -15,7 +15,6 @@
     border: 1px solid transparent;
     outline: none;
     border-radius: 10px;
-
     color: transparent;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
@@ -70,7 +69,8 @@
   .facebook:active,
   .twitter:active,
   .buyNow:active,
-  .addCart:active {
+  .addCart:active,
+  .addReview:active {
     transform: scale(0.95);
   }
 
