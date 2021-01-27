@@ -6,6 +6,7 @@
     bottom: 0;
     top: 0;
     background-color: #bfbfbf48;
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     -webkit-transition: all ease 0.7s;
     transition: all ease 0.7s;
