@@ -32,6 +32,8 @@ const PasswordReset = () => {
         <form className="form-wrapper ">
           <Input class_name="input " placeholder="Email" onChange />
 
+          <Message class_name="message " message="Hello" />
+
           <Button name="Send password reset email" class_name="primary" />
 
           {/* <Button name="Return to sign in" class_name="secondary" /> */}

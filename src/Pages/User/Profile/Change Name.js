@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
+import Message from "../../Components/Message";
 import "./change.css";
 
 const ChangeName = ({ close }) => {
@@ -8,6 +9,9 @@ const ChangeName = ({ close }) => {
     <form className=" change ">
       <Input class_name="input " placeholder="First Name" onChange />
       <Input class_name="input " placeholder="Last Name" onChange />
+
+      <Message class_name="message " message="Hello" />
+
 
       <Button class_name="primary" name="Update" />
 

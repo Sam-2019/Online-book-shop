@@ -27,6 +27,9 @@ const UserVerify = () => {
       </div>
 
       <div className="main">
+
+      <Message class_name="message " message="Hello" />
+      
         <Success />
       </div>
     </div>

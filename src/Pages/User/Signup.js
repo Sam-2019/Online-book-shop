@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import Back from "../Components/Back";
 import Input from "../Components/Input";
@@ -8,19 +9,26 @@ import Message from "../Components/Message";
 import "./user.css";
 
 const Signup = () => {
+  let history = useHistory();
   return (
     <div className="user-wrapper">
       <div className="header">
         <div className="category">
           <div className="object-1">
-            <Home width={30} height={30} />
+            <Back width={30} height={30} />
           </div>
           <div className="object-2"> Create account</div>
         </div>
 
         <div className="category ">
           <div className="object-2">
-            <Button name="Login" class_name="header-secondary" />
+            <Button
+              name="Login"
+              class_name="header-secondary"
+              action={() => {
+                history.push("/login");
+              }}
+            />
           </div>
 
           {/* <div className="">
@@ -36,12 +44,12 @@ const Signup = () => {
           <Input class_name="input" placeholder="Password" onChange />
           <Input class_name="input " placeholder="Confirm Password" onChange />
 
-          <Input
+          {/* <Input
             type="date"
             class_name="input "
             placeholder="Date of birth"
             onChange
-          />
+          /> */}
 
           <Message class_name="message " message="Hello" />
 

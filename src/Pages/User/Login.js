@@ -1,26 +1,32 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
-import Home from "../Components/Home";
 import Message from "../Components/Message";
 import "./user.css";
 
 const Login = () => {
+  let history = useHistory();
   return (
     <div className="user-wrapper">
       <div className="header ">
         <div className="category ">
           <div className="object-1">
-            <Home width={30} height={30} />
+            <Back width={30} height={30} />
           </div>
           <div className="object-2"> Login</div>
         </div>
 
         <div className="category ">
           <div className="object-2">
-            <Button name="Signup" class_name="header-secondary" />
+            <Button
+              name="Signup"
+              class_name="header-secondary"
+              action={() => {
+                history.push("/signup");
+              }}
+            />
           </div>
 
           {/* <div className="">
@@ -41,7 +47,14 @@ const Login = () => {
         </form>
 
         <div className="forgotten_password_wrapper  ">
-          <span className="forgotten_password">Password forgotten?</span>
+          <span
+            className="forgotten_password "
+            onClick={() => {
+              history.push("/account/reset");
+            }}
+          >
+            Password forgotten?
+          </span>
         </div>
       </div>
     </div>

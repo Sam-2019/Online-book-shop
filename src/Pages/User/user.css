@@ -8,11 +8,12 @@
   }
 
   .forgotten_password_wrapper {
-    margin: 0px auto 20px 0;
+    margin: 10px 0 0 0;
     text-align: right;
   }
 
   .forgotten_password {
-    padding: 0px 20px 0 0;
+    padding: 0 20px 0 0;
+    color: #4a4ac9;
   }
 }

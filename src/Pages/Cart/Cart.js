@@ -1,12 +1,11 @@
 import React from "react";
 import { useParams, useHistory } from "react-router-dom";
-import "./cart.css";
 import Back from "../Components/Back";
 import Bin from "../Components/Bin";
 import Button from "../Components/Button";
 import CartItem from "./cartItem";
-
 import Summary from "../Summary/Summary";
+import "./cart.css";
 
 const Cart = () => {
   let amount = 10000;

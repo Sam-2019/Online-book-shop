@@ -26,6 +26,8 @@ const Password = () => {
           <Input class_name="input " placeholder="New Password" onChange />
           <Input class_name="input " placeholder="Confirm Password" onChange />
 
+          <Message class_name="message " message="Hello" />
+
           <Button name="Submit" class_name="primary" />
           {/* <Button name="Signup" class_name="secondary" /> */}
         </form>
