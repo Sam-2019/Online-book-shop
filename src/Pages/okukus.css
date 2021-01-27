@@ -74,6 +74,11 @@
   .title-makeshift {
     padding: 0 10px;
   }
+
+  .page_title{
+    padding: 15px 0;
+
+  }
 }
 
 @media (max-width: 320px) {
