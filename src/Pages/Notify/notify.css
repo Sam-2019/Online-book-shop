@@ -1,15 +1,26 @@
 @media (max-width: 540px) {
+  .notify-wrapper{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    -webkit-transition: all ease 0.7s;
+    transition: all ease 0.7s;
+    z-index: 11;
+
+  }
   .notify {
-    padding: 10px 10px;
+    padding: 20px 10px;
     position: absolute;
     text-align: center;
     z-index: 20;
-    top: 62px;
+    top: 0px;
     left: 0;
     right: 0;
     -webkit-transition: all ease 0.7s;
     transition: all ease 0.7s;
-    background-color: #25d3aae8;
+    background-color: #25d3aaf4;
     transition: transform 80ms ease-in;
     box-shadow: 0rem 0rem 1rem 0rem #00000032 !important;
   }
