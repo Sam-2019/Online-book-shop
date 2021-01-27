@@ -1,12 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
+import Input from "../Components/Input";
+import Button from "../Components/Button";
 import Pen from "../Components/Pen";
+import PopUp from "../Components/Popup";
 import "./profile.css";
+import ChangePassword from "./Profile/Change Password";
 
-const AccountVerify = () => {
+const Proflie = () => {
   let history = useHistory();
+  const [state, setState] = React.useState(false);
 
   return (
     <div className="user-wrapper">
@@ -45,6 +49,16 @@ const AccountVerify = () => {
           </div>
         </div>
 
+        {state ? (
+          <PopUp close={() => setState(false)}>
+            <ChangePassword
+              close={() => {
+                setState(false);
+              }}
+            />
+          </PopUp>
+        ) : null}
+
         <div className="options">
           <div className="option-list" onClick={() => {}}>
             Account
@@ -65,7 +79,13 @@ const AccountVerify = () => {
           >
             Wish List
           </div>
-          <div className="option-list" onClick={() => {}}>
+
+          <div
+            className="option-list"
+            onClick={() => {
+              setState(true);
+            }}
+          >
             Change Password
           </div>
 
@@ -73,12 +93,14 @@ const AccountVerify = () => {
             Customer Service
           </div>
 
-          <div className="option-list" onClick={() => {}}>
-            Invite a friend
+          <div className="option-list">
+            <a href="sms:+0240586043&body=Hi%there%here to text us!">
+              Invite a friend
+            </a>
           </div>
         </div>
       </div>
     </div>
   );
 };
-export default AccountVerify;
+export default Proflie;

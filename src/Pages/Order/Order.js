@@ -54,10 +54,15 @@ const Order = () => {
             <li>Enter Your Pin to confirm payment</li>
           </ol>
 
-          <div className="">
+          <div className="other-info">
             Upon successful payment, please use the details of the payment to
             fill the fields below
           </div>
+
+                  {/* <Button class_name="primary" name="Okay" /> */}
+        <div className="popup-action">
+          <Button class_name="primary" name="Close" action={() => setState(false)}/>
+        </div>
         </PopUp>
       ) : null}
 
@@ -121,7 +126,8 @@ const Order = () => {
             action={() => {
               history.push(`/order/${id}`);
             }}
-          /> </Summary>
+          />
+        </Summary>
       </div>
     </div>
   );

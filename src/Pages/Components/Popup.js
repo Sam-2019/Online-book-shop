@@ -13,10 +13,7 @@ const PopUp = ({ children, close }) => {
         </div>
 
         <div>{children}</div>
-        {/* <Button class_name="primary" name="Okay" /> */}
-        <div className="popup-action">
-          <Button class_name="primary" name="Close" action={close} />
-        </div>
+
       </div>
     </div>
   );
