@@ -8,9 +8,12 @@ import Message from "../Components/Message";
 import Summary from "../Summary/Summary";
 import PopUp from "../Components/Popup";
 import Question from "../Components/Question";
+
 import "./order.css";
 
 const Order = () => {
+  let amount = 10000;
+  let quantity = 100;
   const [paymentMethod, setPaymentMethod] = React.useState("");
   const [state, setState] = React.useState(false);
 
@@ -25,7 +28,7 @@ const Order = () => {
   }
 
   return (
-    <div className="checkout-wrapper">
+    <div className="cart-wrapper">
       <div className="header ">
         <div className="category ">
           <div className="object-1">
@@ -33,59 +36,6 @@ const Order = () => {
           </div>
           <div className="object-2"> Order</div>
         </div>
-      </div>
-
-      <div className="main item">
-        <form className="form-wrapper ">
-          <div className="page_title"> Shipping Information</div>
-          <Input class_name="input " placeholder="Location" onChange />
-          <Input class_name="input " placeholder="Digital Address" onChange />
-          <Input class_name="input " placeholder="Phone Number" onChange />
-
-          <div className="page_title">Payment</div>
-          <div className="payment-method">
-            <div
-              className={selectedOption === "cash" ? "cash" : "select"}
-              onClick={() => {
-                setPaymentMethod("Cash");
-              }}
-            >
-              Cash
-            </div>
-            <div
-              className={selectedOption === "momo" ? "momo" : "select"}
-              onClick={() => {
-                setPaymentMethod("Momo");
-              }}
-            >
-              Momo
-            </div>
-          </div>
-
-          {selectedOption === "momo" ? (
-            <>
-              <div className="payment-instruction ">
-                <div className="pay-know-how ">
-                  <div>HOW TO PAY WITH MOMO</div>
-                  <Question
-                    width="30"
-                    height="30"
-                    action={() => {
-                      setState(true);
-                    }}
-                  />
-                </div>
-                <Input class_name="input " placeholder="Name" onChange />
-                <Input class_name="input " placeholder="Momo Number" onChange />
-                <Input
-                  class_name="input "
-                  placeholder="Transaction ID"
-                  onChange
-                />
-              </div>
-            </>
-          ) : null}
-        </form>
       </div>
 
       {state ? (
@@ -108,7 +58,69 @@ const Order = () => {
         </PopUp>
       ) : null}
 
+      <div className="main-1">
+        <div className=" wrapper-item">
+          <form className="">
+            <div className="page_title"> Shipping Information</div>
+            <Input class_name="input " placeholder="Location" onChange />
+            <Input class_name="input " placeholder="Digital Address" onChange />
+            <Input class_name="input " placeholder="Phone Number" onChange />
 
+            <div className="page_title">Payment</div>
+            <div className="payment-method">
+              <div
+                className={selectedOption === "cash" ? "cash" : "select"}
+                onClick={() => {
+                  setPaymentMethod("Cash");
+                }}
+              >
+                Cash
+              </div>
+              <div
+                className={selectedOption === "momo" ? "momo" : "select"}
+                onClick={() => {
+                  setPaymentMethod("Momo");
+                }}
+              >
+                Momo
+              </div>
+            </div>
+
+            {selectedOption === "momo" ? (
+              <>
+                <div className="payment-instruction ">
+                  <div className="pay-know-how ">
+                    <div>HOW TO PAY WITH MOMO</div>
+                    <Question
+                      width={30}
+                      height={30}
+                      action={() => {
+                        setState(true);
+                      }}
+                    />
+                  </div>
+                  <Input class_name="input " placeholder="Name" onChange />
+                  <Input
+                    class_name="input "
+                    placeholder="Momo Number"
+                    onChange
+                  />
+                  <Input
+                    class_name="input "
+                    placeholder="Transaction ID"
+                    onChange
+                  />
+                </div>
+              </>
+            ) : null}
+          </form>
+        </div>
+
+        <Summary>
+          <div className="amount ">Total ${amount}</div>
+          <Button class_name="checkout" name={`Check Out  (${quantity})`} />
+        </Summary>
+      </div>
     </div>
   );
 };

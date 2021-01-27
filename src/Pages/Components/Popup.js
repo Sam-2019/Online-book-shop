@@ -9,12 +9,14 @@ const PopUp = ({ children, close }) => {
     <div className="popup-wrapper">
       <div className="popup">
         <div className="close-button">
-          <Close width="30" height="30" />
+          <Close width={30} height={30} action={close} />
         </div>
 
         <div>{children}</div>
-        <Button class_name="primary" name="Okay" />
-        <Button class_name="secondary" name="Close" action={close} />
+        {/* <Button class_name="primary" name="Okay" /> */}
+        <div className="popup-action">
+          <Button class_name="primary" name="Close" action={close} />
+        </div>
       </div>
     </div>
   );
@@ -24,5 +26,4 @@ export default PopUp;
 
 PopUp.propTypes = {
   close: PropTypes.func,
-  children: PropTypes.element.isRequired,
 };

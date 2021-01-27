@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory, useRouteMatch, useParams } from "react-router-dom";
 import Back from "../Components/Back";
 import Up from "../Components/Up";
 import Down from "../Components/Down";
@@ -9,9 +9,9 @@ import Button from "../Components/Button";
 import ReviewItem from "../Review/reviewItem";
 import "./product.css";
 
-
 const Product = () => {
   let history = useHistory();
+  let { id } = useParams();
 
   let { url } = useRouteMatch();
   const [contractDescription, expandDescription] = React.useState(true);
@@ -106,7 +106,13 @@ const Product = () => {
 
             <div className="product-action">
               <Button name="Add to Cart" class_name="addCart" />
-              <Button name="Buy Now" class_name="buyNow" />
+              <Button
+                name="Buy Now"
+                class_name="buyNow"
+                action={() => {
+                  history.push(`/order/${id}`);
+                }}
+              />
             </div>
           </div>
         </div>

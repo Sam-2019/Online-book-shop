@@ -5,7 +5,6 @@ import Cart from "../Components/Cart";
 const ProductsItem = ({ index }) => {
   let history = useHistory();
 
-
   return (
     <div className="products-wrapper ">
       <div className="products-discount-rate">-30%</div>

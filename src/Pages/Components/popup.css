@@ -29,6 +29,10 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  .popup-action{
+margin-top: 10px;
+  }
 }
 
 @media (max-width: 375px) {
