@@ -8,7 +8,7 @@ const Products = () => {
       {Array(10)
         .fill()
         .map((item, index) => (
-          <ProductsItem key={item} />
+          <ProductsItem key={index} index={index} />
         ))}
     </>
   );

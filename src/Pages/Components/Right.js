@@ -6,7 +6,7 @@ const Right = ({ width, height, action }) => {
   return (
     <svg
       fill="currentColor"
-      class="bi bi-chevron-right"
+      className="bi bi-chevron-right"
       viewBox="0 0 16 16"
       id="chevron-right"
       xmlns="http://www.w3.org/2000/svg"

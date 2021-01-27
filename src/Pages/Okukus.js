@@ -24,6 +24,7 @@ import Product from "./Product/Product";
 import Products from "./Product/Products";
 
 import Profile from "./User/Profile";
+import Review from "./Review/Review";
 
 const Okukus = () => {
   return (
@@ -39,10 +40,6 @@ const Okukus = () => {
 
         <Route path="/order/:id">
           <Order />
-        </Route>
-
-        <Route path="/product/:id">
-          <Product />
         </Route>
 
         <Route path="/cart">
@@ -68,6 +65,10 @@ const Okukus = () => {
         <Route path="/account">
           <Account />
         </Route>
+
+        <Route path="/product">
+          <ProductPage />
+        </Route>
       </Switch>
     </Router>
   );
@@ -84,6 +85,22 @@ function Home() {
         <Products />
       </div>
     </>
+  );
+}
+
+function ProductPage() {
+  let { path } = useRouteMatch();
+
+  return (
+    <Switch>
+      <Route exact path={`${path}/:id`}>
+        <Product />
+      </Route>
+
+      <Route path={`${path}/:id/review`}>
+        <Review />
+      </Route>
+    </Switch>
   );
 }
 

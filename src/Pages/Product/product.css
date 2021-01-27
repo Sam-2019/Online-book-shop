@@ -148,7 +148,7 @@
     align-items: center;
     background-color: #ffffff;
     width: 100%;
-    padding: 10px 10px 0;
+    padding: 10px 10px;
   }
 
   .addCart {
@@ -158,7 +158,7 @@
   }
 
   .buyNow {
-    width: 55%;
+    width: 57%;
     padding: 12px 15px;
     font-size: 12px;
   }
@@ -166,6 +166,11 @@
   .facebook,
   .twitter {
     margin-left: 5px;
+  }
+
+  .see-more {
+    padding: 10px;
+    text-align: center;
   }
 
   .fadeIn {

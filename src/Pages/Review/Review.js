@@ -1,26 +1,31 @@
 import React from "react";
-import './review.css'
+import Back from "../Components/Back";
+import Bin from "../Components/Bin";
+import ReviewItem from "./reviewItem";
+import "./review.css";
 
 const Review = () => {
   return (
-    <div className=' review-wrapper "'>
-      <div className="review-head">
-        <div className="image-nameXdate">
-          <div className="reviewer-image  "></div>
-
-          <div className="nameXdate">
-            <div className="name ">Samuel Martey Akandor</div>
-            <div className="dateXtime">23 Jun 2020, 5:30 am</div>
+    <div className="page-wrapper">
+      <div className="header">
+        <div className="category">
+          <div className="object-1">
+            <Back width={30} height={30} />
           </div>
+          <div className="object-2"> Review (1)</div>
         </div>
-
-        <div className="stars ">*********</div>
       </div>
 
-      <div className="review-body">
-        kjgpowjewpojghoperj[j[rekhopkthrjjnglkwner]]jgpowjewpojghoperj[j[rekhopglkwner]]jgpowjewpojghoperj[j[rekhopglkwner]]jgpowjewpojghoperj[j[rekhopglkwner]]jgpowjewpojghoperj[j[rekhopglkwner]]jgpowjewpojghoperj[j[rekhopkthrjjnglkwner]]jgpowjewpojghoperj[j[rekhopkthrjjnglkwner]]
+      <div className="main">
+        <div className=" wrapper-item">
+          {Array(5)
+            .fill()
+            .map((item, index) => (
+              <ReviewItem />
+            ))}
+        </div>
       </div>
-      </div>
+    </div>
   );
 };
 

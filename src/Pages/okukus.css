@@ -9,7 +9,8 @@
   .order-wrapper,
   .profile-wrapper,
   .search-wrapper,
-  .user-wrapper {
+  .user-wrapper,
+  .page-wrapper {
     min-height: 100vh;
   }
 

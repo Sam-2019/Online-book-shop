@@ -1,9 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Cart from "../Components/Cart";
 
-const ProductsItem = ({ key }) => {
+const ProductsItem = ({ index }) => {
   let history = useHistory();
+
 
   return (
     <div className="products-wrapper ">
@@ -12,13 +13,13 @@ const ProductsItem = ({ key }) => {
         <div
           className="products-image "
           onClick={() => {
-            history.push(`/product/${key}`);
+            history.push(`/product/${index}`);
           }}
         ></div>
         <div
           className="products-name"
           onClick={() => {
-            history.push(`/product/${key}`);
+            history.push(`/product/${index}`);
           }}
         >
           Logest name ever you go fhrfghdgjhj djhgdjthjtyjrtyjryj see Longest
@@ -28,7 +29,7 @@ const ProductsItem = ({ key }) => {
         <div
           className="products-discount-price"
           onClick={() => {
-            history.push(`/product/${key}`);
+            history.push(`/product/${index}`);
           }}
         >
           Ghc999
@@ -37,7 +38,7 @@ const ProductsItem = ({ key }) => {
         <div className="priceXcart">
           <div className="products-price">Ghc699</div>
           <div className="products-add2cart">
-            <Cart width="17" height="17" />
+            <Cart width={17} height={17} />
           </div>
         </div>
       </div>

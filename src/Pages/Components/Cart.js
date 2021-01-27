@@ -6,7 +6,7 @@ const Cart = ({ width, height, action }) => {
   return (
     <svg
       fill="currentColor"
-      class="bi bi-cart3"
+      className="bi bi-cart3"
       viewBox="0 0 16 16"
       id="cart3"
       xmlns="http://www.w3.org/2000/svg"
