@@ -7,10 +7,14 @@ import Pen from "../Components/Pen";
 import PopUp from "../Components/Popup";
 import "./profile.css";
 import ChangePassword from "./Profile/Change Password";
+import ChangeEmail from "./Profile/Change Email";
+import ChangeName from "./Profile/Change Name";
 
 const Proflie = () => {
   let history = useHistory();
-  const [state, setState] = React.useState(false);
+  const [password, updatePassword] = React.useState(false);
+  const [email, updateEmail] = React.useState(false);
+  const [name, updateName] = React.useState(false);
 
   return (
     <div className="user-wrapper">
@@ -39,7 +43,13 @@ const Proflie = () => {
             <div className="nameXeditXverify  ">
               <div className="nameXedit ">
                 <div className="user-name">Samuel Martey Akandor</div>
-                <Pen width={15} height={15} />
+                <Pen
+                  width={15}
+                  height={15}
+                  action={() => {
+                    updateName(true);
+                  }}
+                />
               </div>
 
               <div className="user-verify">
@@ -49,20 +59,37 @@ const Proflie = () => {
           </div>
         </div>
 
-        {state ? (
-          <PopUp close={() => setState(false)}>
+        {name ? (
+          <PopUp close={() => updateName(false)}>
+            <ChangeName
+              close={() => {
+                updateName(false);
+              }}
+            />
+          </PopUp>
+        ) : null}
+
+        {password ? (
+          <PopUp close={() => updatePassword(false)}>
             <ChangePassword
               close={() => {
-                setState(false);
+                updatePassword(false);
+              }}
+            />
+          </PopUp>
+        ) : null}
+
+        {email ? (
+          <PopUp close={() => updateEmail(false)}>
+            <ChangeEmail
+              close={() => {
+                updateEmail(false);
               }}
             />
           </PopUp>
         ) : null}
 
         <div className="options">
-          <div className="option-list" onClick={() => {}}>
-            Account
-          </div>
           <div
             className="option-list"
             onClick={() => {
@@ -83,7 +110,16 @@ const Proflie = () => {
           <div
             className="option-list"
             onClick={() => {
-              setState(true);
+              updateEmail(true);
+            }}
+          >
+            Change Email
+          </div>
+
+          <div
+            className="option-list"
+            onClick={() => {
+              updatePassword(true);
             }}
           >
             Change Password
@@ -94,9 +130,7 @@ const Proflie = () => {
           </div>
 
           <div className="option-list">
-            <a href="sms://;?body=Hi%there%here to text us!">
-              Invite a friend
-            </a>
+            <a href="sms://;?body=Hi%there%here to text us!">Invite a friend</a>
           </div>
         </div>
       </div>

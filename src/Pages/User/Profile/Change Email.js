@@ -3,12 +3,11 @@ import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 import "./change.css";
 
-const ChangePassword = ({ close }) => {
+const ChangeEmail = ({ close }) => {
   return (
     <form className=" change ">
-      <p>KenLay@enron-fraud.com</p>
-      <Input class_name="input " placeholder="New Password" onChange />
-      <Input class_name="input " placeholder="Confirm New Password" onChange />
+      <Input class_name="input " placeholder="Current Email" onChange />
+      <Input class_name="input " placeholder="New Email" onChange />
 
       <Button class_name="primary" name="Update" />
 
@@ -17,4 +16,4 @@ const ChangePassword = ({ close }) => {
   );
 };
 
-export default ChangePassword;
+export default ChangeEmail;
