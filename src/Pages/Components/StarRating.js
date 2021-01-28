@@ -4,6 +4,18 @@ import "./star.css";
 
 const StarRating = ({ totalStars = 5 }) => {
   const [starsSelected, setStarsSelected] = useState(0);
+  let state;
+
+  switch (starsSelected) {
+    case 0:
+      state = "";
+      break;
+    case 1:
+      state = "star";
+      break;
+    default:
+      state = "stars";
+  }
 
   return (
     <div className="star-rating">
@@ -18,7 +30,7 @@ const StarRating = ({ totalStars = 5 }) => {
       </div>
 
       <div className="star-text1 ">
-        {starsSelected > 0 ? `${starsSelected} stars` : null}
+        {starsSelected > 0 ? `${starsSelected} ${state}` : null}
       </div>
     </div>
   );

@@ -46,3 +46,5 @@ export const wishList = `${okukus}/${dev_site}/get_wishlist_items.php`;
 export const wishDelete = `${okukus}/${dev_site}/delete_wishlist_item.php`;
 
 export const userWelcome = `${okukus}/${dev_site}/create_newsletter_subscription.php`;
+
+export const locations = `${okukus}/${dev_site}/get_locations.php`;
