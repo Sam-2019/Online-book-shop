@@ -19,7 +19,6 @@ import Search from "./Search/Search";
 import Checkout from "./Checkout/Checkout";
 import Order from "./Order/Order";
 import Product from "./Product/Product";
-import Notify from "./Notify/Notify";
 
 import Products from "./Product/Products";
 import Profile from "./User/Profile";
