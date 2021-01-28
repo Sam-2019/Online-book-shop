@@ -106,7 +106,7 @@ const Product = () => {
                     <ReviewItem key={index} />
                   ))}
 
-                <div className=" addReviewXseeMore ">
+                <div className=" addReviewXseeMore">
                   <div
                     className=" addReview"
                     onClick={() => {
@@ -141,7 +141,7 @@ const Product = () => {
               </PopUp>
             ) : null}
 
-            <div className="product-action">
+            <div className="product-action ">
               <Button
                 name="Add to Cart"
                 class_name="addCart"
