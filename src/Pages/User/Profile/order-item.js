@@ -1,10 +1,21 @@
 import React from "react";
+import Notify from "../../Notify/Notify";
 import Button from "../../Components/Button";
 import "./orderitem.css";
 
 const OrderItem = () => {
+  const [notify, setNotify] = React.useState(false);
   let status = "fulfilled";
   let statusColorX;
+
+  const showNotify = () => {
+    setNotify(true);
+
+    const timer = setTimeout(() => {
+      setNotify(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  };
 
   switch (status) {
     case "pending":
@@ -45,11 +56,24 @@ const OrderItem = () => {
 
       {status === "cancelled" ? null : (
         <div className="actionXstatus">
-          <Button class_name="cancel-order" name="Cancel Order" />
+          <Button
+            class_name="cancel-order"
+            name="Cancel Order"
+            action={() => {
+              showNotify();
+            }}
+          />
 
           <div className={`status ${statusColorX}`}>{status}</div>
         </div>
       )}
+
+      {notify ? (
+        <Notify
+          message="Order successfully cancelled"
+          close={() => setNotify(false)}
+        />
+      ) : null}
     </div>
   );
 };

@@ -12,15 +12,7 @@ const Cart = () => {
   let quantity = 100;
   let history = useHistory();
   let { id } = useParams();
-  const [state, setState] = React.useState(false);
 
-  function show() {
-    setState(true);
-  }
-
-  function hide() {
-    setState(false);
-  }
 
   return (
     <div className="cart-wrapper">
@@ -44,7 +36,7 @@ const Cart = () => {
           {Array(5)
             .fill()
             .map((item, index) => (
-              <CartItem show={show} key={index} />
+              <CartItem  key={index} />
             ))}
         </div>
 

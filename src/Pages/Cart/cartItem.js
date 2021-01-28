@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Notify from "../Notify/Notify";
 import Add from "../Components/Add";
 import Subtract from "../Components/Subtract";
 import Bin from "../Components/Bin";
@@ -8,9 +9,19 @@ import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
 import "./cartItem.css";
 
-const CartItem = ({ show }) => {
+const CartItem = () => {
   const [loveFill, setLoveFill] = React.useState(false);
   const [binFill, setBinFill] = React.useState(false);
+  const [notify, setNotify] = React.useState(false);
+
+  const showNotify = () => {
+    setNotify(true);
+
+    const timer = setTimeout(() => {
+      setNotify(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  };
 
   const updateLove = () => {
     setLoveFill(true);
@@ -18,6 +29,9 @@ const CartItem = ({ show }) => {
     const timer = setTimeout(() => {
       setLoveFill(false);
     }, 1000);
+
+    showNotify();
+
     return () => clearTimeout(timer);
   };
 
@@ -26,8 +40,8 @@ const CartItem = ({ show }) => {
 
     const timer = setTimeout(() => {
       setBinFill(false);
-      show();
     }, 1000);
+    showNotify();
     return () => clearTimeout(timer);
   };
 
@@ -83,6 +97,10 @@ const CartItem = ({ show }) => {
           </div>
         </div>
       </div>
+
+      {notify ? (
+        <Notify message="Item added to cart" close={() => setNotify(false)} />
+      ) : null}
     </div>
   );
 };
