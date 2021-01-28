@@ -83,19 +83,27 @@
     margin: 0 0 12px 0;
   }
 
-  .shareXicon{
+  .shareXicon {
     background-color: #ffffff16;
     color: #25d365d8;
-    border: 1px solid #25d36516;
+    border: 1px solid #25d36578;
     border-radius: 10px;
     text-transform: uppercase;
-    transition: transform 80ms ease-in;
     padding: 2px 10px;
     display: flex;
     align-items: center;
   }
 
-  .share{
+  .shareXicon:active {
+    color: #ffffff;
+    background-color: #25d365d8;
+    border: 1px solid #ffffff;
+  }
+
+  .shareXicon:focus {
+  }
+
+  .share {
     margin: 0 0 0 10px;
   }
 
