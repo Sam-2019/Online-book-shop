@@ -3,7 +3,7 @@ import "./success.scss";
 
 const Success = () => {
   return (
-    <div className="success">
+    <div className="success ">
       <svg
         id="successAnimation"
         className="animated"
@@ -21,14 +21,14 @@ const Success = () => {
           cy="35"
           r="24"
           stroke="#979797"
-          stroke-width="2"
-          stroke-linecap="round"
+          strokeWidth="2"
+          strokeLinecap="round"
           fill="transparent"
         />
         <polyline
           id="successAnimationCheck"
           stroke="#979797"
-          stroke-width="2"
+          strokeWidth="2"
           points="23 34 34 43 47 27"
           fill="transparent"
         />

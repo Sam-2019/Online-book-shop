@@ -2,13 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useParams, useHistory } from "react-router-dom";
 import Back from "../Components/Back";
-import {Input} from "../Components/Input";
+import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Home from "../Components/Home";
 import Message from "../Components/Message";
 import Summary from "../Summary/Summary";
 import PopUp from "../Components/Popup";
 import Question from "../Components/Question";
+import Success from "../Components/Success Container";
 
 import "./order.css";
 
@@ -19,6 +20,16 @@ const Order = () => {
   let { id } = useParams();
   const [paymentMethod, setPaymentMethod] = React.useState("");
   const [state, setState] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
+
+  const showSuccess = () => {
+    setSuccess(true);
+
+    const timer = setTimeout(() => {
+      setSuccess(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  };
 
   let selectedOption = null;
 
@@ -59,10 +70,14 @@ const Order = () => {
             fill the fields below
           </div>
 
-                  {/* <Button class_name="primary" name="Okay" /> */}
-        <div className="popup-action">
-          <Button class_name="primary" name="Close" action={() => setState(false)}/>
-        </div>
+          {/* <Button class_name="primary" name="Okay" /> */}
+          <div className="popup-action">
+            <Button
+              class_name="primary"
+              name="Close"
+              action={() => setState(false)}
+            />
+          </div>
         </PopUp>
       ) : null}
 
@@ -125,10 +140,35 @@ const Order = () => {
             name={`Check Out  (${quantity})`}
             action={() => {
               history.push(`/order/${id}`);
+              setSuccess(true);
             }}
           />
         </Summary>
       </div>
+
+      {success ? (
+        <Success close={() => setSuccess(false)}>
+          <div className="order-success">
+            <div>
+              {/* Hi <span className="customer-name">Kenneth Akanpaacharuk</span>, */}
+            </div>{" "}
+            Thank you for shopping with us! Your order{" "}
+            <span className="orderID">11111111111</span> has been placed,
+            pending confirmation. We will call you within 24 hours (calling
+            hours: Mon-Fri 8:30am-5:30pm) to confirm your order . Once the order
+            is confirmed, you will not be able to change your order details (e.g
+            recipient, delivery address).
+          </div>
+
+          <Button
+            name="Go Home"
+            class_name="primary"
+            action={() => {
+              history.push("/");
+            }}
+          />
+        </Success>
+      ) : null}
     </div>
   );
 };

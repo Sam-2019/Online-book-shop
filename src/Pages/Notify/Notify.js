@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Close from "../Components/Close";
 import "./notify.css";
 
-const Notify = ({ message, close }) => {
+const Notify = ({ message, close, children }) => {
   return (
     <div className="notify-wrapper ">
     <div className="notify ">

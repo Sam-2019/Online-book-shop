@@ -55,12 +55,12 @@ $check-length: 36px;
 
 #successAnimationCircle {
   stroke-dasharray: $circle-length $circle-length;
-  stroke: chartreuse;
+  stroke: #00d919;
 }
 
 #successAnimationCheck {
   stroke-dasharray: $check-length $check-length;
-  stroke: chartreuse;
+  stroke: #00d919;
 }
 
 @keyframes fadeOut {
@@ -83,16 +83,16 @@ $check-length: 36px;
 
 #successAnimationCircle {
   stroke-dasharray: $circle-length $circle-length;
-  stroke: chartreuse;
+  stroke: #00d919;
 }
 
 #successAnimationCheck {
   stroke-dasharray: $check-length $check-length;
-  stroke: chartreuse;
+  stroke: #00d919;
 }
 
 #successAnimationResult {
-  fill: chartreuse;
+  fill: #00d919;
   opacity: 0;
 }
 
@@ -111,5 +111,49 @@ $check-length: 36px;
 
   #successAnimationResult {
     animation: 0.3s linear 0.9s both fadeIn;
+  }
+}
+
+@media (max-width: 540px) {
+  .success-wrapper {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 11;
+    padding: 10px;
+    background-color: #bfbfbf48;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .success-item {
+    text-align: justify;
+    background-color: #ffffff;
+    width: auto;
+    margin: 150px 10px;
+    transition: all 0.6s ease-in-out;
+    color: #000000;
+    border-radius: 10px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 375px) {
+  .success-item {
+    margin: 70px 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .success-item {
+    margin: 15px 10px;
+  }
+}
+
+@media (max-width: 280px) {
+  .success-item {
+    margin: 30px 10px;
   }
 }

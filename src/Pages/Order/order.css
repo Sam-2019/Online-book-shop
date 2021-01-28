@@ -18,6 +18,18 @@
   li {
     margin: 0;
   }
+
+  .order-success{
+    margin-bottom: 10px;
+  }
+
+  .customer-name{
+
+  }
+
+  .orderID {
+    color: #00d919;
+  }
 }
 
 @media (max-width: 320px) {
