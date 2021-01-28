@@ -36,7 +36,8 @@ const Product = () => {
     expandDescription(!contractDescription);
   };
 
-  const WebShare = () => {
+  const WebShare = (event) => {
+    event.preventDefault();
     const title = "Okukus.com";
 
     const url = document.location.href;
@@ -92,12 +93,10 @@ const Product = () => {
                 </div>
 
                 <div className="share-social ">
-                  <div className="shareXicon" onClick={WebShare()}>
+                  <div className="shareXicon" onClick={WebShare}>
                     <Share width={15} height={15} />
 
-                    <div className='share' >
-                    Share
-                    </div>
+                    <div className="share">Share</div>
                   </div>
 
                   {/* <Social width={26} height={26} postTitle postUrl hashtags /> */}
