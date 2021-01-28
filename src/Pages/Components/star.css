@@ -1,0 +1,50 @@
+.star {
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  margin: 2px;
+  background-color: #808080;
+  clip-path: polygon(
+    50% 0%,
+    63% 38%,
+    100% 38%,
+    69% 59%,
+    82% 100%,
+    50% 75%,
+    18% 100%,
+    31% 59%,
+    0% 38%,
+    37% 38%
+  );
+}
+.star.selected {
+  background-color: rgb(195, 49, 49);
+}
+.star-rating {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+
+.helloguys {
+  display: flex;
+
+  flex-direction: row;
+}
+.stars {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.star-text {
+  margin-right: 5px;
+  font-weight: 700;
+  font-size: x-large;
+}
+
+.star-text1 {
+  font-weight: 600;
+  font-size: large;
+}

@@ -7,6 +7,15 @@
     width: 100%;
   }
 
+  .text-input {
+    border: 1px solid #eee;
+    outline: none;
+    border-radius: 10px;
+    padding: 12px 15px;
+    width: 100%;
+    margin-bottom: 6px;
+  }
+
   .header-input {
     border: 1px solid #eee;
     outline: none;
@@ -17,7 +26,9 @@
   }
 
   .input:hover,
-  .input:focus {
+  .input:focus,
+  .text-input:hover,
+  .text-input:focus {
     border: 1px solid #00d919;
     -webkit-transition: all ease-in-out 0.3s;
     transition: all ease-in-out 0.3s;

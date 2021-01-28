@@ -12,6 +12,7 @@ import Share from "../Components/Share";
 import ReviewItem from "../Review/reviewItem";
 import AddReview from "./addReview";
 import "./product.css";
+import StarRating from "../Components/Stars";
 
 const Product = () => {
   let history = useHistory();
@@ -21,7 +22,7 @@ const Product = () => {
 
   const [notify, setNotify] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
-  const [review, addReview] = React.useState(false);
+  const [review, addReview] = React.useState(true);
 
   const showNotify = () => {
     setNotify(true);
@@ -124,8 +125,11 @@ const Product = () => {
 
                 <div className="rating-wrapper">
                   <div className="numberXstars">
-                    <div className="rating-number">4.9</div>
-                    <div className="rating-stars">********</div>
+                    {/* <div className="rating-number">4.9</div> */}
+
+                    <div className="rating-stars">
+                      <StarRating value={3.7}  />
+                    </div>
                   </div>
 
                   <div className="review-numbersXright">64 Reviews</div>
