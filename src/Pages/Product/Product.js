@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory, useRouteMatch, useParams } from "react-router-dom";
+import Notify from "../Notify/Notify";
 import Back from "../Components/Back";
 import Up from "../Components/Up";
 import Down from "../Components/Down";
@@ -16,8 +17,18 @@ const Product = () => {
   let { id } = useParams();
 
   let { url } = useRouteMatch();
+  const [notify, setNotify] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
   const [review, addReview] = React.useState(false);
+
+  const showNotify = () => {
+    setNotify(true);
+
+    const timer = setTimeout(() => {
+      setNotify(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  };
 
   const ToggleDescription = () => {
     expandDescription(!contractDescription);
@@ -131,7 +142,11 @@ const Product = () => {
             ) : null}
 
             <div className="product-action">
-              <Button name="Add to Cart" class_name="addCart" />
+              <Button
+                name="Add to Cart"
+                class_name="addCart"
+                action={showNotify}
+              />
               <Button
                 name="Buy Now"
                 class_name="buyNow"
@@ -143,6 +158,10 @@ const Product = () => {
           </div>
         </div>
       </div>
+
+      {notify ? (
+        <Notify message="Item added to cart" close={() => setNotify(false)} />
+      ) : null}
     </div>
   );
 };

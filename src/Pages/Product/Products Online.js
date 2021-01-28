@@ -8,25 +8,16 @@ const Products = () => {
 
   console.log(data);
 
-  if (isLoading) return <div className="products">Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
-  if (error)
-    return (
-      <div className="products">An error has occurred: " +{error.message}</div>
-    );
+  if (error) return <div>An error has occurred: " +{error.message}</div>;
 
   return (
-    <div className="products">
-      {Array(1)
-        .fill()
-        .map((item, index) => (
-          <ProductsItem key={index} />
-        ))}
-
+    <>
       {data.map((products, i) => (
         <ProductsItem key={i} {...products} />
       ))}
-    </div>
+    </>
   );
 };
 
