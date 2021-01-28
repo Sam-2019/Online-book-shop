@@ -22,7 +22,7 @@ const Product = () => {
 
   const [notify, setNotify] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
-  const [review, addReview] = React.useState(true);
+  const [review, addReview] = React.useState(false);
 
   const showNotify = () => {
     setNotify(true);
