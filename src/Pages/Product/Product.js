@@ -8,6 +8,7 @@ import Right from "../Components/Right";
 import Social from "../Components/Social";
 import Button from "../Components/Button";
 import PopUp from "../Components/Popup";
+import Share from "../Components/Share";
 import ReviewItem from "../Review/reviewItem";
 import AddReview from "./addReview";
 import "./product.css";
@@ -17,6 +18,7 @@ const Product = () => {
   let { id } = useParams();
 
   let { url } = useRouteMatch();
+
   const [notify, setNotify] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
   const [review, addReview] = React.useState(false);
@@ -32,6 +34,30 @@ const Product = () => {
 
   const ToggleDescription = () => {
     expandDescription(!contractDescription);
+  };
+
+  const WebShare = () => {
+    const title = "Okukus.com";
+
+    const url = document.location.href;
+    const canonicalElement = document.querySelector("link[rel=canonical]");
+
+    if (navigator.share) {
+      if (canonicalElement !== null) {
+        url = canonicalElement.href;
+      }
+
+      navigator
+        .share({
+          title: title,
+          text: "Check us out for all your book needs",
+          url: url,
+        })
+        .then(() => {
+          console.log("Thnks for sharing");
+        });
+    } else {
+    }
   };
 
   return (
@@ -65,10 +91,16 @@ const Product = () => {
                   <div className="product-price">Price</div>
                 </div>
 
-                <div className="share-social  ">
-                  <div className="">Share</div>
+                <div className="share-social ">
+                  <div className="shareXicon" onClick={WebShare()}>
+                    <Share width={15} height={15} />
 
-                  <Social width={26} height={26} postTitle postUrl hashtags />
+                    <div className='share' >
+                    Share
+                    </div>
+                  </div>
+
+                  {/* <Social width={26} height={26} postTitle postUrl hashtags /> */}
                 </div>
 
                 <div className="product-description-wrapper">
