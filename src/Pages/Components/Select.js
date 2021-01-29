@@ -49,7 +49,6 @@ const Select = () => {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      console.log(response.data.data);
       const body = await response.data;
 
       if (!unmounted) {
@@ -83,7 +82,7 @@ const Select = () => {
         }}
       >
         {items.map(({ label, value, fee, uniqueID }) => (
-          <option key={value} value={value} >
+          <option key={value} value={value}>
             {label}
           </option>
         ))}

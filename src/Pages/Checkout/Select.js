@@ -12,7 +12,7 @@ function CharacterDropDown() {
 
       const body = await response.json();
 
-      console.log(body);
+
       if (!unmounted) {
         setItems(
           body.results.map(({ name }) => ({ label: name, value: name }))
