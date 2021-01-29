@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { locations } from "../endpoints";
 import "./select.css";
@@ -34,7 +34,7 @@ const Select = () => {
   const [items, setItems] = React.useState([]);
 
   let offset = "5f665c1eb29f36.64067252";
-  let offset2 = "5f72488aae8016.52724187";
+
   var formData = new FormData();
   formData.set("buyer_unique_id", offset);
 
