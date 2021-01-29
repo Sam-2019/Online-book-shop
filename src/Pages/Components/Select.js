@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { locations } from "./endpoints";
+import axios from "axios";
+import { locations } from "../endpoints";
 import "./select.css";
 
 // const selection = [
@@ -28,101 +29,100 @@ import "./select.css";
 // ];
 
 const Select = () => {
-  const [selectedOption, setSelectedOption] = useState("");
-  const [userInput, setUserInput] = useState(false);
+  const [loading, setLoading] = React.useState(true);
+  const [value, setValue] = useState("Pick your location");
+  const [items, setItems] = React.useState([]);
 
-  const [selected, setSelected] = useState("Pick your location");
-  const [otherSelected, setOtherSelected] = useState(false);
-
-  let offset 
+  let offset = "5f665c1eb29f36.64067252";
+  let offset2 = "5f72488aae8016.52724187";
+  var formData = new FormData();
+  formData.set("buyer_unique_id", offset);
 
   useEffect(() => {
-    const fetchData = async () => {
-      var formData = new FormData();
-      formData.set("buyer_unique_id", offset);
-      const result = await axios({
+    let unmounted = false;
+
+    async function fetchData() {
+      const response = await axios({
         method: "post",
         url: locations,
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      console.log(result);
-    };
+
+      console.log(response.data.data);
+      const body = await response.data;
+
+      if (!unmounted) {
+        setItems(
+          body.data.map(({ location, unique_id, fee }) => ({
+            uniqueID: unique_id,
+            label: location,
+            value: location,
+            fee: fee,
+          }))
+        );
+        setLoading(false);
+      }
+    }
     fetchData();
+    return () => {
+      unmounted = true;
+    };
   }, []);
-
-  const activateInput = useCallback(() => {
-    if (selectedOption === "Other") {
-      setUserInput(true);
-    } else {
-      setUserInput(false);
-    }
-  }, [selectedOption]);
-
-  const otherInput = useCallback(() => {
-    if (selected === "Other") {
-      setOtherSelected(true);
-    } else {
-      setOtherSelected(false);
-    }
-  }, [selected]);
-
-  useEffect(() => {
-    otherInput();
-    activateInput();
-  }, [otherInput, activateInput]);
 
   return (
     <>
       <h1>Select</h1>
 
-      {/* Hard-coded data */}
-      <select
-        className="select"
-        value={selectedOption}
-        onChange={(e) => {
-          setSelectedOption(e.target.value);
-          activateInput();
-        }}
-      >
-        <option value="" disabled defaultValue>
-          Select a payment method
-        </option>
-        <option value="Cash">Cash</option>
-        <option value="Momo">Momo</option>
-        <option value="Other">Other</option>
-      </select>
-
-      <div className="text">{selectedOption}</div>
-
-      {userInput ? <input type="text" /> : null}
-
       {/* Sever-side data */}
       <select
-        className=""
-        value={selected}
+        disabled={loading}
+        value={value}
         onChange={(e) => {
-          setSelected(e.target.value);
-          otherInput();
+          setValue(e.target.value);
         }}
       >
-        {selection.map((item) => (
-          <option
-            key={item.id}
-            value={item.name}
-            disabled={item.disable}
-            defaultValue={item.default}
-          >
-            {item.name}
+        {items.map(({ label, value, fee, uniqueID }) => (
+          <option key={value} value={value} >
+            {label}
           </option>
         ))}
       </select>
-
-      {/* <div className="text">{selected}</div> */}
-
-      {otherSelected ? <input type="text" /> : null}
     </>
   );
 };
 
 export default Select;
+
+// (3) [{…}, {…}, {…}]
+// 0: {id: 0, unique_id: 0, location: "Pick your location", fee: 0, disabled: true, …}
+// 1: {id: "1", unique_id: "5f97102cd9ba86.00000001", location: "Community 1", fee: "7.00", datetime_created: "2020-11-13 00:00:00"}
+// 2: {id: "2", unique_id: "5f97102cd9ba86.00000002", location: "Community 2", fee: "7.00", datetime_created: "2020-11-13 00:00:00"}
+// length: 3
+// __proto__: Array(0)
+
+// (3) [{…}, {…}, {…}]
+// 0:
+// default: "Pick your location"
+// disabled: true
+// fee: 0
+// id: 0
+// location: "Pick your location"
+// unique_id: 0
+// __proto__: Object
+// 1:
+// datetime_created: "2020-11-13 00:00:00"
+// fee: "7.00"
+// id: "1"
+// location: "Community 1"
+// unique_id: "5f97102cd9ba86.00000001"
+// __proto__: Object
+// 2:
+// datetime_created: "2020-11-13 00:00:00"
+// fee: "7.00"
+// id: "2"
+// location: "Community 2"
+// unique_id: "5f97102cd9ba86.00000002"
+// __proto__: Object
+// length: 3
+// __proto__: Array(0)

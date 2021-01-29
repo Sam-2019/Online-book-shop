@@ -122,7 +122,7 @@ $check-length: 36px;
     bottom: 0;
     top: 0;
     z-index: 11;
-    padding: 10px;
+    padding: 20px;
     background-color: #bfbfbf48;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -131,8 +131,6 @@ $check-length: 36px;
   .success-item {
     text-align: justify;
     background-color: #ffffff;
-    width: auto;
-    margin: 60px 10px;
     transition: all 0.6s ease-in-out;
     color: #000000;
     border-radius: 10px;
@@ -140,20 +138,14 @@ $check-length: 36px;
   }
 }
 
-@media (max-width: 375px) {
-  .success-item {
-    margin: 30px 10px;
-  }
-}
-
 @media (max-width: 320px) {
-  .success-item {
-    margin: 0px 10px;
+  .success-wrapper {
+    padding: 10px 20px;
   }
 }
 
 @media (max-width: 280px) {
-  .success-item {
-    margin: 25px 10px;
+  .success-wrapper {
+    padding: 20px;
   }
 }

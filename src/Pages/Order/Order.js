@@ -10,6 +10,7 @@ import Summary from "../Summary/Summary";
 import PopUp from "../Components/Popup";
 import Question from "../Components/Question";
 import Success from "../Components/Success Container";
+import Select from "../Components/Select";
 
 import "./order.css";
 
@@ -84,6 +85,7 @@ const Order = () => {
       <div className="main-1">
         <form className=" wrapper-item">
           <div className="page_title"> Shipping Information</div>
+          <Select />
           <Input class_name="input " placeholder="Location" onChange />
           <Input class_name="input " placeholder="Digital Address" onChange />
           <Input class_name="input " placeholder="Phone Number" onChange />

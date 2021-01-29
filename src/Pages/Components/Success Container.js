@@ -5,7 +5,7 @@ import "./success.scss";
 const SuccessWrapper = ({ children }) => {
   return (
     <div className="success-wrapper">
-      <div className="success-item ">
+      <div className="success-item">
         <Success />
         {children}
       </div>
