@@ -9,3 +9,9 @@ option {
 .text {
   font-size: 20px;
 }
+
+select {
+  font-size: 1rem;
+  padding: 2px 5px;
+}
+

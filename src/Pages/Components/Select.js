@@ -75,6 +75,8 @@ const Select = () => {
 
       {/* Sever-side data */}
       <select
+        autofocus
+        required
         disabled={loading}
         value={value}
         onChange={(e) => {
@@ -87,6 +89,8 @@ const Select = () => {
           </option>
         ))}
       </select>
+
+      
     </>
   );
 };

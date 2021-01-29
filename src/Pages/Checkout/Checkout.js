@@ -5,7 +5,6 @@ import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Home from "../Components/Home";
 import Message from "../Components/Message";
-import Select from "./Select";
 import Summary from "../Summary/Summary";
 import "./checkout.css";
 
@@ -62,7 +61,7 @@ const Checkout = () => {
             </div>
           </div>
 
-          <Select />
+
 
 
           {selectedOption === "momo" ? (
