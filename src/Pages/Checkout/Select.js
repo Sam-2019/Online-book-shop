@@ -12,7 +12,6 @@ function CharacterDropDown() {
 
       const body = await response.json();
 
-
       if (!unmounted) {
         setItems(
           body.results.map(({ name }) => ({ label: name, value: name }))
@@ -65,7 +64,6 @@ export default function App() {
 // 9: {name: "Obi-Wan Kenobi", height: "182", mass: "77", hair_color: "auburn, white", skin_color: "fair", …}
 // length: 10
 // __proto__: Array(0)
-
 
 // fee: "7.00"
 // id: "1"
