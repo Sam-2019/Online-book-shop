@@ -48,6 +48,7 @@ const Select = () => {
 
   return (
     <select
+      className="input"
       autoFocus
       required
       disabled={loading}

@@ -5,7 +5,6 @@ import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Home from "../Components/Home";
 import Message from "../Components/Message";
-import Select from "./Select";
 import Summary from "../Summary/Summary";
 import "./checkout.css";
 
@@ -35,7 +34,9 @@ const Checkout = () => {
         </div>
       </div>
 
-      <div className="main">
+
+
+      {/* <div className="main">
         <form className="form-wrapper ">
           <div className="page_title"> Shipping Information</div>
           <Input class_name="input " placeholder="Location" onChange />
@@ -62,9 +63,6 @@ const Checkout = () => {
             </div>
           </div>
 
-          <Select />
-
-
           {selectedOption === "momo" ? (
             <>
               <Input class_name="input " placeholder="Name" onChange />
@@ -82,7 +80,7 @@ const Checkout = () => {
       <Summary>
         <div className="amount ">Total ${amount}</div>
         <Button class_name="checkout" name={`Check Out  (${quantity})`} />
-      </Summary>
+      </Summary> */}
     </div>
   );
 };
