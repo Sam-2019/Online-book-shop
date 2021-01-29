@@ -140,6 +140,12 @@ $check-length: 36px;
   }
 }
 
+@media (max-width: 375px) {
+  .popup {
+    padding: 10% 0 0;
+  }
+}
+
 @media (max-width: 320px) {
   .success-wrapper {
     padding: 10px 20px;

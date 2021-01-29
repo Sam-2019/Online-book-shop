@@ -4,16 +4,16 @@
 
   .form-wrapper,
   .verify-wrapper {
-    padding: 10px 20px 0px;
+    padding: 10px 0;
+    margin: 30% 5%;
+    transition: all 0.6s ease-in-out;
   }
 
   .forgotten_password_wrapper {
-    margin: 10px 0 0 0;
     text-align: right;
   }
 
   .forgotten_password {
-    padding: 0 20px 0 0;
     color: #4a4ac9;
   }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
-import {Input} from "../Components/Input";
+import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Message from "../Components/Message";
 import "./user.css";
@@ -36,7 +36,7 @@ const Login = () => {
       </div>
 
       <div className="main">
-        <form className="form-wrapper ">
+        <form className="form-wrapper">
           <Input class_name="input " placeholder="Email" onChange />
           <Input class_name="input " placeholder="Password" onChange />
 
@@ -44,18 +44,18 @@ const Login = () => {
 
           <Button name="Login" class_name="primary" />
           {/* <Button name="Signup" class_name="secondary" /> */}
-        </form>
 
-        <div className="forgotten_password_wrapper  ">
-          <span
-            className="forgotten_password "
-            onClick={() => {
-              history.push("/account/reset");
-            }}
-          >
-            Password forgotten?
-          </span>
-        </div>
+          <div className="forgotten_password_wrapper">
+            <span
+              className="forgotten_password "
+              onClick={() => {
+                history.push("/account/reset");
+              }}
+            >
+              Password forgotten?
+            </span>
+          </div>
+        </form>
       </div>
     </div>
   );
