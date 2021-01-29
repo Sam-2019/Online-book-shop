@@ -109,4 +109,5 @@ export default CartItem;
 
 CartItem.propTypes = {
   handleToggle: PropTypes.func,
+  // i:PropTypes.Number
 };
