@@ -9,13 +9,11 @@ import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
 import "./cartItem.css";
 
-const CartItem = ({ handleToggle, i, }) => {
+const CartItem = ({ handleToggle, i }) => {
   const [loveFill, setLoveFill] = React.useState(false);
   const [binFill, setBinFill] = React.useState(false);
   const [notify, setNotify] = React.useState(false);
 
-
-  console.log(i)
   const showNotify = () => {
     setNotify(true);
 
@@ -50,12 +48,7 @@ const CartItem = ({ handleToggle, i, }) => {
   return (
     <div className="cart_item_wrapper ">
       <div className="checkBox  ">
-        <input
-          onChange={handleToggle(i)}
-          type="checkbox"
-          
-          value="0"
-        />
+        <input onChange={handleToggle(i)} type="checkbox" value="0" />
       </div>
 
       <div className="cart-item-detail  ">
@@ -116,6 +109,4 @@ export default CartItem;
 
 CartItem.propTypes = {
   handleToggle: PropTypes.func,
-  i:PropTypes.Number
-
 };
