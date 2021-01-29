@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import Bin from "../Components/Bin";
@@ -13,6 +13,37 @@ const Cart = () => {
   let history = useHistory();
   let { id } = useParams();
 
+  const [formData, setFormData] = useState("");
+  const [checked, setChecked] = useState([]); //cart items from DB
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    setFormData(new FormData());
+    onFormSubmit();
+  }, []);
+
+  const handleToggle = (c) => () => {
+    // return the first index or -1
+    const clickedCategory = checked.indexOf(c);
+
+    const all = [...checked];
+
+    if (clickedCategory === -1) {
+      all.push(c);
+    } else {
+      all.splice(clickedCategory, 1);
+    }
+
+    setChecked(all);
+    formData.set("categories", all);
+
+    var data = formData.get("categories");
+    console.log(data);
+  };
+
+  function onFormSubmit(messagE) {
+    setMessage(messagE);
+  }
 
   return (
     <div className="cart-wrapper">
@@ -35,8 +66,13 @@ const Cart = () => {
         <div className=" wrapper-item">
           {Array(5)
             .fill()
-            .map((item, index) => (
-              <CartItem  key={index} />
+            .map((items, i) => (
+              <CartItem
+                key={i}
+                {...items}
+                handleToggle={handleToggle}
+                onFormSubmit={onFormSubmit}
+              />
             ))}
         </div>
 
