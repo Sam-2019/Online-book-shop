@@ -7,12 +7,14 @@ import Bin from "../Components/Bin";
 import BinFIll from "../Components/BinFill";
 import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
+import Confirm from "../Components/Confirm";
 import "./cartItem.css";
 
 const CartItem = ({ handleToggle, i }) => {
   const [loveFill, setLoveFill] = React.useState(false);
   const [binFill, setBinFill] = React.useState(false);
   const [notify, setNotify] = React.useState(false);
+  const [confirm, setConfirm] = React.useState(false);
 
   const showNotify = () => {
     setNotify(true);
@@ -41,17 +43,17 @@ const CartItem = ({ handleToggle, i }) => {
     const timer = setTimeout(() => {
       setBinFill(false);
     }, 1000);
-    showNotify();
+    setConfirm(true);
     return () => clearTimeout(timer);
   };
 
   return (
-    <div className="cart_item_wrapper ">
+    <div className="cart_item_wrapper">
       <div className="checkBox  ">
         <input onChange={handleToggle(i)} type="checkbox" value="0" />
       </div>
 
-      <div className="cart-item-detail  ">
+      <div className="cart-item-detail">
         <div className="imageXname ">
           <div className="image-placeholder  loading"></div>
 
@@ -71,7 +73,7 @@ const CartItem = ({ handleToggle, i }) => {
             )}
           </div>
 
-          <div className="bin  " onClick={updateBin}>
+          <div className="bin" onClick={updateBin} >
             {binFill ? (
               <BinFIll width={18} height={20} />
             ) : (
@@ -100,6 +102,12 @@ const CartItem = ({ handleToggle, i }) => {
 
       {notify ? (
         <Notify message="Item added to cart" close={() => setNotify(false)} />
+      ) : null}
+
+      {confirm ? (
+        <Confirm close={() => setConfirm(false)}>
+          Are you sure you want to remove this product from your shopping cart?
+        </Confirm>
       ) : null}
     </div>
   );

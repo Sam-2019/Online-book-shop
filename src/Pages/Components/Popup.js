@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "../Components/Button";
 import Close from "../Components/Close";
 import "./popup.css";
 
@@ -13,7 +12,6 @@ const PopUp = ({ children, close }) => {
         </div>
 
         <div>{children}</div>
-
       </div>
     </div>
   );

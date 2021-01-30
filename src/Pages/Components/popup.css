@@ -1,5 +1,6 @@
 @media (max-width: 540px) {
-  .popup-wrapper {
+  .popup-wrapper,
+  .success-wrapper {
     position: fixed;
     left: 0;
     right: 0;
@@ -15,8 +16,13 @@
   }
 
   .popup {
-    background-color: #ffffff;
     margin: 30% 0 0;
+  }
+
+  .popup,
+  .success-item,
+  .confirm {
+    background-color: #ffffff;
     transition: all 0.6s ease-in-out;
     color: #000000;
     border-radius: 10px;
