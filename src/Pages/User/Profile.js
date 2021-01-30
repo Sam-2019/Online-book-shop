@@ -16,6 +16,32 @@ const Proflie = () => {
   const [email, updateEmail] = React.useState(false);
   const [name, updateName] = React.useState(false);
 
+  const WebShare = (event) => {
+    event.preventDefault();
+    const title = "Okukus.com";
+
+    const url = document.location.href;
+    const canonicalElement = document.querySelector("link[rel=canonical]");
+
+    if (navigator.share) {
+      if (canonicalElement !== null) {
+        url = canonicalElement.href;
+      }
+
+      navigator
+        .share({
+          title: title,
+          text:
+            "Your one-stop shop for a wide selection of books, magazines & just about anything else. ",
+          url: url,
+        })
+        .then(() => {
+          console.log("Thnks for sharing");
+        });
+    } else {
+    }
+  };
+
   return (
     <div className="user-wrapper">
       <div className="header ">
@@ -129,8 +155,8 @@ const Proflie = () => {
             Customer Service
           </div>
 
-          <div className="option-list">
-            <a href="sms://;?body=Hi%there%here to text us!">Invite a friend</a>
+          <div className="option-list item" onClick={WebShare}>
+            <span>Invite a friend</span>
           </div>
         </div>
       </div>
