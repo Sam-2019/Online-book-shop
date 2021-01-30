@@ -30,3 +30,4 @@ export const MediaQuery = () => {
   // Return the width so we can use it in our components
   return { width };
 };
+

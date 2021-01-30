@@ -1,13 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Close from "../Components/Close";
+import "./notify.css";
 
-const Notify = ({ class_name, message }) => {
-  return <div className={class_name}>{message}</div>;
+const Notify = ({ message, close }) => {
+  return (
+    <div className="notify-wrapper ">
+      <div className="notify ">
+        <div className="notify-close ">
+          <Close width={25} height={25} action={close} />
+        </div>
+
+        <div className="notify-main">{message}</div>
+      </div>
+    </div>
+  );
 };
 
 export default Notify;
 
 Notify.propTypes = {
-  class_name: PropTypes.string,
   message: PropTypes.string,
+  close: PropTypes.func,
 };

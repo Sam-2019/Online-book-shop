@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Notify from "../Notify/Notify";
+import Notify from "../Components/Notify";
 import Add from "../Components/Add";
 import Subtract from "../Components/Subtract";
 import Bin from "../Components/Bin";
@@ -73,7 +73,7 @@ const CartItem = ({ handleToggle, i }) => {
             )}
           </div>
 
-          <div className="bin" onClick={updateBin} >
+          <div className="bin" onClick={updateBin}>
             {binFill ? (
               <BinFIll width={18} height={20} />
             ) : (

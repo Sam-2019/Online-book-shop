@@ -1,6 +1,6 @@
 import React from "react";
-import { useHistory, useParams } from "react-router-dom";
-import Notify from "../Notify/Notify";
+import { useHistory } from "react-router-dom";
+import Notify from "../Components/Notify";
 import Cart from "../Components/Cart";
 
 const ProductsItem = ({ index }) => {

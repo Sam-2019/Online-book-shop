@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory, useRouteMatch, useParams } from "react-router-dom";
-import Notify from "../Notify/Notify";
+import Notify from "../Components/Notify";
 import Back from "../Components/Back";
 import Up from "../Components/Up";
 import Down from "../Components/Down";
