@@ -18,8 +18,9 @@ const Proflie = () => {
 
   const WebShare = (event) => {
     event.preventDefault();
-    const url = "Okukus.com";
+    const title = "Okukus.com";
 
+    const url = "Okukus.com";
     const canonicalElement = document.querySelector("link[rel=canonical]");
 
     if (navigator.share) {
@@ -29,13 +30,13 @@ const Proflie = () => {
 
       navigator
         .share({
-          title: url,
+          title: title,
           text:
             "Your one-stop shop for a wide selection of books, magazines & just about anything else. ",
-          url: url,
+          url: 'https://okukus.com',
         })
         .then(() => {
-          console.log("Thnks for sharing");
+          console.log("Thanks for sharing");
         });
     } else {
     }

@@ -2,6 +2,34 @@
   font-size: auto;
 }
 
+.select:focus {
+  border-color: blue;
+}
+
+div.option[data-disabled] {
+  color: gray;
+}
+
+div.option[data-checked] {
+  background-color: blue;
+  color: white;
+}
+
+ div.option:hover {
+  background-color: blue;
+  color: white;
+}
+
+ div.option:focus {
+  background-color: blue;
+  color: white;
+}
+
+ div.option:checked {
+  background-color: blue;
+  color: white;
+}
+
 option {
     font-size: 10px;
   }
