@@ -10,7 +10,8 @@
     width: 100%;
   }
 
-  .bin-width {
+  .bin-width,
+  .cancel-width {
     display: flex;
     justify-content: flex-end;
   }

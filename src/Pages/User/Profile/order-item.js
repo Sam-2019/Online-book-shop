@@ -7,8 +7,9 @@ import "./orderitem.css";
 const OrderItem = () => {
   const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
-  let status = "fulfilled";
+  let status = "pending";
   let statusColorX;
+  let show;
 
   const showNotify = () => {
     setNotify(true);
@@ -26,18 +27,23 @@ const OrderItem = () => {
   switch (status) {
     case "pending":
       statusColorX = "pending";
+      show = null;
       break;
     case "processed":
       statusColorX = "processed";
+      show = null;
       break;
     case "shipped":
       statusColorX = "shipped";
+      show = "shipped";
       break;
     case "fulfilled":
       statusColorX = "fulfilled";
+      show = "fulfilled";
       break;
     case "cancelled":
       statusColorX = "cancelled";
+      show = "cancelled";
   }
 
   return (
@@ -51,8 +57,8 @@ const OrderItem = () => {
 
             <div className="item-price">GHc Price</div>
 
-            {status === "cancelled" ? (
-              <div className=" unknown">
+            {status === show ? (
+              <div className=" cancel-width">
                 <span className={`status ${statusColorX}`}> {status}</span>
               </div>
             ) : null}
@@ -60,7 +66,7 @@ const OrderItem = () => {
         </div>
       </div>
 
-      {status === "cancelled" ? null : (
+      {status === show ? null : (
         <div className="actionXstatus">
           <Button
             class_name="cancel-order"

@@ -32,7 +32,7 @@ const WishItem = () => {
 
             <div className="item-price ">GHc Price</div>
 
-            <div className=" bin-width ">
+            <div className=" bin-width">
               <Bin width={18} height={20} action={updateBin} />
             </div>
           </div>
