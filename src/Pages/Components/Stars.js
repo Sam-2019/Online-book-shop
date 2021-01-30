@@ -21,10 +21,10 @@ Stars.propTypes = {
 
 export default Stars;
 
-const Star2 = ({ selected = false }) => (
-  <div className={selected ? "star selected " : "star"}></div>
-);
+// const Star2 = ({ selected = false }) => (
+//   <div className={selected ? "star selected " : "star"}></div>
+// );
 
-Star2.propTypes = {
-  selected: PropTypes.bool,
-};
+// Star2.propTypes = {
+//   selected: PropTypes.bool,
+// };
