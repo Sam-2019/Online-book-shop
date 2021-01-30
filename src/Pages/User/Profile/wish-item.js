@@ -5,7 +5,6 @@ import Confirm from "../../Components/Confirm";
 import "./wishitem.css";
 
 const WishItem = () => {
-  const [binFill, setBinFill] = React.useState(false);
   const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
 
@@ -19,13 +18,7 @@ const WishItem = () => {
   };
 
   const updateBin = () => {
-    setBinFill(true);
-
-    const timer = setTimeout(() => {
-      setBinFill(false);
-    }, 1000);
     setConfirm(true);
-    return () => clearTimeout(timer);
   };
 
   return (
