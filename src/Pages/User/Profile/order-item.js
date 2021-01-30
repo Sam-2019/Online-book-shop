@@ -1,10 +1,12 @@
 import React from "react";
 import Notify from "../../Notify/Notify";
 import Button from "../../Components/Button";
+import Confirm from "../../Components/Confirm";
 import "./orderitem.css";
 
 const OrderItem = () => {
   const [notify, setNotify] = React.useState(false);
+  const [confirm, setConfirm] = React.useState(false);
   let status = "fulfilled";
   let statusColorX;
 
@@ -15,6 +17,10 @@ const OrderItem = () => {
       setNotify(false);
     }, 3000);
     return () => clearTimeout(timer);
+  };
+
+  const cancelOrder = () => {
+    setConfirm(true);
   };
 
   switch (status) {
@@ -60,7 +66,7 @@ const OrderItem = () => {
             class_name="cancel-order"
             name="Cancel Order"
             action={() => {
-              showNotify();
+              cancelOrder();
             }}
           />
 
@@ -73,6 +79,12 @@ const OrderItem = () => {
           message="Order successfully cancelled"
           close={() => setNotify(false)}
         />
+      ) : null}
+
+      {confirm ? (
+        <Confirm close={() => setConfirm(false)}>
+          Are you sure you want to cancel this order?
+        </Confirm>
       ) : null}
     </div>
   );
