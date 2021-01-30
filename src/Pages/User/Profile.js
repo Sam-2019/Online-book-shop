@@ -155,7 +155,7 @@ const Proflie = () => {
             Customer Service
           </div>
 
-          <div className="option-list item" onClick={WebShare}>
+          <div className="option-list" onClick={WebShare}>
             <span>Invite a friend</span>
           </div>
         </div>
