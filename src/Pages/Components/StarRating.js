@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import Star from "./Star";
 import "./star.css";
 
 const StarRating = ({ totalStars = 5 }) => {
@@ -8,7 +9,7 @@ const StarRating = ({ totalStars = 5 }) => {
 
   switch (starsSelected) {
     case 0:
-      state = "";
+      state = null;
       break;
     case 1:
       state = "star";
@@ -24,7 +25,7 @@ const StarRating = ({ totalStars = 5 }) => {
           <Star
             key={i}
             selected={i < starsSelected}
-            onClick={() => setStarsSelected(i + 1)}
+            action={() => setStarsSelected(i + 1)}
           />
         ))}
       </div>
@@ -42,11 +43,11 @@ StarRating.propTypes = {
 
 export default StarRating;
 
-const Star = ({ selected = false, onClick = (f) => f }) => (
-  <div className={selected ? "star selected" : "star"} onClick={onClick}></div>
-);
+// const Star = ({ selected = false, onClick = (f) => f }) => (
+//   <div className={selected ? "star selected" : "star"} onClick={onClick}></div>
+// );
 
-Star.propTypes = {
-  selected: PropTypes.bool,
-  onClick: PropTypes.func,
-};
+// Star.propTypes = {
+//   selected: PropTypes.bool,
+//   onClick: PropTypes.func,
+// };

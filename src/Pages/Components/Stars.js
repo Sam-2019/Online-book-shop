@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Star from "./Star";
 import "./star.css";
 
 const Stars = ({ totalStars = 5, value }) => {
@@ -20,10 +21,10 @@ Stars.propTypes = {
 
 export default Stars;
 
-const Star = ({ selected = false }) => (
+const Star2 = ({ selected = false }) => (
   <div className={selected ? "star selected " : "star"}></div>
 );
 
-Star.propTypes = {
+Star2.propTypes = {
   selected: PropTypes.bool,
 };

@@ -51,13 +51,24 @@
     color: #ffffff;
   }
 
-
   .facebook,
   .twitter {
   }
 
   .whatsapp {
+  }
 
+  .bi-star-fill {
+    color: #808080;
+  }
+
+  .bi-star-filled {
+    color: #52cd0b;
+  }
+
+  .bi-star-fill:not(:last-child),
+  .bi-star-filled:not(:last-child) {
+    margin-right: 6px;
   }
 
   .message {

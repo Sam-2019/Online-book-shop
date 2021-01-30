@@ -17,6 +17,7 @@
     37% 38%
   );
 }
+
 .star.selected {
   background-color: rgb(195, 49, 49);
 }
