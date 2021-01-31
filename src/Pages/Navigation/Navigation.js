@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Cart from "../Components/Cart";
 import User from "../Components/User";
 import Search from "../Components/Search";
-import {Input} from "../Components/Input";
+import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import "./navigation.css";
 import Close from "../Components/Close";
@@ -77,7 +77,7 @@ const Navigation = () => {
               />
             </div>
 
-        <div className="object-4 user ">
+            <div className="object-4 user ">
               <User
                 width={breakpoint < width ? 30 : 20}
                 height={breakpoint < width ? 30 : 20}
@@ -85,7 +85,7 @@ const Navigation = () => {
                   history.push("/user/profile");
                 }}
               />
-            </div> 
+            </div>
 
             <div
               className="object-4 user "
