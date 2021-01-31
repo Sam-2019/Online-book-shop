@@ -6,12 +6,12 @@ const Close = ({ width, height, action }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={width}
-      height={height}
       fill="currentColor"
       className="bi bi-x-circle"
       viewBox="0 0 16 16"
       id="x-circle"
+      width={width}
+      height={height}
       onClick={action}
     >
       <path d="M8 15A7 7 0 118 1a7 7 0 010 14zm0 1A8 8 0 108 0a8 8 0 000 16z" />
@@ -21,7 +21,6 @@ const Close = ({ width, height, action }) => {
 };
 
 export default Close;
-
 
 Close.propTypes = {
   width: PropTypes.number,

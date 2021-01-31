@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "../Components/Button";
 import './confirm.css'
 
@@ -17,3 +18,9 @@ const Confirm = ({ close, children }) => {
 };
 
 export default Confirm;
+
+Confirm.propTypes = {
+  close: PropTypes.string,
+
+};
+

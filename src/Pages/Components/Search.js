@@ -24,4 +24,5 @@ export default Search;
 Search.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
+  action: PropTypes.func,
 };
