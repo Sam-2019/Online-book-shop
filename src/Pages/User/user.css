@@ -1,3 +1,21 @@
+.user_wrapper {
+}
+
+.form-wrapper,
+.verify-wrapper {
+  padding: 10px 0;
+  margin: 30% 5%;
+  transition: all 0.6s ease-in-out;
+}
+
+.forgotten_password_wrapper {
+  text-align: right;
+}
+
+.forgotten_password {
+  color: #4a4ac9;
+}
+
 @media (max-width: 540px) {
   .user_wrapper {
   }
