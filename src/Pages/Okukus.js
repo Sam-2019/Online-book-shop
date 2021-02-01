@@ -4,7 +4,7 @@ import {
   Switch,
   useRouteMatch,
 } from "react-router-dom";
-// import styled from "styled-components";
+import styled from "styled-components";
 import Navigation from "./Navigation/Navigation";
 import Cart from "./Cart/Cart";
 import Login from "./User/Login";
@@ -23,6 +23,15 @@ import Product from "./Product/Product";
 import Products from "./Product/Products";
 import Profile from "./User/Profile";
 import Review from "./Review/Review";
+
+const Main = styled.div`
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  transition: all 0.6s ease-in-out;
+  min-height: 30em;
+`;
+
 const Okukus = () => {
   return (
     <Router>
@@ -78,9 +87,9 @@ function Home() {
     <>
       <Navigation />
 
-      <div className="products ">
+      <Main>
         <Products />
-      </div>
+      </Main>
     </>
   );
 }

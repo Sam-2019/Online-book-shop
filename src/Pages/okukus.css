@@ -82,6 +82,14 @@
   margin-top: 10px;
 }
 
+.main{
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  transition: all 0.6s ease-in-out;
+  min-height: 30em;
+}
+
 @media (max-width: 540px) {
   .home-wrapper,
   .cart-wrapper,
