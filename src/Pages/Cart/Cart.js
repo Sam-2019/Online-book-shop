@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { useParams, useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import Bin from "../Components/Bin";
@@ -6,6 +7,8 @@ import Button from "../Components/Button";
 import CartItem from "./cartItem";
 import Summary from "../Summary/Summary";
 import "./cart.css";
+
+
 
 const Cart = () => {
   let amount = 10000;
