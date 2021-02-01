@@ -8,8 +8,6 @@ import CartItem from "./cartItem";
 import Summary from "../Summary/Summary";
 import "./cart.css";
 
-
-
 const Cart = () => {
   let amount = 10000;
   let quantity = 100;
