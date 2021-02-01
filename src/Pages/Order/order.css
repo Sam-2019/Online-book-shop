@@ -1,3 +1,35 @@
+.payment-instruction {
+  margin-bottom: 90px;
+}
+
+.pay-know-how {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+ol {
+  margin: 0;
+  padding: 0 16px;
+}
+
+li {
+  margin: 0;
+}
+
+.order-success{
+  margin-bottom: 10px;
+}
+
+.customer-name{
+
+}
+
+.orderID {
+  color: #00d919;
+}
+
 @media (max-width: 540px) {
   .payment-instruction {
     margin-bottom: 90px;
