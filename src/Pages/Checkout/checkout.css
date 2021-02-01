@@ -1,3 +1,37 @@
+.payment-method {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 12px;
+}
+
+.select,
+.cash,
+.momo {
+  padding: 10px 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  width: 45%;
+  border: 1px solid #00d919;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  font-size: 20px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.select {
+  background-color: #ffffff;
+  color: #00d919;
+}
+
+.cash,
+.momo {
+  background-color: #00d919;
+  color: #ffffff;
+}
+
 @media (max-width: 540px) {
   .payment-method {
     display: flex;
