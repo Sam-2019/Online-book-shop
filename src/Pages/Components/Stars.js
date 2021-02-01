@@ -17,15 +17,7 @@ const Stars = ({ totalStars = 5, value, type }) => {
 Stars.propTypes = {
   totalStars: PropTypes.number,
   value: PropTypes.number,
-  value2: PropTypes.number,
+  type: PropTypes.string,
 };
 
 export default Stars;
-
-// const Star2 = ({ selected = false }) => (
-//   <div className={selected ? "star selected " : "star"}></div>
-// );
-
-// Star2.propTypes = {
-//   selected: PropTypes.bool,
-// };
