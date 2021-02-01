@@ -23,13 +23,9 @@ function App() {
 
   return (
     <ReactQueryCacheProvider queryCache={queryCache}>
-      {breakpoint < width ? (
-        <>Please view on mobile</>
-      ) : (
-        <AppBackgroundColour>
-          <Okukus />
-        </AppBackgroundColour>
-      )}
+      <AppBackgroundColour>
+        <Okukus />
+      </AppBackgroundColour>
     </ReactQueryCacheProvider>
   );
 }
