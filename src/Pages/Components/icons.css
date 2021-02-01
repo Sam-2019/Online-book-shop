@@ -1,3 +1,89 @@
+.bi-circle-fill {
+}
+
+.bi-arrow-left-circle {
+}
+
+.bi-trash {
+  color: red;
+}
+
+.bi-trash-fill {
+  color: red;
+}
+
+.bi-heart {
+  color: orange;
+}
+
+.bi-heart-fill {
+  color: orange;
+}
+
+.bi-dash-circle-fill {
+}
+
+.bi-chevron-up {
+}
+
+.bi-chevron-down {
+}
+
+#question-circle-fill {
+  color: gray;
+}
+
+.social {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bi-facebook {
+  color: #5757f9;
+}
+
+.bi-twitter {
+  color: #5757f9;
+}
+
+.bi-whatsapp {
+  color: #ffffff;
+}
+
+.facebook,
+.twitter {
+}
+
+.whatsapp {
+}
+
+.bi-star-fill {
+  color: #808080;
+}
+
+.bi-star-filled {
+  color: #52cd0b;
+}
+
+.bi-star-fill:not(:last-child),
+.bi-star-filled:not(:last-child) {
+  margin-right: 6px;
+}
+
+.message {
+  border-left: 3px solid #bfbfbf;
+  transition: all 0.6s ease-in-out;
+  background-color: #bfbfbf48;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  -webkit-transition: all ease 0.7s;
+  transition: all ease 0.7s;
+  z-index: 11;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
 @media (max-width: 540px) {
   .bi-circle-fill {
   }
