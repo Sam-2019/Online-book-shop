@@ -13,6 +13,7 @@ import ReviewItem from "../Review/reviewItem";
 import AddReview from "./addReview";
 import "./product.css";
 import StarRating from "../Components/Stars";
+import { DotElastic } from "../Components/3Dots";
 
 const Product = () => {
   let history = useHistory();
@@ -20,15 +21,18 @@ const Product = () => {
 
   let { url } = useRouteMatch();
 
+  const [loading, setLoading] = React.useState(false);
   const [notify, setNotify] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
   const [review, addReview] = React.useState(false);
 
   const showNotify = () => {
+    setLoading(true);
     setNotify(true);
 
     const timer = setTimeout(() => {
       setNotify(false);
+      setLoading(false);
     }, 3000);
     return () => clearTimeout(timer);
   };
@@ -102,7 +106,7 @@ const Product = () => {
 
                   {/* <Social width={26} height={26} postTitle postUrl hashtags /> */}
                 </div>
-
+     
                 <div className="product-description-wrapper">
                   <div
                     className={
@@ -128,7 +132,7 @@ const Product = () => {
                     {/* <div className="rating-number">4.9</div> */}
 
                     <div className="rating-stars">
-                      <StarRating value={3.7}  />
+                      <StarRating value={3.7} width={15} height={15} />
                     </div>
                   </div>
 
@@ -181,6 +185,7 @@ const Product = () => {
                 name="Add to Cart"
                 class_name="addCart"
                 action={showNotify}
+                loading={loading}
               />
               <Button
                 name="Buy Now"

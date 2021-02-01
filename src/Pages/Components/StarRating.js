@@ -26,6 +26,8 @@ const StarRating = ({ totalStars = 5 }) => {
             key={i}
             selected={i < starsSelected}
             action={() => setStarsSelected(i + 1)}
+            width={25}
+            height={25}
           />
         ))}
       </div>

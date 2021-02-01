@@ -9,7 +9,7 @@ const AddReview = ({ close }) => {
     <form className=" change ">
       <TextArea class_name="text-input " placeholder="User Review" onChange />
 
-      <StarRating />
+      <StarRating  />
 
       <Message class_name="message " message="Hello" />
 

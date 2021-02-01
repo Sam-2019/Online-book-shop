@@ -1,5 +1,6 @@
 import React from "react";
-import './review.css'
+import StarRating from "../Components/Stars";
+import "./review.css";
 
 const ReviewItem = () => {
   return (
@@ -14,13 +15,15 @@ const ReviewItem = () => {
           </div>
         </div>
 
-        <div className="stars ">*********</div>
+        <div className="stars ">
+          <StarRating type="user-rating" value={1} type="user-rating" />
+        </div>
       </div>
 
       <div className="review-body">
         kjgpowjewpojghoperj[j[rekhopkthrjjnglkwner]]jgpowjewpojghoperj[j[rekhopglkwner]]jgpowjewpojghoperj[j[rekhopglkwner]]jgpowjewpojghoperj[j[rekhopglkwner]]jgpowjewpojghoperj[j[rekhopglkwner]]jgpowjewpojghoperj[j[rekhopkthrjjnglkwner]]jgpowjewpojghoperj[j[rekhopkthrjjnglkwner]]
       </div>
-      </div>
+    </div>
   );
 };
 
