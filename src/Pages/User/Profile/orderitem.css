@@ -1,3 +1,60 @@
+
+  .item-wrapper {
+    flex-direction: column;
+    padding: 10px 10px;
+    margin: 10px 0;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #ffffff;
+  }
+
+  .item-wrapper:not(:last-child) {
+  }
+
+  .item-detail {
+  }
+
+  .actionXstatus {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+  }
+
+  .cancel {
+    text-align: center;
+  }
+
+  .status {
+    padding: 2.5px 15px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    align-self: center;
+    font-size: 10px;
+  }
+
+  .pending {
+    background-color: yellow;
+    color: #777777;
+  }
+
+  .processed,
+  .shipped {
+    background-color: blue;
+    color: white;
+  }
+
+  .fulfilled {
+    background-color: green;
+    color: white;
+  }
+
+  .cancelled {
+    background-color: red;
+    color: white;
+    text-align: right;
+  }
+
 @media (max-width: 540px) {
   .item-wrapper {
     flex-direction: column;
