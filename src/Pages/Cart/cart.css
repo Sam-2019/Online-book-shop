@@ -1,4 +1,6 @@
-
+.datadata{
+    margin: 0 0 55px 0;
+}
 
 @media (max-width: 540px) {
 .datadata{
