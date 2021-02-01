@@ -2,22 +2,84 @@
   border: 1px solid #ff0000db;
 }
 
+.home-wrapper,
+.cart-wrapper,
+.checkout-wrapper,
+.order-wrapper,
+.profile-wrapper,
+.search-wrapper,
+.user-wrapper,
+.page-wrapper {
+  min-height: 100vh;
+}
+
+.home-wrapper,
+.cart-wrapper,
+.checkout-wrapper,
+.order-wrapper,
+.profile-wrapper,
+.search-wrapper,
+.user-wrapper {
+}
+
+.header {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  padding: 15px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .category {
   display: flex;
-  flex-direction: row;
   align-items: center;
 }
+
 .category2 {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   width: 100%;
   align-items: center;
   margin: 0px 0;
 }
 
+.object-1 {
+  margin: 0 10px 0 0;
+}
+.object-2,
+.object-3 {
+  padding: 0 0 0 0;
+}
+
 .object-4 {
   padding: 0 0 0 15px;
+}
+
+.object-5 {
+  padding: 0 3px 0 0;
+}
+
+.main-1 {
+  margin: 0 0 47px 0;
+}
+
+.wrapper {
+}
+
+.title {
+  padding: 0px 0px;
+}
+
+.title-makeshift {
+  padding: 0 10px;
+}
+
+.page_title {
+  padding: 15px 0;
+}
+
+.change {
+  margin-top: 10px;
 }
 
 @media (max-width: 540px) {
