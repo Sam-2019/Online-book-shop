@@ -117,6 +117,17 @@ $check-length: 36px;
 .success-wrapper {
 }
 
+.success-item {
+  margin: 10px auto;
+  max-width: 385px;
+  transition: all 0.6s ease-in-out;
+  background-color: #ffffff;
+  transition: all 0.6s ease-in-out;
+  color: #000000;
+  border-radius: 10px;
+  padding: 15px;
+}
+
 .success-item,
 .confirm {
   text-align: justify;
