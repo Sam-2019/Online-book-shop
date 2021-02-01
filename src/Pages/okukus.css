@@ -2,6 +2,24 @@
   border: 1px solid #ff0000db;
 }
 
+.category {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.category2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin: 0px 0;
+}
+
+.object-4 {
+  padding: 0 0 0 15px;
+}
+
 @media (max-width: 540px) {
   .home-wrapper,
   .cart-wrapper,

@@ -1,23 +1,27 @@
+.nav-header {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0rem 0rem 1rem 0rem #00000032 !important;
+  position: sticky;
+}
+.okukus {
+  color: chartreuse;
+  font-weight: 600;
+  font-size: 28px;
+}
+.nav-category {
+}
+
+.search,
+.cart,
+.user {
+  padding: 5px 5px;
+}
+
 @media (max-width: 540px) {
-  .nav-header {
-    background-color: #ffffff;
-    width: 100%;
-    padding: 10px 10px;
-    display: flex;
-    justify-content: space-between;
-    box-shadow: 0rem 0rem 1rem 0rem #00000032 !important;
-    position: sticky;
-  }
-
-  .nav-category {
-  }
-
-  .okukus {
-    color: chartreuse;
-    font-weight: 600;
-    font-size: 28px;
-  }
-
   .search,
   .cart,
   .user {

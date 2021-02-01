@@ -18,8 +18,10 @@ const Navigation = () => {
 
   const breakpoint = 280;
 
+
   return (
     <header className="nav-header ">
+      {width > 540 ? <></> : <> </>}
       {state ? (
         <div className="category2 ">
           <Input
@@ -56,7 +58,7 @@ const Navigation = () => {
             <div className=" okukus ">OKUKUS</div>
           </div>
 
-          <div className="category ">
+          <div className="category">
             <div className="object-3 search ">
               <Search
                 width={breakpoint < width ? 30 : 20}
