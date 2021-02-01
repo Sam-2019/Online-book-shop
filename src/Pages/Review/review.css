@@ -1,3 +1,49 @@
+.review-wrapper {
+  background-color: #ffffff;
+  border-radius: 10px;
+
+}
+
+.review-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-nameXdate {
+  display: flex;
+  width: 60%;
+}
+
+.reviewer-image {
+  width: 60px;
+  height: 60px;
+  background-color: aqua;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.nameXdate {
+  width: 70%;
+}
+
+.name {
+  font-size: 14px;
+}
+
+.dateXtime {
+  font-size: 10px;
+}
+
+.stars {
+  justify-content: flex-end;
+}
+
+.review-body {
+  overflow: hidden;
+  word-wrap: break-word;
+  text-align: justify;
+}
+
 @media (max-width: 540px) {
   .review-wrapper {
     background-color: #ffffff;
