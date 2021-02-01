@@ -200,7 +200,7 @@ const Product = () => {
       </div>
 
       {notify ? (
-        <Notify message="Item added to cart" close={() => setNotify(false)} />
+        <Notify close={() => setNotify(false)}>Item added to cart</Notify>
       ) : null}
     </div>
   );
