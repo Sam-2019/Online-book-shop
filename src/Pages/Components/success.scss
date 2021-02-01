@@ -114,6 +114,14 @@ $check-length: 36px;
   }
 }
 
+.success-wrapper {
+}
+
+.success-item,
+.confirm {
+  text-align: justify;
+}
+
 @media (max-width: 540px) {
   .success-wrapper {
   }
