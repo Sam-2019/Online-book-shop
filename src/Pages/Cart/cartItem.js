@@ -101,7 +101,7 @@ const CartItem = ({ handleToggle, i }) => {
       </div>
 
       {notify ? (
-        <Notify message="Item added to cart" close={() => setNotify(false)} />
+        <Notify close={() => setNotify(false)}>Item added to wish list</Notify>
       ) : null}
 
       {confirm ? (
