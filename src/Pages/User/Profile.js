@@ -33,7 +33,7 @@ const Proflie = () => {
           title: title,
           text:
             "Your one-stop shop for a wide selection of books, magazines & just about anything else. ",
-          url: 'https://okukus.com',
+          url: "https://okukus.com",
         })
         .then(() => {
           console.log("Thanks for sharing");

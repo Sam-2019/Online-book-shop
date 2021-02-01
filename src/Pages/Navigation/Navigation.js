@@ -18,10 +18,9 @@ const Navigation = () => {
 
   const breakpoint = 280;
 
-
   return (
     <header className="nav-header ">
-      {width > 540 ? <></> : <> </>}
+    
       {state ? (
         <div className="category2 ">
           <Input
