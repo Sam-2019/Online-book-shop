@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams, useHistory } from "react-router-dom";
+import { MediaQuery } from "../helper";
 import Back from "../Components/Back";
 import Bin from "../Components/Bin";
 import Button from "../Components/Button";
@@ -13,6 +14,8 @@ const Cart = () => {
   let quantity = 100;
   let history = useHistory();
   let { id } = useParams();
+  const { width } = MediaQuery();
+  const breakpoint = 540;
 
   const [formData, setFormData] = useState("");
   const [checked, setChecked] = useState([]); //cart items from DB
@@ -48,6 +51,7 @@ const Cart = () => {
 
   return (
     <div className="cart-wrapper">
+ 
       <div className="header">
         <div className="category">
           <div className="object-1">
