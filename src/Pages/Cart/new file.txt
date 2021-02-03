@@ -1,0 +1,104 @@
+.header2 {
+    display: flex;
+    border: 1px solid #ff0000db;
+    margin-top: 10px;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .header-item {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .header-item.product-name {
+    width: 50%;
+  }
+  
+  .header-item.product-price {
+    width: 10%;
+  }
+  
+  .header-item.product-quantity {
+    width: 25%;
+  }
+  
+  .header-item.product-total {
+    width: 20%;
+  }
+  
+  .header-item.product-action {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 10%;
+  }
+
+  <div className="header2">
+  <div className="checkBox  ">
+    <input type="checkbox" value="0" />
+  </div>
+
+  <div className="header-item product-name ">
+    <div className="imageXname ">
+      <div className="image-placeholder  loading"></div>
+
+      <div className="nameXprice ">
+        <div className="item-name">Name kdhskl the debt toalt deed</div>
+      </div>
+    </div>
+  </div>
+
+  <div className="header-item product-price">
+    <div className="item-price">GHc Price</div>
+  </div>
+
+  <div className="header-item product-quantity item ">
+    <div className="binXaddXsubtract  ">
+      <div
+        className="addXsubtract 
+      "
+      >
+        <div className="subtract ">
+          <Subtract width={16} height={25} />
+        </div>
+
+        <div className="quantity">1</div>
+
+        <div className="add">
+          <Add width={16} height={25} />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div className="header-item product-total">Total</div>
+
+
+
+    <div className="header-item product-action love">
+      <div className=" " onClick={updateLove}>
+        {loveFill ? (
+          <LoveFill width={18} height={20} />
+        ) : (
+          <Love width={18} height={20} />
+        )}
+      </div>
+    </div>
+
+    <div className="header-item product-action bin">
+      <div className=" " onClick={updateBin}>
+        {binFill ? (
+          <BinFIll width={18} height={20} />
+        ) : (
+          <Bin width={18} height={20} />
+        )}
+      </div>
+    </div>
+
+
+  
+</div>

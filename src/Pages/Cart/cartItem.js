@@ -48,68 +48,77 @@ const CartItem = ({ handleToggle, i }) => {
   };
 
   return (
-    <div className="cart_item_wrapper">
-      <div className="checkBox  ">
-        <input onChange={handleToggle(i)} type="checkbox" value="0" />
-      </div>
+    <>
+      <div className="cart_item_wrapper">
 
-      <div className="cart-item-detail">
-        <div className="imageXname ">
-          <div className="image-placeholder  loading"></div>
-
-          <div className="nameXprice ">
-            <div className="item-name">Name kdhskl the debt toalt deed</div>
-
-            <div className="item-price">GHc Price</div>
-          </div>
+        <div className="checkBox">
+          <input onChange={handleToggle(i)} type="checkbox" value="0" />
         </div>
 
-        <div className="priceXactions   ">
-          <div className="love " onClick={updateLove}>
-            {loveFill ? (
-              <LoveFill width={18} height={20} />
-            ) : (
-              <Love width={18} height={20} />
-            )}
+        <div className="cart-item-detail">
+
+          <div className="imageXname">
+            <div className="image-placeholder  loading"></div>
+
+            <div className="nameXprice">
+              <div className="item-name">Name kdhskl the debt toalt deed</div>
+
+              <div className="item-price">GHc Price</div>
+            </div>
           </div>
 
-          <div className="bin" onClick={updateBin}>
-            {binFill ? (
-              <BinFIll width={18} height={20} />
-            ) : (
-              <Bin width={18} height={20} />
-            )}
-          </div>
+          <div className="priceXactions">
+            <div className="love " onClick={updateLove}>
+              {loveFill ? (
+                <LoveFill width={18} height={20} />
+              ) : (
+                <Love width={18} height={20} />
+              )}
+            </div>
 
-          <div className="binXaddXsubtract  ">
-            <div
-              className="addXsubtract 
+            <div className="bin" onClick={updateBin}>
+              {binFill ? (
+                <BinFIll width={18} height={20} />
+              ) : (
+                <Bin width={18} height={20} />
+              )}
+            </div>
+
+            <div className="binXaddXsubtract">
+              <div
+                className="addXsubtract 
             "
-            >
-              <div className="subtract ">
-                <Subtract width={16} height={25} />
-              </div>
+              >
+                <div className="subtract">
+                  <Subtract width={16} height={25} />
+                </div>
 
-              <div className="quantity">1</div>
+                <div className="quantity">1</div>
 
-              <div className="add">
-                <Add width={16} height={25} />
+                <div className="add">
+                  <Add width={16} height={25} />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+   </div>
+        {notify ? (
+          <Notify close={() => setNotify(false)}>
+            Item added to wish list
+          </Notify>
+        ) : null}
 
-      {notify ? (
-        <Notify close={() => setNotify(false)}>Item added to wish list</Notify>
-      ) : null}
+        {confirm ? (
+          <Confirm close={() => setConfirm(false)}>
+            Are you sure you want to remove this product from your shopping
+            cart?
+          </Confirm>
+        ) : null}
+   
 
-      {confirm ? (
-        <Confirm close={() => setConfirm(false)}>
-          Are you sure you want to remove this product from your shopping cart?
-        </Confirm>
-      ) : null}
-    </div>
+
+    </>
   );
 };
 

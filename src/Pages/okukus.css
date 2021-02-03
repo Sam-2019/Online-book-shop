@@ -3,7 +3,6 @@
 }
 
 .home-wrapper,
-.cart-wrapper,
 .checkout-wrapper,
 .order-wrapper,
 .profile-wrapper,
@@ -11,6 +10,10 @@
 .user-wrapper,
 .page-wrapper {
   min-height: 100vh;
+}
+
+.cart-wrapper {
+  min-height: 122.5vh;
 }
 
 .home-wrapper,
@@ -87,7 +90,6 @@
 
 @media (max-width: 540px) {
   .home-wrapper,
-  .cart-wrapper,
   .checkout-wrapper,
   .order-wrapper,
   .profile-wrapper,
@@ -95,6 +97,10 @@
   .user-wrapper,
   .page-wrapper {
     min-height: 100vh;
+  }
+
+  .cart-wrapper {
+    min-height: 170vh;
   }
 
   .home-wrapper,
@@ -172,6 +178,9 @@
 }
 
 @media (max-width: 320px) {
+  .cart-wrapper {
+  }
+
   .header-input {
     width: 100%;
   }

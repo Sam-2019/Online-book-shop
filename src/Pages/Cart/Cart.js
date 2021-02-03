@@ -51,7 +51,6 @@ const Cart = () => {
 
   return (
     <div className="cart-wrapper">
- 
       <div className="header">
         <div className="category">
           <div className="object-1">
@@ -67,31 +66,53 @@ const Cart = () => {
         </div>
       </div>
 
-      <div className="main-1  ">
-        <div className=" wrapper-item">
-          {Array(5)
-            .fill()
-            .map((items, i) => (
-              <CartItem
-                key={i}
-                {...items}
-                handleToggle={handleToggle}
-                onFormSubmit={onFormSubmit}
-              />
-            ))}
-        </div>
+      <div className="main ">
+        {width > breakpoint ? (
+          <>
+            <div className="cart_item_wrapper">
+              <div className="checkBox">
+                <input type="checkbox" value="0" />
+              </div>
 
-        <Summary>
-          <div className="amount ">Total ${amount}</div>
-          <Button
-            class_name="checkout"
-            name={`Check Out  (${quantity})`}
-            action={() => {
-              history.push(`/order/${id}`);
-            }}
-          />
-        </Summary>
+              <div className="cart-item-detail">
+                <div className="imageXname">
+                  <div className="item-name">Product name</div>
+
+                  <div className="item-price">Price</div>
+                </div>
+
+                <div className="priceXactions">
+                  <div className="binXaddXsubtract">Quantity</div>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <> </>
+        )}
+
+        {Array(5)
+          .fill()
+          .map((items, i) => (
+            <CartItem
+              key={i}
+              {...items}
+              handleToggle={handleToggle}
+              onFormSubmit={onFormSubmit}
+            />
+          ))}
       </div>
+
+      <Summary>
+        <div className="amount ">Total ${amount}</div>
+        <Button
+          class_name="checkout"
+          name={`Check Out  (${quantity})`}
+          action={() => {
+            history.push(`/order/${id}`);
+          }}
+        />
+      </Summary>
     </div>
   );
 };
