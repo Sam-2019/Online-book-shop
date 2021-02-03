@@ -47,38 +47,38 @@ const OrderItem = () => {
   }
 
   return (
-    <div className="item-wrapper">
-      <div className="item-detail">
-        <div className="imageXname ">
+    <>
+      <div className="item-wrapper">
+        <div className="order-imageXname ">
           <div className="image-placeholder  loading"></div>
 
-          <div className="nameXprice ">
-            <div className="item-name">Name kdhskl the debt toalt deed</div>
+          <div className="order-item-name-price-quantity">
+            <div className="order-item-name">
+              Name kdhskl the debt toalt deed
+            </div>
 
-            <div className="item-price">GHc Price</div>
+            <div className="order-Item-price-quantity">
+              <div className="order-item-price">GHc Price</div>
 
-            {status === show ? (
-              <div className=" cancel-width">
-                <span className={`status ${statusColorX}`}> {status}</span>
-              </div>
-            ) : null}
+              <div className="order-item-price">Quantity</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {status === show ? null : (
         <div className="actionXstatus">
-          <Button
-            class_name="cancel-order"
-            name="Cancel Order"
-            action={() => {
-              cancelOrder();
-            }}
-          />
+          {status === show ? null : (
+            <Button
+              class_name="cancel-order"
+              name="Cancel Order"
+              action={() => {
+                cancelOrder();
+              }}
+            />
+          )}
 
           <div className={`status ${statusColorX}`}>{status}</div>
         </div>
-      )}
+      </div>
 
       {notify ? (
         <Notify
@@ -92,7 +92,7 @@ const OrderItem = () => {
           Are you sure you want to cancel this order?
         </Confirm>
       ) : null}
-    </div>
+    </>
   );
 };
 

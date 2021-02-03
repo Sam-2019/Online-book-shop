@@ -1,81 +1,111 @@
+.item-wrapper {
+  display: flex;
+  padding: 10px 10px;
+  margin: 10px 0;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
 
-  .item-wrapper {
-    flex-direction: column;
-    padding: 10px 10px;
-    margin: 10px 0;
-    align-items: center;
-    border-radius: 10px;
-    background-color: #ffffff;
-  }
+.order-imageXname {
+  display: flex;
+  align-items: center;
+  width: 70%;
+}
 
-  .item-wrapper:not(:last-child) {
-  }
+.order-item-name-price-quantity {
+  display: flex;
+  width: 100%;
+}
 
-  .item-detail {
-  }
+.order-item-name {
+  width: 60%;
+}
 
-  .actionXstatus {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 5px;
-  }
+.order-Item-price-quantity {
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+}
 
-  .cancel {
-    text-align: center;
-  }
+.actionXstatus {
+  display: flex;
+  justify-content: space-around;
+  width: 25%;
+}
 
-  .status {
-    padding: 2.5px 15px;
-    text-transform: uppercase;
-    border-radius: 10px;
-    align-self: center;
-    font-size: 10px;
-  }
+.cancel {
+  text-align: center;
+}
 
-  .pending {
-    background-color: yellow;
-    color: #777777;
-  }
+.cancel-order {
+  order: 1;
+}
 
-  .processed,
-  .shipped {
-    background-color: blue;
-    color: white;
-  }
+.status {
+  padding: 2.5px 15px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  align-self: center;
+  font-size: 10px;
+  order: 0;
+}
 
-  .fulfilled {
-    background-color: green;
-    color: white;
-  }
+.pending {
+  background-color: yellow;
+  color: #777777;
+}
 
-  .cancelled {
-    background-color: red;
-    color: white;
-    text-align: right;
-  }
+.processed,
+.shipped {
+  background-color: blue;
+  color: white;
+}
+
+.fulfilled {
+  background-color: green;
+  color: white;
+}
+
+.cancelled {
+  background-color: red;
+  color: white;
+  text-align: right;
+}
 
 @media (max-width: 540px) {
   .item-wrapper {
     flex-direction: column;
-    padding: 10px 10px;
-    margin: 10px 0;
+  }
+
+  .order-imageXname {
+    display: flex;
     align-items: center;
-    border-radius: 10px;
-    background-color: #ffffff;
+    width: 100%;
   }
 
-  .item-wrapper:not(:last-child) {
+  .order-item-name-price-quantity {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
-  .item-detail {
+  .order-item-name {
+    display: flex;
+    width: 100%;
+  }
+
+  .order-Item-price-quantity {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .actionXstatus {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding-top: 5px;
+    width: 100%;
+    margin-top: 5px;
   }
 
   .cancel {
@@ -88,6 +118,7 @@
     border-radius: 10px;
     align-self: center;
     font-size: 10px;
+    order: 1;
   }
 
   .pending {
