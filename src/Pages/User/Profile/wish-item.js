@@ -2,6 +2,7 @@ import React from "react";
 import Bin from "../../Components/Bin";
 import Notify from "../../Components/Notify";
 import Confirm from "../../Components/Confirm";
+import Button from "../../Components/Button";
 import "./wishitem.css";
 
 const WishItem = () => {
@@ -22,19 +23,34 @@ const WishItem = () => {
   };
 
   return (
-    <div className="item-wrapper  ">
-      <div className="item-detail   ">
-        <div className="imageXname ">
+    <>
+      <div className="item-wrapper">
+        <div className="order-imageXname ">
           <div className="image-placeholder  loading"></div>
 
-          <div className="nameXprice  ">
-            <div className="item-name">Name kdhskl the debt toalt deed</div>
-
-            <div className="item-price ">GHc Price</div>
-
-            <div className=" bin-width">
-              <Bin width={18} height={20} action={updateBin} />
+          <div className="order-item-name-price-quantity">
+            <div className="order-item-name">
+              Name kdhskl the debt toalt deed
             </div>
+
+            <div className="order-Item-price-quantity">
+              <div className="order-item-price">GHc Price</div>
+
+              <div className=" bin-width2">
+             <Bin width={18} height={20} action={updateBin} />
+         
+                </div>
+    </div>
+          </div>
+        </div>
+
+        <div className="actionXstatus">
+          <div className=" bin-width">
+            <Button
+              class_name="cancel-order"
+              name="Delete"
+              action={updateBin}
+            />
           </div>
         </div>
       </div>
@@ -48,7 +64,7 @@ const WishItem = () => {
           Are you sure you want to remove this item from your wish list?
         </Confirm>
       ) : null}
-    </div>
+    </>
   );
 };
 
