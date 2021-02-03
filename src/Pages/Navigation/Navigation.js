@@ -20,7 +20,6 @@ const Navigation = () => {
 
   return (
     <header className="nav-header ">
-    
       {state ? (
         <div className="category2 ">
           <Input
@@ -53,22 +52,50 @@ const Navigation = () => {
         </div>
       ) : (
         <>
-          <div className="category">
+          <div className="category ">
             <div className=" okukus ">OKUKUS</div>
           </div>
 
-          <div className="category">
-            <div className="object-3 search ">
-              <Search
-                width={breakpoint < width ? 30 : 20}
-                height={breakpoint < width ? 30 : 20}
-                action={() => {
-                  setState(true);
-                }}
-              />
-            </div>
+          {width > 540 ? (
+            <>
+              <div className="category ">
+                <Input
+                  class_name="header-input  "
+                  placeholder="Search"
+                  value={query}
+                  action={(e) => setQuery(e.target.value)}
+                />
 
-            <div className="object-4 cart ">
+                <Button
+                  name="Search"
+                  class_name="header-primary2"
+                  action={() => {
+                    if (query === "") {
+                    } else {
+                      history.push(`/search?q=${query}`);
+                    }
+                  }}
+                />
+              </div>
+            </>
+          ) : null}
+
+          <div className="category">
+            {width < 540 ? (
+              <>
+                <div className="object-3 search  ">
+                  <Search
+                    width={breakpoint < width ? 30 : 20}
+                    height={breakpoint < width ? 30 : 20}
+                    action={() => {
+                      setState(true);
+                    }}
+                  />
+                </div>
+              </>
+            ) : null}
+
+            <div className="object-4 cart  ">
               <Cart
                 width={breakpoint < width ? 30 : 20}
                 height={breakpoint < width ? 30 : 20}
@@ -78,7 +105,7 @@ const Navigation = () => {
               />
             </div>
 
-            <div className="object-4 user ">
+            <div className="object-4 user  ">
               <User
                 width={breakpoint < width ? 30 : 20}
                 height={breakpoint < width ? 30 : 20}
@@ -89,7 +116,7 @@ const Navigation = () => {
             </div>
 
             <div
-              className="object-4 user "
+              className="object-4 user  "
               onClick={() => {
                 history.push("/login");
               }}
