@@ -10,8 +10,8 @@ const Confirm = ({ close, children }) => {
         <div className='confirm-delete'>{children}</div>
 
         <Button class_name="primary" name="Delete" />
-
         <Button class_name="secondary" name="Cancel" action={close} />
+        
       </div>
     </div>
   );
