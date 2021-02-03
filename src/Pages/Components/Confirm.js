@@ -20,7 +20,7 @@ const Confirm = ({ close, children }) => {
 export default Confirm;
 
 Confirm.propTypes = {
-  close: PropTypes.string,
+  close: PropTypes.func,
 
 };
 
