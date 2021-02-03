@@ -87,9 +87,9 @@ function Home() {
     <>
       <Navigation />
 
-      <Main>
+      <div className="main">
         <Products />
-      </Main>
+      </div>
     </>
   );
 }
