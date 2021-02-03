@@ -5,6 +5,7 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import styled from "styled-components";
+import { MediaQuery } from "./helper";
 import Navigation from "./Navigation/Navigation";
 import Cart from "./Cart/Cart";
 import Login from "./User/Login";
@@ -32,64 +33,99 @@ const Main = styled.div`
   min-height: 30em;
 `;
 
+const breakpoint = 540;
+
 const Okukus = () => {
+  const { width } = MediaQuery();
+
   return (
     <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-
-        <Route path="/checkout">
-          <Checkout />
-        </Route>
-
-        <Route path="/order/:id">
-          <Order />
-        </Route>
-
-        <Route path="/cart">
-          <Cart />
-        </Route>
-
-        <Route path="/login">
-          <Login />
-        </Route>
-
-        <Route path="/signup">
-          <Signup />
-        </Route>
-
-        <Route path="/search">
-          <Search />
-        </Route>
-
-        <Route path="/user">
-          <User />
-        </Route>
-
-        <Route path="/account">
-          <Account />
-        </Route>
-
-        <Route path="/product">
-          <ProductPage />
-        </Route>
-      </Switch>
+      {width > breakpoint ? (
+        <>
+          <Deskotp />
+        </>
+      ) : (
+        <Mobile />
+      )}
     </Router>
   );
 };
 
 export default Okukus;
 
-function Home() {
+function Deskotp() {
   return (
     <>
       <Navigation />
 
-      <div className="main">
-        <Products />
-      </div>
+      <Content />
+    </>
+  );
+}
+
+function Content() {
+  return (
+    <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+
+      <Route path="/checkout">
+        <Checkout />
+      </Route>
+
+      <Route path="/order/:id">
+        <Order />
+      </Route>
+
+      <Route path="/cart">
+        <Cart />
+      </Route>
+
+      <Route path="/login">
+        <Login />
+      </Route>
+
+      <Route path="/signup">
+        <Signup />
+      </Route>
+
+      <Route path="/search">
+        <Search />
+      </Route>
+
+      <Route path="/user">
+        <User />
+      </Route>
+
+      <Route path="/account">
+        <Account />
+      </Route>
+
+      <Route path="/product">
+        <ProductPage />
+      </Route>
+    </Switch>
+  );
+}
+
+function Home() {
+  const { width } = MediaQuery();
+  return (
+    <>
+      {width > breakpoint ? (
+        <div className="main item">
+          <Products />
+        </div>
+      ) : (
+        <>
+          <Navigation />
+
+          <div className="main item">
+            <Products />
+          </div>
+        </>
+      )}
     </>
   );
 }
@@ -151,4 +187,8 @@ function Account() {
       </Route>
     </Switch>
   );
+}
+
+function Mobile() {
+  return <Content />;
 }

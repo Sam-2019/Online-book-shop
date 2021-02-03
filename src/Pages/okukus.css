@@ -169,6 +169,10 @@
   .change {
     margin-top: 10px;
   }
+
+  .main {
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 320px) {
@@ -178,5 +182,9 @@
 
   .category2 {
     width: 100%;
+  }
+
+  .main {
+    margin: 0 auto;
   }
 }
