@@ -20,7 +20,6 @@ import Search from "./Search/Search";
 import Checkout from "./Checkout/Checkout";
 import Order from "./Order/Order";
 import Product from "./Product/Product";
-
 import Products from "./Product/Products";
 import Profile from "./User/Profile";
 import Review from "./Review/Review";
@@ -114,14 +113,14 @@ function Home() {
   return (
     <>
       {width > breakpoint ? (
-        <div className="main item">
+        <div className="main">
           <Products />
         </div>
       ) : (
         <>
           <Navigation />
 
-          <div className="main item">
+          <div className="main">
             <Products />
           </div>
         </>

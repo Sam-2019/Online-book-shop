@@ -68,12 +68,18 @@ const Product = () => {
 
   return (
     <div className="product-wrapper ">
-      <div className="header ">
+      <div className="header">
         <div className="category ">
           <div className="object-1">
             <Back width={30} height={30} />
           </div>
           <div className="object-2"> The book</div>
+        </div>
+
+        <div className="category ">
+          <div className="object-2">
+            <Share width={20} height={20} action={WebShare} />
+          </div>
         </div>
       </div>
 
@@ -97,7 +103,7 @@ const Product = () => {
                   <div className="product-price">Price</div>
                 </div>
 
-                <div className="share-social ">
+                <div className="share-social">
                   <div className="shareXicon" onClick={WebShare}>
                     <Share width={15} height={15} />
 
@@ -106,7 +112,7 @@ const Product = () => {
 
                   {/* <Social width={26} height={26} postTitle postUrl hashtags /> */}
                 </div>
-     
+
                 <div className="product-description-wrapper">
                   <div
                     className={
