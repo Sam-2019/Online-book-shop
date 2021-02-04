@@ -173,6 +173,7 @@ const Product = () => {
                     <Right width={20} height={20} />
                   </div>
                 </div>
+                
               </div>
             </div>
 
@@ -186,7 +187,7 @@ const Product = () => {
               </PopUp>
             ) : null}
 
-            <div className="product-action ">
+            <div className="product-action">
               <Button
                 name="Add to Cart"
                 class_name="addCart"
@@ -201,6 +202,7 @@ const Product = () => {
                 }}
               />
             </div>
+
           </div>
         </div>
       </div>

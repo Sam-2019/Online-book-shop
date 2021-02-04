@@ -269,7 +269,7 @@
   }
 
   .product-body {
-    padding: 0 10px 10px 10px;
+    padding: 0 10px 0px 10px;
   }
 
   .product-detail {
@@ -435,7 +435,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 10px 0;
+    padding: 10px 0 0;
   }
 
   .addReview {
@@ -454,7 +454,7 @@
   }
 
   .review-numbersXright {
-    margin-right: 5px;
+    margin-right: 0px;
   }
 }
 
@@ -478,20 +478,15 @@
   }
 
   .addReviewXseeMore {
-    padding: 10px 0px 0;
+    padding: 10px 0 0;
   }
 
   .addReview {
     padding: 2px 10px;
   }
 
-  .see-more {
-    display: flex;
-    align-items: center;
-  }
-
   .review-numbersXright {
-    margin-right: 0px;
+
   }
 
   .addCart {
