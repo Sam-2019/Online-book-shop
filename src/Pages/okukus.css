@@ -13,7 +13,8 @@
 }
 
 .cart-wrapper {
-  min-height: 122.5vh;
+  min-height: 85vh;
+  padding-bottom: 4.5em;
 }
 
 .home-wrapper,
@@ -100,7 +101,8 @@
   }
 
   .cart-wrapper {
-    min-height: 170vh;
+    min-height: 100vh;
+    padding-bottom: 3.7em;
   }
 
   .home-wrapper,
@@ -113,12 +115,11 @@
   }
 
   .header {
-    background-color: #ffffff;
+    background-color: rgb(255, 255, 255);
     width: 100%;
     padding: 15px 10px;
     display: flex;
     justify-content: space-between;
-    box-shadow: 0rem 0rem 1rem 0rem #00000032 !important;
   }
 
   .category {

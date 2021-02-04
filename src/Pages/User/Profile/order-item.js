@@ -88,7 +88,7 @@ const OrderItem = () => {
       ) : null}
 
       {confirm ? (
-        <Confirm close={() => setConfirm(false)}>
+        <Confirm close={() => setConfirm(false)} primary='Cancel Order' secondary='Close'>
           Are you sure you want to cancel this order?
         </Confirm>
       ) : null}

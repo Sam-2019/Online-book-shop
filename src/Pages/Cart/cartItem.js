@@ -50,13 +50,11 @@ const CartItem = ({ handleToggle, i }) => {
   return (
     <>
       <div className="cart_item_wrapper">
-
         <div className="checkBox">
           <input onChange={handleToggle(i)} type="checkbox" value="0" />
         </div>
 
         <div className="cart-item-detail">
-
           <div className="imageXname">
             <div className="image-placeholder  loading"></div>
 
@@ -102,22 +100,20 @@ const CartItem = ({ handleToggle, i }) => {
             </div>
           </div>
         </div>
-   </div>
-        {notify ? (
-          <Notify close={() => setNotify(false)}>
-            Item added to wish list
-          </Notify>
-        ) : null}
+      </div>
+      {notify ? (
+        <Notify close={() => setNotify(false)}>Item added to wish list</Notify>
+      ) : null}
 
-        {confirm ? (
-          <Confirm close={() => setConfirm(false)}>
-            Are you sure you want to remove this product from your shopping
-            cart?
-          </Confirm>
-        ) : null}
-   
-
-
+      {confirm ? (
+        <Confirm
+          close={() => setConfirm(false)}
+          primary="Delete"
+          secondary="Cancel"
+        >
+          Are you sure you want to remove this product from your shopping cart?
+        </Confirm>
+      ) : null}
     </>
   );
 };
