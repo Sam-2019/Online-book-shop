@@ -87,9 +87,7 @@ const Cart = () => {
               </div>
             </div>
           </>
-        ) : (
-          <> </>
-        )}
+        ) : null}
 
         {Array(5)
           .fill()
