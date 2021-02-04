@@ -17,15 +17,6 @@
   padding-bottom: 4.5em;
 }
 
-.home-wrapper,
-.cart-wrapper,
-.checkout-wrapper,
-.order-wrapper,
-.profile-wrapper,
-.search-wrapper,
-.user-wrapper {
-}
-
 .header {
   display: none;
 }
@@ -96,12 +87,12 @@
   .profile-wrapper,
   .search-wrapper,
   .user-wrapper,
-  .page-wrapper {
+  .page-wrapper,
+  .cart-wrapper  {
     min-height: 100vh;
   }
 
   .cart-wrapper {
-    min-height: 100vh;
     padding-bottom: 3.7em;
   }
 

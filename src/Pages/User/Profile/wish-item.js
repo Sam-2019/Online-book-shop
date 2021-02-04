@@ -48,7 +48,7 @@ const WishItem = () => {
           <div className=" bin-width">
             <Button
               class_name="cancel-order"
-              name="Delete"
+              name="Remove"
               action={updateBin}
             />
           </div>
@@ -60,7 +60,7 @@ const WishItem = () => {
       ) : null}
 
       {confirm ? (
-        <Confirm close={() => setConfirm(false)}>
+        <Confirm close={() => setConfirm(false)}  primary='Remove' secondary='Cancel'>
           Are you sure you want to remove this item from your wish list?
         </Confirm>
       ) : null}
