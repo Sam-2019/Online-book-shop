@@ -7,5 +7,7 @@ describe("Cart", () => {
   test("renders App component", () => {
     render(<Cart />);
 
+    // let { id } = useParams();
+   // Error: Uncaught [TypeError: Cannot read property 'match' of undefined]
   });
 });
