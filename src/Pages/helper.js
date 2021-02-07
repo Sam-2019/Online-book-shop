@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useQueryCache, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { itemsGet } from "./endpoints";
 
 const intervalMs = 1000;
@@ -30,4 +30,3 @@ export const MediaQuery = () => {
   // Return the width so we can use it in our components
   return { width };
 };
-
