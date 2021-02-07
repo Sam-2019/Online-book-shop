@@ -19,7 +19,6 @@ const Cart = () => {
 
   const [formData, setFormData] = useState("");
   const [checked, setChecked] = useState([]); //cart items from DB
-  const [message, setMessage] = useState("");
 
   useEffect(() => {
     setFormData(new FormData());
@@ -44,10 +43,6 @@ const Cart = () => {
     var data = formData.get("categories");
     console.log(data);
   };
-
-  function onFormSubmit(messagE) {
-    setMessage(messagE);
-  }
 
   return (
     <div className="cart-wrapper">

@@ -1,12 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-import Okukus from "../Pages/Okukus";
+import Cart from "../Pages/Cart/Cart";
 
-describe("Okukus", () => {
+describe("Cart", () => {
   test("renders App component", () => {
-    render(<Okukus />);
-
+    render(<Cart />);
 
   });
 });
