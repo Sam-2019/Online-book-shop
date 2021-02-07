@@ -5,9 +5,10 @@ import User from "../Components/User";
 import Search from "../Components/Search";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
-import "./navigation.css";
 import Close from "../Components/Close";
 import { MediaQuery } from "../helper";
+
+import "./navigation.css";
 
 const Navigation = () => {
   const [state, setState] = React.useState(false);

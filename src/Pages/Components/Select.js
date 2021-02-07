@@ -25,7 +25,7 @@ const Select = () => {
       });
 
       const body = await response.data;
-      console.log(body);
+
 
       if (!unmounted) {
         setItems(
