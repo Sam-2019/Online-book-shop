@@ -1,11 +1,10 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Cart from "../Pages/Cart/Cart";
+import CartItem from "../Pages/Cart/cartItem";
 
-describe("Cart", () => {
+describe("CartItem", () => {
   test("renders App component", () => {
-    render(<Cart />);
-
+    render(<CartItem />);
   });
 });
