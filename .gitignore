@@ -8,6 +8,7 @@
 # folders
 /src/loaders
 /src/text.txt
+/src/tests/Select2.test.js
 
 # testing
 /coverage

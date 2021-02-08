@@ -26,7 +26,6 @@ const Select = () => {
 
       const body = await response.data;
 
-
       if (!unmounted) {
         setItems(
           body.data.map(({ location, unique_id, fee, disabled }) => ({
@@ -48,6 +47,7 @@ const Select = () => {
 
   return (
     <select
+      id="select"
       className="input"
       autoFocus
       required
