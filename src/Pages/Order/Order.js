@@ -136,7 +136,11 @@ const Order = () => {
         </form>
 
         <Summary>
-          <div className="amount ">Total ${amount}</div>
+          <div className="amountXshipping">
+            <div className="amount ">Total ${amount}</div>
+            <div className="amount ">Total ${amount}</div>
+          </div>
+
           <Button
             class_name="checkout"
             name={`Check Out  (${quantity})`}
