@@ -12,6 +12,9 @@ import Question from "../Components/Question";
 import Success from "../Components/Success Container";
 import Select from "../Components/Select";
 
+import axios from "axios";
+import { locations } from "../endpoints";
+
 import "./order.css";
 
 const Order = () => {
@@ -22,6 +25,47 @@ const Order = () => {
   const [paymentMethod, setPaymentMethod] = React.useState("");
   const [state, setState] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
+
+  const [loading, setLoading] = React.useState(true);
+  const [value, setValue] = React.useState("Pick your location");
+  const [items, setItems] = React.useState([]);
+
+  let offset = "5f665c1eb29f36.64067252";
+
+  var formData = new FormData();
+  formData.set("buyer_unique_id", offset);
+
+  React.useEffect(() => {
+    let unmounted = false;
+
+    async function fetchData() {
+      const response = await axios({
+        method: "post",
+        url: locations,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      const body = await response.data;
+
+      if (!unmounted) {
+        setItems(
+          body.data.map(({ location, unique_id, fee, disabled }) => ({
+            uniqueID: unique_id,
+            label: location,
+            value: location,
+            fee: fee,
+            disable: disabled,
+          }))
+        );
+        setLoading(false);
+      }
+    }
+    fetchData();
+    return () => {
+      unmounted = true;
+    };
+  }, []);
 
   const showSuccess = () => {
     setSuccess(true);
@@ -85,7 +129,23 @@ const Order = () => {
       <div className="main-1">
         <form className=" wrapper-item">
           <div className="page_title"> Shipping Information</div>
-          <Select />
+          <select
+            id="select"
+            className="input"
+            autoFocus
+            required
+            disabled={loading}
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value);
+            }}
+          >
+            {items.map(({ label, value, fee, uniqueID, disable }) => (
+              <option key={value} value={value} disabled={disable}>
+                {label}
+              </option>
+            ))}
+          </select>
           <Input class_name="input " placeholder="Location" onChange />
           <Input class_name="input " placeholder="Digital Address" onChange />
           <Input class_name="input " placeholder="Phone Number" onChange />
@@ -136,10 +196,9 @@ const Order = () => {
         </form>
 
         <Summary>
-
           <div className="amountXshipping item">
             <div className="amount item ">Total ${amount}</div>
-            <div className="shipping item ">Shipping ${amount}</div>
+            <div className="shipping item ">Shipping ${fee}</div>
           </div>
 
           <Button
