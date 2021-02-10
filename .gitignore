@@ -9,6 +9,8 @@
 /src/loaders
 /src/text.txt
 /src/tests/Select2.test.js
+/src/Checkout
+/src/Animate
 
 # testing
 /coverage
