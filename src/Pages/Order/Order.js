@@ -30,6 +30,8 @@ const Order = () => {
   const [value, setValue] = React.useState("Pick your location");
   const [items, setItems] = React.useState([]);
 
+  const [fee, setFee] = React.useState("");
+
   let offset = "5f665c1eb29f36.64067252";
 
   var formData = new FormData();
@@ -48,6 +50,8 @@ const Order = () => {
 
       const body = await response.data;
 
+      console.log(body);
+
       if (!unmounted) {
         setItems(
           body.data.map(({ location, unique_id, fee, disabled }) => ({
@@ -59,6 +63,7 @@ const Order = () => {
           }))
         );
         setLoading(false);
+        console.log(body);
       }
     }
     fetchData();
@@ -85,6 +90,8 @@ const Order = () => {
     case "Momo":
       selectedOption = "momo";
   }
+
+  console.log(value);
 
   return (
     <div className="cart-wrapper">
@@ -138,11 +145,12 @@ const Order = () => {
             value={value}
             onChange={(e) => {
               setValue(e.target.value);
+              setFee(value);
             }}
           >
             {items.map(({ label, value, fee, uniqueID, disable }) => (
               <option key={value} value={value} disabled={disable}>
-                {label}
+                {value}
               </option>
             ))}
           </select>
