@@ -52,9 +52,9 @@ const Order = () => {
 
   const [loading, setLoading] = React.useState(true);
   const [value, setValue] = React.useState("Pick your location");
-  const [fee, setFee] = React.useState(10);
+  // const [fee, setFee] = React.useState(0);
   const [items, setItems] = React.useState([]);
-
+  let fee;
   let offset = "5f665c1eb29f36.64067252";
 
   var formData = new FormData();
@@ -112,6 +112,14 @@ const Order = () => {
       break;
     case "Momo":
       selectedOption = "momo";
+  }
+
+  switch (value) {
+    case "Pick your location":
+      fee = 0;
+      break;
+    default:
+      fee = 10;
   }
 
   return (
@@ -224,7 +232,7 @@ const Order = () => {
         </form>
 
         <Summary>
-          <div className="amountXshipping ">
+          <div className="amountXshipping">
             <div className="amount">Total: ${amount + fee}</div>
             <div className="shipping">(Shipping inclusive)</div>
           </div>

@@ -14,20 +14,20 @@
 .amountXshipping {
   display: flex;
   align-items: center;
-  width: auto;
+  padding: 10px 0;
 }
 
 .amount {
   color: #00d919;
-  width: auto;
-  padding: 10px 5px 10px 0;
-  text-align: left;
   font-size: 25px;
+}
+
+.amountX {
+  padding: 10px 0;
 }
 
 .shipping {
   color: #00d919;
-  padding: 10px 0;
   font-size: 12px;
 }
 
@@ -37,27 +37,30 @@
 
   .amountXshipping {
     flex-direction: column;
+    padding: 0;
   }
 
   .amount {
-    padding:  5px  0 0 0;
+    padding: 0;
   }
 
   .shipping {
-    padding: 0 0 5px 0;
+    text-align: left;
+    width: 100%;
   }
 }
 
 @media (max-width: 320px) {
   .amountXshipping {
-
+    padding: 0;
   }
 
   .amount {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .shipping {
-    padding: 0 0 5px 0;
+    text-align: left;
+    width: 100%;
   }
 }

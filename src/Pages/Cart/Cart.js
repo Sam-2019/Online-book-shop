@@ -103,7 +103,9 @@ const Cart = () => {
       </div>
 
       <Summary>
-        <div className="amount ">Total ${amount}</div>
+      <div className="amountX item ">
+            <div className="amount item ">Total: ${amount}</div>
+          </div>
         <Button
           class_name="checkout"
           name={`Check Out  (${quantity})`}
