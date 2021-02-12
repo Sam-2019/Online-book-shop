@@ -32,9 +32,9 @@ const StarRating = ({ totalStars = 5 }) => {
         ))}
       </div>
 
-      <div className="star-text1 ">
+      {/* <div className="star-text1 ">
         {starsSelected > 0 ? `${starsSelected} ${state}` : null}
-      </div>
+      </div> */}
     </div>
   );
 };
