@@ -29,6 +29,7 @@
 .shipping {
   color: #00d919;
   font-size: 12px;
+  padding-left: 5px ;
 }
 
 @media (max-width: 540px) {
@@ -47,6 +48,7 @@
   .shipping {
     text-align: left;
     width: 100%;
+
   }
 }
 

@@ -55,6 +55,7 @@ const Order = () => {
   // const [fee, setFee] = React.useState(0);
   const [items, setItems] = React.useState([]);
   let fee;
+  let show;
   let offset = "5f665c1eb29f36.64067252";
 
   var formData = new FormData();
@@ -117,9 +118,11 @@ const Order = () => {
   switch (value) {
     case "Pick your location":
       fee = 0;
+      show = "";
       break;
     default:
       fee = 10;
+      show = "(Shipping inclusive)";
   }
 
   return (
@@ -234,7 +237,7 @@ const Order = () => {
         <Summary>
           <div className="amountXshipping">
             <div className="amount">Total: ${amount + fee}</div>
-            <div className="shipping">(Shipping inclusive)</div>
+            <div className="shipping">{`${show}`}</div>
           </div>
 
           <Button
