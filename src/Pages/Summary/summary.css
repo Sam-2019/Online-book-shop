@@ -1,7 +1,6 @@
 .summary-wrapper {
   display: flex;
   justify-content: space-between;
-  text-align: center;
   align-items: center;
   width: 100%;
   position: fixed;
@@ -22,8 +21,18 @@
   font-size: 25px;
 }
 
+.amount1,
+.amount2  {
+  color: #00d919;
+  font-size: 25px;
+  padding: 0px;
+}
+
+
 .amountX {
   padding: 10px 0;
+  color: #00d919;
+  font-size: 25px;
 }
 
 .shipping {
@@ -45,10 +54,13 @@
     padding: 0;
   }
 
-  .shipping {
-    text-align: left;
-    width: 100%;
+  .amount2 {
+    padding: 5px 0 0;
+  }
 
+  .shipping {
+    width: 100%;
+    padding-left: 0 ;
   }
 }
 
@@ -57,12 +69,21 @@
     padding: 0;
   }
 
-  .amount {
+  .amount,
+  .amount1 {
     font-size: 20px;
   }
 
+  .amount1 {
+    padding: 10px;
+  }
+
+  .amount2 {
+    padding: 5px 0 0;
+  }
+
   .shipping {
-    text-align: left;
     width: 100%;
+    padding-left: 0 ;
   }
 }
