@@ -103,8 +103,8 @@ const Cart = () => {
       </div>
 
       <Summary>
-      <div className="amountX item ">
-            <div className="amount item ">Total: ${amount}</div>
+      <div className="amountX">
+            <div className="amount">Total: ${amount}</div>
           </div>
         <Button
           class_name="checkout"
