@@ -10,6 +10,8 @@ import {
 } from "react-query";
 import "./Pages/okukus.css";
 
+import Container from "./Design System/Container";
+
 const AppBackgroundColour = styled.div`
   background: #ababab3c;
 `;

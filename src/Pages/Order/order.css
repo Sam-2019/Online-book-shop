@@ -25,19 +25,6 @@ li {
 .customer-name {
 }
 
-.amountXshipping {
-  display: flex;
-  align-items: center;
-  width: auto;
-}
-
-.shipping {
-  color: #00d919;
-  width: auto;
-  padding: 10px;
-  text-align: right;
-  font-size: 15px;
-}
 
 .orderID {
   color: #00d919;

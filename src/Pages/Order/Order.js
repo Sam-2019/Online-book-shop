@@ -17,6 +17,30 @@ import { locations } from "../endpoints";
 
 import "./order.css";
 
+const list = [
+  {
+    id: "0",
+    unique_id: "0",
+    location: "Pick your location",
+    fee: "0.00",
+    disabled: true,
+  },
+  {
+    id: "1",
+    unique_id: "5f97102cd9ba86.00000001",
+    location: "Community 1",
+    fee: "7.00",
+    disabled: false,
+  },
+  {
+    id: "2",
+    unique_id: "5f97102cd9ba86.00000002",
+    location: "Community 2",
+    fee: "7.00",
+    disabled: false,
+  },
+];
+
 const Order = () => {
   let amount = 10000;
   let quantity = 100;
@@ -28,9 +52,8 @@ const Order = () => {
 
   const [loading, setLoading] = React.useState(true);
   const [value, setValue] = React.useState("Pick your location");
+  const [fee, setFee] = React.useState(10);
   const [items, setItems] = React.useState([]);
-
-  const [fee, setFee] = React.useState("");
 
   let offset = "5f665c1eb29f36.64067252";
 
@@ -89,9 +112,9 @@ const Order = () => {
       break;
     case "Momo":
       selectedOption = "momo";
+    default:
+      selectedOption = null;
   }
-
-  console.log(value);
 
   return (
     <div className="cart-wrapper">
@@ -145,10 +168,9 @@ const Order = () => {
             value={value}
             onChange={(e) => {
               setValue(e.target.value);
-              setFee(value);
             }}
           >
-            {items.map(({ label, value, fee, uniqueID, disable }) => (
+            {items.map(({ value, fee, disable }) => (
               <option key={value} value={value} disabled={disable}>
                 {value}
               </option>
@@ -204,14 +226,14 @@ const Order = () => {
         </form>
 
         <Summary>
-          <div className="amountXshipping item">
-            <div className="amount item ">Total ${amount}</div>
-            <div className="shipping item ">Shipping ${fee}</div>
+          <div className="amountXshipping ">
+            <div className="amount">Total ${amount + fee}</div>
+            <div className="shipping">(Shipping inclusive)</div>
           </div>
 
           <Button
             class_name="checkout"
-            name={`Check Out  (${quantity})`}
+            name={`Order  (${quantity})`}
             action={() => {
               history.push(`/order/${id}`);
               setSuccess(true);
