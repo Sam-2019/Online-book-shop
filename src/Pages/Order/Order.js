@@ -112,8 +112,6 @@ const Order = () => {
       break;
     case "Momo":
       selectedOption = "momo";
-    default:
-      selectedOption = null;
   }
 
   return (
