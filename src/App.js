@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Okukus from "./Pages/Okukus";
+import Animate from "./Animate/Animate";
 import "bootstrap/dist/css/bootstrap.css";
 import {
   useQuery,

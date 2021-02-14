@@ -236,7 +236,9 @@ const Order = () => {
 
         <Summary>
           <div className="amountXshipping">
-            <div className={show ? 'amount2' : 'amount1'}>Total: ${amount + fee}</div>
+            <div className={show ? "amount2" : "amount1"}>
+              Total: ${amount + fee}
+            </div>
             <div className="shipping">{`${show}`}</div>
           </div>
 
