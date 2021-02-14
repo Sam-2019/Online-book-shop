@@ -4,8 +4,6 @@ import {
   Switch,
   useRouteMatch,
 } from "react-router-dom";
-import styled from "styled-components";
-import { MediaQuery } from "./helper";
 import Navigation from "./Navigation/Navigation";
 import Cart from "./Cart/Cart";
 import Login from "./User/Login";
@@ -24,35 +22,17 @@ import Products from "./Product/Products";
 import Profile from "./User/Profile";
 import Review from "./Review/Review";
 
-const Main = styled.div`
-  width: 100%;
-  max-width: 980px;
-  margin: 0 auto;
-  transition: all 0.6s ease-in-out;
-  min-height: 30em;
-`;
-
-const breakpoint = 540;
-
 const Okukus = () => {
-  const { width } = MediaQuery();
-
-  return <Router>{width > breakpoint ? <Deskotp /> : <Mobile />}</Router>;
+  return (
+    <Router>
+      <Mobile />
+    </Router>
+  );
 };
 
 export default Okukus;
 
-function Deskotp() {
-  return (
-    <>
-      <Navigation />
-
-      <Content />
-    </>
-  );
-}
-
-function Content() {
+function Mobile() {
   return (
     <Switch>
       <Route exact path="/">
@@ -99,29 +79,19 @@ function Content() {
 }
 
 function Home() {
-  const { width } = MediaQuery();
   return (
     <>
-      {width > breakpoint ? (
-        <div className="main">
-          <Products />
-        </div>
-      ) : (
-        <>
-          <Navigation />
+      <Navigation />
 
-          <div className="main">
-            <Products />
-          </div>
-        </>
-      )}
+      <div className="main">
+        <Products />
+      </div>
     </>
   );
 }
 
 function ProductPage() {
   let { path } = useRouteMatch();
-
   return (
     <Switch>
       <Route exact path={`${path}/:id`}>
@@ -137,7 +107,6 @@ function ProductPage() {
 
 function User() {
   let { path } = useRouteMatch();
-  let { width } = MediaQuery();
   return (
     <Switch>
       <Route path={`${path}/profile`}>
@@ -148,25 +117,13 @@ function User() {
         <UserVerify />
       </Route>
 
-      {width > breakpoint ? null : (
-        <Route path={`${path}/order history`}>
-          <OrderHistory />
-        </Route>
-      )}
-
-      {width > breakpoint ? null : (
-        <Route path={`${path}/wishlist`}>
-          <WishList />
-        </Route>
-      )}
-
-      {/* <Route path={`${path}/order history`}>
+      <Route path={`${path}/order history`}>
         <OrderHistory />
       </Route>
 
       <Route path={`${path}/wishlist`}>
         <WishList />
-      </Route> */}
+      </Route>
     </Switch>
   );
 }
@@ -189,8 +146,4 @@ function Account() {
       </Route>
     </Switch>
   );
-}
-
-function Mobile() {
-  return <Content />;
 }
