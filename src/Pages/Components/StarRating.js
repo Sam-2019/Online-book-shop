@@ -9,7 +9,7 @@ const StarRating = ({ totalStars = 5 }) => {
 
   switch (starsSelected) {
     case 0:
-      state = null;
+      state = '';
       break;
     case 1:
       state = "star";
@@ -44,12 +44,3 @@ StarRating.propTypes = {
 };
 
 export default StarRating;
-
-// const Star = ({ selected = false, onClick = (f) => f }) => (
-//   <div className={selected ? "star selected" : "star"} onClick={onClick}></div>
-// );
-
-// Star.propTypes = {
-//   selected: PropTypes.bool,
-//   onClick: PropTypes.func,
-// };
