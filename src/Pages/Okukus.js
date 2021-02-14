@@ -37,17 +37,7 @@ const breakpoint = 540;
 const Okukus = () => {
   const { width } = MediaQuery();
 
-  return (
-    <Router>
-      {width > breakpoint ? (
-        <>
-          <Deskotp />
-        </>
-      ) : (
-        <Mobile />
-      )}
-    </Router>
-  );
+  return <Router>{width > breakpoint ? <Deskotp /> : <Mobile />}</Router>;
 };
 
 export default Okukus;
@@ -147,6 +137,7 @@ function ProductPage() {
 
 function User() {
   let { path } = useRouteMatch();
+  let { width } = MediaQuery();
   return (
     <Switch>
       <Route path={`${path}/profile`}>
@@ -157,13 +148,25 @@ function User() {
         <UserVerify />
       </Route>
 
-      <Route path={`${path}/order history`}>
+      {width > breakpoint ? (
+        <Route path={`${path}/order history`}>
+          <OrderHistory />
+        </Route>
+      ) : null}
+
+      {width > breakpoint ? (
+        <Route path={`${path}/wishlist`}>
+          <WishList />
+        </Route>
+      ) : null}
+
+      {/* <Route path={`${path}/order history`}>
         <OrderHistory />
       </Route>
 
       <Route path={`${path}/wishlist`}>
         <WishList />
-      </Route>
+      </Route> */}
     </Switch>
   );
 }
