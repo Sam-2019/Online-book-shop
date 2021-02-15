@@ -119,53 +119,68 @@ const Proflie = () => {
 
         <div className="options">
           {width > breakpoint ? (
-            <div className="option-list">Order History</div>
-          ) : (
-            <div
-              className="option-list"
-              onClick={() => {
-                history.push("/user/order history");
-              }}
-            >
-              Order History
-            </div>
-          )}
+            <>
+              <div className="option-list">Order History</div>
 
-          {width > breakpoint ? (
-            <div className="option-list">Wish List</div>
-          ) : (
-            <div
-              className="option-list"
-              onClick={() => {
-                history.push("/user/wishlist");
-              }}
-            >
-              Wish List
-            </div>
-          )}
+              <div className="option-list">Wish List</div>
 
-          <div
-            className="option-list"
-            onClick={() => {
-              updateEmail(true);
-            }}
-          >
-            Change Email
-          </div>
-          <div
-            className="option-list"
-            onClick={() => {
-              updatePassword(true);
-            }}
-          >
-            Change Password
-          </div>
-          <div className="option-list" onClick={() => {}}>
-            Customer Service
-          </div>
-          <div className="option-list" onClick={WebShare}>
-            <span>Invite a friend</span>
-          </div>
+              <div className="option-list"> Change Email</div>
+
+              <div className="option-list"> Change Password</div>
+
+              <div className="option-list"> Customer Service</div>
+
+              <div className="option-list" onClick={WebShare}>
+                <span>Invite a friend</span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div
+                className="option-list"
+                onClick={() => {
+                  history.push("/user/order history");
+                }}
+              >
+                Order History
+              </div>
+
+              <div
+                className="option-list"
+                onClick={() => {
+                  history.push("/user/wishlist");
+                }}
+              >
+                Wish List
+              </div>
+
+              <div
+                className="option-list"
+                onClick={() => {
+                  updateEmail(true);
+                }}
+              >
+                Change Email
+              </div>
+
+              <div
+                className="option-list"
+                onClick={() => {
+                  updatePassword(true);
+                }}
+              >
+                Change Password
+              </div>
+
+              <div className="option-list" onClick={() => {}}>
+                Customer Service
+              </div>
+
+              <div className="option-list" onClick={WebShare}>
+                <span>Invite a friend</span>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
