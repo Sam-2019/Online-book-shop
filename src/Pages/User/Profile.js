@@ -7,6 +7,8 @@ import "./profile.css";
 import ChangePassword from "./Profile/Change Password";
 import ChangeEmail from "./Profile/Change Email";
 import ChangeName from "./Profile/Change Name";
+import OrderHistory from "./Profile/Order History";
+import WishList from "./Profile/Wish List";
 
 import { MediaQuery } from "../helper";
 
@@ -14,9 +16,13 @@ const Proflie = () => {
   let history = useHistory();
   let { width } = MediaQuery();
   const breakpoint = 540;
+  let activePage;
+  let activate;
   const [password, updatePassword] = React.useState(false);
   const [email, updateEmail] = React.useState(false);
   const [name, updateName] = React.useState(false);
+
+  const [active, setActive] = React.useState("Order History");
 
   const WebShare = (event) => {
     event.preventDefault();
@@ -43,6 +49,18 @@ const Proflie = () => {
     } else {
     }
   };
+
+  switch (active) {
+    case "Order History":
+      activePage = <OrderHistory />;
+      break;
+    case "Wish List":
+      activePage = <WishList />;
+      break;
+      default:  
+      activePage = <OrderHistory />;
+      break;
+  }
 
   return (
     <div className="user-wrapper">
@@ -92,9 +110,23 @@ const Proflie = () => {
             <div className="options">
               {width > breakpoint ? (
                 <>
-                  <div className="option-list">Order History</div>
+                  <div
+                    className="option-list"
+                    onClick={() => {
+                      setActive("Order History");
+                    }}
+                  >
+                    Order History
+                  </div>
 
-                  <div className="option-list">Wish List</div>
+                  <div
+                    className="option-list"
+                    onClick={() => {
+                      setActive("Wish List");
+                    }}
+                  >
+                    Wish List
+                  </div>
 
                   <div className="option-list"> Change Email</div>
 
@@ -157,7 +189,11 @@ const Proflie = () => {
           </div>
 
           <div className="right-side item">
-            <div className="other-pages">Hello</div>
+            <div className="other-pages">
+              <div>{active}</div>
+
+              {activePage}
+            </div>
           </div>
         </div>
 
