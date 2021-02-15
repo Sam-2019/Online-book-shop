@@ -1,72 +1,103 @@
+.user-detailsXother-pages {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .user-detail {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    margin:  10px;
-    display: flex;
-    justify-content: space-between;
-  }
+.left-side {
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  width: 300px;
+}
 
-  .user-image {
-    width: 60px;
-    height: 60px;
-    background-color: aqua;
-    border-radius: 10px;
-  }
+.right-side {
+  width: 700px;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 10px 10px 0px;
+}
 
-  .nameXeditXverify {
-    display: flex;
-    flex-direction: column;
-    margin-left: 5px;
+.user-detail {
+  background-color: #00ff22;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
 
-  }
+.user-image {
+  width: 60px;
+  height: 60px;
+  background-color: aqua;
+  border-radius: 10px;
+}
 
-  .nameXedit {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
+.nameXeditXverify {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+}
 
-  .user-name {
-    margin-right: 15px;
-  }
+.nameXedit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
 
-  .user-verify {
-    padding: 0 0 3px 0;
-    border-radius: 10px;
-  }
+.user-name {
+  margin-right: 15px;
+}
 
-  .verify {
-    font-size: 12px;
-    text-align: left;
-    font-style: italic;
-  }
-  .options {
-    margin: 10px 10px;
-  }
+.user-verify {
+  padding: 0 0 3px 0;
+  border-radius: 10px;
+}
 
-  .option-list {
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    margin: 10px;
+.verify {
+  font-size: 12px;
+  text-align: left;
+  font-style: italic;
+}
 
-  }
+.other-pages {
+  background-color: #bb0909;
+  border-radius: 10px;
+  padding: 10px;
+}
 
-  .wrapper-item{
-    padding: 0 10px  10px;
-  }
+.options {
+
+}
+
+.option-list {
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.option-list:not(:last-child) {
+
+}
+
+.wrapper-item {
+  padding: 0 10px 10px;
+}
 
 @media (max-width: 540px) {
-  .user-detail {
-    background-color: #ffffff;
-    border-radius: 10px;
+  .left-side {
     padding: 10px;
-    margin:  10px;
-    display: flex;
-    justify-content: space-between;
+    margin: 0;
+    width: 100%;
+  }
+
+  .right-side {
+    display: none;
+  }
+
+  .user-detail {
+    width: 100%;
   }
 
   .user-image {
@@ -80,7 +111,6 @@
     display: flex;
     flex-direction: column;
     margin-left: 5px;
-
   }
 
   .nameXedit {
@@ -104,20 +134,26 @@
     text-align: left;
     font-style: italic;
   }
+
+  .other-pages {
+    display: none;
+  }
+
   .options {
-    margin: 10px 10px;
+    margin: 0;
   }
 
   .option-list {
     padding: 10px;
     background-color: #ffffff;
     border-radius: 10px;
-    margin: 10px;
-
   }
 
-  .wrapper-item{
-    padding: 0 10px  10px;
+
+  
+
+  .wrapper-item {
+    padding: 0 10px 10px;
   }
 }
 

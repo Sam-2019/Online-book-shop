@@ -61,29 +61,103 @@ const Proflie = () => {
         </div>
       </div>
 
-      <div className="main ">
-        <div className="user-detail ">
-          <div className="category ">
-            <div className="object-5">
-              <div className="user-image  "></div>
+      <div className="main item">
+        <div className="user-detailsXother-pages">
+          <div className="left-side item">
+            <div className="user-detail">
+              <div className="category ">
+                <div className="object-5">
+                  <div className="user-image  "></div>
+                </div>
+
+                <div className="nameXeditXverify  ">
+                  <div className="nameXedit ">
+                    <div className="user-name">Samuel Martey Akandor</div>
+                    <Pen
+                      width={15}
+                      height={15}
+                      action={() => {
+                        updateName(true);
+                      }}
+                    />
+                  </div>
+
+                  <div className="user-verify">
+                    <div className="verify">Verified</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="nameXeditXverify  ">
-              <div className="nameXedit ">
-                <div className="user-name">Samuel Martey Akandor</div>
-                <Pen
-                  width={15}
-                  height={15}
-                  action={() => {
-                    updateName(true);
-                  }}
-                />
-              </div>
+            <div className="options">
+              {width > breakpoint ? (
+                <>
+                  <div className="option-list">Order History</div>
 
-              <div className="user-verify">
-                <div className="verify">Verified</div>
-              </div>
+                  <div className="option-list">Wish List</div>
+
+                  <div className="option-list"> Change Email</div>
+
+                  <div className="option-list"> Change Password</div>
+
+                  <div className="option-list"> Customer Service</div>
+
+                  <div className="option-list" onClick={WebShare}>
+                    <span>Invite a friend</span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div
+                    className="option-list"
+                    onClick={() => {
+                      history.push("/user/order history");
+                    }}
+                  >
+                    Order History
+                  </div>
+
+                  <div
+                    className="option-list"
+                    onClick={() => {
+                      history.push("/user/wishlist");
+                    }}
+                  >
+                    Wish List
+                  </div>
+
+                  <div
+                    className="option-list"
+                    onClick={() => {
+                      updateEmail(true);
+                    }}
+                  >
+                    Change Email
+                  </div>
+
+                  <div
+                    className="option-list"
+                    onClick={() => {
+                      updatePassword(true);
+                    }}
+                  >
+                    Change Password
+                  </div>
+
+                  <div className="option-list" onClick={() => {}}>
+                    Customer Service
+                  </div>
+
+                  <div className="option-list" onClick={WebShare}>
+                    <span>Invite a friend</span>
+                  </div>
+                </>
+              )}
             </div>
+          </div>
+
+          <div className="right-side item">
+            <div className="other-pages">Hello</div>
           </div>
         </div>
 
@@ -116,72 +190,6 @@ const Proflie = () => {
             />
           </PopUp>
         ) : null}
-
-        <div className="options">
-          {width > breakpoint ? (
-            <>
-              <div className="option-list">Order History</div>
-
-              <div className="option-list">Wish List</div>
-
-              <div className="option-list"> Change Email</div>
-
-              <div className="option-list"> Change Password</div>
-
-              <div className="option-list"> Customer Service</div>
-
-              <div className="option-list" onClick={WebShare}>
-                <span>Invite a friend</span>
-              </div>
-            </>
-          ) : (
-            <>
-              <div
-                className="option-list"
-                onClick={() => {
-                  history.push("/user/order history");
-                }}
-              >
-                Order History
-              </div>
-
-              <div
-                className="option-list"
-                onClick={() => {
-                  history.push("/user/wishlist");
-                }}
-              >
-                Wish List
-              </div>
-
-              <div
-                className="option-list"
-                onClick={() => {
-                  updateEmail(true);
-                }}
-              >
-                Change Email
-              </div>
-
-              <div
-                className="option-list"
-                onClick={() => {
-                  updatePassword(true);
-                }}
-              >
-                Change Password
-              </div>
-
-              <div className="option-list" onClick={() => {}}>
-                Customer Service
-              </div>
-
-              <div className="option-list" onClick={WebShare}>
-                <span>Invite a friend</span>
-              </div>
-            </>
-          )}
-        </div>
       </div>
     </div>
   );
