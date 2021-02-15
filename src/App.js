@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Okukus from "./Pages/Okukus";
-import Animate from "./Animate/Animate";
 import "bootstrap/dist/css/bootstrap.css";
 import {
   useQuery,
@@ -11,7 +10,7 @@ import {
 } from "react-query";
 import "./Pages/okukus.css";
 
-import Container from "./Design System/Container";
+// import Container from "./Design System/Container";
 
 const AppBackgroundColour = styled.div`
   background: #ababab3c;
