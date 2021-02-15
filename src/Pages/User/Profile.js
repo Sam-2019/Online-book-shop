@@ -1,8 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
-import Input from "../Components/Input";
-import Button from "../Components/Button";
 import Pen from "../Components/Pen";
 import PopUp from "../Components/Popup";
 import "./profile.css";
@@ -10,8 +8,12 @@ import ChangePassword from "./Profile/Change Password";
 import ChangeEmail from "./Profile/Change Email";
 import ChangeName from "./Profile/Change Name";
 
+import { MediaQuery } from "../helper";
+
 const Proflie = () => {
   let history = useHistory();
+  let { width } = MediaQuery();
+  const breakpoint = 540;
   const [password, updatePassword] = React.useState(false);
   const [email, updateEmail] = React.useState(false);
   const [name, updateName] = React.useState(false);
@@ -116,22 +118,31 @@ const Proflie = () => {
         ) : null}
 
         <div className="options">
-          <div
-            className="option-list"
-            onClick={() => {
-              history.push("/user/order history");
-            }}
-          >
-            Order History
-          </div>
-          <div
-            className="option-list"
-            onClick={() => {
-              history.push("/user/wishlist");
-            }}
-          >
-            Wish List
-          </div>
+          {width > breakpoint ? (
+            <div className="option-list">Order History</div>
+          ) : (
+            <div
+              className="option-list"
+              onClick={() => {
+                history.push("/user/order history");
+              }}
+            >
+              Order History
+            </div>
+          )}
+
+          {width > breakpoint ? (
+            <div className="option-list">Wish List</div>
+          ) : (
+            <div
+              className="option-list"
+              onClick={() => {
+                history.push("/user/wishlist");
+              }}
+            >
+              Wish List
+            </div>
+          )}
 
           <div
             className="option-list"
@@ -141,7 +152,6 @@ const Proflie = () => {
           >
             Change Email
           </div>
-
           <div
             className="option-list"
             onClick={() => {
@@ -150,11 +160,9 @@ const Proflie = () => {
           >
             Change Password
           </div>
-
           <div className="option-list" onClick={() => {}}>
             Customer Service
           </div>
-
           <div className="option-list" onClick={WebShare}>
             <span>Invite a friend</span>
           </div>
