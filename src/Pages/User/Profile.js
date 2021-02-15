@@ -57,7 +57,7 @@ const Proflie = () => {
     case "Wish List":
       activePage = <WishList />;
       break;
-      default:  
+    default:
       activePage = <OrderHistory />;
       break;
   }
@@ -79,9 +79,9 @@ const Proflie = () => {
         </div>
       </div>
 
-      <div className="main item">
+      <div className="main ">
         <div className="user-detailsXother-pages">
-          <div className="left-side item">
+          <div className="left-side">
             <div className="user-detail">
               <div className="category ">
                 <div className="object-5">
@@ -188,11 +188,11 @@ const Proflie = () => {
             </div>
           </div>
 
-          <div className="right-side item">
+          <div className="right-side">
             <div className="other-pages">
               <div>{active}</div>
 
-              {activePage}
+              <div>{activePage}</div>
             </div>
           </div>
         </div>

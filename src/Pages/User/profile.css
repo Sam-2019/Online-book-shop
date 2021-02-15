@@ -3,16 +3,25 @@
   justify-content: space-between;
 }
 
+.user-detailsXother-pages {
+  display: flex;
+  justify-content: space-between;
+}
+
 .left-side {
   border-radius: 10px;
+  padding: 10px;
   margin: 10px;
   width: 300px;
+  background-color: #ffffff;
 }
 
 .right-side {
   width: 700px;
   border-radius: 10px;
+  padding: 10px 0;
   margin: 10px 10px 10px 0px;
+  background-color: #ffffff;
 }
 
 .user-detail {
@@ -59,26 +68,30 @@
 }
 
 .other-pages {
-
 }
 
 .options {
-
 }
 
 .option-list {
   padding: 10px;
-  background-color: #ffffff;
+  background-color: #edcece;
   border-radius: 10px;
   margin: 10px;
 }
 
-.option-list:not(:last-child) {
-
-}
-
 .wrapper-item {
   padding: 0 10px 10px;
+}
+
+@media (max-width: 1005px) {
+  .user-detailsXother-pages {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid red;
+  }
+
+
 }
 
 @media (max-width: 540px) {
@@ -144,9 +157,6 @@
     background-color: #ffffff;
     border-radius: 10px;
   }
-
-
-  
 
   .wrapper-item {
     padding: 0 10px 10px;

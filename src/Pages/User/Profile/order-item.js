@@ -48,11 +48,14 @@ const OrderItem = () => {
 
   return (
     <>
-      <div className="item-wrapper item">
-        <div className="order-imageXname ">
+      <div className="item-wrapper ">
+
+        <div className="order-imageXname">
+
           <div className="image-placeholder  loading"></div>
 
-          <div className="order-item-name-price-quantity">
+          <div className="order-item-name-price-quantity ">
+
             <div className="order-item-name">
               Name kdhskl the debt toalt deed
             </div>

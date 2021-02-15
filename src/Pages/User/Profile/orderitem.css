@@ -5,34 +5,36 @@
   align-items: center;
   border-radius: 10px;
   background-color: #ffffff;
+  border: 1px solid rgba(128, 128, 128, 0.318)
 }
 
 .order-imageXname {
   display: flex;
   align-items: center;
-  width: 70%;
+  width: 420px;
 }
 
 .order-item-name-price-quantity {
   display: flex;
   width: 100%;
+  align-items: center;
 }
 
 .order-item-name {
-  width: 60%;
+  width: 180px;
 }
 
 .order-Item-price-quantity {
   display: flex;
   justify-content: space-around;
-  width: 40%;
+  width: 150px;
   align-items: flex-end;
 }
 
 .actionXstatus {
   display: flex;
-  justify-content: space-around;
-  width: 25%;
+  justify-content: space-between;
+  width: 200px;
 }
 
 .cancel {
