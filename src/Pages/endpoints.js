@@ -47,4 +47,10 @@ export const wishDelete = `${okukus}/${dev_site}/delete_wishlist_item.php`;
 
 export const userWelcome = `${okukus}/${dev_site}/create_newsletter_subscription.php`;
 
-export const locations = `${okukus}/${dev_site}/get_locations.php`;
+export const locationsGet = `${okukus}/${dev_site}/get_locations.php`;
+export const feeGet = `${okukus}/${dev_site}/get_location.php`;
+
+export const profileImageAdd = `${okukus}/${dev_site}/get_location.php`;
+export const profileImageGet = `${okukus}/${dev_site}/get_location.php`;
+export const profileImageDelete = `${okukus}/${dev_site}/get_location.php`;
+export const profileImageUpdate = `${okukus}/${dev_site}/get_location.php`;

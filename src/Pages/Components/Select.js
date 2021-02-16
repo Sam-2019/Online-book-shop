@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { locations } from "../endpoints";
+import { locationsGet } from "../endpoints";
 import "./select.css";
 
 const Select = () => {
@@ -19,7 +19,7 @@ const Select = () => {
     async function fetchData() {
       const response = await axios({
         method: "post",
-        url: locations,
+        url: locationsGet,
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });

@@ -13,7 +13,7 @@ import Success from "../Components/Success Container";
 import Select from "../Components/Select";
 
 import axios from "axios";
-import { locations } from "../endpoints";
+import { locationsGet, feeGet } from "../endpoints";
 
 import "./order.css";
 
@@ -52,45 +52,41 @@ const Order = () => {
 
   const [loading, setLoading] = React.useState(true);
   const [value, setValue] = React.useState("Pick your location");
-  // const [fee, setFee] = React.useState(0);
+  const [fee, setFee] = React.useState(0);
   const [items, setItems] = React.useState([]);
-  let fee;
   let show;
-  let offset = "5f665c1eb29f36.64067252";
-
+  let buyerID = "5f665c1eb29f36.64067252";
   var formData = new FormData();
-  formData.set("buyer_unique_id", offset);
 
   React.useEffect(() => {
     let unmounted = false;
 
     async function fetchData() {
+      formData.set("buyer_unique_id", buyerID);
       const response = await axios({
         method: "post",
-        url: locations,
+        url: locationsGet,
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
 
       const body = await response.data;
 
-      console.log(body);
-
       if (!unmounted) {
         setItems(
-          body.data.map(({ location, unique_id, fee, disabled }) => ({
+          body.data.map(({ location, unique_id, disabled }) => ({
             uniqueID: unique_id,
             label: location,
             value: location,
-            fee: fee,
             disable: disabled,
           }))
         );
         setLoading(false);
-        console.log(body);
       }
     }
+
     fetchData();
+
     return () => {
       unmounted = true;
     };
@@ -117,13 +113,29 @@ const Order = () => {
 
   switch (value) {
     case "Pick your location":
-      fee = 0;
       show = "";
       break;
     default:
-      fee = 10;
       show = "(Shipping inclusive)";
   }
+
+  const getFee = async () => {
+    formData.set("buyer_unique_id", buyerID);
+    formData.set("location_name", value);
+
+    const response = await axios({
+      method: "post",
+      url: feeGet,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+    setFee(response.data.data);
+  };
+
+  React.useEffect(() => {
+    getFee();
+  }, [getFee]);
 
   return (
     <div className="cart-wrapper">
@@ -177,10 +189,11 @@ const Order = () => {
             value={value}
             onChange={(e) => {
               setValue(e.target.value);
+              setFee(0);
             }}
           >
-            {items.map(({ value, fee, disable }) => (
-              <option key={value} value={value} disabled={disable}>
+            {items.map(({ value, disable, unique_id }) => (
+              <option key={unique_id} value={value} disabled={disable}>
                 {value}
               </option>
             ))}
