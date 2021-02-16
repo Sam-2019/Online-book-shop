@@ -190,7 +190,7 @@ const Proflie = () => {
 
           <div className="right-side">
             <div className="other-pages">
-              <div>{active}</div>
+              <div className='activePage'>{active}</div>
 
               <div>{activePage}</div>
             </div>
