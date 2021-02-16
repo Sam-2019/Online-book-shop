@@ -82,11 +82,12 @@ const Order = () => {
           }))
         );
         setLoading(false);
+
       }
     }
 
     fetchData();
-
+ 
     return () => {
       unmounted = true;
     };
@@ -114,12 +115,16 @@ const Order = () => {
   switch (value) {
     case "Pick your location":
       show = "";
+
       break;
     default:
       show = "(Shipping inclusive)";
   }
 
   const getFee = async () => {
+
+    console.log(fee);
+
     formData.set("buyer_unique_id", buyerID);
     formData.set("location_name", value);
 
@@ -130,7 +135,7 @@ const Order = () => {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
-    setFee(response.data.data);
+    response ? setFee(response.data.data) : setFee(0);
   };
 
   React.useEffect(() => {
@@ -189,11 +194,10 @@ const Order = () => {
             value={value}
             onChange={(e) => {
               setValue(e.target.value);
-              setFee(0);
             }}
           >
-            {items.map(({ value, disable, unique_id }) => (
-              <option key={unique_id} value={value} disabled={disable}>
+            {items.map(({ value, disable }) => (
+              <option key={value} value={value} disabled={disable}>
                 {value}
               </option>
             ))}
