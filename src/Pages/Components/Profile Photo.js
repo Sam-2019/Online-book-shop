@@ -1,5 +1,6 @@
 import React from "react";
-import "./image.css";
+import PropTypes from "prop-types";
+import "./profilePhoto.css";
 
 const ProfilePhoto = ({ class_name }) => {
   return (
@@ -12,3 +13,7 @@ const ProfilePhoto = ({ class_name }) => {
 };
 
 export default ProfilePhoto;
+
+ProfilePhoto.propTypes = {
+  class_name: PropTypes.string,
+};

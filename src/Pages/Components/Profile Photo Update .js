@@ -2,9 +2,9 @@ import React from "react";
 import axios from "axios";
 import ProfilePhoto from "./Profile Photo";
 import { buyerID, profileImageAdd } from "../endpoints";
-import "./imageshow.css";
+import "./profilePhoto.css";
 
-const ImageShow = () => {
+const ProfiilePhotoUpdate = () => {
   const [change, setChange] = React.useState(false);
 
   const [file, setFile] = React.useState("");
@@ -119,4 +119,4 @@ const ImageShow = () => {
   );
 };
 
-export default ImageShow;
+export default ProfiilePhotoUpdate;
