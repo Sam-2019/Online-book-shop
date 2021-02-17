@@ -20,7 +20,7 @@ const Proflie = () => {
   let activePage;
   const [password, updatePassword] = React.useState(false);
   const [email, updateEmail] = React.useState(false);
-  const [name, updateName] = React.useState(true);
+  const [name, updateName] = React.useState(false);
 
   const [active, setActive] = React.useState("Order History");
 
