@@ -12,6 +12,9 @@
 /src/Checkout
 /src/Animate
 /src/Pages/Order/oldFile.css
+/src/Pages/Components/Image Upload.js
+/src/Pages/Components/ImageUploadToo.js
+/src/Pages/Components/React Images Upload.js
 
 # testing
 /coverage

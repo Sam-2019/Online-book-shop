@@ -9,8 +9,11 @@ import ChangeEmail from "./Profile/Change Email";
 import ChangeName from "./Profile/Change Name";
 import OrderHistory from "./Profile/Order History";
 import WishList from "./Profile/Wish List";
+import Image from '../Components/Image'
+
 
 import { MediaQuery } from "../helper";
+import ProfileImage from "../Components/Profile Image";
 
 const Proflie = () => {
   let history = useHistory();
@@ -85,7 +88,7 @@ const Proflie = () => {
             <div className="user-detail">
               <div className="category ">
                 <div className="object-5">
-                  <div className="user-image  "></div>
+                <Image />
                 </div>
 
                 <div className="nameXeditXverify  ">
@@ -137,6 +140,10 @@ const Proflie = () => {
                   <div className="option-list" onClick={WebShare}>
                     <span>Invite a friend</span>
                   </div>
+
+                  <div className="option-list">
+                    <ProfileImage />
+                  </div>
                 </>
               ) : (
                 <>
@@ -183,6 +190,10 @@ const Proflie = () => {
                   <div className="option-list" onClick={WebShare}>
                     <span>Invite a friend</span>
                   </div>
+
+                  <div className="option-list">
+                    <ProfileImage />
+                  </div>
                 </>
               )}
             </div>
@@ -190,7 +201,7 @@ const Proflie = () => {
 
           <div className="right-side">
             <div className="other-pages">
-              <div className='activePage'>{active}</div>
+              <div className="activePage">{active}</div>
 
               <div>{activePage}</div>
             </div>

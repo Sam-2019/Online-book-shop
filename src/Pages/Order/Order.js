@@ -10,10 +10,9 @@ import Summary from "../Summary/Summary";
 import PopUp from "../Components/Popup";
 import Question from "../Components/Question";
 import Success from "../Components/Success Container";
-import Select from "../Components/Select";
 
 import axios from "axios";
-import { locationsGet, feeGet } from "../endpoints";
+import { buyerID, locationsGet, feeGet } from "../endpoints";
 
 import "./order.css";
 
@@ -55,7 +54,6 @@ const Order = () => {
   const [fee, setFee] = React.useState(0);
   const [items, setItems] = React.useState([]);
   let show;
-  let buyerID = "5f665c1eb29f36.64067252";
   var formData = new FormData();
 
   React.useEffect(() => {
@@ -258,11 +256,7 @@ const Order = () => {
               )}
             </div>
             <div className="shipping">
-              {value === "Pick your location" ? (
-                <></>
-              ) : (
-                <>(Shipping ${fee})</>
-              )}
+              {value === "Pick your location" ? <></> : <>(Shipping ${fee})</>}
             </div>
           </div>
 

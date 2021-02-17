@@ -1,0 +1,11 @@
+.image-container {
+  text-align: center;
+}
+
+.just-image {
+    width: 250px;
+    height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+

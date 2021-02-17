@@ -2,6 +2,8 @@ export const okukus = "https://okukus.com";
 export const live_site = "api_call";
 export const dev_site = `${live_site}_dev`;
 
+export const buyerID = "5f665c1eb29f36.64067252";
+
 export const itemsGet = `${okukus}/${dev_site}/get_books.php`;
 export const itemGet = `${okukus}/${dev_site}/get_book.php`;
 export const tagsGet = `${okukus}/${dev_site}/get_book_tags.php`;
