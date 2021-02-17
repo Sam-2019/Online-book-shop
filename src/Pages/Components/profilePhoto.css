@@ -22,7 +22,7 @@
   height: 250px;
   object-fit: cover;
   border-radius: 50%;
-  background-color: aqua;
+  background-color: rgb(203, 203, 203);
   opacity: 1;
   display: block;
   transition: 0.5s ease;
