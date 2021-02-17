@@ -9,7 +9,8 @@
 .twitter,
 .checkout,
 .addCart,
-.buyNow {
+.buyNow,
+.uploadImage {
   background-color: transparent;
   border: 1px solid transparent;
   outline: none;
@@ -69,7 +70,8 @@
 .twitter:active,
 .buyNow:active,
 .addCart:active,
-.addReview:active {
+.addReview:active,
+.uploadImage:active {
   transform: scale(0.95);
 }
 
@@ -84,7 +86,8 @@
 .facebook:focus,
 .twitter:focus,
 .buyNow:focus,
-.addCart:focus {
+.addCart:focus,
+.uploadImage:focus {
   outline: none;
 }
 

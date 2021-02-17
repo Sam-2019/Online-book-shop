@@ -17,6 +17,18 @@
   backface-visibility: hidden;
 }
 
+.just-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: aqua;
+  opacity: 1;
+  display: block;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
 .middle {
   transition: 0.5s ease;
   opacity: 0;
@@ -30,7 +42,8 @@
   z-index: 20;
 }
 
-.containerWar:hover .image {
+.containerWar:hover .image,
+.containerWar:hover .just-image {
   opacity: 0.2;
 }
 
@@ -40,7 +53,7 @@
 
 .text {
   color: rgba(21, 21, 21, 0.982);
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
   padding: 7px 0px 7px 0px;
   width: auto;
@@ -48,6 +61,9 @@
 
 @media (max-width: 540px) {
   .image {
+  }
+
+  .just-image {
   }
 }
 
