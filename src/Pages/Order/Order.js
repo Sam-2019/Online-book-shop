@@ -121,7 +121,6 @@ const Order = () => {
   }
 
   const getFee = async () => {
-    console.log(fee);
 
     formData.set("buyer_unique_id", buyerID);
     formData.set("location_name", value);
