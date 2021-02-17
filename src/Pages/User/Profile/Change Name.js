@@ -3,12 +3,12 @@ import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
 import "./change.css";
-import ImageShow from "../../Components/ImageShow";
+import ProfilePhotoUpdate from "../../Components/Profile Photo Update ";
 
 const ChangeName = ({ close }) => {
   return (
     <>
-      <ImageShow />
+      <ProfilePhotoUpdate />
 
       <form className=" change ">
         <Input class_name="input " placeholder="First Name" onChange />

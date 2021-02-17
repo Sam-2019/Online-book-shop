@@ -9,7 +9,7 @@ import ChangeEmail from "./Profile/Change Email";
 import ChangeName from "./Profile/Change Name";
 import OrderHistory from "./Profile/Order History";
 import WishList from "./Profile/Wish List";
-import Image from "../Components/Image";
+import ProfilePhoto from "../Components/Profile Photo";
 
 import { MediaQuery } from "../helper";
 
@@ -86,7 +86,7 @@ const Proflie = () => {
             <div className="user-detail">
               <div className="category ">
                 <div className="object-5">
-                  <Image />
+                  <ProfilePhoto class_name="image" />
                 </div>
 
                 <div className="nameXeditXverify  ">
