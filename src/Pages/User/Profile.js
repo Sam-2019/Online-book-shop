@@ -18,7 +18,6 @@ const Proflie = () => {
   let { width } = MediaQuery();
   const breakpoint = 540;
   let activePage;
-  let activate;
   const [password, updatePassword] = React.useState(false);
   const [email, updateEmail] = React.useState(false);
   const [name, updateName] = React.useState(true);
@@ -91,7 +90,7 @@ const Proflie = () => {
 
                 <div className="nameXeditXverify  ">
                   <div className="nameXedit ">
-                    <div className="user-name">Samuel Martey Akandor</div>
+                    <div className="user-name">Dan Nii Tackie</div>
                     <Pen
                       width={15}
                       height={15}

@@ -52,10 +52,8 @@
 }
 
 .text {
-  color: rgba(21, 21, 21, 0.982);
+  color: #434343fa;
   font-size: 18px;
-  font-weight: 500;
-  padding: 7px 0px 7px 0px;
   width: auto;
 }
 

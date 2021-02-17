@@ -4,7 +4,7 @@ export const dev_site = `${live_site}_dev`;
 
 export const buyerID = "5f665c1eb29f36.64067252";
 export const profliePhoto =
-  "https://images.unsplash.com/photo-1534429068323-d715c5a6d96b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80";
+  "https://pbs.twimg.com/media/EnYV6ekWMAksmcs?format=jpg&name=small";
 
 export const itemsGet = `${okukus}/${dev_site}/get_books.php`;
 export const itemGet = `${okukus}/${dev_site}/get_book.php`;
