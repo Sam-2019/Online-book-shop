@@ -9,8 +9,8 @@
   width: 60px;
   height: 60px;
   object-fit: cover;
-  background-color: aqua;
-  border-radius: 10px;
+  background-color: rgb(203, 203, 203);
+  border-radius: 50%;
   opacity: 1;
   display: block;
   transition: 0.5s ease;
