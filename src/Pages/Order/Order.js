@@ -121,7 +121,6 @@ const Order = () => {
   }
 
   const getFee = async () => {
-
     formData.set("buyer_unique_id", buyerID);
     formData.set("location_name", value);
 
@@ -131,7 +130,6 @@ const Order = () => {
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     });
-
     response ? setFee(response.data.data) : setFee(0);
   };
 
