@@ -35,7 +35,7 @@ const ProfiilePhotoUpdate = () => {
     console.log(response);
   };
 
-  const Change = (e) => {
+  const update = (e) => {
     setLoading(true);
     e.preventDefault();
 
@@ -74,7 +74,7 @@ const ProfiilePhotoUpdate = () => {
             <input
               className="fileInput"
               type="file"
-              onChange={Change}
+              onChange={update}
               id="profileImage"
               accept="image/*"
             />
