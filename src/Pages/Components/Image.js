@@ -4,13 +4,18 @@ import "./image.css";
 const Image = () => {
   return (
     <>
-      <div className="containerWar ">
-        <img src="https://reactnative.dev/img/tiny_logo.png" alt="Avatar" className="image" />
+      <img
+        src="https://reactnative.dev/img/tiny_logo.png"
+        alt="Avatar"
+        className="image"
+      />
+      {/* <div className="containerWar ">
+ 
 
-        <div className="middle ">
+       <div className="middle ">
           <div className="text ">Change Image</div>
-        </div>
-      </div>
+        </div> 
+      </div> */}
     </>
   );
 };

@@ -1,12 +1,14 @@
 .containerWar {
   position: relative;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .image {
   width: 60px;
   height: 60px;
-  
+  object-fit: cover;
   background-color: aqua;
   border-radius: 10px;
   opacity: 1;
@@ -45,14 +47,6 @@
 
 @media (max-width: 540px) {
   .image {
-    width: 60px;
-    height: 60px;
-    background-color: aqua;
-    border-radius: 10px;
-    opacity: 1;
-    display: block;
-    transition: 0.5s ease;
-    backface-visibility: hidden;
   }
 }
 
