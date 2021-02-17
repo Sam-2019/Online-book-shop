@@ -46,11 +46,26 @@ const ProfiilePhotoUpdate = () => {
     //   setFile(e.target.result);
     // };
 
+    // if (reader.onloadend) {
+    //   setFile(e.target.files[0]);
+    //   setimagePreviewUrl(reader.result);
+    //   setLoading(false);
+    // } else {
+    //   setLoading(false);
+    //   setimagePreviewUrl("Update failed!");
+    // }
+
     reader.onloadend = () => {
       setFile(e.target.files[0]);
       setimagePreviewUrl(reader.result);
       setLoading(false);
     };
+
+    // reader.onerror = () => {
+    //   setFile(e.target.files[0]);
+    //   setimagePreviewUrl(reader.result);
+    //   setLoading(false);
+    // };
 
     reader.readAsDataURL(pic);
     setFile(pic);
