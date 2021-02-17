@@ -82,12 +82,11 @@ const Order = () => {
           }))
         );
         setLoading(false);
-
       }
     }
 
     fetchData();
- 
+
     return () => {
       unmounted = true;
     };
@@ -122,7 +121,6 @@ const Order = () => {
   }
 
   const getFee = async () => {
-
     console.log(fee);
 
     formData.set("buyer_unique_id", buyerID);
@@ -254,7 +252,13 @@ const Order = () => {
         <Summary>
           <div className="amountXshipping">
             <div className={show ? "amount2" : "amount1"}>
-              Total: ${amount + fee}
+              {/* Total: {fee === undefined ? ` $${amount}` : ` $${amount + fee}`} */}
+              Total:{" "}
+              {fee === undefined ? (
+                <>${Intl.NumberFormat().format(amount)}</>
+              ) : (
+                <>${Intl.NumberFormat().format(amount + fee)}</>
+              )}
             </div>
             <div className="shipping">{`${show}`}</div>
           </div>
