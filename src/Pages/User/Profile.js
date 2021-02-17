@@ -10,6 +10,7 @@ import ChangeName from "./Profile/Change Name";
 import OrderHistory from "./Profile/Order History";
 import WishList from "./Profile/Wish List";
 import ProfilePhoto from "../Components/Profile Photo";
+import UserName from "../Components/UserName";
 
 import { MediaQuery } from "../helper";
 
@@ -90,7 +91,7 @@ const Proflie = () => {
 
                 <div className="nameXeditXverify  ">
                   <div className="nameXedit ">
-                    <div className="user-name">Dan Nii Tackie</div>
+                    <UserName user_name="Dan Nii Tackie" />
                     <Pen
                       width={15}
                       height={15}

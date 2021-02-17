@@ -1,5 +1,8 @@
 import React from "react";
 import StarRating from "../Components/Stars";
+import ProfilePhoto from "../Components/Profile Photo";
+import UserName from "../Components/UserName";
+import TimeStamp from "../Components/Time Stamp";
 import "./review.css";
 
 const ReviewItem = () => {
@@ -7,11 +10,13 @@ const ReviewItem = () => {
     <div className=' review-wrapper "'>
       <div className="review-head">
         <div className="image-nameXdate">
-          <div className="reviewer-image  "></div>
+          <div className="object-5">
+            <ProfilePhoto class_name="image" />
+          </div>
 
           <div className="nameXdate">
-            <div className="name ">Samuel Martey Akandor</div>
-            <div className="dateXtime">23 Jun 2020, 5:30 am</div>
+            <UserName user_name="Dan Nii Tackie" />
+            <TimeStamp timestamp="23 Jun 2020, 5:30 am" />
           </div>
         </div>
 
