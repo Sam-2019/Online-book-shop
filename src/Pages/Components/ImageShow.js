@@ -80,7 +80,6 @@ const ImageShow = () => {
               onChange={Change}
               id="profileImage"
               accept="image/*"
-              capture="camera"
             />
 
             <label htmlFor="profileImage" className="text">
