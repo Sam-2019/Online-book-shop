@@ -257,7 +257,13 @@ const Order = () => {
                 <>${Intl.NumberFormat().format(amount + fee)}</>
               )}
             </div>
-            <div className="shipping">{`${show}`}</div>
+            <div className="shipping">
+              {value === "Pick your location" ? (
+                <></>
+              ) : (
+                <>(Shipping Ghc{fee})</>
+              )}
+            </div>
           </div>
 
           <Button
