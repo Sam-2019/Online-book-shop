@@ -12,7 +12,6 @@ import WishList from "./Profile/Wish List";
 import Image from "../Components/Image";
 
 import { MediaQuery } from "../helper";
-import ProfileImage from "../Components/Profile Image";
 
 const Proflie = () => {
   let history = useHistory();

@@ -47,7 +47,7 @@
   }
 
   .popup {
-    margin: 30% 0 0;
+    margin: 10% 0 0;
   }
 
   .popup,
@@ -75,18 +75,18 @@
 
 @media (max-width: 375px) {
   .popup {
-    margin: 25% 0 0;
+    margin: 15% 0 0;
   }
 }
 
 @media (max-width: 320px) {
   .popup {
-    margin: 15% 0 0;
+    margin: auto 0 0;
   }
 }
 
 @media (max-width: 280px) {
   .popup {
-    margin: 20% 0 0;
+    margin: 8% 0 0;
   }
 }

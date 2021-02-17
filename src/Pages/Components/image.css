@@ -64,8 +64,26 @@
   }
 
   .just-image {
+    width: 200px;
+    height: 200px;
+
   }
 }
 
 @media (max-width: 320px) {
+  .just-image {
+    width: 150px;
+    height: 150px;
+
+  }
+  
+}
+
+@media (max-width: 280px) {
+  .just-image {
+    width: 200px;
+    height: 200px;
+
+  }
+  
 }
