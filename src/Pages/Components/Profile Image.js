@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { buyerID, profileImageAdd } from "../endpoints";
 
-const ProfileImage = () => {
+const ProfileImage = ({ change }) => {
   const [file, setFile] = React.useState("");
   const [imagePreviewUrl, setimagePreviewUrl] = React.useState("");
   const formData = new FormData();
@@ -25,7 +25,8 @@ const ProfileImage = () => {
     console.log(response);
   };
 
-  const imageSelect = (e) => {
+  change = (e) => {
+    console.log("clicked!!!");
     e.preventDefault();
 
     let reader = new FileReader();
@@ -45,7 +46,7 @@ const ProfileImage = () => {
   return (
     <>
       <form onSubmit={imageUpload}>
-        <input className="fileInput" type="file" onChange={imageSelect} />
+        <input className="fileInput" type="file" onChange={change} />
 
         <button className="submitButton" type="submit">
           Upload Image

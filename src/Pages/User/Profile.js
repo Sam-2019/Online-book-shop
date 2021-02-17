@@ -9,8 +9,7 @@ import ChangeEmail from "./Profile/Change Email";
 import ChangeName from "./Profile/Change Name";
 import OrderHistory from "./Profile/Order History";
 import WishList from "./Profile/Wish List";
-import Image from '../Components/Image'
-
+import Image from "../Components/Image";
 
 import { MediaQuery } from "../helper";
 import ProfileImage from "../Components/Profile Image";
@@ -23,7 +22,7 @@ const Proflie = () => {
   let activate;
   const [password, updatePassword] = React.useState(false);
   const [email, updateEmail] = React.useState(false);
-  const [name, updateName] = React.useState(false);
+  const [name, updateName] = React.useState(true);
 
   const [active, setActive] = React.useState("Order History");
 
@@ -88,7 +87,7 @@ const Proflie = () => {
             <div className="user-detail">
               <div className="category ">
                 <div className="object-5">
-                <Image />
+                  <Image />
                 </div>
 
                 <div className="nameXeditXverify  ">
@@ -140,10 +139,6 @@ const Proflie = () => {
                   <div className="option-list" onClick={WebShare}>
                     <span>Invite a friend</span>
                   </div>
-
-                  <div className="option-list">
-                    <ProfileImage />
-                  </div>
                 </>
               ) : (
                 <>
@@ -189,10 +184,6 @@ const Proflie = () => {
 
                   <div className="option-list" onClick={WebShare}>
                     <span>Invite a friend</span>
-                  </div>
-
-                  <div className="option-list">
-                    <ProfileImage />
                   </div>
                 </>
               )}

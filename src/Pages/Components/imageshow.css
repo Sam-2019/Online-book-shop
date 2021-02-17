@@ -14,6 +14,17 @@
   opacity: 0.2;
 }
 
+input.fileInput {
+  opacity: 0;
+  position: absolute;
+  overflow: hidden;
+  z-index: -1;
+}
+
+label {
+  cursor: pointer;
+}
+
 @media (max-width: 540px) {
   .just-image {
   }
