@@ -261,7 +261,7 @@ const Order = () => {
               {value === "Pick your location" ? (
                 <></>
               ) : (
-                <>(Shipping Ghc{fee})</>
+                <>(Shipping ${fee})</>
               )}
             </div>
           </div>
