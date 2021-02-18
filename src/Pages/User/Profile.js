@@ -10,7 +10,7 @@ import OrderHistory from "./Profile/Order History";
 import WishList from "./Profile/Wish List";
 import ProfilePhoto from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
-import { profliePhoto } from "../endpoints";
+import { okukus,profliePhoto } from "../endpoints";
 
 import { MediaQuery } from "../helper";
 import "./profile.css";
@@ -29,22 +29,20 @@ const Proflie = () => {
 
   const WebShare = (event) => {
     event.preventDefault();
-    const title = "Okukus.com";
 
-    const url = "Okukus.com";
     const canonicalElement = document.querySelector("link[rel=canonical]");
 
     if (navigator.share) {
       if (canonicalElement !== null) {
-        url = canonicalElement.href;
+        okukus = canonicalElement.href;
       }
 
       navigator
         .share({
-          title: title,
+          title: okukus,
           text:
             "Your one-stop shop for a wide selection of books, magazines & just about anything else. ",
-          url: "https://okukus.com",
+          url: okukus,
         })
         .then(() => {
           console.log("Thanks for sharing");
@@ -82,7 +80,7 @@ const Proflie = () => {
         </div>
       </div>
 
-      <div className="main ">
+      <div className=" ">
         <div className="user-detailsXother-pages">
           <div className="left-side">
             <div className="user-detail">
