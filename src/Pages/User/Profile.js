@@ -23,6 +23,7 @@ const Proflie = () => {
   const [password, updatePassword] = React.useState(false);
   const [email, updateEmail] = React.useState(false);
   const [name, updateName] = React.useState(false);
+  const [verify, setVerify] = React.useState(false);
 
   const [active, setActive] = React.useState("Order History");
 
@@ -85,13 +86,13 @@ const Proflie = () => {
         <div className="user-detailsXother-pages">
           <div className="left-side">
             <div className="user-detail">
-              <div className="category ">
+              <div className="user-category">
                 <div className="object-5">
                   <ProfilePhoto className="image" src={profliePhoto} />
                 </div>
 
-                <div className="nameXeditXverify  ">
-                  <div className="nameXedit ">
+                <div className="nameXeditXverify">
+                  <div className="nameXedit">
                     <UserName name="Dan Nii Tackie" />
                     <Pen
                       width={15}
@@ -103,7 +104,11 @@ const Proflie = () => {
                   </div>
 
                   <div className="user-verify">
-                    <div className="verify">Verified</div>
+                    {verify ? (
+                      <span className="verify">Verified</span>
+                    ) : (
+                      <span className="not-verify">Unverified</span>
+                    )}
                   </div>
                 </div>
               </div>

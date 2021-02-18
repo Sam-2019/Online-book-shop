@@ -21,9 +21,14 @@
   display: none;
 }
 
-.category {
+.category,
+.user-category {
   display: flex;
   align-items: center;
+}
+
+.user-category{
+  width: 100%;
 }
 
 .category2 {
@@ -113,7 +118,8 @@
     justify-content: space-between;
   }
 
-  .category {
+  .category,
+  .user-category {
     display: flex;
     align-items: center;
   }

@@ -13,7 +13,7 @@ const Signup = () => {
   return (
     <div className="user-wrapper">
       <div className="header">
-        <div className="category">
+        <div className="category ">
           <div className="object-1">
             <Back width={30} height={30} />
           </div>
