@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import Pen from "../Components/Pen";
 import PopUp from "../Components/Popup";
-import "./profile.css";
 import ChangePassword from "./Profile/Change Password";
 import ChangeEmail from "./Profile/Change Email";
 import ChangeName from "./Profile/Change Name";
@@ -11,8 +10,10 @@ import OrderHistory from "./Profile/Order History";
 import WishList from "./Profile/Wish List";
 import ProfilePhoto from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
+import { profliePhoto } from "../endpoints";
 
 import { MediaQuery } from "../helper";
+import "./profile.css";
 
 const Proflie = () => {
   let history = useHistory();
@@ -86,12 +87,12 @@ const Proflie = () => {
             <div className="user-detail">
               <div className="category ">
                 <div className="object-5">
-                  <ProfilePhoto class_name="image" />
+                  <ProfilePhoto className="image" src={profliePhoto} />
                 </div>
 
                 <div className="nameXeditXverify  ">
                   <div className="nameXedit ">
-                    <UserName user_name="Dan Nii Tackie" />
+                    <UserName name="Dan Nii Tackie" />
                     <Pen
                       width={15}
                       height={15}

@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import ProfilePhoto from "./Profile Photo";
-import { buyerID, profileImageAdd } from "../endpoints";
+import { buyerID, profileImageAdd, profliePhoto } from "../endpoints";
 import "./profilePhoto.css";
 
 const ProfiilePhotoUpdate = () => {
@@ -75,14 +75,11 @@ const ProfiilePhotoUpdate = () => {
     <>
       <div className="containerWar">
         <form onSubmit={imageUpload} className="">
+          
           {imagePreviewUrl ? (
-            <>
-              <img src={imagePreviewUrl} alt="Avatar" className=" just-image" />
-            </>
+            <ProfilePhoto className="just-image" src={imagePreviewUrl} />
           ) : (
-            <>
-              <ProfilePhoto class_name="just-image" />
-            </>
+            <ProfilePhoto className="just-image" src={profliePhoto} />
           )}
 
           <div className="middle" onClick={openBox}>
