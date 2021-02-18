@@ -80,7 +80,7 @@ const Proflie = () => {
         </div>
       </div>
 
-      <div className=" ">
+      <div className="main">
         <div className="user-detailsXother-pages">
           <div className="left-side">
             <div className="user-detail">
