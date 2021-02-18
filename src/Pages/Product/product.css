@@ -168,19 +168,14 @@
   align-items: center;
   background-color: #ffffff;
   width: 100%;
-  padding: 10px 10px;
+  padding: 0 10px 10px;
 }
 
-.addCart {
-  width: 40%;
-  padding: 12px 15px;
-  font-size: 12px;
-}
-
+.addCart,
 .buyNow {
-  width: 57%;
   padding: 12px 15px;
   font-size: 12px;
+  width: 100%;
 }
 
 .facebook,
@@ -192,7 +187,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 10px 0;
+  padding: 10px 0 0;
 }
 
 .addReview {
@@ -269,11 +264,11 @@
   }
 
   .product-body {
-    padding: 0 10px 0px 10px;
+
   }
 
   .product-detail {
-    align-items: center;
+
   }
 
   .product-image {
@@ -405,25 +400,7 @@
   }
 
   .product-action {
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    align-items: center;
-    background-color: #ffffff;
-    width: 100%;
-    padding: 10px 10px;
-  }
-
-  .addCart {
-    width: 40%;
-    padding: 12px 15px;
-    font-size: 12px;
-  }
-
-  .buyNow {
-    width: 57%;
-    padding: 12px 15px;
-    font-size: 12px;
+  
   }
 
   .facebook,
@@ -432,10 +409,7 @@
   }
 
   .addReviewXseeMore {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0 0;
+
   }
 
   .addReview {
@@ -478,7 +452,7 @@
   }
 
   .addReviewXseeMore {
-    padding: 10px 0 0;
+
   }
 
   .addReview {

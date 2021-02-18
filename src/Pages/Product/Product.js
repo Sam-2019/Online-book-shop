@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { useHistory, useRouteMatch, useParams } from "react-router-dom";
 import Notify from "../Components/Notify";
 import Back from "../Components/Back";
@@ -14,6 +15,21 @@ import AddReview from "./addReview";
 import "./product.css";
 import StarRating from "../Components/Stars";
 import { DotElastic } from "../Components/3Dots";
+
+const AddToCart = styled.div`
+  width: 40%;
+
+  @media (max-width: 540px) {
+  }
+`;
+
+const BuyNow = styled.div`
+  width: 59%;
+
+  @media (max-width: 540px) {
+    width: 58%;
+  }
+`;
 
 const Product = () => {
   let history = useHistory();
@@ -151,7 +167,7 @@ const Product = () => {
                     <ReviewItem key={index} />
                   ))}
 
-                <div className=" addReviewXseeMore">
+                <div className=" addReviewXseeMore ">
                   <div
                     className=" addReview"
                     onClick={() => {
@@ -162,50 +178,54 @@ const Product = () => {
                   </div>
 
                   <div className=" see-more">
-                    <div
+                    <span
                       className="review-numbersXright"
                       onClick={() => {
                         history.push(`${url}/review`);
                       }}
                     >
                       See All Reviews
-                    </div>
+                    </span>
                     <Right width={20} height={20} />
                   </div>
                 </div>
-                
               </div>
+              
             </div>
 
-            {review ? (
-              <PopUp close={() => addReview(false)}>
-                <AddReview
-                  close={() => {
-                    addReview(false);
+            <div className="product-action  ">
+              <AddToCart>
+                <Button
+                  name="Add to Cart"
+                  class_name="addCart"
+                  action={showNotify}
+                  loading={loading}
+                />
+              </AddToCart>
+
+              <BuyNow>
+                <Button
+                  name="Buy Now"
+                  class_name="buyNow"
+                  action={() => {
+                    history.push(`/order/${id}`);
                   }}
                 />
-              </PopUp>
-            ) : null}
-
-            <div className="product-action">
-              <Button
-                name="Add to Cart"
-                class_name="addCart"
-                action={showNotify}
-                loading={loading}
-              />
-              <Button
-                name="Buy Now"
-                class_name="buyNow"
-                action={() => {
-                  history.push(`/order/${id}`);
-                }}
-              />
+              </BuyNow>
             </div>
-
           </div>
         </div>
       </div>
+
+      {review ? (
+        <PopUp close={() => addReview(false)}>
+          <AddReview
+            close={() => {
+              addReview(false);
+            }}
+          />
+        </PopUp>
+      ) : null}
 
       {notify ? (
         <Notify close={() => setNotify(false)}>Item added to cart</Notify>
