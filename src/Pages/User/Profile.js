@@ -86,6 +86,7 @@ const Proflie = () => {
         <div className="user-detailsXother-pages">
           <div className="left-side">
             <div className="user-detail">
+              
               <div className="user-category">
                 <div className="object-5">
                   <ProfilePhoto className="image" src={profliePhoto} />

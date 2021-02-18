@@ -18,7 +18,7 @@ const ChangeName = ({ close }) => {
 
         <Button class_name="primary" name="Update" />
 
-        <Button class_name="secondary" name="Cancel" action={close} />
+        {/* <Button class_name="secondary" name="Cancel" action={close} /> */}
       </form>
     </>
   );
