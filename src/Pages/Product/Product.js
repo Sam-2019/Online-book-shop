@@ -32,6 +32,8 @@ const BuyNow = styled.div`
 `;
 
 const Product = () => {
+
+
   let history = useHistory();
   let { id } = useParams();
 
@@ -75,10 +77,8 @@ const Product = () => {
           text: "Check us out for all your book needs",
           url: url,
         })
-        .then(() => {
-          console.log("Thnks for sharing");
-        });
-    } else {
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
     }
   };
 
@@ -190,7 +190,6 @@ const Product = () => {
                   </div>
                 </div>
               </div>
-              
             </div>
 
             <div className="product-action  ">
@@ -230,6 +229,11 @@ const Product = () => {
       {notify ? (
         <Notify close={() => setNotify(false)}>Item added to cart</Notify>
       ) : null}
+
+
+
+
+
     </div>
   );
 };

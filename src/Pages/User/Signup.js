@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import Back from "../Components/Back";
-import {Input} from "../Components/Input";
+import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Home from "../Components/Home";
 import Message from "../Components/Message";
@@ -38,11 +38,31 @@ const Signup = () => {
       </div>
 
       <div className="main">
-        <form className="form-wrapper ">
-          <Input class_name="input " placeholder="Name " onChange />
-          <Input class_name="input " placeholder="Email" onChange />
-          <Input class_name="input" placeholder="Password" onChange />
-          <Input class_name="input " placeholder="Confirm Password" onChange />
+        <form className="form-wrapper">
+          <Input
+            class_name="input "
+            placeholder="Name "
+            onChange
+            autoComplete="name"
+          />
+          <Input
+            class_name="input "
+            placeholder="Email"
+            onChange
+            autoComplete="email"
+          />
+          <Input
+            class_name="input"
+            placeholder="Password"
+            onChange
+            autoComplete="new-password"
+          />
+          <Input
+            class_name="input "
+            placeholder="Confirm Password"
+            onChange
+            autoComplete="new-password"
+          />
 
           {/* <Input
             type="date"
