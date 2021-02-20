@@ -20,6 +20,7 @@
 
 .forgotten_password_wrapper {
   text-align: right;
+  cursor: default;
 }
 
 .eye-popper {
