@@ -53,8 +53,13 @@ const Login = () => {
 
       <div className="main">
         <form className="form-wrapper">
-          <Input class_name="input " placeholder="Email" onChange />
-          <Input class_name="input " placeholder="Password" onChange />
+          <Input class_name="input " placeholder="Email" onChange type="name" />
+          <Input
+            class_name="input "
+            placeholder="Password"
+            onChange
+            type={type}
+          />
 
           {show === "password" ? (
             <span
@@ -74,7 +79,7 @@ const Login = () => {
             </span>
           ) : (
             <span
-            className="eye-popper"
+              className="eye-popper"
               onClick={() => {
                 hide("password");
               }}
