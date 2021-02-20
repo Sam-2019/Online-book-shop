@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
+import { EyeShow, EyeHide } from "../Components/Eye";
 import Home from "../Components/Home";
 import Message from "../Components/Message";
 import { MediaQuery } from "../helper";
@@ -13,6 +14,18 @@ const Signup = () => {
   let history = useHistory();
   const breakpoint = 540;
   const { width } = MediaQuery();
+
+  const [show, hide] = React.useState("password");
+
+  let type;
+
+  switch (show) {
+    case "text":
+      type = "text";
+      break;
+    default:
+      type = "password";
+  }
   return (
     <div className="user-wrapper">
       <div className="header">
@@ -59,12 +72,29 @@ const Signup = () => {
             placeholder="Password"
             onChange
             autoComplete="new-password"
+            type={type}
           />
+
+          {show === "password" ? (
+            <EyeShow
+              action={() => {
+                hide("text");
+              }}
+            />
+          ) : (
+            <EyeHide
+              action={() => {
+                hide("password");
+              }}
+            />
+          )}
+
           <Input
             class_name="input "
             placeholder="Confirm Password"
             onChange
             autoComplete="new-password"
+            type={type}
           />
 
           {/* <Input

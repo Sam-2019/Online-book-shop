@@ -25,9 +25,13 @@
 .eye-popper {
   position: relative;
   top: -3.2em;
-  left: 25.7em;
-  right: 10em;
+  left: -0.5em;
+  right: 0em;
+  bottom: 0;
   width: auto;
+  border: 1px solid red;
+  align-self: flex-end;
+  margin-bottom: 0;
 }
 
 .forgotten_password {
