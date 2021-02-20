@@ -22,8 +22,22 @@
   text-align: right;
 }
 
+.eye-popper {
+  position: relative;
+  top: -3.2em;
+  left: 25.7em;
+  right: 10em;
+  width: auto;
+}
+
 .forgotten_password {
   color: #4a4ac9;
+}
+
+.eye-toggle {
+  position: absolute;
+  border: 1px solid red;
+  text-align: right;
 }
 
 @media (max-width: 540px) {
