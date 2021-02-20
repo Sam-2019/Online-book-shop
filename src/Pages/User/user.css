@@ -29,19 +29,12 @@
   right: 0em;
   bottom: 0;
   width: auto;
-  border: 1px solid red;
   align-self: flex-end;
   margin-bottom: 0;
 }
 
 .forgotten_password {
   color: #4a4ac9;
-}
-
-.eye-toggle {
-  position: absolute;
-  border: 1px solid red;
-  text-align: right;
 }
 
 @media (max-width: 540px) {
