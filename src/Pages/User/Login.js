@@ -55,26 +55,29 @@ const Login = () => {
       <div className="main">
         <form className="form-wrapper">
           <Input class_name="input " placeholder="Email" onChange type="name" />
-          <Input
-            class_name="input "
-            placeholder="Password"
-            onChange
-            type={type}
-          />
-
-          {show === "password" ? (
-            <EyeShow
-              action={() => {
-                hide("text");
-              }}
+        
+          <div className="eyeLiner">
+            <Input
+              class_name="password"
+              placeholder="Password"
+              onChange
+              autoComplete="new-password"
+              type={type}
             />
-          ) : (
-            <EyeHide
-              action={() => {
-                hide("password");
-              }}
-            />
-          )}
+            {show === "password" ? (
+              <EyeShow
+                action={() => {
+                  hide("text");
+                }}
+              />
+            ) : (
+              <EyeHide
+                action={() => {
+                  hide("password");
+                }}
+              />
+            )}
+          </div>
 
           <div className="forgotten_password_wrapper">
             <span

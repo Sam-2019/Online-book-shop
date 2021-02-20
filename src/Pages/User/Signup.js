@@ -67,27 +67,28 @@ const Signup = () => {
             onChange
             autoComplete="email"
           />
-          <Input
-            class_name="input"
-            placeholder="Password"
-            onChange
-            autoComplete="new-password"
-            type={type}
-          />
-
-          {show === "password" ? (
-            <EyeShow
-              action={() => {
-                hide("text");
-              }}
+          <div className="eyeLiner">
+            <Input
+              class_name="password"
+              placeholder="Password"
+              onChange
+              autoComplete="new-password"
+              type={type}
             />
-          ) : (
-            <EyeHide
-              action={() => {
-                hide("password");
-              }}
-            />
-          )}
+            {show === "password" ? (
+              <EyeShow
+                action={() => {
+                  hide("text");
+                }}
+              />
+            ) : (
+              <EyeHide
+                action={() => {
+                  hide("password");
+                }}
+              />
+            )}
+          </div>
 
           <Input
             class_name="input "

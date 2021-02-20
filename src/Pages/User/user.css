@@ -23,14 +23,24 @@
 }
 
 .eye-popper {
-  position: relative;
-  top: -3.2em;
-  left: -0.5em;
-  right: 0em;
-  bottom: 0;
-  width: auto;
-  align-self: flex-end;
-  margin-bottom: 0;
+  padding: 12px 12px;
+  width: 50px;
+  border-radius: 0 10px 10px 0;
+  background: white;
+}
+
+.eyeLiner {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.eyeLiner:hover {
+  border: 1px solid #00d919;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
 }
 
 .forgotten_password {
