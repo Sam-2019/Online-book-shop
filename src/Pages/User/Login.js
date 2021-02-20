@@ -54,7 +54,7 @@ const Login = () => {
       <div className="main">
         <form className="form-wrapper">
           <Input class_name="input " placeholder="Email" onChange />
-          <Input class_name="input " placeholder="Password" onChange>
+          <Input class_name="input " placeholder="Password" onChange />
 
           {show === "password" ? (
             <span
