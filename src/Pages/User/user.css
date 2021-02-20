@@ -37,7 +37,8 @@
   border: 1px solid transparent;
 }
 
-.eyeLiner:hover {
+.eyeLiner:hover,
+.eyeLiner:active {
   border: 1px solid #00d919;
   -webkit-transition: all ease-in-out 0.3s;
   transition: all ease-in-out 0.3s;
