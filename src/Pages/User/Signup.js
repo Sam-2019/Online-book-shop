@@ -6,10 +6,13 @@ import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Home from "../Components/Home";
 import Message from "../Components/Message";
+import { MediaQuery } from "../helper";
 import "./user.css";
 
 const Signup = () => {
   let history = useHistory();
+  const breakpoint = 540;
+  const { width } = MediaQuery();
   return (
     <div className="user-wrapper">
       <div className="header">
@@ -74,7 +77,16 @@ const Signup = () => {
           <Message class_name="message " message="Hello" />
 
           <Button name="Signup" class_name=" primary" />
-          {/* <Button name="Login" class_name="secondary " /> */}
+
+          {width > breakpoint ? (
+            <Button
+              name="Login"
+              class_name="secondary "
+              action={() => {
+                history.push("/login");
+              }}
+            />
+          ) : null}
         </form>
       </div>
     </div>

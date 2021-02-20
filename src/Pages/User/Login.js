@@ -4,10 +4,13 @@ import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Message from "../Components/Message";
+import { MediaQuery } from "../helper";
 import "./user.css";
 
 const Login = () => {
   let history = useHistory();
+  const breakpoint = 540;
+  const { width } = MediaQuery();
   return (
     <div className="user-wrapper">
       <div className="header ">
@@ -40,11 +43,6 @@ const Login = () => {
           <Input class_name="input " placeholder="Email" onChange />
           <Input class_name="input " placeholder="Password" onChange />
 
-          <Message class_name="message " message="Hello" />
-
-          <Button name="Login" class_name="primary" />
-          {/* <Button name="Signup" class_name="secondary" /> */}
-
           <div className="forgotten_password_wrapper">
             <span
               className="forgotten_password "
@@ -55,6 +53,20 @@ const Login = () => {
               Password forgotten?
             </span>
           </div>
+
+          {/* <Message class_name="message " message="Hello" /> */}
+
+          <Button name="Login" class_name="primary" />
+
+          {width > breakpoint ? (
+            <Button
+              name="Signup"
+              class_name="secondary"
+              action={() => {
+                history.push("/signup");
+              }}
+            />
+          ) : null}
         </form>
       </div>
     </div>
