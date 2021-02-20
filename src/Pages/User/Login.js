@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
+import EyeShow from '../Components/Eye Show'
 import Message from "../Components/Message";
 import { MediaQuery } from "../helper";
 import "./user.css";
