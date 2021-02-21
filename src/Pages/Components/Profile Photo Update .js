@@ -15,6 +15,7 @@ const ProfiilePhotoUpdate = () => {
 
   const [file, setFile] = React.useState("");
   const [imagePreviewUrl, setimagePreviewUrl] = React.useState("");
+  const [currentImage, newImage] = React.useState("");
 
   const [loading, setLoading] = React.useState(false);
   const formData = new FormData();
@@ -63,8 +64,7 @@ const ProfiilePhotoUpdate = () => {
 
     reader.onloadend = () => {
       setFile(e.target.files[0]);
-      setimagePreviewUrl(reader.result);
-      setLoading(false);
+      //  setimagePreviewUrl(reader.result);
     };
 
     // reader.onerror = () => {
@@ -84,29 +84,30 @@ const ProfiilePhotoUpdate = () => {
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     });
+
     console.log(data);
 
-    // if (
-    //   data.error === false &&
-    //   data.message === "profile photo uploaded successfully"
-    // ) {
-    //  setimagePreviewUrl(`${okukus}/${data.data.profile_photo_url}`);
-    //   console.log(data.message);
-    // }
+    if (data.error === false) {
+      setLoading(false);
+      setimagePreviewUrl(`${okukus}/${data.data.profile_photo_url}`);
+      ///setimagePreviewUrl(pic);
+    }
   };
 
   const userImage = async () => {
     formData.set("buyer_unique_id", buyerID);
     formData.append("file_profile_photo", file);
 
-    setLoading(true);
     const { data } = await axios({
       method: "post",
       url: profileImageGet,
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     });
-    console.log(data);
+
+    if (data.error === false && data.message === "account found") {
+      newImage(`${okukus}/${data.data.profile_photo_url}`);
+    }
   };
 
   React.useEffect(() => {
@@ -116,11 +117,11 @@ const ProfiilePhotoUpdate = () => {
   return (
     <>
       <div className="containerWar">
-        <form onSubmit className="">
+        <div className="">
           {imagePreviewUrl ? (
             <ProfilePhoto className="just-image" src={imagePreviewUrl} />
           ) : (
-            <ProfilePhoto className="just-image" src={profliePhoto} />
+            <ProfilePhoto className="just-image" src={currentImage} />
           )}
 
           <div className="middle" onClick={openBox}>
@@ -137,10 +138,10 @@ const ProfiilePhotoUpdate = () => {
             </label>
           </div>
 
-          <button className="uploadImage " type="submit">
+          {/* <button className="uploadImage " type="submit">
             Upload Image
-          </button>
-        </form>
+          </button> */}
+        </div>
       </div>
 
       {/* {change ? (

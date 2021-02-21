@@ -26,6 +26,8 @@ const Proflie = () => {
   const [name, updateName] = React.useState(false);
   const [verify, setVerify] = React.useState(false);
 
+  const [profileImage, setProfileImage] = React.useState("");
+
   const [active, setActive] = React.useState("Order History");
   const formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
@@ -67,13 +69,16 @@ const Proflie = () => {
   }
 
   const userImage = async () => {
-    const result = await axios({
+    const { data } = await axios({
       method: "post",
       url: profileImageGet,
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     });
-    console.log(result);
+
+    if (data.error === false && data.message === "account found") {
+      setProfileImage(`${okukus}/${data.data.profile_photo_url}`);
+    }
   };
 
   React.useEffect(() => {
@@ -103,7 +108,11 @@ const Proflie = () => {
             <div className="user-detail">
               <div className="user-category">
                 <div className="object-5">
-                  <ProfilePhoto className="image" src={profliePhoto} />
+                  <ProfilePhoto
+                    className="image"
+                    src={profileImage}
+                    alt="img"
+                  />
                 </div>
 
                 <div className="nameXeditXverify">
