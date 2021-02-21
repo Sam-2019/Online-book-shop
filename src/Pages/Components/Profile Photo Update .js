@@ -1,7 +1,13 @@
 import React from "react";
 import axios from "axios";
 import ProfilePhoto from "./Profile Photo";
-import { buyerID, profileImageAdd, profliePhoto } from "../endpoints";
+import {
+  buyerID,
+  profileImageAdd,
+  profliePhoto,
+  profileImageGet,
+  okukus,
+} from "../endpoints";
 import "./profilePhoto.css";
 
 const ProfiilePhotoUpdate = () => {
@@ -17,25 +23,25 @@ const ProfiilePhotoUpdate = () => {
     setChange(!change);
   };
 
-  const imageUpload = async (e) => {
-    e.preventDefault();
+  // const imageUpload = async (e) => {
+  //   e.preventDefault();
 
-    console.log(file);
+  //   console.log(file);
 
-    formData.set("buyer_unique_id", buyerID);
-    formData.append("file_profile_photo", file);
+  //   formData.set("buyer_unique_id", buyerID);
+  //   formData.append("file_profile_photo", file);
 
-    const response = await axios({
-      method: "post",
-      url: profileImageAdd,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    });
+  //   const { data } = await axios({
+  //     method: "post",
+  //     url: profileImageAdd,
+  //     data: formData,
+  //     headers: { "Content-Type": "multipart/form-data" },
+  //   });
 
-    console.log(response);
-  };
+  //   console.log(data);
+  // };
 
-  const update = (e) => {
+  const update = async (e) => {
     setLoading(true);
     e.preventDefault();
 
@@ -68,14 +74,49 @@ const ProfiilePhotoUpdate = () => {
     // };
 
     reader.readAsDataURL(pic);
-    setFile(pic);
+
+    formData.set("buyer_unique_id", buyerID);
+    formData.append("file_profile_photo", pic);
+
+    const { data } = await axios({
+      method: "post",
+      url: profileImageAdd,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    console.log(data);
+
+    // if (
+    //   data.error === false &&
+    //   data.message === "profile photo uploaded successfully"
+    // ) {
+    //  setimagePreviewUrl(`${okukus}/${data.data.profile_photo_url}`);
+    //   console.log(data.message);
+    // }
   };
+
+  const userImage = async () => {
+    formData.set("buyer_unique_id", buyerID);
+    formData.append("file_profile_photo", file);
+
+    setLoading(true);
+    const { data } = await axios({
+      method: "post",
+      url: profileImageGet,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    console.log(data);
+  };
+
+  React.useEffect(() => {
+    userImage();
+  }, [userImage]);
 
   return (
     <>
       <div className="containerWar">
-        <form onSubmit={imageUpload} className="">
-          
+        <form onSubmit className="">
           {imagePreviewUrl ? (
             <ProfilePhoto className="just-image" src={imagePreviewUrl} />
           ) : (
