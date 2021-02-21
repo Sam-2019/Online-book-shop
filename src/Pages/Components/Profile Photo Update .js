@@ -85,8 +85,6 @@ const ProfiilePhotoUpdate = () => {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
-    console.log(data);
-
     if (data.error === false) {
       setLoading(false);
       setimagePreviewUrl(`${okukus}/${data.data.profile_photo_url}`);

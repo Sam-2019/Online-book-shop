@@ -41,8 +41,6 @@ const ProfileImage = ({ change }) => {
     setFile(pic);
   };
 
-  console.log(file);
-
   return (
     <>
       <form onSubmit={imageUpload}>
