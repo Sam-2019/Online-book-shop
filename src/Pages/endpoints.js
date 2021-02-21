@@ -55,4 +55,4 @@ export const locationsGet = `${okukus}/${dev_site}/get_locations.php`;
 export const feeGet = `${okukus}/${dev_site}/get_location.php`;
 
 export const profileImageAdd = `${okukus}/${dev_site}/create_profile_photo.php`;
-export const profileImageGet = `${okukus}/${dev_site}/get_profile_photo.php`;
+export const profileImageGet = `${okukus}/${dev_site}/read_profile_photo.php`;
