@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 import Back from "../Components/Back";
 import Pen from "../Components/Pen";
 import PopUp from "../Components/Popup";
@@ -10,7 +11,7 @@ import OrderHistory from "./Profile/Order History";
 import WishList from "./Profile/Wish List";
 import ProfilePhoto from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
-import { okukus,profliePhoto } from "../endpoints";
+import { okukus, profileImageGet, buyerID, profliePhoto } from "../endpoints";
 
 import { MediaQuery } from "../helper";
 import "./profile.css";
@@ -26,6 +27,8 @@ const Proflie = () => {
   const [verify, setVerify] = React.useState(false);
 
   const [active, setActive] = React.useState("Order History");
+  const formData = new FormData();
+  formData.set("buyer_unique_id", buyerID);
 
   const WebShare = (event) => {
     event.preventDefault();
@@ -63,6 +66,20 @@ const Proflie = () => {
       break;
   }
 
+  const userImage = async () => {
+    const result = await axios({
+      method: "post",
+      url: profileImageGet,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    console.log(result);
+  };
+
+  React.useEffect(() => {
+    userImage();
+  }, [userImage]);
+
   return (
     <div className="user-wrapper">
       <div className="header ">
@@ -84,7 +101,6 @@ const Proflie = () => {
         <div className="user-detailsXother-pages">
           <div className="left-side">
             <div className="user-detail">
-              
               <div className="user-category">
                 <div className="object-5">
                   <ProfilePhoto className="image" src={profliePhoto} />
