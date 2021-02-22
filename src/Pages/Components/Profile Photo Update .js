@@ -47,6 +47,7 @@ const ProfiilePhotoUpdate = () => {
     if (data.error === false) {
       setLoading(false);
       reader.readAsDataURL(pic);
+
     } else if (data.error === true) {
       setLoading(false);
     }
