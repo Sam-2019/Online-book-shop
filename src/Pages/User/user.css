@@ -23,14 +23,32 @@
   cursor: default;
 }
 
-.eye-popper {
-  padding: 12px 12px;
+/* .eye-popper {
+  padding: 5px 0px;
   width: 50px;
   border-radius: 0 10px 10px 0;
   background: white;
+} */
+
+.eye-popper {
+  padding: 5px 12px;
+  width: auto;
+  background: white;
 }
 
-.eyeLiner {
+.eyeIcon {
+  position: relative;
+  left: 200px;
+  top: -55px;
+  bottom: 0;
+  right: 0;
+
+  margin-bottom: -35px;
+  display: flex;
+  align-self: center;
+}
+
+/* .eyeLiner {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
@@ -43,7 +61,7 @@
   border: 1px solid #00d919;
   -webkit-transition: all ease-in-out 0.3s;
   transition: all ease-in-out 0.3s;
-}
+} */
 
 .forgotten_password {
   color: #4a4ac9;

@@ -2,7 +2,7 @@ import React from "react";
 
 export const EyeShow = ({ action }) => {
   return (
-    <span className="eye-popper" onClick={action}>
+    <span className="eye-popper " onClick={action}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
