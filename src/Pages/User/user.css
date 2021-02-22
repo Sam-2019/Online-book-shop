@@ -31,7 +31,7 @@
 } */
 
 .eye-popper {
-  padding: 5px 12px;
+  padding: 5px 6px;
   width: auto;
   background: white;
 }
@@ -72,6 +72,16 @@
   .verify-wrapper {
     margin: 8em 5%;
   }
+
+  .eyeIcon {
+    left: 160px;
+  }
+}
+
+@media (max-width: 375px) {
+  .eyeIcon {
+    left: 137px;
+  }
 }
 
 @media (max-width: 320px) {
@@ -79,11 +89,19 @@
   .verify-wrapper {
     margin: 5em 5%;
   }
+
+  .eyeIcon {
+    left: 120px;
+  }
 }
 
 @media (max-width: 280px) {
   .form-wrapper,
   .verify-wrapper {
     margin: 6em 5%;
+  }
+
+  .eyeIcon {
+    left: 100px;
   }
 }
