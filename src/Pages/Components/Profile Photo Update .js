@@ -11,10 +11,8 @@ import "./profilePhoto.css";
 
 const ProfiilePhotoUpdate = () => {
   const [change, setChange] = React.useState(false);
-
   const [imagePreviewUrl, setimagePreviewUrl] = React.useState("");
   const [currentImage, newImage] = React.useState("");
-
   const [loading, setLoading] = React.useState(false);
   const formData = new FormData();
 
