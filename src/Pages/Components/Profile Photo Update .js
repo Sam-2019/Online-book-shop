@@ -20,27 +20,11 @@ const ProfiilePhotoUpdate = () => {
   const [loading, setLoading] = React.useState(false);
   const formData = new FormData();
 
+  formData.set("buyer_unique_id", buyerID);
+
   const openBox = () => {
     setChange(!change);
   };
-
-  // const imageUpload = async (e) => {
-  //   e.preventDefault();
-
-  //   console.log(file);
-
-  //   formData.set("buyer_unique_id", buyerID);
-  //   formData.append("file_profile_photo", file);
-
-  //   const { data } = await axios({
-  //     method: "post",
-  //     url: profileImageAdd,
-  //     data: formData,
-  //     headers: { "Content-Type": "multipart/form-data" },
-  //   });
-
-  //   console.log(data);
-  // };
 
   const update = async (e) => {
     setLoading(true);
@@ -49,33 +33,11 @@ const ProfiilePhotoUpdate = () => {
     let reader = new FileReader();
     let pic = e.target.files[0];
 
-    // reader.onload = (e) => {
-    //   setFile(e.target.result);
-    // };
-
-    // if (reader.onloadend) {
-    //   setFile(e.target.files[0]);
-    //   setimagePreviewUrl(reader.result);
-    //   setLoading(false);
-    // } else {
-    //   setLoading(false);
-    //   setimagePreviewUrl("Update failed!");
-    // }
-
     reader.onloadend = () => {
       setFile(e.target.files[0]);
-      //  setimagePreviewUrl(reader.result);
+      setimagePreviewUrl(reader.result);
     };
 
-    // reader.onerror = () => {
-    //   setFile(e.target.files[0]);
-    //   setimagePreviewUrl(reader.result);
-    //   setLoading(false);
-    // };
-
-    reader.readAsDataURL(pic);
-
-    formData.set("buyer_unique_id", buyerID);
     formData.append("file_profile_photo", pic);
 
     const { data } = await axios({
@@ -85,17 +47,20 @@ const ProfiilePhotoUpdate = () => {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
+    console.log(data);
+
     if (data.error === false) {
       setLoading(false);
-      setimagePreviewUrl(`${okukus}/${data.data.profile_photo_url}`);
-      ///setimagePreviewUrl(pic);
+      reader.readAsDataURL(pic);
+      setFile(pic);
+    } else if (data.error === true) {
+      setLoading(false);
     }
   };
 
-  const userImage = async () => {
-    formData.set("buyer_unique_id", buyerID);
-    formData.append("file_profile_photo", file);
+  //{error: true, message: "JPG, JPEG, & PNG files are allowed to upload."}
 
+  const userImage = React.useCallback(async () => {
     const { data } = await axios({
       method: "post",
       url: profileImageGet,
@@ -106,7 +71,7 @@ const ProfiilePhotoUpdate = () => {
     if (data.error === false && data.message === "account found") {
       newImage(`${okukus}/${data.data.profile_photo_url}`);
     }
-  };
+  }, [formData]);
 
   React.useEffect(() => {
     userImage();
