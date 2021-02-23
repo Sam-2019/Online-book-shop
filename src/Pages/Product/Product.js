@@ -62,7 +62,7 @@ const Product = () => {
 
   const WebShare = (event) => {
     event.preventDefault();
-    const title = "Okukus.com";
+    const title = "google.com";
 
     const url = document.location.href;
     const canonicalElement = document.querySelector("link[rel=canonical]");
