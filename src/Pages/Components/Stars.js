@@ -6,7 +6,7 @@ import "./star.css";
 const Stars = ({ totalStars = 5, value, type }) => {
   return (
     <div className="stars">
-      <span className="star-text">{type === "user-rating" ? null : null}</span>
+      <span className="star-text">{type === "user-rating" ? null : value}</span>
       {[...Array(totalStars)].map((n, i) => (
         <Star key={i} selected={i < value} type={type} width={20} height={20} />
       ))}
