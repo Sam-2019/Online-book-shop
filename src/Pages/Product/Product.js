@@ -111,33 +111,28 @@ const Product = () => {
 
             <div className="product-detail  ">
               <div className="nameXauthor">
-                <div className="product-name ">
-                  The Man Who Was Thursday
+                <div className="product-name ">The Man Who Was Thursday</div>
+
+                <span className="product-author  ">G. K. CHESTERTON</span>
+
+                <div className="prices">
+                  <div className="product-price">GHC 699</div>
+
+                  <div className="spacer"></div>
+
+                  <span className="product-discount-price">GHC999</span>
                 </div>
-
-                <div className="product-author  ">G. K. CHESTERTON</div>
               </div>
 
-              <div className="rateItem">
-                {width > 540 ? null : (
-                  <div className="rating-stars ">
-                    <StarRating value={3.7} width={15} height={15} />
-                  </div>
-                )}
-              </div>
+              {width > 540 ? null : (
+                <div className="rateItem">
+                  <StarRating value={3.7} width={15} height={15} />
+                </div>
+              )}
 
-              <div className="prices">
-                <div className="product-price">GHC 699</div>
-
-                <div className="spacer"></div>
-
-                <span className="product-discount-price">GHC999</span>
-              </div>
-
-        
               <div className="product-description-wrapper">
-              <div>Description</div>
-              
+                <div>Description</div>
+
                 {width > 540 ? (
                   <div className="product-description-full">
                     qwertyuiopasdfghjklzxcvbnqwertyuiopasdfghjklzxcvbnm;lkgjoqwekopqgewopgqkpoerqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmngeqlewmopgfmqweopgwqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm
