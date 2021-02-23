@@ -112,13 +112,13 @@ const Product = () => {
             <div className="product-detail  ">
               <div className="product-name">Name</div>
               <span className="product-author ">Author</span>
-              <div className="new-rating-wrapper">
-                {/* <div className="rating-number">4.9</div> */}
 
+              {width > 540 ? null : (
                 <div className="rating-stars">
                   <StarRating value={3.7} width={15} height={15} />
                 </div>
-              </div>
+              )}
+
               <div className="prices">
                 <div className="products-price">Ghc699</div>
 
@@ -171,6 +171,12 @@ const Product = () => {
                   </div>
                 )}
 
+                {width > 540 ? (
+                  <div className="rating-stars">
+                    <StarRating value={3.7} width={15} height={15} />
+                  </div>
+                ) : null}
+
                 <div className=" see-more">
                   <span
                     className="addReview2"
@@ -190,7 +196,6 @@ const Product = () => {
                   <ReviewItem key={index} />
                 ))}
             </div>
-            
           </div>
         </div>
       </div>
