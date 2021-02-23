@@ -166,9 +166,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  .products-price {
-    color: #00d919;
-  }
+
 
   .products-add2cart {
     border-radius: 50px;
