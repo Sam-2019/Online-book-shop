@@ -1,23 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory, useRouteMatch, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Notify from "../Components/Notify";
 import Back from "../Components/Back";
 import Up from "../Components/Up";
 import Down from "../Components/Down";
-import Right from "../Components/Right";
 import Social from "../Components/Social";
 import Button from "../Components/Button";
 import PopUp from "../Components/Popup";
 import Share from "../Components/Share";
+import StarRating from "../Components/Stars";
 import ReviewItem from "../Review/reviewItem";
 import AddReview from "./addReview";
-import "./product.css";
-import StarRating from "../Components/Stars";
-import { DotElastic } from "../Components/3Dots";
-
 import Summary from "../Summary/Summary";
 import { MediaQuery } from "../helper";
+
+import "./product.css";
 
 const AddToCart = styled.div`
   width: 40%;
@@ -37,17 +35,12 @@ const BuyNow = styled.div`
 const Product = () => {
   let history = useHistory();
   let { id } = useParams();
-
-  let { url } = useRouteMatch();
+  const { width } = MediaQuery();
 
   const [loading, setLoading] = React.useState(false);
   const [notify, setNotify] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
   const [review, addReview] = React.useState(false);
-
-  const { width } = MediaQuery();
-
-  const breakpoint = 540;
 
   const showNotify = () => {
     setLoading(true);
@@ -132,21 +125,6 @@ const Product = () => {
 
                 <div className="products-discount-price">Ghc999</div>
               </div>
-              {/* <div className="priceXqytXreview ">
-                  <div className="product-quantity  ">Qty</div>
-                  <div className="line "></div>
-                  <div className="product-price">Price</div>
-                </div> */}
-              {/* 
-                <div className="share-social">
-                  <div className="shareXicon" onClick={WebShare}>
-                    <Share width={15} height={15} />
-
-                    <div className="share">Share</div>
-                  </div>
-
-                <Social width={26} height={26} postTitle postUrl hashtags />
-                </div> */}
 
               <div>Description</div>
               <div className="product-description-wrapper">
@@ -185,17 +163,15 @@ const Product = () => {
                   Reviews<span>(64)</span>
                 </div>
 
-                {width > 540 ? (
-        null
-                      ) : (
-                           <div
-          className="addReview2 "
-          onClick={() => {
-            addReview(true);
-          }}
-        >
-          Add Review
-        </div>
+                {width > 540 ? null : (
+                  <div
+                    className="addReview2 "
+                    onClick={() => {
+                      addReview(true);
+                    }}
+                  >
+                    Add Review
+                  </div>
                 )}
               </div>
 
@@ -204,86 +180,8 @@ const Product = () => {
                 .map((item, index) => (
                   <ReviewItem key={index} />
                 ))}
-              {/* <div className=" addReviewXseeMore ">
-                  <div
-                    className=" addReview"
-                    onClick={() => {
-                      addReview(true);
-                    }}
-                  >
-                    Add Review
-                  </div>
-
-                  <div className=" see-more">
-                    <span
-                      className="review-numbersXright"
-                      onClick={() => {
-                        history.push(`${url}/review`);
-                      }}
-                    >
-                      See All Reviews
-                    </span>
-                    <Right width={20} height={20} />
-                  </div>
-                </div> */}
-
-              {/* <div className="action-action">
-                  <div
-                    className=" "
-                    onClick={() => {
-                      addReview(true);
-                    }}
-                  >
-                    Add Review
-                  </div>
-
-                  <div className="product-action  ">
-                    <AddToCart>
-                      <Button
-                        name="Add to Cart"
-                        class_name="addCart"
-                        action={showNotify}
-                        loading={loading}
-                      />
-                    </AddToCart>
-
-                    <div className="spacer"></div>
-
-                    <BuyNow>
-                      <Button
-                        name="Buy Now"
-                        class_name="buyNow"
-                        action={() => {
-                          history.push(`/order/${id}`);
-                        }}
-                      />
-                    </BuyNow>
-                  </div>
-                </div>
-          */}
             </div>
           </div>
-
-          {/* <div className="product-action  ">
-              <AddToCart>
-                <Button
-                  name="Add to Cart"
-                  class_name="addCart"
-                  action={showNotify}
-                  loading={loading}
-                />
-              </AddToCart>
-
-              <BuyNow>
-                <Button
-                  name="Buy Now"
-                  class_name="buyNow"
-                  action={() => {
-                    history.push(`/order/${id}`);
-                  }}
-                />
-              </BuyNow>
-            </div> */}
         </div>
       </div>
 
@@ -311,9 +209,7 @@ const Product = () => {
           >
             Add Review
           </div>
-        ) : (
-          null
-        )}
+        ) : null}
 
         <div className="product-action">
           <Button
