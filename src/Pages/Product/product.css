@@ -1,28 +1,9 @@
 .product-wrapper {
 }
-.close-action {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0 0 10px 0;
-  padding: 10px 10px 0 0;
-}
-
-.hide-action {
-  display: flex;
-  justify-content: center;
-  margin: 0 0 0 0;
-  padding: 20px 0;
-  position: fixed;
-  top: 5%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
 
 .product-body {
   display: flex;
-  width: auto;
-  padding: 0 10px;
+  padding: 10px 0 0;
 }
 
 .product-divide {
@@ -43,7 +24,7 @@
 
 .product-image {
   background-color: orange;
-  width: auto;
+
   height: 350px;
 }
 
@@ -51,7 +32,6 @@
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  margin-top: 10px;
   padding: 15px;
   box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
   background-clip: border-box;
@@ -81,7 +61,6 @@
 .rating-stars {
   display: flex;
   justify-content: flex-start;
-  width: auto;
 }
 
 .prices {
@@ -246,6 +225,7 @@
 
   .product-body {
     flex-direction: column;
+    padding: 10px 10px 0;
   }
 
   .product-divide {
@@ -258,19 +238,17 @@
   }
 
   .product-image {
-    background-color: orange;
-    width: auto;
-    height: 300px;
+  }
+
+  .nameXauthor {
+    margin-top: 10px;
   }
 
   .product-action {
-    display: flex;
-    align-items: center;
     width: 100%;
   }
 
   .addReview {
-    display: none;
   }
 
   .addCart,
@@ -311,9 +289,6 @@
   }
 
   .product-action {
-    display: flex;
-    align-items: center;
-
     width: 100%;
   }
 

@@ -102,7 +102,7 @@ const Product = () => {
 
       <div className="main">
         <div className="wrapper">
-          <div className="product-body  ">
+          <div className="product-body">
             <div className="product-divide">
               <div className="product-image"></div>
 
