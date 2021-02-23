@@ -22,6 +22,7 @@
 .product-body {
   display: flex;
   width: auto;
+  padding: 0 10px;
 }
 
 .product-divide {
@@ -46,12 +47,6 @@
   height: 350px;
 }
 
-/* .nameXshare {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-} */
-
 .product-name {
 }
 
@@ -63,56 +58,8 @@
   margin: 0 0 0 3px;
 }
 
-.priceXqytXreview {
-  display: flex;
-  justify-content: space-evenly;
-  border: 1px solid blue;
-  border-radius: 10px;
-  padding: 12px 0;
-  margin: 0 0 10px 0;
-}
-
-.product-quantity {
-  text-align: center;
-}
-
-.line {
-  border-left: 1px solid blue;
-}
 .product-price {
   text-align: center;
-}
-
-.share-social {
-  display: flex;
-  /* justify-content: space-between; */
-  justify-content: flex-end;
-  /* align-items: center; */
-  margin: 0 0 12px 0;
-}
-
-.shareXicon {
-  background-color: #ffffff16;
-  color: #25d365d8;
-  border: 1px solid #25d36578;
-  border-radius: 10px;
-  text-transform: uppercase;
-  padding: 2px 10px;
-  display: flex;
-  align-items: center;
-}
-
-.shareXicon:active {
-  color: #ffffff;
-  background-color: #25d365d8;
-  border: 1px solid #ffffff;
-}
-
-.shareXicon:focus {
-}
-
-.share {
-  margin: 0 0 0 10px;
 }
 
 .product-description-wrapper {
@@ -122,6 +69,7 @@
   background-clip: border-box;
   display: flex;
   flex-direction: column;
+  background-color: #ffffff;
 }
 
 .product-description {
@@ -144,37 +92,15 @@
   text-align: center;
 }
 
-.numberXstars {
-  display: flex;
-}
-
-.numberXmore {
-  display: flex;
-  align-items: center;
-}
-
-.rating-wrapper {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
-  border-radius: 10px;
-  margin-top: 10px;
-  box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
-  background-clip: border-box;
-  align-items: center;
-}
-
-.review-wrapper {
-  border-radius: 10px;
-  margin-top: 10px;
-  padding: 15px;
-  box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
-  background-clip: border-box;
-}
-
 .add-review-wrapper {
   display: flex;
   justify-content: space-between;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 15px;
+  box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
+  background-clip: border-box;
+  background-color: #ffffff;
 }
 
 .addReview-desktop {
@@ -208,13 +134,6 @@
   margin-left: 5px;
 }
 
-.addReviewXseeMore {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 0 0;
-}
-
 .addReview {
   background-color: #25d36516;
   color: #25d366;
@@ -238,11 +157,6 @@
 .see-more {
   display: flex;
   align-items: center;
-}
-
-.review-numbersXright {
-  margin-left: 10px;
-
 }
 
 .prices {
@@ -373,95 +287,9 @@
     text-align: center;
   }
 
-  .share-social {
-    display: none;
-  }
-
-  .shareXicon {
-    background-color: #ffffff16;
-    color: #25d365d8;
-    border: 1px solid #25d36578;
-    border-radius: 10px;
-    text-transform: uppercase;
-    padding: 2px 10px;
-    display: flex;
-    align-items: center;
-  }
-
-  .shareXicon:active {
-    color: #ffffff;
-    background-color: #25d365d8;
-    border: 1px solid #ffffff;
-  }
-
-  .shareXicon:focus {
-  }
-
-  .share {
-    margin: 0 0 0 10px;
-  }
-
-  .product-description-wrapper {
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
-    background-clip: border-box;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .product-description {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    word-wrap: break-word;
-    text-align: justify;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
-
-  .product-description-full {
-    overflow: hidden;
-    word-wrap: break-word;
-    text-align: justify;
-  }
-
-  .down {
-    text-align: center;
-  }
-
-  .numberXstars {
-    display: flex;
-  }
-
-  .numberXmore {
-    display: flex;
-    align-items: center;
-  }
-
-  .rating-wrapper {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 10px;
-    box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
-    background-clip: border-box;
-    align-items: center;
-  }
-
-  .review-wrapper {
-    border-radius: 10px;
-    margin-top: 10px;
-    padding: 15px;
-    box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
-    background-clip: border-box;
-  }
-
   .product-action {
     display: flex;
     align-items: center;
-
     width: 100%;
   }
 
@@ -504,7 +332,6 @@
   }
 
   .see-more {
-
   }
 
   .review-numbersXright {

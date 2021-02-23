@@ -159,19 +159,7 @@ const Product = () => {
                 )}
               </div>
 
-              <div className="add-review-wrapper item">
-                <div className=" see-more">
-                  <span
-                    className="addReview2"
-                    onClick={() => {
-                      history.push(`${url}/review`);
-                    }}
-                  >
-                    Reviews
-                  </span>
-                  <Right width={20} height={20} />
-                </div>
-
+              <div className="add-review-wrapper">
                 {width > 540 ? null : (
                   <div
                     className="addReview2 "
@@ -182,16 +170,27 @@ const Product = () => {
                     Add Review
                   </div>
                 )}
+
+                <div className=" see-more">
+                  <span
+                    className="addReview2"
+                    onClick={() => {
+                      history.push(`${url}/review`);
+                    }}
+                  >
+                    Reviews
+                  </span>
+                  {width > 540 ? null : <Right width={20} height={20} />}
+                </div>
               </div>
 
-              <div className="item">
-                {Array(2)
-                  .fill()
-                  .map((item, index) => (
-                    <ReviewItem key={index} />
-                  ))}
-              </div>
+              {Array(2)
+                .fill()
+                .map((item, index) => (
+                  <ReviewItem key={index} />
+                ))}
             </div>
+            
           </div>
         </div>
       </div>
