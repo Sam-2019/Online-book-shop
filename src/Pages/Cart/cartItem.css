@@ -114,7 +114,8 @@ justify-content: center;
   grid-template-columns: auto auto auto;
   width: 100%;
   align-items: center;
-  border: 1px solid yellow;
+  border: 1px solid #cccccc;
+  ;
   border-radius: 10px;
 }
 
@@ -125,11 +126,11 @@ justify-content: center;
 }
 
 .add {
-  border-left: 1px solid yellow;
+  border-left: 1px solid #cccccc;
 }
 
 .subtract {
-  border-right: 1px solid yellow;
+  border-right: 1px solid #cccccc;
 }
 
 .quantity {

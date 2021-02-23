@@ -23,9 +23,9 @@
 }
 
 .product-image {
-  background-color: orange;
-
+  background-color: #d7d7d7;
   height: 350px;
+  border-radius: 10px;
 }
 
 .nameXauthor {
@@ -166,11 +166,6 @@
   margin-left: 5px;
 }
 
-/* .addReview {
-  background-color: #25d36516;
-  border: 1px solid #25d36516;
-} */
-
 .addReview2 {
   color: #25d366;
   border-radius: 10px;
@@ -183,6 +178,7 @@
 .see-more {
   display: flex;
   align-items: center;
+  color: #25d366;
 }
 
 .fadeIn {
