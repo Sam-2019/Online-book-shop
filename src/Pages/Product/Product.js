@@ -16,6 +16,9 @@ import "./product.css";
 import StarRating from "../Components/Stars";
 import { DotElastic } from "../Components/3Dots";
 
+import Summary from "../Summary/Summary";
+import { MediaQuery } from "../helper";
+
 const AddToCart = styled.div`
   width: 40%;
 
@@ -32,8 +35,6 @@ const BuyNow = styled.div`
 `;
 
 const Product = () => {
-
-
   let history = useHistory();
   let { id } = useParams();
 
@@ -43,6 +44,10 @@ const Product = () => {
   const [notify, setNotify] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
   const [review, addReview] = React.useState(false);
+
+  const { width } = MediaQuery();
+
+  const breakpoint = 540;
 
   const showNotify = () => {
     setLoading(true);
@@ -83,7 +88,7 @@ const Product = () => {
   };
 
   return (
-    <div className="product-wrapper ">
+    <div className="product-wrapper">
       <div className="header">
         <div className="category ">
           <div className="object-1">
@@ -99,26 +104,40 @@ const Product = () => {
         </div>
       </div>
 
-      <div className="main ">
+      <div className="main">
         <div className="wrapper">
-          <div className="product-wrapper  ">
-            <div className="product-body  ">
-              <div className="product-image "></div>
+          <div className="product-body  ">
+            <div className="product-divide">
+              <div className="product-image"></div>
 
-              <div className="product-detail  ">
-                <div className="product-name">Name</div>
+              <Social />
+            </div>
 
-                <div className="author-wrapper">
-                  <span className="by"> by</span>
-                  <span className="product-author ">Author</span>
+            <div className="product-detail  ">
+              <div className="product-name">Name</div>
+              <span className="product-author ">Author</span>
+              <div className="new-rating-wrapper">
+                {/* <div className="rating-number">4.9</div> */}
+
+                <div className="rating-stars">
+                  <StarRating value={3.7} width={15} height={15} />
                 </div>
 
-                <div className="priceXqytXreview ">
+                <div className="review-numbersXright">64 Reviews</div>
+              </div>
+              <div className="prices">
+                <div className="products-price">Ghc699</div>
+
+                <div className="spacer"></div>
+
+                <div className="products-discount-price">Ghc999</div>
+              </div>
+              {/* <div className="priceXqytXreview ">
                   <div className="product-quantity  ">Qty</div>
                   <div className="line "></div>
                   <div className="product-price">Price</div>
-                </div>
-
+                </div> */}
+              {/* 
                 <div className="share-social">
                   <div className="shareXicon" onClick={WebShare}>
                     <Share width={15} height={15} />
@@ -126,48 +145,66 @@ const Product = () => {
                     <div className="share">Share</div>
                   </div>
 
-                  {/* <Social width={26} height={26} postTitle postUrl hashtags /> */}
-                </div>
+                <Social width={26} height={26} postTitle postUrl hashtags />
+                </div> */}
 
-                <div className="product-description-wrapper">
-                  <div
-                    className={
-                      contractDescription
-                        ? "product-description"
-                        : "product-description-full"
-                    }
-                  >
+              <div>Description</div>
+              <div className="product-description-wrapper">
+                {width > 540 ? (
+                  <div className="product-description-full">
                     qwertyuiopasdfghjklzxcvbnqwertyuiopasdfghjklzxcvbnm;lkgjoqwekopqgewopgqkpoerqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmngeqlewmopgfmqweopgwqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm
                   </div>
-
-                  <div className="down">
-                    {contractDescription ? (
-                      <Down width={18} height={20} action={ToggleDescription} />
-                    ) : (
-                      <Up width={18} height={20} action={ToggleDescription} />
-                    )}
-                  </div>
-                </div>
-
-                <div className="rating-wrapper">
-                  <div className="numberXstars">
-                    {/* <div className="rating-number">4.9</div> */}
-
-                    <div className="rating-stars">
-                      <StarRating value={3.7} width={15} height={15} />
+                ) : (
+                  <>
+                    <div
+                      className={
+                        contractDescription
+                          ? "product-description"
+                          : "product-description-full"
+                      }
+                    >
+                      qwertyuiopasdfghjklzxcvbnqwertyuiopasdfghjklzxcvbnm;lkgjoqwekopqgewopgqkpoerqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmngeqlewmopgfmqweopgwqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm
                     </div>
-                  </div>
+                    <div className="down">
+                      {contractDescription ? (
+                        <Down
+                          width={18}
+                          height={20}
+                          action={ToggleDescription}
+                        />
+                      ) : (
+                        <Up width={18} height={20} action={ToggleDescription} />
+                      )}
+                    </div>
+                  </>
+                )}
+              </div>
 
-                  <div className="review-numbersXright">64 Reviews</div>
+              <div className="add-review-wrapper">
+                <div>
+                  Reviews<span>(64)</span>
                 </div>
 
-                {Array(1)
-                  .fill()
-                  .map((item, index) => (
-                    <ReviewItem key={index} />
-                  ))}
+                {width > 540 ? (
+        null
+                      ) : (
+                           <div
+          className="addReview2 "
+          onClick={() => {
+            addReview(true);
+          }}
+        >
+          Add Review
+        </div>
+                )}
+              </div>
 
-                <div className=" addReviewXseeMore ">
+              {Array(2)
+                .fill()
+                .map((item, index) => (
+                  <ReviewItem key={index} />
+                ))}
+              {/* <div className=" addReviewXseeMore ">
                   <div
                     className=" addReview"
                     onClick={() => {
@@ -188,11 +225,46 @@ const Product = () => {
                     </span>
                     <Right width={20} height={20} />
                   </div>
-                </div>
-              </div>
-            </div>
+                </div> */}
 
-            <div className="product-action  ">
+              {/* <div className="action-action">
+                  <div
+                    className=" "
+                    onClick={() => {
+                      addReview(true);
+                    }}
+                  >
+                    Add Review
+                  </div>
+
+                  <div className="product-action  ">
+                    <AddToCart>
+                      <Button
+                        name="Add to Cart"
+                        class_name="addCart"
+                        action={showNotify}
+                        loading={loading}
+                      />
+                    </AddToCart>
+
+                    <div className="spacer"></div>
+
+                    <BuyNow>
+                      <Button
+                        name="Buy Now"
+                        class_name="buyNow"
+                        action={() => {
+                          history.push(`/order/${id}`);
+                        }}
+                      />
+                    </BuyNow>
+                  </div>
+                </div>
+          */}
+            </div>
+          </div>
+
+          {/* <div className="product-action  ">
               <AddToCart>
                 <Button
                   name="Add to Cart"
@@ -211,8 +283,7 @@ const Product = () => {
                   }}
                 />
               </BuyNow>
-            </div>
-          </div>
+            </div> */}
         </div>
       </div>
 
@@ -230,10 +301,39 @@ const Product = () => {
         <Notify close={() => setNotify(false)}>Item added to cart</Notify>
       ) : null}
 
+      <Summary>
+        {width > 540 ? (
+          <div
+            className="addReview2 "
+            onClick={() => {
+              addReview(true);
+            }}
+          >
+            Add Review
+          </div>
+        ) : (
+          null
+        )}
 
+        <div className="product-action">
+          <Button
+            name="Add to Cart"
+            class_name="addCart"
+            action={showNotify}
+            loading={loading}
+          />
 
+          <div className="spacer"></div>
 
-
+          <Button
+            name="Buy Now"
+            class_name="buyNow"
+            action={() => {
+              history.push(`/order/${id}`);
+            }}
+          />
+        </div>
+      </Summary>
     </div>
   );
 };

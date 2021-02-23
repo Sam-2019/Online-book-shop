@@ -12,7 +12,8 @@
   min-height: 100vh;
 }
 
-.cart-wrapper {
+.cart-wrapper,
+.product-wrapper {
   min-height: 85vh;
   padding-bottom: 4.5em;
 }
@@ -27,7 +28,7 @@
   align-items: center;
 }
 
-.user-category{
+.user-category {
   width: 100%;
 }
 
@@ -93,7 +94,7 @@
   .search-wrapper,
   .user-wrapper,
   .page-wrapper,
-  .cart-wrapper  {
+  .cart-wrapper {
     min-height: 100vh;
   }
 
