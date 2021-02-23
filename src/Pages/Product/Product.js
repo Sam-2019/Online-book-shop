@@ -106,7 +106,7 @@ const Product = () => {
             <div className="product-divide">
               <div className="product-image"></div>
 
-              <Social />
+              <Social width={22} height={25} />
             </div>
 
             <div className="product-detail  ">

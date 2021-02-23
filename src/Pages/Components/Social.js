@@ -19,6 +19,11 @@ const Share = ({ width, height, postTitle, postUrl, hashtags, via }) => {
 
   return (
     <div className="social">
+
+      <div>Share Book</div>
+
+
+      <div className='social-media'>
       <div className="whatsapp">
         <a href={whatsapp}>
           <svg
@@ -66,6 +71,8 @@ const Share = ({ width, height, postTitle, postUrl, hashtags, via }) => {
           </svg>
         </a>
       </div>
+      </div>
+    
     </div>
   );
 };
