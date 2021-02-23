@@ -131,7 +131,7 @@ const Product = () => {
               )}
 
               <div className="product-description-wrapper">
-                <div>Description</div>
+                <div className="product-title">Description</div>
 
                 {width > 540 ? (
                   <div className="product-description-full">
@@ -163,34 +163,44 @@ const Product = () => {
                 )}
               </div>
 
-              <div className="add-review-wrapper">
-                {width > 540 ? null : (
-                  <div
-                    className="addReview2 "
-                    onClick={() => {
-                      addReview(true);
-                    }}
-                  >
-                    Add Review
-                  </div>
-                )}
-
+              <div className="review-box">
                 {width > 540 ? (
-                  <div className="rating-stars">
-                    <StarRating value={3.7} width={15} height={15} />
-                  </div>
+                  <div className="product-title ">Ratings and Reviews</div>
                 ) : null}
 
-                <div className=" see-more">
-                  <span
-                    className="addReview2"
-                    onClick={() => {
-                      history.push(`${url}/review`);
-                    }}
-                  >
-                    Reviews
-                  </span>
-                  <Right width={20} height={20} />
+                {width > 540 ? null : (
+                  <div className="product-title ">Reviews</div>
+                )}
+
+                <div className="add-review-wrapper">
+                  {width > 540 ? null : (
+                    <div
+                      className="addReview2 "
+                      onClick={() => {
+                        addReview(true);
+                      }}
+                    >
+                      Add Review
+                    </div>
+                  )}
+
+                  {width > 540 ? (
+                    <div className="rating-stars">
+                      <StarRating value={3.7} width={15} height={15} />
+                    </div>
+                  ) : null}
+
+                  <div className=" see-more">
+                    <span
+                      className="addReview2"
+                      onClick={() => {
+                        history.push(`${url}/review`);
+                      }}
+                    >
+                      Reviews
+                    </span>
+                    <Right width={20} height={20} />
+                  </div>
                 </div>
               </div>
 

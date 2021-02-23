@@ -74,10 +74,6 @@
   font-size: 20px;
 }
 
-.by {
-  font-style: italic;
-}
-
 .product-author {
   margin: 0 0 0 0px;
 }
@@ -107,6 +103,14 @@
   color: cadetblue;
   font-size: 15px;
   text-decoration: line-through;
+}
+
+.product-title {
+  font-size: 15;
+  font: 400;
+  color: cadetblue;
+  text-transform: uppercase;
+  padding-bottom: 10px;
 }
 
 .product-description-wrapper {
@@ -140,9 +144,7 @@
   text-align: center;
 }
 
-.add-review-wrapper {
-  display: flex;
-  justify-content: space-between;
+.review-box {
   align-items: center;
   border-radius: 10px;
   margin-top: 10px;
@@ -152,8 +154,10 @@
   background-color: #ffffff;
 }
 
-.addReview-desktop {
-  display: none;
+.add-review-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .product-action {
@@ -183,16 +187,10 @@
   margin-left: 5px;
 }
 
-.addReview {
+/* .addReview {
   background-color: #25d36516;
-  color: #25d366;
   border: 1px solid #25d36516;
-  border-radius: 10px;
-  text-transform: uppercase;
-  transition: transform 80ms ease-in;
-  padding: 2px 10px;
-  cursor: pointer;
-}
+} */
 
 .addReview2 {
   color: #25d366;
@@ -242,33 +240,8 @@
   animation-name: fadeInUp;
 }
 
-.action-action {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-}
-
 @media (max-width: 540px) {
   .product-wrapper {
-  }
-  .close-action {
-    display: flex;
-    justify-content: flex-end;
-    margin: 0 0 10px 0;
-    padding: 10px 10px 0 0;
-  }
-
-  .hide-action {
-    display: flex;
-    justify-content: center;
-    margin: 0 0 0 0;
-    padding: 20px 0;
-    position: fixed;
-    top: 5%;
-    left: 0;
-    right: 0;
-    bottom: 0;
   }
 
   .product-body {
@@ -288,42 +261,6 @@
     background-color: orange;
     width: auto;
     height: 300px;
-  }
-
-  /* .nameXshare {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  } */
-
-  .product-name {
-  }
-
-  .by {
-    font-style: italic;
-  }
-
-  .product-author {
-    margin: 0 0 0 3px;
-  }
-
-  .priceXqytXreview {
-    display: flex;
-    justify-content: space-evenly;
-    border: 1px solid blue;
-    border-radius: 10px;
-    padding: 12px 0;
-    margin: 0 0 10px 0;
-  }
-
-  .product-quantity {
-  }
-
-  .line {
-    border-left: 1px solid blue;
-  }
-  .product-price {
-    text-align: center;
   }
 
   .product-action {
@@ -348,45 +285,12 @@
   .buyNow {
     width: 100%;
   }
-  .facebook,
-  .twitter {
-    margin-left: 5px;
-  }
-
-  .addReviewXseeMore {
-  }
-
-  .addReview {
-    background-color: #25d36516;
-    color: #25d366;
-    border: 1px solid #25d36516;
-    border-radius: 10px;
-    text-transform: uppercase;
-    transition: transform 80ms ease-in;
-    padding: 2px 10px;
-  }
-
-  .addReview-desktop {
-    display: initial;
-  }
-
-  .see-more {
-  }
-
-  .review-numbersXright {
-    margin-right: 0px;
-  }
 }
 
 @media (max-width: 320px) {
   .product-wrapper {
-    top: 7%;
   }
-  .product-image {
-    background-color: orange;
-    width: auto;
-    height: 300px;
-  }
+
   .rating-wrapper {
     flex-direction: column;
   }
