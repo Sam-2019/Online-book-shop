@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useRouteMatch, useParams } from "react-router-dom";
 import Notify from "../Components/Notify";
 import Back from "../Components/Back";
 import Up from "../Components/Up";
 import Down from "../Components/Down";
+import Right from "../Components/Right";
 import Social from "../Components/Social";
 import Button from "../Components/Button";
 import PopUp from "../Components/Popup";
@@ -35,6 +36,8 @@ const BuyNow = styled.div`
 const Product = () => {
   let history = useHistory();
   let { id } = useParams();
+  let { url } = useRouteMatch();
+
   const { width } = MediaQuery();
 
   const [loading, setLoading] = React.useState(false);
@@ -115,8 +118,6 @@ const Product = () => {
                 <div className="rating-stars">
                   <StarRating value={3.7} width={15} height={15} />
                 </div>
-
-                <div className="review-numbersXright">64 Reviews</div>
               </div>
               <div className="prices">
                 <div className="products-price">Ghc699</div>
@@ -158,9 +159,17 @@ const Product = () => {
                 )}
               </div>
 
-              <div className="add-review-wrapper">
-                <div>
-                  Reviews<span>(64)</span>
+              <div className="add-review-wrapper item">
+                <div className=" see-more">
+                  <span
+                    className="addReview2"
+                    onClick={() => {
+                      history.push(`${url}/review`);
+                    }}
+                  >
+                    Reviews
+                  </span>
+                  <Right width={20} height={20} />
                 </div>
 
                 {width > 540 ? null : (
@@ -175,11 +184,13 @@ const Product = () => {
                 )}
               </div>
 
-              {Array(2)
-                .fill()
-                .map((item, index) => (
-                  <ReviewItem key={index} />
-                ))}
+              <div className="item">
+                {Array(2)
+                  .fill()
+                  .map((item, index) => (
+                    <ReviewItem key={index} />
+                  ))}
+              </div>
             </div>
           </div>
         </div>
