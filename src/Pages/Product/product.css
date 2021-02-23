@@ -58,8 +58,31 @@
   margin: 0 0 0 3px;
 }
 
+.rating-stars {
+  display: flex;
+  justify-content: flex-start;
+  width: auto;
+}
+
+.prices {
+  display: flex;
+  align-items: center;
+}
+
 .product-price {
-  text-align: center;
+  font-size: 25px;
+  color: #00d919;
+  font-weight: 600;
+}
+
+.spacer {
+  margin: 0 5px 0 0;
+}
+
+.product-discount-price {
+  color: cadetblue;
+  font-size: 15px;
+  text-decoration: line-through;
 }
 
 .product-description-wrapper {
@@ -158,15 +181,6 @@
 .see-more {
   display: flex;
   align-items: center;
-}
-
-.prices {
-  display: flex;
-  align-items: center;
-}
-
-.spacer {
-  margin: 0 5px 0;
 }
 
 .fadeIn {

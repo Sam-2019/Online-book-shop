@@ -114,17 +114,17 @@ const Product = () => {
               <span className="product-author ">Author</span>
 
               {width > 540 ? null : (
-                <div className="rating-stars">
+                <div className="rating-stars item">
                   <StarRating value={3.7} width={15} height={15} />
                 </div>
               )}
 
               <div className="prices">
-                <div className="products-price">Ghc699</div>
+                <div className="product-price">GHC 699</div>
 
                 <div className="spacer"></div>
 
-                <div className="products-discount-price">Ghc999</div>
+                <span className="product-discount-price">GHC999</span>
               </div>
 
               <div>Description</div>
@@ -186,7 +186,7 @@ const Product = () => {
                   >
                     Reviews
                   </span>
-                  {width > 540 ? null : <Right width={20} height={20} />}
+                  <Right width={20} height={20} />
                 </div>
               </div>
 
