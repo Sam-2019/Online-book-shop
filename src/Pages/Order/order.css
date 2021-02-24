@@ -13,14 +13,42 @@
   justify-content: space-between;
 }
 
-.order-shipping {
-  width: 49%;
+.margin-top {
+  margin-top: 10px;
+}
+
+.oneForm {
   transition: all 0.6s ease-in-out;
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.twoForms {
+  transition: all 0.6s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.order-shipping {
+  width: 100%;
+}
+
+.order-shipping1 {
+  width: 49.5%;
 }
 
 .order-payment {
-  width: 49%;
-  transition: all 0.6s ease-in-out;
+  width: 100%;
+}
+.order-payment1 {
+  width: 49.5%;
+}
+
+.page_title2 {
+  padding: 15px 0;
 }
 
 ol {
@@ -49,14 +77,29 @@ li {
     padding: 0 10px 10px;
   }
 
+  .oneForm {
+    margin: 0 10px;
+    flex-direction: column;
+  }
+
+  .twoForms {
+    margin: 0 10px;
+    flex-direction: column;
+  }
+
   .order-shipping {
     width: 100%;
-    transition: all 0.6s ease-in-out;
+  }
+
+  .order-shipping1 {
+    width: 100%;
   }
 
   .order-payment {
     width: 100%;
-    transition: all 0.6s ease-in-out;
+  }
+  .order-payment1 {
+    width: 100%;
   }
 
   .payment-instruction {
@@ -64,10 +107,10 @@ li {
   }
 
   .pay-know-how {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
+  }
+
+  .page_title2 {
+    padding: 0 0 15px 0;
   }
 
   ol {

@@ -11,6 +11,7 @@ import Summary from "../Summary/Summary";
 import PopUp from "../Components/Popup";
 import Question from "../Components/Question";
 import Success from "../Components/Success Container";
+import { MediaQuery } from "../helper";
 
 import { buyerID, locationsGet, feeGet } from "../endpoints";
 
@@ -43,8 +44,10 @@ const list = [
 const Order = () => {
   let amount = 10000;
   let quantity = 100;
+  let breakpoint = 540;
   let history = useHistory();
   let { id } = useParams();
+  const { width } = MediaQuery();
   const [paymentMethod, setPaymentMethod] = React.useState("");
   const [state, setState] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
@@ -100,16 +103,19 @@ const Order = () => {
   };
 
   let selectedOption = null;
-
+  let viewType;
   switch (paymentMethod) {
     case "Cash":
       selectedOption = "cash";
+      viewType = "oneForm";
       break;
     case "Momo":
       selectedOption = "momo";
+      viewType = "twoForms";
       break;
     default:
-      selectedOption = "momo";
+      selectedOption = "cash";
+      viewType = "oneForm";
   }
 
   switch (value) {
@@ -179,8 +185,17 @@ const Order = () => {
       ) : null}
 
       <div className="main">
-        <form className=" form-item ">
-          <div className="order-shipping">
+        <form
+          className={`
+         ${viewType === "oneForm" ? "oneForm " : "twoForms "}`}
+        >
+          <div
+            className={`
+         ${
+           viewType === "oneForm" ? "order-shipping " : "order-shipping1  "
+         }  outline margin-top 
+        `}
+          >
             <div className="page_title"> Shipping Information</div>
             <select
               id="select"
@@ -204,7 +219,7 @@ const Order = () => {
             <Input class_name="input " placeholder="Phone Number" onChange />
 
             <div className="page_title">Payment</div>
-            <div className="payment-method">
+            <div className="payment-method ">
               <div
                 className={selectedOption === "cash" ? "cash" : "select"}
                 onClick={() => {
@@ -222,31 +237,77 @@ const Order = () => {
                 Momo
               </div>
             </div>
+
+            {width > breakpoint ? null : (
+              <div>
+                {selectedOption === "momo" ? (
+                  <div className="payment-instruction ">
+                    <div className="pay-know-how  ">
+                      <div className="page_title2  ">How To Pay With Momo</div>
+                      <Question
+                        width={30}
+                        height={30}
+                        action={() => {
+                          setState(true);
+                        }}
+                      />
+                    </div>
+                    <Input class_name="input " placeholder="Name" onChange />
+                    <Input
+                      class_name="input "
+                      placeholder="Momo Number"
+                      onChange
+                    />
+                    <Input
+                      class_name="input "
+                      placeholder="Transaction ID"
+                      onChange
+                    />
+                  </div>
+                ) : null}
+              </div>
+            )}
           </div>
 
-          <div className="order-payment">
-            {selectedOption === "momo" ? (
-              <div className="payment-instruction">
-                <div className="pay-know-how ">
-                  <div className="page_title ">How To Pay With Momo</div>
-                  <Question
-                    width={30}
-                    height={30}
-                    action={() => {
-                      setState(true);
-                    }}
-                  />
+          {width > breakpoint ? (
+            <>
+              {selectedOption === "momo" ? (
+                <div
+                  className={`
+                   ${
+                     viewType === "oneForm"
+                       ? "order-payment "
+                       : "order-payment1  "
+                   } outline  margin-top 
+                  `}
+                >
+                  <div className="payment-instruction">
+                    <div className="pay-know-how ">
+                      <div className="page_title ">How To Pay With Momo</div>
+                      <Question
+                        width={30}
+                        height={30}
+                        action={() => {
+                          setState(true);
+                        }}
+                      />
+                    </div>
+                    <Input class_name="input " placeholder="Name" onChange />
+                    <Input
+                      class_name="input "
+                      placeholder="Momo Number"
+                      onChange
+                    />
+                    <Input
+                      class_name="input "
+                      placeholder="Transaction ID"
+                      onChange
+                    />
+                  </div>
                 </div>
-                <Input class_name="input " placeholder="Name" onChange />
-                <Input class_name="input " placeholder="Momo Number" onChange />
-                <Input
-                  class_name="input "
-                  placeholder="Transaction ID"
-                  onChange
-                />
-              </div>
-            ) : null}
-          </div>
+              ) : null}
+            </>
+          ) : null}
         </form>
       </div>
 
@@ -275,30 +336,6 @@ const Order = () => {
           }}
         />
       </Summary>
-
-      {success ? (
-        <Success close={() => setSuccess(false)}>
-          <div className="order-success">
-            <div>
-              {/* Hi <span className="customer-name">Kenneth Akanpaacharuk</span>, */}
-            </div>{" "}
-            Thank you for shopping with us! Your order{" "}
-            <span className="orderID">11111111111</span> has been placed,
-            pending confirmation. We will call you within 24 hours (calling
-            hours: Mon-Fri 8:30am-5:30pm) to confirm your order . Once the order
-            is confirmed, you will not be able to change your order details (e.g
-            recipient, delivery address).
-          </div>
-
-          <Button
-            name="Go Home"
-            class_name="primary"
-            action={() => {
-              history.push("/");
-            }}
-          />
-        </Success>
-      ) : null}
     </div>
   );
 };
