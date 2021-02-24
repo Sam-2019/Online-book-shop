@@ -53,7 +53,7 @@ const Login = () => {
       </div>
 
       <div className="main">
-        <form className="form-wrapper">
+        <form className="form-wrapper login-box outline">
           <Input class_name="input " placeholder="Email" onChange type="name" />
 
           <Input

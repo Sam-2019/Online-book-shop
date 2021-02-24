@@ -54,7 +54,7 @@ const Signup = () => {
       </div>
 
       <div className="main">
-        <form className="form-wrapper">
+        <form className="form-wrapper signup-box outline">
           <Input
             class_name="input "
             placeholder="Name "
