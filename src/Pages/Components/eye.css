@@ -20,11 +20,13 @@
   margin-bottom: -30px;
   display: flex;
   align-self: flex-end;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
 }
 
 .eyeIcon2 {
     position: relative;
-    left: 322px;
+    left: 90%;
     top: -55px;
     bottom: 0;
     right: 0px;
@@ -32,6 +34,8 @@
     display: flex;
     width: 35px;
     align-self: center;
+    -webkit-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
   }
 
 /* .eyeLiner {
