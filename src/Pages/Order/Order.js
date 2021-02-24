@@ -336,6 +336,31 @@ const Order = () => {
           }}
         />
       </Summary>
+
+      
+      {success ? (
+        <Success close={() => setSuccess(false)}>
+          <div className="order-success">
+            <div>
+              {/* Hi <span className="customer-name">Kenneth Akanpaacharuk</span>, */}
+            </div>{" "}
+            Thank you for shopping with us! Your order{" "}
+            <span className="orderID">11111111111</span> has been placed,
+            pending confirmation. We will call you within 24 hours (calling
+            hours: Mon-Fri 8:30am-5:30pm) to confirm your order . Once the order
+            is confirmed, you will not be able to change your order details (e.g
+            recipient, delivery address).
+          </div>
+
+          <Button
+            name="Go Home"
+            class_name="primary"
+            action={() => {
+              history.push("/");
+            }}
+          />
+        </Success>
+      ) : null}
     </div>
   );
 };
