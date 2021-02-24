@@ -187,7 +187,7 @@ const Order = () => {
       <div className="main">
         <form
           className={`
-         ${viewType === "oneForm" ? "oneForm " : "twoForms "}`}
+         ${viewType === "oneForm" ? "oneForm " : "twoForms "`}
         >
           <div
             className={`
