@@ -14,12 +14,12 @@ const Search = () => {
           <div className="object-1">
             <Back width={30} height={30} />
           </div>
-          <div className="object-2"> Search</div>
+          <div className="object-2"> Search Results for "{query}"</div>
         </div>
       </div>
 
       <div className="main">
-        <div className="title-makeshift ">Search Results for "{query}"</div>
+        {/* <div className="title-makeshift ">Search Results for "{query}"</div> */}
         <Products />
       </div>
     </div>

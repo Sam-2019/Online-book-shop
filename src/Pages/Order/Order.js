@@ -104,6 +104,7 @@ const Order = () => {
 
   let selectedOption = null;
   let viewType;
+
   switch (paymentMethod) {
     case "Cash":
       selectedOption = "cash";
@@ -337,7 +338,6 @@ const Order = () => {
         />
       </Summary>
 
-      
       {success ? (
         <Success close={() => setSuccess(false)}>
           <div className="order-success">
