@@ -29,7 +29,7 @@ const PasswordReset = () => {
       </div>
 
       <div className="main">
-        <form className="form-wrapper ">
+        <form className="form-wrapper outline login-box ">
           <Input class_name="input " placeholder="Email" onChange />
 
           <Message class_name="message " message="Hello" />

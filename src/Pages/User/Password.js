@@ -35,7 +35,7 @@ const Password = () => {
       </div>
 
       <div className="main">
-        <form className="form-wrapper ">
+        <form className="form-wrapper   outline login -box">
           <Input
             class_name="input "
             placeholder="New Password"
