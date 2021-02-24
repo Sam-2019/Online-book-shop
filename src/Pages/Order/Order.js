@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 import { useParams, useHistory } from "react-router-dom";
 import Back from "../Components/Back";
@@ -11,7 +12,6 @@ import PopUp from "../Components/Popup";
 import Question from "../Components/Question";
 import Success from "../Components/Success Container";
 
-import axios from "axios";
 import { buyerID, locationsGet, feeGet } from "../endpoints";
 
 import "./order.css";
@@ -107,6 +107,9 @@ const Order = () => {
       break;
     case "Momo":
       selectedOption = "momo";
+      break;
+    default:
+      selectedOption = "momo";
   }
 
   switch (value) {
@@ -136,7 +139,7 @@ const Order = () => {
   }, [getFee]);
 
   return (
-    <div className="cart-wrapper">
+    <div className="order-wrapper">
       <div className="header ">
         <div className="category ">
           <div className="object-1">
@@ -175,55 +178,57 @@ const Order = () => {
         </PopUp>
       ) : null}
 
-      <div className="main-1">
-        <form className=" wrapper-item">
-          <div className="page_title"> Shipping Information</div>
-          <select
-            id="select"
-            className="input"
-            autoFocus
-            required
-            disabled={loading}
-            value={value}
-            onChange={(e) => {
-              setValue(e.target.value);
-            }}
-          >
-            {items.map(({ value, disable }) => (
-              <option key={value} value={value} disabled={disable}>
-                {value}
-              </option>
-            ))}
-          </select>
-          <Input class_name="input " placeholder="Location" onChange />
-          <Input class_name="input " placeholder="Digital Address" onChange />
-          <Input class_name="input " placeholder="Phone Number" onChange />
+      <div className="main">
+        <form className=" form-item ">
+          <div className="order-shipping">
+            <div className="page_title"> Shipping Information</div>
+            <select
+              id="select"
+              className="input"
+              autoFocus
+              required
+              disabled={loading}
+              value={value}
+              onChange={(e) => {
+                setValue(e.target.value);
+              }}
+            >
+              {items.map(({ value, disable }) => (
+                <option key={value} value={value} disabled={disable}>
+                  {value}
+                </option>
+              ))}
+            </select>
+            <Input class_name="input " placeholder="Location" onChange />
+            <Input class_name="input " placeholder="Digital Address" onChange />
+            <Input class_name="input " placeholder="Phone Number" onChange />
 
-          <div className="page_title">Payment</div>
-          <div className="payment-method">
-            <div
-              className={selectedOption === "cash" ? "cash" : "select"}
-              onClick={() => {
-                setPaymentMethod("Cash");
-              }}
-            >
-              Cash
-            </div>
-            <div
-              className={selectedOption === "momo" ? "momo" : "select"}
-              onClick={() => {
-                setPaymentMethod("Momo");
-              }}
-            >
-              Momo
+            <div className="page_title">Payment</div>
+            <div className="payment-method">
+              <div
+                className={selectedOption === "cash" ? "cash" : "select"}
+                onClick={() => {
+                  setPaymentMethod("Cash");
+                }}
+              >
+                Cash
+              </div>
+              <div
+                className={selectedOption === "momo" ? "momo" : "select"}
+                onClick={() => {
+                  setPaymentMethod("Momo");
+                }}
+              >
+                Momo
+              </div>
             </div>
           </div>
 
-          {selectedOption === "momo" ? (
-            <>
-              <div className="payment-instruction ">
+          <div className="order-payment">
+            {selectedOption === "momo" ? (
+              <div className="payment-instruction">
                 <div className="pay-know-how ">
-                  <div>HOW TO PAY WITH MOMO</div>
+                  <div className="page_title ">How To Pay With Momo</div>
                   <Question
                     width={30}
                     height={30}
@@ -240,36 +245,36 @@ const Order = () => {
                   onChange
                 />
               </div>
-            </>
-          ) : null}
-        </form>
-
-        <Summary>
-          <div className="amountXshipping">
-            <div className={show ? "amount2" : "amount1"}>
-              {/* Total: {fee === undefined ? ` $${amount}` : ` $${amount + fee}`} */}
-              Total:{" "}
-              {fee === undefined ? (
-                <>${Intl.NumberFormat().format(amount)}</>
-              ) : (
-                <>${Intl.NumberFormat().format(amount + fee)}</>
-              )}
-            </div>
-            <div className="shipping">
-              {value === "Pick your location" ? <></> : <>(Shipping ${fee})</>}
-            </div>
+            ) : null}
           </div>
-
-          <Button
-            class_name="checkout"
-            name={`Order  (${quantity})`}
-            action={() => {
-              history.push(`/order/${id}`);
-              setSuccess(true);
-            }}
-          />
-        </Summary>
+        </form>
       </div>
+
+      <Summary>
+        <div className="amountXshipping">
+          <div className={show ? "amount2" : "amount1"}>
+            {/* Total: {fee === undefined ? ` $${amount}` : ` $${amount + fee}`} */}
+            Total:{" "}
+            {fee === undefined ? (
+              <>${Intl.NumberFormat().format(amount)}</>
+            ) : (
+              <>${Intl.NumberFormat().format(amount + fee)}</>
+            )}
+          </div>
+          <div className="shipping">
+            {value === "Pick your location" ? <></> : <>(Shipping ${fee})</>}
+          </div>
+        </div>
+
+        <Button
+          class_name="checkout"
+          name={`Order  (${quantity})`}
+          action={() => {
+            history.push(`/order/${id}`);
+            setSuccess(true);
+          }}
+        />
+      </Summary>
 
       {success ? (
         <Success close={() => setSuccess(false)}>

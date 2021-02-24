@@ -6,7 +6,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+}
+
+.form-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-shipping {
+  width: 49%;
+  transition: all 0.6s ease-in-out;
+}
+
+.order-payment {
+  width: 49%;
+  transition: all 0.6s ease-in-out;
 }
 
 ol {
@@ -25,12 +39,26 @@ li {
 .customer-name {
 }
 
-
 .orderID {
   color: #00d919;
 }
 
 @media (max-width: 540px) {
+  .form-item {
+    flex-direction: column;
+    padding: 0 10px 10px;
+  }
+
+  .order-shipping {
+    width: 100%;
+    transition: all 0.6s ease-in-out;
+  }
+
+  .order-payment {
+    width: 100%;
+    transition: all 0.6s ease-in-out;
+  }
+
   .payment-instruction {
     margin-bottom: 90px;
   }
