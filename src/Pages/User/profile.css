@@ -95,6 +95,7 @@
 
 .wrapper-item {
   padding: 0 10px 10px;
+  background-color: coral;
 }
 
 @media (max-width: 1005px) {

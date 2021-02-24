@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import Bin from "../../Components/Bin";
 import Notify from "../../Components/Notify";
@@ -107,3 +108,8 @@ const WishItem = ({ index }) => {
 };
 
 export default WishItem;
+
+WishItem.propTypes = {
+  index: PropTypes.number,
+  // i:PropTypes.Number
+};

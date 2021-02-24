@@ -50,7 +50,7 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart-wrapper">
+    <div className="cart-wrapper item">
       <div className="header">
         <div className="category">
           <div className="object-1">
@@ -66,7 +66,7 @@ const Cart = () => {
         </div>
       </div>
 
-      <div className="main ">
+      <div className="main item ">
         {width > breakpoint ? (
           <>
             <div className="cart_item_wrapper">
