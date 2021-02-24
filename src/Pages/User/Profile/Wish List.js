@@ -20,7 +20,7 @@ const WishList = () => {
           {Array(10)
             .fill()
             .map((item, index) => (
-              <WishItem key={index} />
+              <WishItem key={index} index={index} />
             ))}
         </div>
       </div>

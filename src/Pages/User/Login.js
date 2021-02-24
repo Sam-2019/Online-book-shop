@@ -64,23 +64,21 @@ const Login = () => {
             type={type}
           />
 
-          <div className='eyeIcon'>
-          {show === "password" ? (
-            <EyeShow
-              action={() => {
-                hide("text");
-              }}
-            />
-          ) : (
-            <EyeHide
-              action={() => {
-                hide("password");
-              }}
-            />
-          )}
+          <div className="eyeIcon">
+            {show === "password" ? (
+              <EyeShow
+                action={() => {
+                  hide("text");
+                }}
+              />
+            ) : (
+              <EyeHide
+                action={() => {
+                  hide("password");
+                }}
+              />
+            )}
           </div>
-
-
 
           {/* <div className="eyeLiner">
             <Input

@@ -15,6 +15,15 @@
   justify-content: flex-end;
 }
 
+.wishItem-action{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+
+
 
 .bin-width2 {
   display: none;
@@ -37,8 +46,11 @@
     justify-content: flex-end;
   }
 
-  .bin-width {
-display: none;
+
+  .wishItem-action{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 }
 

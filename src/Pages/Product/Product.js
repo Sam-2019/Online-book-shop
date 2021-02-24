@@ -11,6 +11,8 @@ import Button from "../Components/Button";
 import PopUp from "../Components/Popup";
 import Share from "../Components/Share";
 import StarRating from "../Components/Stars";
+import Love from "../Components/Love";
+import LoveFill from "../Components/LoveFill";
 import ReviewItem from "../Review/reviewItem";
 import AddReview from "./addReview";
 import Summary from "../Summary/Summary";
@@ -44,6 +46,20 @@ const Product = () => {
   const [notify, setNotify] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
   const [review, addReview] = React.useState(false);
+
+  const [loveFill, setLoveFill] = React.useState(false);
+
+  const updateLove = () => {
+    setLoveFill(true);
+
+    const timer = setTimeout(() => {
+      setLoveFill(false);
+    }, 1000);
+
+    showNotify();
+
+    return () => clearTimeout(timer);
+  };
 
   const showNotify = () => {
     setLoading(true);
@@ -111,7 +127,21 @@ const Product = () => {
 
             <div className="product-detail  ">
               <div className="nameXauthor outline">
-                <div className="product-name ">The Man Who Was Thursday</div>
+
+                <div className='nameXaction'>
+          <div className="product-name ">The Man Who Was Thursday</div>
+
+
+                <div className="love " onClick={updateLove}>
+              {loveFill ? (
+                <LoveFill width={18} height={20} />
+              ) : (
+                <Love width={18} height={20} />
+              )}
+            </div>
+                </div>
+      
+
 
                 <span className="product-author  ">G. K. CHESTERTON</span>
 

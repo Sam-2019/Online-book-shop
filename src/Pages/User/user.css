@@ -23,46 +23,6 @@
   cursor: default;
 }
 
-/* .eye-popper {
-  padding: 5px 0px;
-  width: 50px;
-  border-radius: 0 10px 10px 0;
-  background: white;
-} */
-
-.eye-popper {
-  padding: 5px 6px 0 0;
-  width: auto;
-  background: white;
-}
-
-.eyeIcon {
-  position: relative;
-  left: -5px;
-  top: -55px;
-  bottom: 0;
-  right: 0;
-
-  margin-bottom: -35px;
-  display: flex;
-  align-self: flex-end;
-}
-
-/* .eyeLiner {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-}
-
-.eyeLiner:hover,
-.eyeLiner:active {
-  border: 1px solid #00d919;
-  -webkit-transition: all ease-in-out 0.3s;
-  transition: all ease-in-out 0.3s;
-} */
-
 .forgotten_password {
   color: #4a4ac9;
 }
@@ -72,16 +32,9 @@
   .verify-wrapper {
     margin: 8em 5%;
   }
-
-  .eyeIcon {
-
-  }
 }
 
 @media (max-width: 375px) {
-  .eyeIcon {
-
-  }
 }
 
 @media (max-width: 320px) {
@@ -89,19 +42,11 @@
   .verify-wrapper {
     margin: 5em 5%;
   }
-
-  .eyeIcon {
-
-  }
 }
 
 @media (max-width: 280px) {
   .form-wrapper,
   .verify-wrapper {
     margin: 6em 5%;
-  }
-
-  .eyeIcon {
-
   }
 }

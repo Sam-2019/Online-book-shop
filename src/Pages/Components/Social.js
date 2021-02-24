@@ -18,7 +18,7 @@ const Share = ({ width, height, postTitle, postUrl, hashtags, via }) => {
   // [hashtags]	optional Hashtags appended onto the tweet (comma separated. don’t include “#”)
 
   return (
-    <div className="social">
+    <div className="social outline">
 
       <div>Share Book</div>
 

@@ -1,12 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Back from "../Components/Back";
-import {Input} from "../Components/Input";
+import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Message from "../Components/Message";
+import { EyeShow, EyeHide } from "../Components/Eye";
 import "./user.css";
 
 const Password = () => {
+  const [show, hide] = React.useState("password");
+
+  let type;
+
+  switch (show) {
+    case "text":
+      type = "text";
+      break;
+    default:
+      type = "password";
+  }
+
   return (
     <div className="user-wrapper">
       <div className="header ">
@@ -23,8 +36,34 @@ const Password = () => {
 
       <div className="main">
         <form className="form-wrapper ">
-          <Input class_name="input " placeholder="New Password" onChange />
-          <Input class_name="input " placeholder="Confirm Password" onChange />
+          <Input
+            class_name="input "
+            placeholder="New Password"
+            onChange
+            type={type}
+          />
+          <div className="eyeIcon">
+            {show === "password" ? (
+              <EyeShow
+                action={() => {
+                  hide("text");
+                }}
+              />
+            ) : (
+              <EyeHide
+                action={() => {
+                  hide("password");
+                }}
+              />
+            )}
+          </div>
+
+          <Input
+            class_name="input "
+            placeholder="Confirm Password"
+            onChange
+            type={type}
+          />
 
           <Message class_name="message " message="Hello" />
 

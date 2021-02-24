@@ -1,13 +1,19 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Bin from "../../Components/Bin";
 import Notify from "../../Components/Notify";
 import Confirm from "../../Components/Confirm";
 import Button from "../../Components/Button";
+import { MediaQuery } from "../../helper";
 import "./wishitem.css";
 
-const WishItem = () => {
+const WishItem = ({ index }) => {
+  const breakpoint = 540;
+  const { width } = MediaQuery();
   const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
+
+  let history = useHistory();
 
   const showNotify = () => {
     setNotify(true);
@@ -25,34 +31,62 @@ const WishItem = () => {
   return (
     <>
       <div className="item-wrapper">
-        <div className="order-imageXname ">
-          <div className="image-placeholder  loading"></div>
+        <div className="order-imageXname">
+          <div
+            className="image-placeholder  loading"
+            onClick={() => {
+              history.push(`/product/${index}`);
+            }}
+          ></div>
 
           <div className="order-item-name-price-quantity">
-            <div className="order-item-name">
+            <div
+              className="order-item-name"
+              onClick={() => {
+                history.push(`/product/${index}`);
+              }}
+            >
               Name kdhskl the debt toalt deed
             </div>
 
-            <div className="order-Item-price-quantity">
+            <div
+              className="order-Item-price-quantity"
+              onClick={() => {
+                history.push(`/product/${index}`);
+              }}
+            >
               <div className="order-item-price">GHc Price</div>
 
-              <div className=" bin-width2">
-             <Bin width={18} height={20} action={updateBin} />
-         
+              {/* <div className=" bin-width">
+                <Bin width={18} height={20} action={updateBin} />
+              </div> */}
+            </div>
+
+            {width > breakpoint ? null : (
+              <div className="wishItem-action">
+                <div className=" bin-width">
+                  <Button
+                    class_name="cancel-order"
+                    name="Remove"
+                    action={updateBin}
+                  />
                 </div>
-    </div>
+              </div>
+            )}
           </div>
         </div>
 
-        <div className="actionXstatus">
-          <div className=" bin-width">
-            <Button
-              class_name="cancel-order"
-              name="Remove"
-              action={updateBin}
-            />
+        {width > breakpoint ? (
+          <div className="wishItem-action">
+            <div className=" bin-width">
+              <Button
+                class_name="cancel-order"
+                name="Remove"
+                action={updateBin}
+              />
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
 
       {notify ? (
@@ -60,7 +94,11 @@ const WishItem = () => {
       ) : null}
 
       {confirm ? (
-        <Confirm close={() => setConfirm(false)}  primary='Remove' secondary='Cancel'>
+        <Confirm
+          close={() => setConfirm(false)}
+          primary="Remove"
+          secondary="Cancel"
+        >
           Are you sure you want to remove this item from your wish list?
         </Confirm>
       ) : null}
