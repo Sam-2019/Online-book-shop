@@ -1,6 +1,14 @@
 .product-wrapper {
 }
 
+.outline{
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
+  background-clip: border-box;
+  background-color: #ffffff;
+}
+
 .product-body {
   display: flex;
   padding: 10px 0 0;
@@ -31,22 +39,12 @@
 .nameXauthor {
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
-  background-clip: border-box;
-  background-color: #ffffff;
 }
 
 .rateItem {
   display: flex;
   justify-content: center;
-  border-radius: 10px;
   margin-top: 10px;
-  padding: 15px;
-  box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
-  background-clip: border-box;
-  background-color: #ffffff;
 }
 
 .product-name {
@@ -93,14 +91,7 @@
 }
 
 .product-description-wrapper {
-  padding: 15px;
   margin-top: 10px;
-  border-radius: 10px;
-  box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
-  background-clip: border-box;
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
 }
 
 .product-description {
@@ -125,12 +116,7 @@
 
 .review-box {
   align-items: center;
-  border-radius: 10px;
   margin-top: 10px;
-  padding: 15px;
-  box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
-  background-clip: border-box;
-  background-color: #ffffff;
 }
 
 .add-review-wrapper {

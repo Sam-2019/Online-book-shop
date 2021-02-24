@@ -110,7 +110,7 @@ const Product = () => {
             </div>
 
             <div className="product-detail  ">
-              <div className="nameXauthor">
+              <div className="nameXauthor outline">
                 <div className="product-name ">The Man Who Was Thursday</div>
 
                 <span className="product-author  ">G. K. CHESTERTON</span>
@@ -125,12 +125,12 @@ const Product = () => {
               </div>
 
               {width > 540 ? null : (
-                <div className="rateItem">
+                <div className="rateItem outline">
                   <StarRating value={3.7} width={15} height={15} />
                 </div>
               )}
 
-              <div className="product-description-wrapper">
+              <div className="product-description-wrapper outline">
                 <div className="product-title">Description</div>
 
                 {width > 540 ? (
@@ -163,7 +163,7 @@ const Product = () => {
                 )}
               </div>
 
-              <div className="review-box">
+              <div className="review-box outline">
                 {width > 540 ? (
                   <div className="product-title ">Ratings and Reviews</div>
                 ) : null}
@@ -190,7 +190,7 @@ const Product = () => {
                     </div>
                   ) : null}
 
-                  <div className=" see-more">
+                  <div className="see-more">
                     <span
                       className="addReview2"
                       onClick={() => {
