@@ -201,6 +201,24 @@
   animation-name: fadeInUp;
 }
 
+@media (max-width: 730px) {
+  .product-body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 0;
+  }
+
+  .product-divide {
+    width: 100%;
+    padding: 0 0 0 0;
+  }
+
+  .product-detail {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
 @media (max-width: 540px) {
   .product-wrapper {
   }
