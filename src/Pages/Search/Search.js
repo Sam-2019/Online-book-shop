@@ -18,6 +18,11 @@ const Search = () => {
   const [state, setState] = React.useState(false);
   const [newQuery, setNewQuery] = React.useState("");
 
+  function search() {
+    setState(false);
+  
+  }
+
   return (
     <div className="search-wrapper ">
       <div className="header">
@@ -28,13 +33,18 @@ const Search = () => {
             </div>
             <div className="category2 ">
               <Input
+              type='search'
                 class_name="header-input  "
                 placeholder="Search"
                 value={newQuery}
                 action={(e) => setNewQuery(e.target.value)}
               />
 
-              <Button name="Search" class_name="header-primary2" />
+              <Button
+                name="Search"
+                class_name="header-primary2"
+                action={search}
+              />
 
               <div className="object-4 cart ">
                 <Close
@@ -56,7 +66,11 @@ const Search = () => {
 
               <div className="object-2">
                 <div className="search-text">
-                  Search Results for "l;k'ohkoptrkopektypoj"
+                  {newQuery !== "" ? (
+                    <> Search Results for "{newQuery}"</>
+                  ) : (
+                    <> Search Results for "{query}"</>
+                  )}
                 </div>
               </div>
             </div>
