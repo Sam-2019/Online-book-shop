@@ -24,6 +24,7 @@ const Navigation = () => {
       {state ? (
         <div className="category2 ">
           <Input
+               type='search'
             class_name="header-input  "
             placeholder="Search"
             value={query}
@@ -61,6 +62,7 @@ const Navigation = () => {
             <>
               <div className="category ">
                 <Input
+                     type='search'
                   class_name="header-input  "
                   placeholder="Search"
                   value={query}
