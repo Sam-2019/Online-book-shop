@@ -1,5 +1,12 @@
 @media (max-width: 540px) {
+.search-cart{
+  align-items: center;
+}
 
+.search-text{
+  font-size: 16px;
+  padding: 7px 0;
+}
   }
   
   @media (max-width: 320px) {
