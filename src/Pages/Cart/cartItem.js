@@ -16,6 +16,8 @@ const CartItem = ({ handleToggle, i }) => {
   const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
 
+  console.log(i)
+
   const showNotify = () => {
     setNotify(true);
 
