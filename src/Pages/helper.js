@@ -3,7 +3,18 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { itemsGet } from "./endpoints";
 
-const intervalMs = 1000;
+const intervalMs = 10000;
+
+export async function fetchProjects(page = 0) {
+  const { data } = await axios({
+    method: "post",
+    url: itemsGet,
+    data: page,
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+  return data;
+}
 
 export function useProducts() {
   return useQuery(
