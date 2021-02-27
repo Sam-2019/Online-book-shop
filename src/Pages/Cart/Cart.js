@@ -58,9 +58,6 @@ const Cart = () => {
       cacheTime: 20000,
     }
   );
-
-  console.log(data);
-
   return (
     <div className="cart-wrapper">
       <div className="header">
