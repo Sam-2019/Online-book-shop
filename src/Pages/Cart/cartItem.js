@@ -10,13 +10,21 @@ import LoveFill from "../Components/LoveFill";
 import Confirm from "../Components/Confirm";
 import "./cartItem.css";
 
-const CartItem = ({ handleToggle, i }) => {
+const CartItem = ({
+  unit_price,
+  product_name,
+  cover_photo_url,
+  quantity,
+  id,
+  product_unique_id,
+  handleToggle,
+  unique_id,
+  onFormSubmit,
+}) => {
   const [loveFill, setLoveFill] = React.useState(false);
   const [binFill, setBinFill] = React.useState(false);
   const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
-
-  console.log(i)
 
   const showNotify = () => {
     setNotify(true);
@@ -53,7 +61,11 @@ const CartItem = ({ handleToggle, i }) => {
     <>
       <div className="cart_item_wrapper">
         <div className="checkBox">
-          <input onChange={handleToggle(i)} type="checkbox" value="0" />
+          <input
+            onChange={handleToggle(product_unique_id)}
+            type="checkbox"
+            value="1"
+          />
         </div>
 
         <div className="cart-item-detail">
@@ -61,9 +73,9 @@ const CartItem = ({ handleToggle, i }) => {
             <div className="image-placeholder  loading"></div>
 
             <div className="nameXprice">
-              <div className="item-name">Name kdhskl the debt toalt deed</div>
+              <div className="item-name">{product_name}</div>
 
-              <div className="item-price">GHc Price</div>
+              <div className="item-price">GHc {unit_price}</div>
             </div>
           </div>
 

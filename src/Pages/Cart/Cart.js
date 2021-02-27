@@ -1,53 +1,65 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
-import { useParams, useHistory } from "react-router-dom";
-import { MediaQuery } from "../helper";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "react-query";
+import { useHistory } from "react-router-dom";
+import { MediaQuery, fetchData } from "../helper";
 import Back from "../Components/Back";
 import Bin from "../Components/Bin";
 import Button from "../Components/Button";
-import CartItem from "./cartItem";
 import Summary from "../Summary/Summary";
+
+import { buyerID, cartGet } from "../endpoints";
 import "./cart.css";
+import CartMain from "./cartMain";
+import { backendData } from "../helper";
 
 const Cart = () => {
   let amount = 10000;
   let quantity = 100;
   let history = useHistory();
-  let { id } = useParams();
   const { width } = MediaQuery();
   const breakpoint = 540;
 
-  const [formData, setFormData] = useState("");
-  const [checked, setChecked] = useState([]); //cart items from DB
-  const [message, setMessage] = useState("");
+  var formData = new FormData();
+  formData.set("buyer_unique_id", buyerID);
 
-  useEffect(() => {
-    setFormData(new FormData());
-    onFormSubmit();
-  }, []);
+  //const [data, setData] = React.useState([]);
 
-  const handleToggle = (c) => () => {
-    // return the first index or -1
-    const clickedCategory = checked.indexOf(c);
+  // const cartData = async () => {
+  //   formData.set("buyer_unique_id", buyerID);
 
-    const all = [...checked];
+  //   const { data } = await axios({
+  //     method: "post",
+  //     url: cartGet,
+  //     data: formData,
+  //     headers: { "Content-Type": "multipart/form-data" },
+  //   });
+  // };
 
-    if (clickedCategory === -1) {
-      all.push(c);
-    } else {
-      all.splice(clickedCategory, 1);
+  // React.useEffect(() => {
+  //   cartData();
+  // }, [cartData]);
+
+  const queryClient = useQueryClient();
+
+  const { status, data, error, isFetching, isPreviousData } = useQuery(
+    ["carts", cartGet, formData],
+    () => backendData(cartGet, formData),
+    {
+      keepPreviousData: true,
+      staleTime: 5000,
+      cacheTime: 20000,
     }
+  );
 
-    setChecked(all);
-    formData.set("categories", all);
-
-    var data = formData.get("categories");
-    console.log(data);
-  };
-
-  function onFormSubmit(messagE) {
-    setMessage(messagE);
-  }
+  console.log(data);
 
   return (
     <div className="cart-wrapper">
@@ -71,11 +83,11 @@ const Cart = () => {
           <>
             <div className="cart_item_wrapper">
               <div className="checkBox">
-                <input type="checkbox" value="0" />
+                <input type="checkbox" value="0" hidden />
               </div>
 
-              <div className="cart-item-detail">
-                <div className="imageXname">
+              <div className="cart-item-detail ">
+                <div className="imageXname ">
                   <div className="item-name">Product name</div>
 
                   <div className="item-price">Price</div>
@@ -89,16 +101,7 @@ const Cart = () => {
           </>
         ) : null}
 
-        {Array(5)
-          .fill()
-          .map((items, i) => (
-            <CartItem
-              key={i}
-              {...items}
-              handleToggle={handleToggle}
-              onFormSubmit={onFormSubmit}
-            />
-          ))}
+        {data ? <CartMain data={data} /> : <>Loading</>}
       </div>
 
       <Summary>
@@ -111,7 +114,7 @@ const Cart = () => {
           class_name="checkout"
           name={`Check Out  (${quantity})`}
           action={() => {
-            history.push(`/order/${id}`);
+            history.push(`/order`);
           }}
         />
       </Summary>
