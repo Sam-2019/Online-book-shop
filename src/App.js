@@ -11,7 +11,13 @@ const AppBackgroundColour = styled.div`
   background: #ababab3c;
 `;
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+    },
+  },
+})
 
 function App() {
   return (
