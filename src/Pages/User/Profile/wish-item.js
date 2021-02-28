@@ -8,7 +8,20 @@ import Button from "../../Components/Button";
 import { MediaQuery } from "../../helper";
 import "./wishitem.css";
 
-const WishItem = ({ index }) => {
+const WishItem = ({
+  availablity,
+  cover_photo_url,
+  existence,
+  id,
+  product_author,
+  product_category,
+  product_description,
+  product_name,
+  product_unique_id,
+  stock,
+  unique_id,
+  unit_price,
+}) => {
   const breakpoint = 540;
   const { width } = MediaQuery();
   const [notify, setNotify] = React.useState(false);
@@ -36,7 +49,7 @@ const WishItem = ({ index }) => {
           <div
             className="image-placeholder  loading"
             onClick={() => {
-              history.push(`/product/${index}`);
+              history.push(`/product/${unique_id}`);
             }}
           ></div>
 
@@ -44,19 +57,19 @@ const WishItem = ({ index }) => {
             <div
               className="order-item-name"
               onClick={() => {
-                history.push(`/product/${index}`);
+                history.push(`/product/${unique_id}`);
               }}
             >
-              Name kdhskl the debt toalt deed
+              {product_name}
             </div>
 
             <div
               className="order-Item-price-quantity"
               onClick={() => {
-                history.push(`/product/${index}`);
+                history.push(`/product/${unique_id}`);
               }}
             >
-              <div className="order-item-price">GHc Price</div>
+              <div className="order-item-price">GHc ₵{unit_price}</div>
 
               {/* <div className=" bin-width">
                 <Bin width={18} height={20} action={updateBin} />
