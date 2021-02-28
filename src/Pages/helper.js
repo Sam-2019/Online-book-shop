@@ -23,7 +23,6 @@ export async function backendData(url, formData) {
     data: formData,
     headers: { "Content-Type": "multipart/form-data" },
   });
-  console.log(data);
   return data.data;
 }
 
