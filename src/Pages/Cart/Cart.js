@@ -59,7 +59,6 @@ const Cart = () => {
 
   var array = new Uint32Array(1);
   var index = window.crypto.getRandomValues(array);
-  console.log(index);
 
   return (
     <div className="cart-wrapper">
