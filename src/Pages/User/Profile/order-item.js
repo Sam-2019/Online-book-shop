@@ -4,7 +4,18 @@ import Button from "../../Components/Button";
 import Confirm from "../../Components/Confirm";
 import "./orderitem.css";
 
-const OrderItem = () => {
+const OrderItem = ({
+  cover_photo_url,
+  amount,
+  datetime_ordered,
+  id,
+  order_number,
+  product_author,
+  product_name,
+  product_unique_id,
+  status2,
+  unique_id,
+}) => {
   const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
   let status = "pending";
@@ -49,19 +60,16 @@ const OrderItem = () => {
   return (
     <>
       <div className="item-wrapper ">
-
         <div className="order-imageXname">
-
           <div className="image-placeholder  loading"></div>
 
           <div className="order-item-name-price-quantity ">
-
             <div className="order-item-name">
-              Name kdhskl the debt toalt deed
+            {product_name}
             </div>
 
             <div className="order-Item-price-quantity">
-              <div className="order-item-price">GHc Price</div>
+              <div className="order-item-price">GHc ₵{amount}</div>
 
               <div className="order-item-price">Quantity</div>
             </div>
@@ -79,7 +87,7 @@ const OrderItem = () => {
             />
           )}
 
-          <div className={`status ${statusColorX}`}>{status}</div>
+          <div className={`status ${statusColorX}`}>{status2}</div>
         </div>
       </div>
 
@@ -91,7 +99,11 @@ const OrderItem = () => {
       ) : null}
 
       {confirm ? (
-        <Confirm close={() => setConfirm(false)} primary='Cancel Order' secondary='Close'>
+        <Confirm
+          close={() => setConfirm(false)}
+          primary="Cancel Order"
+          secondary="Close"
+        >
           Are you sure you want to cancel this order?
         </Confirm>
       ) : null}
