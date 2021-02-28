@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
-import { itemsGet, buyerID, cartGet } from "./endpoints";
+import { itemsGet } from "./endpoints";
 
 const intervalMs = 10000;
 
@@ -17,12 +17,13 @@ export async function fetchProjects(page = 0) {
 }
 
 export async function backendData(url, formData) {
-  const  {data}  = await axios({
+  const { data } = await axios({
     method: "post",
     url: url,
     data: formData,
     headers: { "Content-Type": "multipart/form-data" },
   });
+  console.log(data);
   return data.data;
 }
 
@@ -38,25 +39,6 @@ export function useProducts() {
     }
   );
 }
-
-// export function useCart(url, formData) {
-//   return useQuery(
-//     "carts",
-//     async () => {
-//       const { data } = await axios({
-//         method: "post",
-//         url: url,
-//         data: formData,
-//         headers: { "Content-Type": "multipart/form-data" },
-//       });
-//       console.log(data);
-//       return data;
-//     },
-//     {
-//       refetchInterval: intervalMs,
-//     }
-//   );
-// }
 
 export const MediaQuery = () => {
   const [width, setWidth] = React.useState(window.innerWidth);
