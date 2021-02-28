@@ -9,16 +9,15 @@ import {
   QueryClientProvider,
 } from "react-query";
 import { useHistory } from "react-router-dom";
-import { MediaQuery, fetchData } from "../helper";
+import { MediaQuery, backendData } from "../helper";
 import Back from "../Components/Back";
 import Bin from "../Components/Bin";
 import Button from "../Components/Button";
 import Summary from "../Summary/Summary";
-
+import CartMain from "./cartMain";
 import { buyerID, cartGet } from "../endpoints";
 import "./cart.css";
-import CartMain from "./cartMain";
-import { backendData } from "../helper";
+
 
 const Cart = () => {
   let amount = 10000;
