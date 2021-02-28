@@ -18,7 +18,6 @@ import CartMain from "./cartMain";
 import { buyerID, cartGet } from "../endpoints";
 import "./cart.css";
 
-
 const Cart = () => {
   let amount = 10000;
   let quantity = 100;
@@ -57,6 +56,11 @@ const Cart = () => {
       cacheTime: 20000,
     }
   );
+
+  var array = new Uint32Array(1);
+  var index = window.crypto.getRandomValues(array);
+  console.log(index);
+
   return (
     <div className="cart-wrapper">
       <div className="header">
@@ -110,7 +114,7 @@ const Cart = () => {
           class_name="checkout"
           name={`Check Out  (${quantity})`}
           action={() => {
-            history.push(`/order`);
+            history.push(`/order/${index[0]}`);
           }}
         />
       </Summary>
