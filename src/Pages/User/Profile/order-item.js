@@ -13,12 +13,12 @@ const OrderItem = ({
   product_author,
   product_name,
   product_unique_id,
-  status2,
+  status,
   unique_id,
 }) => {
   const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
-  let status = "pending";
+  let status2 = "pending";
   let statusColorX;
   let show;
 
@@ -87,7 +87,7 @@ const OrderItem = ({
             />
           )}
 
-          <div className={`status ${statusColorX}`}>{status2}</div>
+          <div className={`status ${statusColorX}`}>{status}</div>
         </div>
       </div>
 

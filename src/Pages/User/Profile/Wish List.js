@@ -32,6 +32,7 @@ const WishList = () => {
 
       <div className="main ">
         <div className="wrapper-item">
+          
           {/* {Array(10)
             .fill()
             .map((item, index) => (
