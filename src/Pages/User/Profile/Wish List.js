@@ -16,9 +16,10 @@ const WishList = () => {
     {
       keepPreviousData: true,
       staleTime: 5000,
-      cacheTime: 20000,
+      cacheTime: 5000,
     }
   );
+
   return (
     <div className="user-wrapper">
       <div className="header">

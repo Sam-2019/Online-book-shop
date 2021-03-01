@@ -49,7 +49,7 @@ const WishItem = ({
           <div
             className="image-placeholder  loading"
             onClick={() => {
-              history.push(`/product/${unique_id}`);
+              history.push(`/product/${product_unique_id}`);
             }}
           ></div>
 
@@ -57,7 +57,7 @@ const WishItem = ({
             <div
               className="order-item-name"
               onClick={() => {
-                history.push(`/product/${unique_id}`);
+                history.push(`/product/${product_unique_id}`);
               }}
             >
               {product_name}
@@ -66,7 +66,7 @@ const WishItem = ({
             <div
               className="order-Item-price-quantity"
               onClick={() => {
-                history.push(`/product/${unique_id}`);
+                history.push(`/product/${product_unique_id}`);
               }}
             >
               <div className="order-item-price">GHc ₵{unit_price}</div>
