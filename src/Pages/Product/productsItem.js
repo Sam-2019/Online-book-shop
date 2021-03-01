@@ -2,8 +2,15 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Notify from "../Components/Notify";
 import Cart from "../Components/Cart";
+import { okukus } from "../endpoints";
 
-const ProductsItem = ({ index }) => {
+const ProductsItem = ({
+  unique_id,
+  cover_photo_url,
+  product_name,
+  unit_price,
+  
+}) => {
   const [notify, setNotify] = React.useState(false);
 
   const showNotify = () => {
@@ -19,35 +26,40 @@ const ProductsItem = ({ index }) => {
 
   return (
     <div className="products-wrapper ">
-      <div className="products-discount-rate">-30%</div>
+      {/* <div className="products-discount-rate">-30%</div> */}
       <div className="products-group ">
         <div
-          className="products-image "
+      
           onClick={() => {
-            history.push(`/product/${index}`);
+            history.push(`/product/${unique_id}`);
           }}
-        ></div>
+        >
+          <img
+            src={`${okukus}/${cover_photo_url}`}
+            alt="alt"
+            className="products-image "
+          />
+        </div>
         <div
           className="products-name"
           onClick={() => {
-            history.push(`/product/${index}`);
+            history.push(`/product/${unique_id}`);
           }}
         >
-          Logest name ever you go fhrfghdgjhj djhgdjthjtyjrtyjryj see Longest
-          htrhetrhetr name ever you go see
+          {product_name}
         </div>
 
-        <div
+        {/* <div
           className="products-discount-price"
           onClick={() => {
-            history.push(`/product/${index}`);
+            history.push(`/product/${unique_id}`);
           }}
         >
           Ghc999
-        </div>
+        </div> */}
 
         <div className="priceXcart">
-          <div className="products-price">Ghc699</div>
+          <div className="products-price">₵{unit_price}</div>
           <div className="products-add2cart">
             <Cart width={17} height={17} action={showNotify} />
           </div>

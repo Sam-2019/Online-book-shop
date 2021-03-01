@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory, useRouteMatch, useParams } from "react-router-dom";
+import { useQuery, useQueryClient } from "react-query";
 import Notify from "../Components/Notify";
 import Back from "../Components/Back";
 import Up from "../Components/Up";
@@ -17,6 +18,7 @@ import ReviewItem from "../Review/reviewItem";
 import AddReview from "./addReview";
 import Summary from "../Summary/Summary";
 import { MediaQuery } from "../helper";
+import { itemGet } from "../endpoints";
 
 import "./product.css";
 
@@ -46,7 +48,6 @@ const Product = () => {
   const [notify, setNotify] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
   const [review, addReview] = React.useState(false);
-
   const [loveFill, setLoveFill] = React.useState(false);
 
   const updateLove = () => {
@@ -99,6 +100,27 @@ const Product = () => {
     }
   };
 
+  var formData = new FormData();
+  formData.set("product_unique_id", id);
+
+  const queryClient = useQueryClient();
+  queryClient.invalidateQueries("product");
+
+  const { isLoading, error, data, isFetching } = useQuery(["product"], () =>
+    fetch(itemGet, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+  );
+
+  if (isLoading) return "Loading...";
+  if (error) return "An error has occurred: " + error.message;
+
+
   return (
     <div className="product-wrapper">
       <div className="header">
@@ -106,7 +128,7 @@ const Product = () => {
           <div className="object-1">
             <Back width={30} height={30} />
           </div>
-          <div className="object-2"> The book</div>
+          <div className="object-2">{data.data.product_name}</div>
         </div>
 
         <div className="category ">
@@ -127,26 +149,27 @@ const Product = () => {
 
             <div className="product-detail  ">
               <div className="nameXauthor outline">
+                <div className="nameXaction">
+                  <div className="product-name "> {data.data.product_name}</div>
 
-                <div className='nameXaction'>
-          <div className="product-name ">The Man Who Was Thursday</div>
-
-
-                <div className="love " onClick={updateLove}>
-              {loveFill ? (
-                <LoveFill width={18} height={20} />
-              ) : (
-                <Love width={18} height={20} />
-              )}
-            </div>
+                  <div className="love " onClick={updateLove}>
+                    {loveFill ? (
+                      <LoveFill width={18} height={20} />
+                    ) : (
+                      <Love width={18} height={20} />
+                    )}
+                  </div>
                 </div>
-      
 
-
-                <span className="product-author  ">G. K. CHESTERTON</span>
+                <span className="product-author  ">
+                  {" "}
+                  {data.data.product_author}
+                </span>
 
                 <div className="prices">
-                  <div className="product-price">GHC 699</div>
+                  <div className="product-price">
+                    GHC {data.data.unit_price}
+                  </div>
 
                   <div className="spacer"></div>
 
@@ -165,7 +188,7 @@ const Product = () => {
 
                 {width > 540 ? (
                   <div className="product-description-full">
-                    qwertyuiopasdfghjklzxcvbnqwertyuiopasdfghjklzxcvbnm;lkgjoqwekopqgewopgqkpoerqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmngeqlewmopgfmqweopgwqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm
+                    {data.data.product_description}{" "}
                   </div>
                 ) : (
                   <>
@@ -176,7 +199,7 @@ const Product = () => {
                           : "product-description-full"
                       }
                     >
-                      qwertyuiopasdfghjklzxcvbnqwertyuiopasdfghjklzxcvbnm;lkgjoqwekopqgewopgqkpoerqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmngeqlewmopgfmqweopgwqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm
+                      {data.data.product_description}{" "}
                     </div>
                     <div className="down">
                       {contractDescription ? (
