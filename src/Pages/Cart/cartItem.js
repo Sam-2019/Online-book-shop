@@ -64,7 +64,7 @@ const CartItem = ({
           <input
             onChange={handleToggle(unique_id)}
             type="checkbox"
-            value="1"
+            value="0"
           />
         </div>
 
