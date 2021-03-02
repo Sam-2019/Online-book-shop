@@ -28,24 +28,29 @@ const Cart = () => {
   var formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
 
-  //const [data, setData] = React.useState([]);
+  const [qty, setQty] = React.useState(0);
 
-  // const cartData = async () => {
-  //   formData.set("buyer_unique_id", buyerID);
+  React.useEffect(() => {
+    let didCancel = false;
 
-  //   const { data } = await axios({
-  //     method: "post",
-  //     url: cartGet,
-  //     data: formData,
-  //     headers: { "Content-Type": "multipart/form-data" },
-  //   });
-  // };
+    async function cartData() {
+      const result = await axios({
+        method: "post",
+        url: cartGet,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
-  // React.useEffect(() => {
-  //   cartData();
-  // }, [cartData]);
+      if (!didCancel) {
+        setQty(result.data.data.length);
+      }
+    }
+    cartData();
 
-  const queryClient = useQueryClient();
+    return () => {
+      didCancel = true;
+    };
+  }, [formData]);
 
   const { status, data, error, isFetching, isPreviousData } = useQuery(
     ["carts", cartGet, formData],
@@ -67,7 +72,7 @@ const Cart = () => {
           <div className="object-1">
             <Back width={30} height={30} />
           </div>
-          <div className="object-2"> Cart (1)</div>
+          <div className="object-2"> Cart ({qty})</div>
         </div>
 
         <div className="category">

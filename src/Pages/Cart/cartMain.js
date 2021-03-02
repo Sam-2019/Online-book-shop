@@ -25,9 +25,8 @@ const CartMain = ({ data }) => {
 
     setChecked(all);
     formData.set("categories", all);
-
-    var data = formData.get("categories");
-    console.log(data);
+    console.log(all);
+    // var data = formData.get("categories");
   };
 
   function onFormSubmit(messagE) {
