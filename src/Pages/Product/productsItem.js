@@ -24,11 +24,11 @@ const ProductsItem = ({
   let history = useHistory();
 
   return (
-    <div className="products-wrapper ">
+    <div className="products-wrapper">
       {/* <div className="products-discount-rate">-30%</div> */}
-      <div className="products-group ">
+      <div className="products-group">
         <div
-             className="products-image-wrapper "
+          className="products-image-wrapper"
           onClick={() => {
             history.push(`/product/${unique_id}`);
           }}
@@ -36,16 +36,16 @@ const ProductsItem = ({
           <img
             src={`${okukus}/${cover_photo_url}`}
             alt="alt"
-            className="products-image item "
+            className="products-image"
           />
         </div>
         <div
-          className="products-name"
+          className="products-name "
           onClick={() => {
             history.push(`/product/${unique_id}`);
           }}
         >
-          {product_name}
+          <span className="item_name "> {product_name}</span>
         </div>
 
         {/* <div
@@ -55,7 +55,7 @@ const ProductsItem = ({
           }}
         >
           Ghc999
-        </div> */}
+        </div>  */}
 
         <div className="priceXcart">
           <div className="products-price">₵{unit_price}</div>

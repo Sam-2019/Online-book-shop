@@ -3,7 +3,7 @@
 
 .products {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 25% 25% 25% 25% ;
   padding-right: 10px;
   padding-top: 10px;
 }
@@ -46,29 +46,30 @@
 }
 
 .products-image-wrapper {
-  background-color: aquamarine;
   border-radius: 10px;
-  width: auto;
-  height: 200px;
-justify-items: center;
+  width: 100%;
+  height: 220px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .products-image {
-  background-color: aquamarine;
   border-radius: 10px;
-  width: auto;
-  height: 200px;
-justify-self: center;
+  width: 70%;
+  height: 100%;
 }
 
 .products-name {
-  font-size: 13px;
-  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 98%;
   overflow: hidden;
-  word-wrap: break-word;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.item_name {
+  font-size: 13px;
 }
 
 .products-discount-price {
@@ -103,101 +104,35 @@ justify-self: center;
   }
 
   .products {
-    width: 100%;
-    display: grid;
-    grid-template-columns: auto auto;
-    padding-right: 10px;
-    padding-top: 10px;
+    grid-template-columns: 50% 50%;
   }
 
   .products-wrapper {
-    background-color: #ffffff;
-    border-radius: 10px;
-    margin: 0 0 10px 10px;
-  }
-
-  .products-wrapper:hover,
-  .products-wrapper:focus {
-    box-shadow: 0rem 0rem 01rem 0rem #00000032 !important;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
 
   .products-group {
-    padding: 5px;
-    border-radius: 10px;
   }
 
   .products-discount-rate {
-    z-index: 2;
-    border-radius: 10px 0 10px 0;
-    width: 60px;
-    text-align: center;
-    position: absolute;
-    padding: 5px;
-    color: white;
-    font-weight: 500;
-    background: linear-gradient(
-      45deg,
-      #18bc4c 0%,
-      #23cc3c 25%,
-      #27dc2d 50%,
-      #97e63c 75%,
-      #bef033 100%
-    );
   }
 
   .products-image_wrapper {
-    background-color: aquamarine;
-    border-radius: 10px;
-    width: auto;
-    height: 200px;
-  justify-items: center;
   }
-  
+
   .products-image {
-    background-color: aquamarine;
-    border-radius: 10px;
-    width: auto;
-    height: 200px;
-  justify-self: center;
+    width: 100%;
   }
-
-
 
   .products-name {
-    font-size: 13px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    word-wrap: break-word;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
   }
 
   .products-discount-price {
-    color: cadetblue;
-    font-size: 10px;
-    text-decoration: line-through;
   }
 
   .priceXcart {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
-
 
   .products-add2cart {
-    border-radius: 50px;
-    background-color: #00d919;
-    padding: 1px 7px 5px;
-    align-items: center;
-    color: rgb(255, 255, 255);
-  }
-
-  .products-add2cart:active {
-    transform: scale(0.95);
   }
 }
 
@@ -219,19 +154,65 @@ justify-self: center;
     font-size: 15px;
   }
 
-  .products-image_wrapper {
-    background-color: aquamarine;
+  .products-image-wrapper {
     border-radius: 10px;
     width: auto;
-    height: 150px;
-
-align-self: center;
-
-
+    height: 200px;
+    text-align: center;
   }
-  
-  .products-image {
 
+  .products-image {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .products-image {
+  }
+
+  .products-name {
+  }
+
+  .products-discount-price {
+  }
+
+  .priceXcart {
+  }
+  .products-price {
+  }
+
+  .products-add2cart {
+  }
+}
+
+@media (max-width: 280px) {
+  .products {
+  }
+
+  .products-wrapper {
+  }
+
+  .products-wrapper:hover,
+  .products-wrapper:focus {
+  }
+
+  .products-discount-rate {
+  }
+
+  .products-image-wrapper {
+    border-radius: 10px;
+    width: auto;
+    height: 170px;
+    text-align: center;
+  }
+
+  .products-image {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .products-image {
   }
 
   .products-name {

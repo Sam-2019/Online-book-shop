@@ -38,7 +38,7 @@ const Products = () => {
         ) : (
           // `data` will either resolve to the latest page's data
           // or if fetching a new page, the last successful page's data
-          <div className="products">
+          <div className="products item">
             {data.map((items, index) => (
               <ProductsItem key={index} {...items} />
             ))}
