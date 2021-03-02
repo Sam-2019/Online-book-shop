@@ -18,7 +18,7 @@ import ReviewItem from "../Review/reviewItem";
 import AddReview from "./addReview";
 import Summary from "../Summary/Summary";
 import { MediaQuery } from "../helper";
-import { itemGet } from "../endpoints";
+import { itemGet, okukus } from "../endpoints";
 
 import "./product.css";
 
@@ -120,7 +120,6 @@ const Product = () => {
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + error.message;
 
-
   return (
     <div className="product-wrapper">
       <div className="header">
@@ -142,7 +141,13 @@ const Product = () => {
         <div className="wrapper">
           <div className="product-body">
             <div className="product-divide">
-              <div className="product-image"></div>
+              <div className="product-image-wrapper">
+                <img
+                  src={`${okukus}/${data.data.cover_photo_url}`}
+                  alt="peecha"
+                  className='product-image'
+                />
+              </div>
 
               <Social width={22} height={25} />
             </div>
