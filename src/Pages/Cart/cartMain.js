@@ -32,19 +32,9 @@ const CartMain = ({ data }) => {
   function onFormSubmit(messagE) {
     setMessage(messagE);
   }
+  
   return (
     <div>
-      {/* {Array(5)
-        .fill()
-        .map((items, i) => (
-          <CartItem
-            key={i}
-            {...items}
-            handleToggle={handleToggle}
-            onFormSubmit={onFormSubmit}
-          />
-        ))} */}
-
       {data.map((items, index) => (
         <CartItem
           key={index}
