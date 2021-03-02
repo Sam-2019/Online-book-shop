@@ -63,6 +63,12 @@ const Proflie = () => {
     case "Wish List":
       activePage = <WishList />;
       break;
+    case "Change Email":
+      activePage = <ChangeEmail />;
+      break;
+    case "Change Password":
+      activePage = <ChangePassword />;
+      break;
     default:
       activePage = <OrderHistory />;
       break;
@@ -159,9 +165,23 @@ const Proflie = () => {
                     Wish List
                   </div>
 
-                  <div className="option-list"> Change Email</div>
+                  <div
+                    className="option-list"
+                    onClick={() => {
+                      setActive("Change Email");
+                    }}
+                  >
+                    Change Email
+                  </div>
 
-                  <div className="option-list"> Change Password</div>
+                  <div
+                    className="option-list"
+                    onClick={() => {
+                      setActive("Change Password");
+                    }}
+                  >
+                    Change Password
+                  </div>
 
                   <div className="option-list"> Customer Service</div>
 
