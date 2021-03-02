@@ -162,7 +162,6 @@ const Product = () => {
                 </div>
 
                 <span className="product-author  ">
-                  {" "}
                   {data.data.product_author}
                 </span>
 
