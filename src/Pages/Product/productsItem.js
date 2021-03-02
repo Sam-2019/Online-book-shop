@@ -9,7 +9,6 @@ const ProductsItem = ({
   cover_photo_url,
   product_name,
   unit_price,
-  
 }) => {
   const [notify, setNotify] = React.useState(false);
 
@@ -29,7 +28,7 @@ const ProductsItem = ({
       {/* <div className="products-discount-rate">-30%</div> */}
       <div className="products-group ">
         <div
-      
+             className="products-image-wrapper "
           onClick={() => {
             history.push(`/product/${unique_id}`);
           }}
@@ -37,7 +36,7 @@ const ProductsItem = ({
           <img
             src={`${okukus}/${cover_photo_url}`}
             alt="alt"
-            className="products-image "
+            className="products-image item "
           />
         </div>
         <div
