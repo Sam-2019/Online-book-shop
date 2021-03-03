@@ -32,27 +32,6 @@ const CartItem = ({
 
   const queryClient = useQueryClient();
 
-  const showNotify = () => {
-    setNotify(true);
-
-    const timer = setTimeout(() => {
-      setNotify(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  };
-
-  const updateLove = () => {
-    setLoveFill(true);
-
-    const timer = setTimeout(() => {
-      setLoveFill(false);
-    }, 1000);
-
-    showNotify();
-
-    return () => clearTimeout(timer);
-  };
-
   const updateBin = () => {
     setBinFill(true);
 
@@ -64,11 +43,11 @@ const CartItem = ({
   };
 
   const deleteItem = async (e) => {
+    e.preventDefault();
+
     var formData = new FormData();
     formData.set("item_unique_id", unique_id);
     formData.set("buyer_unique_id", buyerID);
-
-    e.preventDefault();
 
     const { data } = await axiosMethod("post", cartDelete, formData);
     setMessage(data.message);
@@ -86,11 +65,12 @@ const CartItem = ({
   };
 
   const add2WL = async (e) => {
+    e.preventDefault();
+
     var formData = new FormData();
     formData.set("product_unique_id", product_unique_id);
     formData.set("buyer_unique_id", buyerID);
 
-    e.preventDefault();
     setLoveFill(false);
 
     const { data } = await axiosMethod("post", wishCreate, formData);
