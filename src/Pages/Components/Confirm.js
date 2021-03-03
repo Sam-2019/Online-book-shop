@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import Button from "../Components/Button";
 import "./confirm.css";
 
-const Confirm = ({ close, children, primary, secondary }) => {
+const Confirm = ({ close, children, primary, secondary, primaryaction }) => {
   return (
     <div className="popup-wrapper">
       <div className="confirm">
         <div className="confirm-delete">{children}</div>
 
-        <Button class_name="primary" name={primary} />
+        <Button class_name="primary" name={primary} action={primaryaction}/>
         <Button class_name="secondary" name={secondary} action={close} />
       </div>
     </div>
