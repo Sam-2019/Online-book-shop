@@ -17,8 +17,8 @@ import LoveFill from "../Components/LoveFill";
 import ReviewItem from "../Review/reviewItem";
 import AddReview from "./addReview";
 import Summary from "../Summary/Summary";
-import { MediaQuery } from "../helper";
-import { itemGet, okukus } from "../endpoints";
+import { MediaQuery, axiosMethod } from "../helper";
+import { itemGet, okukus, cartAdd, buyerID, wishCreate } from "../endpoints";
 
 import "./product.css";
 
@@ -49,29 +49,11 @@ const Product = () => {
   const [contractDescription, expandDescription] = React.useState(true);
   const [review, addReview] = React.useState(false);
   const [loveFill, setLoveFill] = React.useState(false);
+  const [message, setMessage] = React.useState("");
 
-  const updateLove = () => {
-    setLoveFill(true);
-
-    const timer = setTimeout(() => {
-      setLoveFill(false);
-    }, 1000);
-
-    showNotify();
-
-    return () => clearTimeout(timer);
-  };
-
-  const showNotify = () => {
-    setLoading(true);
-    setNotify(true);
-
-    const timer = setTimeout(() => {
-      setNotify(false);
-      setLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  };
+  var formData = new FormData();
+  formData.set("product_unique_id", id);
+  formData.set("buyer_unique_id", buyerID);
 
   const ToggleDescription = () => {
     expandDescription(!contractDescription);
@@ -100,9 +82,6 @@ const Product = () => {
     }
   };
 
-  var formData = new FormData();
-  formData.set("product_unique_id", id);
-
   const queryClient = useQueryClient();
   queryClient.invalidateQueries("product");
 
@@ -116,6 +95,46 @@ const Product = () => {
         console.error("Error:", error);
       })
   );
+
+  const add2Cart = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const { data } = await axiosMethod("post", cartAdd, formData);
+    setMessage(data.message);
+
+    if (data.error === false) {
+      queryClient.invalidateQueries("carts");
+      setNotify(true);
+    }
+
+    setLoading(false);
+
+    const timer = setTimeout(() => {
+      setNotify(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  };
+
+  const add2WL = async (e) => {
+    e.preventDefault();
+    setLoveFill(false);
+
+    const { data } = await axiosMethod("post", wishCreate, formData);
+    console.log(data);
+    setMessage(data.message);
+
+    if (data.error === false) {
+      setLoveFill(true);
+      setNotify(true);
+    }
+
+    const timer = setTimeout(() => {
+      setNotify(false);
+      setLoveFill(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  };
 
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + error.message;
@@ -145,7 +164,7 @@ const Product = () => {
                 <img
                   src={`${okukus}/${data.data.cover_photo_url}`}
                   alt="peecha"
-                  className='product-image'
+                  className="product-image"
                 />
               </div>
 
@@ -157,7 +176,7 @@ const Product = () => {
                 <div className="nameXaction">
                   <div className="product-name "> {data.data.product_name}</div>
 
-                  <div className="love " onClick={updateLove}>
+                  <div className="love " onClick={add2WL}>
                     {loveFill ? (
                       <LoveFill width={18} height={20} />
                     ) : (
@@ -282,7 +301,7 @@ const Product = () => {
       ) : null}
 
       {notify ? (
-        <Notify close={() => setNotify(false)}>Item added to cart</Notify>
+        <Notify close={() => setNotify(false)}>{message}</Notify>
       ) : null}
 
       <Summary>
@@ -301,7 +320,7 @@ const Product = () => {
           <Button
             name="Add to Cart"
             class_name="addCart"
-            action={showNotify}
+            action={add2Cart}
             loading={loading}
           />
 
