@@ -24,7 +24,6 @@ const ProductsItem = ({
     formData.set("buyer_unique_id", buyerID);
 
     const { data } = await axiosMethod("post", wishCreate, formData);
-    console.log(data);
     setMessage(data.message);
 
     if (data.error === false) {
