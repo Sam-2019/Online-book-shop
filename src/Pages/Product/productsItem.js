@@ -2,7 +2,8 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Notify from "../Components/Notify";
 import Cart from "../Components/Cart";
-import { okukus } from "../endpoints";
+import { okukus, buyerID, wishCreate } from "../endpoints";
+import { axiosMethod } from "../helper";
 
 const ProductsItem = ({
   unique_id,
@@ -11,17 +12,30 @@ const ProductsItem = ({
   unit_price,
 }) => {
   const [notify, setNotify] = React.useState(false);
+  const [message, setMessage] = React.useState("");
 
-  const showNotify = () => {
-    setNotify(true);
+  let history = useHistory();
+
+  const add2WL = async (e) => {
+    e.preventDefault();
+
+    var formData = new FormData();
+    formData.set("product_unique_id", unique_id);
+    formData.set("buyer_unique_id", buyerID);
+
+    const { data } = await axiosMethod("post", wishCreate, formData);
+    console.log(data);
+    setMessage(data.message);
+
+    if (data.error === false) {
+      setNotify(true);
+    }
 
     const timer = setTimeout(() => {
       setNotify(false);
-    }, 3000);
+    }, 2000);
     return () => clearTimeout(timer);
   };
-
-  let history = useHistory();
 
   return (
     <div className="products-wrapper">
@@ -59,14 +73,14 @@ const ProductsItem = ({
 
         <div className="priceXcart">
           <div className="products-price">₵{unit_price}</div>
-          <div className="products-add2cart">
-            <Cart width={17} height={17} action={showNotify} />
+          <div className="products-add2cart" onClick={add2WL}>
+            <Cart width={17} height={17} />
           </div>
         </div>
       </div>
 
       {notify ? (
-        <Notify close={() => setNotify(false)}>Item added to cart</Notify>
+        <Notify close={() => setNotify(false)}>{message}</Notify>
       ) : null}
     </div>
   );
