@@ -121,7 +121,6 @@ const Product = () => {
     setLoveFill(false);
 
     const { data } = await axiosMethod("post", wishCreate, formData);
-    console.log(data);
     setMessage(data.message);
 
     if (data.error === false) {
