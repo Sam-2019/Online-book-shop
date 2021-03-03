@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useQueryClient } from "react-query";
 import Notify from "../Components/Notify";
 import Add from "../Components/Add";
 import Subtract from "../Components/Subtract";
@@ -8,6 +9,8 @@ import BinFIll from "../Components/BinFill";
 import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
 import Confirm from "../Components/Confirm";
+import { cartDelete, buyerID } from "../endpoints";
+import { axiosMethod } from "../helper";
 import "./cartItem.css";
 
 const CartItem = ({
@@ -25,6 +28,13 @@ const CartItem = ({
   const [binFill, setBinFill] = React.useState(false);
   const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
+  const [message, setMessage] = React.useState("");
+
+  var formData = new FormData();
+  formData.set("item_unique_id", unique_id);
+  formData.set("buyer_unique_id", buyerID);
+
+  const queryClient = useQueryClient();
 
   const showNotify = () => {
     setNotify(true);
@@ -57,14 +67,36 @@ const CartItem = ({
     return () => clearTimeout(timer);
   };
 
+  const deleteItem = async (e) => {
+    e.preventDefault();
+
+    const { data } = await axiosMethod("post", cartDelete, formData);
+    setMessage(data.message);
+    console.log(data);
+
+    if (data.message === "cart item deleted successfully") {
+      queryClient.invalidateQueries("carts");
+      setNotify(true);
+      setConfirm(false);
+    }
+
+    const timer = setTimeout(() => {
+      setNotify(false);
+    }, 10000);
+    return () => clearTimeout(timer);
+
+  };
+
   return (
     <>
       <div className="cart_item_wrapper">
-        <div className="checkBox">
+        <div className="checkBox item">
           <input
             onChange={handleToggle(unique_id)}
             type="checkbox"
-            value="0"
+            value={unique_id}
+            id={product_name}
+            name={product_name}
           />
         </div>
 
@@ -73,7 +105,9 @@ const CartItem = ({
             <div className="image-placeholder  loading"></div>
 
             <div className="nameXprice">
-              <div className="item-name">{product_name}</div>
+              <label htmlFor={product_name} className="item-name">
+                {product_name}
+              </label>
 
               <div className="item-price">GHc {unit_price}</div>
             </div>
@@ -116,13 +150,14 @@ const CartItem = ({
         </div>
       </div>
       {notify ? (
-        <Notify close={() => setNotify(false)}>Item added to wish list</Notify>
+        <Notify close={() => setNotify(false)}>{message}</Notify>
       ) : null}
 
       {confirm ? (
         <Confirm
           close={() => setConfirm(false)}
           primary="Delete"
+          primaryaction={deleteItem}
           secondary="Cancel"
         >
           Are you sure you want to remove this product from your shopping cart?
