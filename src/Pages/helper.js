@@ -4,7 +4,6 @@ import { useQuery } from "react-query";
 import { itemsGet } from "./endpoints";
 
 const intervalMs = 10000;
-var formData = new FormData();
 
 export async function fetchProjects(page = 0) {
   const { data } = await axios({
@@ -51,4 +50,73 @@ export const MediaQuery = () => {
 
   // Return the width so we can use it in our components
   return { width };
+};
+
+const dataFetchReducer = (state, action) => {
+  switch (action.type) {
+    case "FETCH_INIT":
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case "FETCH_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        data: action.payload,
+      };
+    case "FETCH_FAILURE":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+    default:
+      throw new Error();
+  }
+};
+
+export const useDataApi = (url, formData, initialData) => {
+  const [state, dispatch] = React.useReducer(dataFetchReducer, {
+    isLoading: false,
+    isError: false,
+    data: initialData,
+  });
+
+  React.useEffect(() => {
+    let didCancel = false;
+
+    const fetchData = async () => {
+      dispatch({ type: "FETCH_INIT" });
+
+      try {
+        const result = await axios({
+          method: "post",
+          url: url,
+          data: formData,
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+
+        console.log(result);
+
+        if (!didCancel) {
+          dispatch({ type: "FETCH_SUCCESS", payload: result.data });
+        }
+      } catch (error) {
+        if (!didCancel) {
+          dispatch({ type: "FETCH_FAILURE" });
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      didCancel = true;
+    };
+  }, [ ]);
+
+  return [state];
 };
