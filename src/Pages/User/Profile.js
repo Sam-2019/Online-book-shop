@@ -13,7 +13,7 @@ import ProfilePhoto from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
 import { okukus, profileImageGet, buyerID, profliePhoto } from "../endpoints";
 
-import { MediaQuery } from "../helper";
+import { MediaQuery, useDataApi } from "../helper";
 import "./profile.css";
 
 const Proflie = () => {
@@ -74,22 +74,54 @@ const Proflie = () => {
       break;
   }
 
-  const userImage = async () => {
-    const { data } = await axios({
-      method: "post",
-      url: profileImageGet,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-
-    if (data.error === false && data.message === "account found") {
-      setProfileImage(`${okukus}/${data.data.profile_photo_url}`);
-    }
-  };
-
   React.useEffect(() => {
+    let didCancel = false;
+    async function userImage() {
+      const { data } = await axios({
+        method: "post",
+        url: profileImageGet,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      if (!didCancel) {
+        if (data.error === false && data.message === "account found") {
+          setProfileImage(`${okukus}/${data.data.profile_photo_url}`);
+        }
+      }
+    }
     userImage();
-  }, [userImage]);
+
+    return () => {
+      didCancel = true;
+    };
+  }, [formData]);
+
+  // const userImage = async () => {
+  //   const { data } = await axios({
+  //     method: "post",
+  //     url: profileImageGet,
+  //     data: formData,
+  //     headers: { "Content-Type": "multipart/form-data" },
+  //   });
+
+  //   console.log(data)
+
+  //   if (data.error === false && data.message === "account found") {
+  //     setProfileImage(`${okukus}/${data.data.profile_photo_url}`);
+  //   }
+  // };
+
+  // React.useEffect(() => {
+  //   userImage();
+  // }, [userImage]);
+
+  // const [{ data, isLoading, isError }, doFetch] = useDataApi(
+  //   profileImageGet,
+  //   formData,
+  //   {
+  //     hits: "",
+  //   }
+  // );
 
   return (
     <div className="user-wrapper">
@@ -278,6 +310,12 @@ const Proflie = () => {
           </PopUp>
         ) : null}
       </div>
+
+      {/* <>
+        {isError && <div>Something went wrong ...</div>}
+
+        {isLoading ? <div>Loading ...</div> : <>hello</>}
+      </> */}
     </div>
   );
 };
