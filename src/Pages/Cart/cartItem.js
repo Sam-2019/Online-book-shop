@@ -9,7 +9,7 @@ import BinFIll from "../Components/BinFill";
 import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
 import Confirm from "../Components/Confirm";
-import { cartDelete, buyerID } from "../endpoints";
+import { cartDelete, buyerID, wishCreate } from "../endpoints";
 import { axiosMethod } from "../helper";
 import "./cartItem.css";
 
@@ -29,10 +29,6 @@ const CartItem = ({
   const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
   const [message, setMessage] = React.useState("");
-
-  var formData = new FormData();
-  formData.set("item_unique_id", unique_id);
-  formData.set("buyer_unique_id", buyerID);
 
   const queryClient = useQueryClient();
 
@@ -68,11 +64,14 @@ const CartItem = ({
   };
 
   const deleteItem = async (e) => {
+    var formData = new FormData();
+    formData.set("item_unique_id", unique_id);
+    formData.set("buyer_unique_id", buyerID);
+
     e.preventDefault();
 
     const { data } = await axiosMethod("post", cartDelete, formData);
     setMessage(data.message);
-    console.log(data);
 
     if (data.message === "cart item deleted successfully") {
       queryClient.invalidateQueries("carts");
@@ -82,9 +81,31 @@ const CartItem = ({
 
     const timer = setTimeout(() => {
       setNotify(false);
-    }, 10000);
+    }, 3000);
     return () => clearTimeout(timer);
+  };
 
+  const add2WL = async (e) => {
+    var formData = new FormData();
+    formData.set("product_unique_id", product_unique_id);
+    formData.set("buyer_unique_id", buyerID);
+
+    e.preventDefault();
+    setLoveFill(false);
+
+    const { data } = await axiosMethod("post", wishCreate, formData);
+    setMessage(data.message);
+
+    if (data.error === false) {
+      setLoveFill(true);
+      setNotify(true);
+    }
+
+    const timer = setTimeout(() => {
+      setNotify(false);
+      setLoveFill(false);
+    }, 2000);
+    return () => clearTimeout(timer);
   };
 
   return (
@@ -114,7 +135,7 @@ const CartItem = ({
           </div>
 
           <div className="priceXactions">
-            <div className="love " onClick={updateLove}>
+            <div className="love " onClick={add2WL}>
               {loveFill ? (
                 <LoveFill width={18} height={20} />
               ) : (
