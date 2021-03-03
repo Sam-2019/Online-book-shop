@@ -120,3 +120,13 @@ export const useDataApi = (url, formData, initialData) => {
 
   return [state];
 };
+
+export const axiosMethod = async (type, url, formData) => {
+  const method = await axios({
+    method: type,
+    url: url,
+    data: formData,
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+  return method;
+};
