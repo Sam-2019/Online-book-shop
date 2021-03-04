@@ -1,9 +1,19 @@
-import React from "react";
+import React, { Fragment, useState, useEffect, useReducer } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { itemsGet } from "./endpoints";
 
 const intervalMs = 10000;
+
+export const axiosMethod = async (type, url, formData) => {
+  const method = await axios({
+    method: type,
+    url: url,
+    data: formData,
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+  return method;
+};
 
 export async function fetchProjects(page = 0) {
   const { data } = await axios({
@@ -78,14 +88,14 @@ const dataFetchReducer = (state, action) => {
   }
 };
 
-export const useDataApi = (url, formData, initialData) => {
-  const [state, dispatch] = React.useReducer(dataFetchReducer, {
+export const useDataApi = (url, formData) => {
+  const [state, dispatch] = useReducer(dataFetchReducer, {
     isLoading: false,
     isError: false,
-    data: initialData,
+    data: [],
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     let didCancel = false;
 
     const fetchData = async () => {
@@ -98,8 +108,6 @@ export const useDataApi = (url, formData, initialData) => {
           data: formData,
           headers: { "Content-Type": "multipart/form-data" },
         });
-
-        console.log(result);
 
         if (!didCancel) {
           dispatch({ type: "FETCH_SUCCESS", payload: result.data });
@@ -116,17 +124,7 @@ export const useDataApi = (url, formData, initialData) => {
     return () => {
       didCancel = true;
     };
-  }, [ ]);
+  }, []);
 
   return [state];
-};
-
-export const axiosMethod = async (type, url, formData) => {
-  const method = await axios({
-    method: type,
-    url: url,
-    data: formData,
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-  return method;
 };
