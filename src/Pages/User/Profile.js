@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 import Back from "../Components/Back";
 import Pen from "../Components/Pen";
 import PopUp from "../Components/Popup";
@@ -13,7 +12,7 @@ import ProfilePhoto from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
 import { okukus, profileImageGet, buyerID, profliePhoto } from "../endpoints";
 
-import { MediaQuery, useDataApi } from "../helper";
+import { MediaQuery, axiosMethod } from "../helper";
 import "./profile.css";
 
 const Proflie = () => {
@@ -76,13 +75,10 @@ const Proflie = () => {
 
   React.useEffect(() => {
     let didCancel = false;
+
     async function userImage() {
-      const { data } = await axios({
-        method: "post",
-        url: profileImageGet,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const { data } = await axiosMethod('post', profileImageGet, formData)
+
       if (!didCancel) {
         if (data.error === false && data.message === "account found") {
           setProfileImage(`${okukus}/${data.data.profile_photo_url}`);
@@ -96,32 +92,6 @@ const Proflie = () => {
     };
   }, [formData]);
 
-  // const userImage = async () => {
-  //   const { data } = await axios({
-  //     method: "post",
-  //     url: profileImageGet,
-  //     data: formData,
-  //     headers: { "Content-Type": "multipart/form-data" },
-  //   });
-
-  //   console.log(data)
-
-  //   if (data.error === false && data.message === "account found") {
-  //     setProfileImage(`${okukus}/${data.data.profile_photo_url}`);
-  //   }
-  // };
-
-  // React.useEffect(() => {
-  //   userImage();
-  // }, [userImage]);
-
-  // const [{ data, isLoading, isError }, doFetch] = useDataApi(
-  //   profileImageGet,
-  //   formData,
-  //   {
-  //     hits: "",
-  //   }
-  // );
 
   return (
     <div className="user-wrapper">
