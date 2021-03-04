@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useQuery } from "react-query";
 import OrderItem from "./order-item";
 import Back from "../../Components/Back";
@@ -8,6 +9,30 @@ import { backendData } from "../../helper";
 const OrderHistory = () => {
   var formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
+
+  const [qty, setQty] = React.useState(0);
+
+  React.useEffect(() => {
+    let didCancel = false;
+
+    async function oData() {
+      const result = await axios({
+        method: "post",
+        url: orderHistory,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      if (!didCancel) {
+        setQty(result.data.data.length);
+      }
+    }
+    oData();
+
+    return () => {
+      didCancel = true;
+    };
+  }, [formData]);
 
   const { status, data, error, isFetching, isPreviousData } = useQuery(
     ["orderHistory", orderHistory, formData],
@@ -27,7 +52,7 @@ const OrderHistory = () => {
           <div className="object-1">
             <Back width={30} height={30} />
           </div>
-          <div className="object-2"> Orders (1)</div>
+          <div className="object-2"> Orders ({qty})</div>
         </div>
       </div>
 
