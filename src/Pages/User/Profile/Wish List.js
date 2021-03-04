@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import WishItem from "./wish-item";
 import Back from "../../Components/Back";
 import { buyerID, wishList } from "../../endpoints";
-import { backendData } from "../../helper";
+import { backendData, axiosMethod } from "../../helper";
 
 const WishList = () => {
   var formData = new FormData();
@@ -16,15 +16,10 @@ const WishList = () => {
     let didCancel = false;
 
     async function wlData() {
-      const result = await axios({
-        method: "post",
-        url: wishList,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const { data } = await axiosMethod("post", wishList, formData);
 
       if (!didCancel) {
-        setQty(result.data.data.length);
+        setQty(data.data.length);
       }
     }
     wlData();
@@ -57,7 +52,6 @@ const WishList = () => {
 
       <div className="main ">
         <div className="wrapper-item">
-          
           {/* {Array(10)
             .fill()
             .map((item, index) => (

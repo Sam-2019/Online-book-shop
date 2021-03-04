@@ -9,7 +9,7 @@ import {
   QueryClientProvider,
 } from "react-query";
 import { useHistory } from "react-router-dom";
-import { MediaQuery, backendData } from "../helper";
+import { MediaQuery, backendData, axiosMethod } from "../helper";
 import Back from "../Components/Back";
 import Bin from "../Components/Bin";
 import Button from "../Components/Button";
@@ -34,15 +34,10 @@ const Cart = () => {
     let didCancel = false;
 
     async function cartData() {
-      const result = await axios({
-        method: "post",
-        url: cartGet,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const { data } = await axiosMethod("post", cartGet, formData);
 
       if (!didCancel) {
-        setQty(result.data.data.length);
+        setQty(data.data.length);
       }
     }
     cartData();
