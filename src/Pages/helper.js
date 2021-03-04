@@ -102,15 +102,10 @@ export const useDataApi = (url, formData) => {
       dispatch({ type: "FETCH_INIT" });
 
       try {
-        const result = await axios({
-          method: "post",
-          url: url,
-          data: formData,
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+        const { data } = await axiosMethod("post", url, formData);
 
         if (!didCancel) {
-          dispatch({ type: "FETCH_SUCCESS", payload: result.data });
+          dispatch({ type: "FETCH_SUCCESS", payload: data });
         }
       } catch (error) {
         if (!didCancel) {
