@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Notify from "../Components/Notify";
 import Cart from "../Components/Cart";
-import { okukus, buyerID, wishCreate } from "../endpoints";
+import { okukus, buyerID, cartAdd } from "../endpoints";
 import { axiosMethod } from "../helper";
 
 const ProductsItem = ({
@@ -16,14 +16,15 @@ const ProductsItem = ({
 
   let history = useHistory();
 
-  const add2WL = async (e) => {
+  const add2Cart = async (e) => {
     e.preventDefault();
 
     var formData = new FormData();
     formData.set("product_unique_id", unique_id);
     formData.set("buyer_unique_id", buyerID);
 
-    const { data } = await axiosMethod("post", wishCreate, formData);
+    const { data } = await axiosMethod("post", cartAdd, formData);
+    console.log(data)
     setMessage(data.message);
 
     if (data.error === false) {
@@ -58,7 +59,7 @@ const ProductsItem = ({
             history.push(`/product/${unique_id}`);
           }}
         >
-          <span className="item_name "> {product_name}</span>
+          <span className="item_name ">{product_name}</span>
         </div>
 
         {/* <div
@@ -72,7 +73,7 @@ const ProductsItem = ({
 
         <div className="priceXcart">
           <div className="products-price">₵{unit_price}</div>
-          <div className="products-add2cart" onClick={add2WL}>
+          <div className="products-add2cart" onClick={add2Cart}>
             <Cart width={17} height={17} />
           </div>
         </div>
