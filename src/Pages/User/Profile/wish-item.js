@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useQueryClient } from "react-query";
 import { useHistory } from "react-router-dom";
 import Bin from "../../Components/Bin";
 import Notify from "../../Components/Notify";
 import Confirm from "../../Components/Confirm";
 import Button from "../../Components/Button";
-import { MediaQuery } from "../../helper";
+import { wishDelete, buyerID } from "../../endpoints";
+import { MediaQuery, axiosMethod } from "../../helper";
 import "./wishitem.css";
 
 const WishItem = ({
@@ -26,6 +28,9 @@ const WishItem = ({
   const { width } = MediaQuery();
   const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
+  const [message, setMessage] = React.useState("");
+
+  const queryClient = useQueryClient();
 
   let history = useHistory();
 
@@ -40,6 +45,28 @@ const WishItem = ({
 
   const updateBin = () => {
     setConfirm(true);
+  };
+
+  const removeItem = async (e) => {
+    e.preventDefault();
+
+    var formData = new FormData();
+    formData.set("buyer_unique_id", buyerID);
+    formData.set("item_unique_id", unique_id);
+
+    const { data } = await axiosMethod("post", wishDelete, formData);
+    setMessage(data.message);
+
+  if (data.message === "wishlist item deleted successfully") {
+     queryClient.invalidateQueries("wishList");
+    setNotify(true);
+     setConfirm(false);
+   }
+
+    const timer = setTimeout(() => {
+      setNotify(false);
+     }, 3000);
+    return () => clearTimeout(timer);
   };
 
   return (
@@ -104,13 +131,14 @@ const WishItem = ({
       </div>
 
       {notify ? (
-        <Notify message="Item added to cart" close={() => setNotify(false)} />
+        <Notify close={() => setNotify(false)}>{message}</Notify>
       ) : null}
 
       {confirm ? (
         <Confirm
           close={() => setConfirm(false)}
           primary="Remove"
+          primaryaction={removeItem}
           secondary="Cancel"
         >
           Are you sure you want to remove this item from your wish list?
