@@ -59,8 +59,9 @@ const WishItem = ({
 
   if (data.message === "wishlist item deleted successfully") {
      queryClient.invalidateQueries("wishList");
-    setNotify(true);
      setConfirm(false);
+    setNotify(true);
+ 
    }
 
     const timer = setTimeout(() => {
