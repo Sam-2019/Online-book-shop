@@ -3,7 +3,6 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import WishItem from "./wish-item";
 import Back from "../../Components/Back";
-import Bin from "../../Components/Bin";
 import { buyerID, wishList } from "../../endpoints";
 import { backendData } from "../../helper";
 
