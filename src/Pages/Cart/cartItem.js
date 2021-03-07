@@ -30,6 +30,8 @@ const CartItem = ({
   const [confirm, setConfirm] = React.useState(false);
   const [message, setMessage] = React.useState("");
 
+  const [count, setCount] = React.useState(1);
+
   const queryClient = useQueryClient();
 
   const updateBin = () => {
@@ -88,10 +90,22 @@ const CartItem = ({
     return () => clearTimeout(timer);
   };
 
+  function Plus() {
+    setCount((count) => count + 1);
+  }
+
+  function Minus() {
+    if (count <= 1) {
+      return;
+    } else {
+      setCount((count) => count - 1);
+    }
+  }
+
   return (
     <>
       <div className="cart_item_wrapper">
-        <div className="checkBox item">
+        <div className="checkBox">
           <input
             onChange={handleToggle(unique_id)}
             type="checkbox"
@@ -137,13 +151,13 @@ const CartItem = ({
             "
               >
                 <div className="subtract">
-                  <Subtract width={16} height={25} />
+                  <Subtract width={16} height={25} action={Minus} />
                 </div>
 
-                <div className="quantity">1</div>
+                <div className="quantity">{count}</div>
 
                 <div className="add">
-                  <Add width={16} height={25} />
+                  <Add width={16} height={25} action={Plus} />
                 </div>
               </div>
             </div>
