@@ -33,6 +33,9 @@ const CartMain = ({ data }) => {
     setMessage(messagE);
   }
   
+
+
+
   return (
     <div>
       {data.map((items, index) => (

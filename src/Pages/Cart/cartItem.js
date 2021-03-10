@@ -55,6 +55,7 @@ const CartItem = ({
     setMessage(data.message);
 
     if (data.message === "cart item deleted successfully") {
+      queryClient.invalidateQueries("summaryData");
       queryClient.invalidateQueries("carts");
       setNotify(true);
       setConfirm(false);
@@ -117,7 +118,7 @@ const CartItem = ({
 
         <div className="cart-item-detail">
           <div className="imageXname">
-            <div className="image-placeholder  loading"></div>
+            <div className="image-placeholder-original "></div>
 
             <div className="nameXprice">
               <label htmlFor={product_name} className="item-name">
