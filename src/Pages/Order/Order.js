@@ -12,6 +12,7 @@ import PopUp from "../Components/Popup";
 import Question from "../Components/Question";
 import Success from "../Components/Success Container";
 import { MediaQuery } from "../helper";
+import { useData } from "../Context";
 
 import { buyerID, locationsGet, feeGet } from "../endpoints";
 
@@ -42,8 +43,8 @@ const list = [
 ];
 
 const Order = () => {
-  let amount = 10000;
-  let quantity = 100;
+  const { amount, quantity } = useData();
+
   let breakpoint = 540;
   let history = useHistory();
   let { id } = useParams();
