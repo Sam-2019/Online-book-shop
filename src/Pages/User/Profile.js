@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 import Back from "../Components/Back";
 import Pen from "../Components/Pen";
 import PopUp from "../Components/Popup";
@@ -14,6 +15,23 @@ import { okukus, profileImageGet, buyerID, profliePhoto } from "../endpoints";
 
 import { MediaQuery, axiosMethod } from "../helper";
 import "./profile.css";
+
+const SmallView = styled.div`
+  width: 320px;
+  padding: 0 0 0 10px;
+
+  @media (max-width: 540px) {
+    padding: 0;
+  }
+
+  @media (max-width: 320px) {
+    padding: 0;
+  }
+
+  @media (max-width: 280px) {
+    padding: 0;
+  }
+`;
 
 const Proflie = () => {
   let history = useHistory();
@@ -63,10 +81,18 @@ const Proflie = () => {
       activePage = <WishList />;
       break;
     case "Change Email":
-      activePage = <ChangeEmail />;
+      activePage = (
+        <SmallView>
+          <ChangeEmail />
+        </SmallView>
+      );
       break;
     case "Change Password":
-      activePage = <ChangePassword />;
+      activePage = (
+        <SmallView>
+          <ChangePassword />
+        </SmallView>
+      );
       break;
     default:
       activePage = <OrderHistory />;
@@ -77,7 +103,7 @@ const Proflie = () => {
     let didCancel = false;
 
     async function userImage() {
-      const { data } = await axiosMethod('post', profileImageGet, formData)
+      const { data } = await axiosMethod("post", profileImageGet, formData);
 
       if (!didCancel) {
         if (data.error === false && data.message === "account found") {
@@ -91,7 +117,6 @@ const Proflie = () => {
       didCancel = true;
     };
   }, [formData]);
-
 
   return (
     <div className="user-wrapper">
