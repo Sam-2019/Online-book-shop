@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { useQueryClient } from "react-query";
 import ProfilePhoto from "./Profile Photo";
 import {
   buyerID,
@@ -7,14 +8,18 @@ import {
   profileImageGet,
   okukus,
 } from "../endpoints";
+import { useData } from "../Context";
 import "./profilePhoto.css";
 
 const ProfiilePhotoUpdate = () => {
   const [change, setChange] = React.useState(false);
   const [imagePreviewUrl, setimagePreviewUrl] = React.useState("");
-  const [currentImage, newImage] = React.useState("");
+  //const [currentImage, newImage] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const formData = new FormData();
+
+  const { profileImage } = useData();
+  const queryClient = useQueryClient();
 
   formData.set("buyer_unique_id", buyerID);
 
@@ -45,6 +50,8 @@ const ProfiilePhotoUpdate = () => {
     if (data.error === false) {
       setLoading(false);
       reader.readAsDataURL(pic);
+      console.log(data);
+      queryClient.invalidateQueries("userImage");
     } else if (data.error === true) {
       setLoading(false);
     }
@@ -52,22 +59,22 @@ const ProfiilePhotoUpdate = () => {
 
   //{error: true, message: "JPG, JPEG, & PNG files are allowed to upload."}
 
-  React.useEffect(() => {
-    const userImage = async () => {
-      const { data } = await axios({
-        method: "post",
-        url: profileImageGet,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+  // React.useEffect(() => {
+  //   const userImage = async () => {
+  //     const { data } = await axios({
+  //       method: "post",
+  //       url: profileImageGet,
+  //       data: formData,
+  //       headers: { "Content-Type": "multipart/form-data" },
+  //     });
 
-      if (data.error === false && data.message === "account found") {
-        newImage(`${okukus}/${data.data.profile_photo_url}`);
-      }
-    };
+  //     if (data.error === false && data.message === "account found") {
+  //       newImage(`${okukus}/${data.data.profile_photo_url}`);
+  //     }
+  //   };
 
-    userImage();
-  }, []);
+  //   userImage();
+  // }, []);
 
   return (
     <>
@@ -76,7 +83,7 @@ const ProfiilePhotoUpdate = () => {
           {imagePreviewUrl ? (
             <ProfilePhoto className="just-image" src={imagePreviewUrl} />
           ) : (
-            <ProfilePhoto className="just-image" src={currentImage} />
+            <ProfilePhoto className="just-image" src={profileImage} />
           )}
 
           <div className="middle" onClick={openBox}>
