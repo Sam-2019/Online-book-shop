@@ -17,10 +17,10 @@ import Summary from "../Summary/Summary";
 import CartMain from "./cartMain";
 import { buyerID, cartGet } from "../endpoints";
 import "./cart.css";
+import { useData } from "../Context";
 
 const Cart = () => {
-  let amount = 10000;
-  let quantity = 100;
+  const { amount, quantity } = useData();
   let history = useHistory();
   const { width } = MediaQuery();
   const breakpoint = 540;
@@ -28,24 +28,22 @@ const Cart = () => {
   var formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
 
-  const [qty, setQty] = React.useState(0);
+  // React.useEffect(() => {
+  //   let didCancel = false;
 
-  React.useEffect(() => {
-    let didCancel = false;
+  //   async function cartData() {
+  //     const { data } = await axiosMethod("post", cartGet, formData);
 
-    async function cartData() {
-      const { data } = await axiosMethod("post", cartGet, formData);
+  //     if (!didCancel) {
+  //       setQty(data.data.length);
+  //     }
+  //   }
+  //   cartData();
 
-      if (!didCancel) {
-        setQty(data.data.length);
-      }
-    }
-    cartData();
-
-    return () => {
-      didCancel = true;
-    };
-  }, [formData]);
+  //   return () => {
+  //     didCancel = true;
+  //   };
+  // }, [formData]);
 
   const { status, data, error, isFetching, isPreviousData } = useQuery(
     ["carts", cartGet, formData],
@@ -60,6 +58,11 @@ const Cart = () => {
   var array = new Uint32Array(1);
   var index = window.crypto.getRandomValues(array);
 
+
+  if(isFetching) {
+    <>Loading!</>
+  }
+
   return (
     <div className="cart-wrapper">
       <div className="header">
@@ -67,7 +70,7 @@ const Cart = () => {
           <div className="object-1">
             <Back width={30} height={30} />
           </div>
-          <div className="object-2"> Cart ({qty})</div>
+          <div className="object-2"> Cart ({quantity})</div>
         </div>
 
         <div className="category">
