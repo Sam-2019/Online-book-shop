@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Okukus from "./Pages/Okukus";
 import "bootstrap/dist/css/bootstrap.css";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ContextProvider } from "./Pages/Context";
 import "./Pages/okukus.css";
 
 // import Container from "./Design System/Container";
@@ -23,7 +24,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AppBackgroundColour>
+      <ContextProvider>
         <Okukus />
+        </ContextProvider>
       </AppBackgroundColour>
     </QueryClientProvider>
   );
