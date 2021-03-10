@@ -12,6 +12,7 @@ import WishList from "./Profile/Wish List";
 import ProfilePhoto from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
 import { okukus, profileImageGet, buyerID, profliePhoto } from "../endpoints";
+import { useData } from "../Context";
 
 import { MediaQuery, axiosMethod } from "../helper";
 import "./profile.css";
@@ -36,6 +37,7 @@ const SmallView = styled.div`
 const Proflie = () => {
   let history = useHistory();
   let { width } = MediaQuery();
+  const { profileImage } = useData();
   const breakpoint = 540;
   let activePage;
   const [password, updatePassword] = React.useState(false);
@@ -43,7 +45,7 @@ const Proflie = () => {
   const [name, updateName] = React.useState(false);
   const [verify, setVerify] = React.useState(false);
 
-  const [profileImage, setProfileImage] = React.useState("");
+  //const [profileImage, setProfileImage] = React.useState("");
 
   const [active, setActive] = React.useState("Order History");
   const formData = new FormData();
@@ -99,24 +101,24 @@ const Proflie = () => {
       break;
   }
 
-  React.useEffect(() => {
-    let didCancel = false;
+  // React.useEffect(() => {
+  //   let didCancel = false;
 
-    async function userImage() {
-      const { data } = await axiosMethod("post", profileImageGet, formData);
+  //   async function userImage() {
+  //     const { data } = await axiosMethod("post", profileImageGet, formData);
 
-      if (!didCancel) {
-        if (data.error === false && data.message === "account found") {
-          setProfileImage(`${okukus}/${data.data.profile_photo_url}`);
-        }
-      }
-    }
-    userImage();
+  //     if (!didCancel) {
+  //       if (data.error === false && data.message === "account found") {
+  //         setProfileImage(`${okukus}/${data.data.profile_photo_url}`);
+  //       }
+  //     }
+  //   }
+  //   userImage();
 
-    return () => {
-      didCancel = true;
-    };
-  }, [formData]);
+  //   return () => {
+  //     didCancel = true;
+  //   };
+  // }, [formData]);
 
   return (
     <div className="user-wrapper">
