@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import {
+  okukus,
   dev_site,
   itemsGet,
   itemGet,
@@ -33,6 +34,7 @@ import {
   wishDelete,
   userWelcome,
   buyerID,
+  profileImageGet,
 } from "./endpoints";
 import { axiosMethod, useLocalStorage } from "./helper";
 
@@ -55,6 +57,8 @@ const Data = () => {
 
   const [amount, setAmount] = useState(0);
   const [quantity, setQuantity] = useState(0);
+
+  const [profileImage, setProfileImage] = useState("");
 
   const queryClient = useQueryClient();
 
@@ -87,10 +91,30 @@ const Data = () => {
       })
   );
 
+  useQuery("userImage", () =>
+    axios({
+      method: "POST",
+      url: profileImageGet,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then((data) => {
+        if (data.data.message === "account not found") {
+        } else {
+          setProfileImage(`${okukus}/${data.data.data.profile_photo_url}`);
+          // console.log("Success:", data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+  );
+
   return {
     summaryCart,
     amount,
     quantity,
+    profileImage,
   };
 };
 
