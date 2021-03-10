@@ -57,6 +57,8 @@ const ProfiilePhotoUpdate = () => {
     }
   };
 
+  queryClient.invalidateQueries("userImage");
+
   //{error: true, message: "JPG, JPEG, & PNG files are allowed to upload."}
 
   // React.useEffect(() => {
