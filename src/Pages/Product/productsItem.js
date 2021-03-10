@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { useQueryClient } from "react-query";
 import Notify from "../Components/Notify";
 import Cart from "../Components/Cart";
 import { okukus, buyerID, cartAdd } from "../endpoints";
@@ -16,6 +17,9 @@ const ProductsItem = ({
 
   let history = useHistory();
 
+  
+  const queryClient = useQueryClient();
+
   const add2Cart = async (e) => {
     e.preventDefault();
 
@@ -25,6 +29,7 @@ const ProductsItem = ({
 
     const { data } = await axiosMethod("post", cartAdd, formData);
     setMessage(data.message);
+    queryClient.invalidateQueries("summaryData");
 
     if (data.error === false) {
       setNotify(true);
