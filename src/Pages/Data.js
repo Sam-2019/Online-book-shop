@@ -91,31 +91,23 @@ const Data = () => {
       })
   );
 
-  useQuery(
-    "userImage",
-    () =>
-      axios({
-        method: "POST",
-        url: profileImageGet,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
+  useQuery("userImage", () =>
+    axios({
+      method: "POST",
+      url: profileImageGet,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then((data) => {
+        if (data.data.message === "account not found") {
+        } else {
+          setProfileImage(`${okukus}/${data.data.data.profile_photo_url}`);
+          // console.log("Success:", data);
+        }
       })
-        .then((data) => {
-          if (data.data.message === "account not found") {
-          } else {
-            setProfileImage(`${okukus}/${data.data.data.profile_photo_url}`);
-            // console.log("Success:", data);
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        }),
-
-    {
-      keepPreviousData: true,
-      staleTime: 5000,
-      cacheTime: 20000,
-    }
+      .catch((error) => {
+        console.error("Error:", error);
+      })
   );
 
   return {
