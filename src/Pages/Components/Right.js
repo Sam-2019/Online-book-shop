@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./icons.css";
 
-const Right = ({ width, height, action }) => {
+const Right = ({ width, height, action, color }) => {
   return (
     <svg
-      fill="currentColor"
+      fill={color}
       className="bi bi-chevron-right"
       viewBox="0 0 16 16"
       id="chevron-right"
