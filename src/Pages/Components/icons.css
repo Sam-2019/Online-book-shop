@@ -76,6 +76,25 @@
   margin-right: 6px;
 }
 
+.contact-container {
+  display: flex;
+  justify-content: flex-end;
+  
+}
+
+.contact-item {
+  padding: 18px  20px;
+  border-radius: 50%;
+  position: fixed;
+  background: #52cd0b;
+  color: #ffffff;
+  right: 50px;
+  bottom: 80px;
+  box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
+
+  
+}
+
 .message {
   border-left: 3px solid #bfbfbf;
   transition: all 0.6s ease-in-out;
