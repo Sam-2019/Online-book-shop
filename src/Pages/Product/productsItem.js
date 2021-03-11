@@ -78,7 +78,7 @@ const ProductsItem = ({
         <div className="priceXcart">
           <div className="products-price">₵{unit_price}</div>
           <div className="products-add2cart" onClick={add2Cart}>
-            <Cart width={17} height={17} />
+            <Cart width={17} height={17} color='white'/>
           </div>
         </div>
       </div>
