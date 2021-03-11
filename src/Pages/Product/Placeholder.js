@@ -1,16 +1,37 @@
 import React from "react";
 import Cart from "../Components/Cart";
-import './placeholder.css'
+import { MediaQuery, axiosMethod } from "../helper";
+import "./placeholder.css";
 
-const Placeholder = () => {
+const Mobile = () => {
   return (
-    <div className="products">
+    <>
+      {Array(6)
+        .fill()
+        .map((item, index) => (
+          <Item key={index} />
+        ))}
+    </>
+  );
+};
+
+const Desktop = () => {
+  return (
+    <>
       {Array(12)
         .fill()
         .map((item, index) => (
           <Item key={index} />
         ))}
-    </div>
+    </>
+  );
+};
+
+const Placeholder = () => {
+  const { width } = MediaQuery();
+
+  return (
+    <div className="products">{width > 540 ? <Desktop /> : <Mobile />}</div>
   );
 };
 
@@ -42,9 +63,9 @@ const Item = () => {
         </div>  */}
 
         <div className="placeholder-priceXcart">
-        <div className="placeholder-products-price"></div>
+          <div className="placeholder-products-price"></div>
           <div className="placeholder-products-add2cart">
-            <Cart width={17} height={17} color='white' />
+            <Cart width={17} height={17} color="white" />
           </div>
         </div>
       </div>
