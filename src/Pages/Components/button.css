@@ -10,7 +10,9 @@
 .checkout,
 .addCart,
 .buyNow,
-.uploadImage {
+.uploadImage,
+.disabled-buyNow,
+.disabled-addCart {
   background-color: transparent;
   border: 1px solid transparent;
   outline: none;
@@ -87,6 +89,8 @@
 .twitter:focus,
 .buyNow:focus,
 .addCart:focus,
+.disabled-buyNow:focus,
+.disabled-addCart:focus,
 .uploadImage:focus {
   outline: none;
 }
@@ -95,7 +99,6 @@
 .header-primary,
 .header-primary2,
 .buyNow {
-  
   background-color: #00d919;
   border: 1px solid #00d919;
   color: #ffffff;
@@ -107,6 +110,17 @@
   background-color: #ffffff;
   border: 1px solid #00d919;
   color: #00d919;
+}
+
+.disabled-buyNow{
+  background-color: #808080;
+  border: 1px solid #808080;
+  color: #ffffff;
+}
+.disabled-addCart {
+  background-color: #ffffff;
+  border: 1px solid #808080;
+  color: #808080;
 }
 
 .primary,
