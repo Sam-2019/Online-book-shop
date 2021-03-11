@@ -19,6 +19,7 @@ import Product from "./Product/Product";
 import Products from "./Product/Products";
 import Profile from "./User/Profile";
 import Review from "./Review/Review";
+import Contact from "./Components/Contact";
 
 const Okukus = () => {
   return (
@@ -32,10 +33,12 @@ export default Okukus;
 
 function Desktop() {
   return (
-    <>
+    <div className="item">
       <Navigation />
       <Content />
-    </>
+
+      <Contact />
+    </div>
   );
 }
 
