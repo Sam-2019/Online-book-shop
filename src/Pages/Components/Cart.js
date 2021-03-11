@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./icons.css";
 
-const Cart = ({ width, height, action }) => {
+const Cart = ({color, width, height, action }) => {
   return (
     <svg
-      fill="currentColor"
+      fill={color}
       className="bi bi-cart3"
       viewBox="0 0 16 16"
       id="cart3"
