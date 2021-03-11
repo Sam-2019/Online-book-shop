@@ -141,16 +141,20 @@
 }
 
 .addCart,
-.buyNow {
+.buyNow,
+.disabled-buyNow,
+.disabled-addCart {
   padding: 10px 10px;
   font-size: 13px;
 }
 
-.addCart {
+.addCart,
+.disabled-addCart {
   width: 50%;
 }
 
-.buyNow {
+.buyNow,
+.disabled-buyNow {
   width: 100%;
 }
 
@@ -260,15 +264,19 @@
   }
 
   .addCart,
-  .buyNow {
+  .buyNow,
+  .disabled-buyNow,
+  .disabled-addCart {
     padding: 12px 15px;
   }
 
-  .addCart {
+  .addCart,
+  .disabled-addCart {
     width: 70%;
   }
 
-  .buyNow {
+  .buyNow,
+  .disabled-buyNow {
     width: 100%;
   }
 }
