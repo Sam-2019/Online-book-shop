@@ -2,6 +2,8 @@ import React, { Fragment, useState, useEffect, useReducer } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { itemsGet } from "./endpoints";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 const intervalMs = 10000;
 
@@ -15,11 +17,11 @@ export const axiosMethod = async (type, url, formData) => {
   return method;
 };
 
-export async function fetchProjects(page = 0) {
+export async function fetchProjects(formData) {
   const { data } = await axios({
     method: "post",
     url: itemsGet,
-    data: page,
+    data: formData,
     headers: { "Content-Type": "multipart/form-data" },
   });
 
@@ -123,3 +125,25 @@ export const useDataApi = (url, formData) => {
 
   return [state];
 };
+
+ dayjs.extend(relativeTime);
+
+var dateData =dayjs("2013-03-10T02:00:00Z").fromNow() ;
+console.log(dateData)
+
+// function myFunction() {
+//   var d = new Date();
+//   var n = d.toISOString();
+//   document.getElementById("demo").innerHTML = n;
+
+//   var date = new Date('2013-03-10T02:00:00Z').toLocaleString();
+//    document.getElementById("demo2").innerHTML =date;
+
+//    var d = new Date();
+
+// document.write('Today is: ' + d.toLocaleString());
+
+// d.setDate(d.getDate() - 5);
+
+// document.write('<br>5 days ago was: ' + d.toLocaleString());
+// }
