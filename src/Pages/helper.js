@@ -2,8 +2,8 @@ import React, { Fragment, useState, useEffect, useReducer } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { itemsGet } from "./endpoints";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
+// import dayjs from "dayjs";
+// import relativeTime from "dayjs/plugin/relativeTime";
 
 const intervalMs = 10000;
 
@@ -126,10 +126,10 @@ export const useDataApi = (url, formData) => {
   return [state];
 };
 
- dayjs.extend(relativeTime);
+//  dayjs.extend(relativeTime);
 
-var dateData =dayjs("2013-03-10T02:00:00Z").fromNow() ;
-console.log(dateData)
+// var dateData =dayjs("2013-03-10T02:00:00Z").fromNow() ;
+// console.log(dateData)
 
 // function myFunction() {
 //   var d = new Date();
