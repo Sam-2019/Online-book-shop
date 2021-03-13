@@ -49,7 +49,7 @@ const Item = () => {
             className="products-image"
           />
         </div>
-        <div className="placeholder-products-name ">
+        <div className="placeholder-products-name  ">
           <span className="placeholder-item_name  ">{}</span>
         </div>
 
