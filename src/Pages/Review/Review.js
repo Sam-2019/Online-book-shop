@@ -1,9 +1,11 @@
 import React from "react";
 import Back from "../Components/Back";
 import ReviewItem from "./reviewItem";
+import { data } from "./reviewData";
 import "./review.css";
 
 const Review = () => {
+
   return (
     <div className="page-wrapper">
       <div className="header">
@@ -17,11 +19,9 @@ const Review = () => {
 
       <div className="main">
         <div className=" wrapper-item">
-          {Array(5)
-            .fill()
-            .map((item, index) => (
-              <ReviewItem key={index} />
-            ))}
+          {data.map((item, index) => (
+            <ReviewItem key={index} {...item} />
+          ))}
         </div>
       </div>
     </div>
