@@ -76,14 +76,14 @@
   margin-right: 6px;
 }
 
-.contact-container {
+.float {
   display: flex;
-  justify-content: flex-end;
-  
+
+  color: #0b0b0b;
 }
 
 .contact-item {
-  padding: 18px  20px;
+  padding: 18px 20px;
   border-radius: 50%;
   position: fixed;
   background: #52cd0b;
@@ -91,8 +91,21 @@
   right: 50px;
   bottom: 80px;
   box-shadow: 0rem 0rem 0.5rem 0rem #00000032 !important;
+}
 
+.cardie {
+
+  right: 50px;
+  bottom: 80px;
   
+  background-color: blueviolet;
+  border: 3px solid #bfbfbf;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  font-size: 10px;
+  border-radius: 10px;
+  width: 150px;
+
 }
 
 .message {
