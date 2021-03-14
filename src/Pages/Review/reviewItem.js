@@ -7,7 +7,13 @@ import TimeStamp from "../Components/Time Stamp";
 import "./review.css";
 
 const ReviewItem = ({ picture, name, time_stamp, rating, comment }) => {
+  const [contractDescription, expandDescription] = React.useState(true);
+
   var date = new Date(time_stamp).toLocaleString();
+
+  const ToggleDescription = () => {
+    expandDescription(!contractDescription);
+  };
 
   return (
     <div className=" review-wrapper">
@@ -27,7 +33,16 @@ const ReviewItem = ({ picture, name, time_stamp, rating, comment }) => {
         </div>
       </div>
 
-      <div className="review-body">{comment} </div>
+      <div>
+        <span
+          className={contractDescription ? "review-body" : "review-body-morel"}
+        >
+          {comment}
+        </span><span onClick={ToggleDescription} className='read-more'>
+        {contractDescription ? "read more" : ""}
+      </span>
+      </div>
+  
     </div>
   );
 };
