@@ -49,9 +49,25 @@
 }
 
 .review-body {
+
+
+
+
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+}
+
+.review-body-more{
   overflow: hidden;
   word-wrap: break-word;
   text-align: justify;
+}
+
+.read-more{
+  color: #6c757d;
 }
 
 @media (max-width: 540px) {
