@@ -19,25 +19,15 @@ import Product from "./Product/Product";
 import Products from "./Product/Products";
 import Profile from "./User/Profile";
 import Review from "./Review/Review";
-import Contact from "./Components/Contact";
-
-const Okukus = () => {
-  return (
-    <Router>
-      <Desktop />
-    </Router>
-  );
-};
-
-export default Okukus;
+import Float from "./Components/Floating Icon";
 
 function Desktop() {
   return (
-    <div className="item">
+    <div>
       <Navigation />
       <Content />
 
-      <Contact />
+      <Float />
     </div>
   );
 }
@@ -145,3 +135,5 @@ function Account() {
     </Switch>
   );
 }
+
+export default Desktop;
