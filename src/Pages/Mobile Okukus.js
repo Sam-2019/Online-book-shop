@@ -22,15 +22,7 @@ import Products from "./Product/Products";
 import Profile from "./User/Profile";
 import Review from "./Review/Review";
 
-const Okukus = () => {
-  return (
-    <Router>
-      <Mobile />
-    </Router>
-  );
-};
-
-export default Okukus;
+import SlideRoutes from "react-slide-routes";
 
 function Mobile() {
   return (
@@ -147,3 +139,5 @@ function Account() {
     </Switch>
   );
 }
+
+export default Mobile;
