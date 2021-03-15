@@ -9,7 +9,7 @@ import BinFIll from "../Components/BinFill";
 import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
 import Confirm from "../Components/Confirm";
-import { cartDelete, buyerID, wishCreate } from "../endpoints";
+import {okukus, cartDelete, buyerID, wishCreate } from "../endpoints";
 import { axiosMethod } from "../helper";
 import "./cartItem.css";
 
@@ -30,7 +30,7 @@ const CartItem = ({
   const [confirm, setConfirm] = React.useState(false);
   const [message, setMessage] = React.useState("");
 
-  const [count, setCount] = React.useState(1);
+  const [count, setCount] = React.useState(Number(quantity));
 
   const queryClient = useQueryClient();
 
@@ -118,7 +118,14 @@ const CartItem = ({
 
         <div className="cart-item-detail">
           <div className="imageXname">
-            <div className="image-placeholder-original "></div>
+            <div className="image-placeholder-original ">
+            <img
+                  src={`${okukus}/${cover_photo_url}`}
+                  alt="peecha"
+                  className="image-placeholder-original"
+                />
+
+            </div>
 
             <div className="nameXprice">
               <label htmlFor={product_name} className="item-name">

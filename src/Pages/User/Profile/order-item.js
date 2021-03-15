@@ -2,6 +2,7 @@ import React from "react";
 import Notify from "../../Components/Notify";
 import Button from "../../Components/Button";
 import Confirm from "../../Components/Confirm";
+import {okukus} from '../../endpoints'
 import "./orderitem.css";
 
 const OrderItem = ({
@@ -61,7 +62,13 @@ const OrderItem = ({
     <>
       <div className="item-wrapper ">
         <div className="order-imageXname">
-          <div className="image-placeholder  loading"></div>
+          <div className="image-placeholder  loading">
+          <img
+                  src={`${okukus}/${cover_photo_url}`}
+                  alt="peecha"
+                  className="image-placeholder-original"
+                />
+          </div>
 
           <div className="order-item-name-price-quantity ">
             <div className="order-item-name">

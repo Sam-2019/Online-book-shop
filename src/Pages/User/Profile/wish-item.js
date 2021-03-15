@@ -6,7 +6,8 @@ import Bin from "../../Components/Bin";
 import Notify from "../../Components/Notify";
 import Confirm from "../../Components/Confirm";
 import Button from "../../Components/Button";
-import { wishDelete, buyerID } from "../../endpoints";
+import { okukus,
+  wishDelete, buyerID } from "../../endpoints";
 import { MediaQuery, axiosMethod } from "../../helper";
 import "./wishitem.css";
 
@@ -79,7 +80,14 @@ const WishItem = ({
             onClick={() => {
               history.push(`/product/${product_unique_id}`);
             }}
-          ></div>
+          >
+      <img
+                  src={`${okukus}/${cover_photo_url}`}
+                  alt="peecha"
+                  className="image-placeholder-original"
+                />
+
+          </div>
 
           <div className="order-item-name-price-quantity">
             <div
