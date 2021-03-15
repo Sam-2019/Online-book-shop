@@ -19,7 +19,7 @@ import AddReview from "./addReview";
 import Summary from "../Summary/Summary";
 import { MediaQuery, axiosMethod } from "../helper";
 import { itemGet, okukus, cartAdd, buyerID, wishCreate } from "../endpoints";
-import PlaceholderProduct, { Spacer } from "./PlaceholderProduct";
+import Placeholder, { Spacer } from "../Placeholders/Product";
 
 import "./product.css";
 

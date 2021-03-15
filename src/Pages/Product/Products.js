@@ -3,7 +3,7 @@ import { useQuery, QueryClient } from "react-query";
 import styled from "styled-components";
 import { fetchProjects } from "../helper";
 import ProductsItem from "./productsItem";
-import Placeholder from "./Placeholder";
+import Placeholder from "../Placeholders/Products";
 import "./products.css";
 
 const queryClient = new QueryClient();

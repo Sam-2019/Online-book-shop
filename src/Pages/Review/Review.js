@@ -2,7 +2,7 @@ import React from "react";
 import Back from "../Components/Back";
 import ReviewItem from "./reviewItem";
 import { data } from "./reviewData";
-import PlaceholderReview from "./reviewItem-Placeholder";
+import PlaceholderReview from "../Placeholders/Review";
 import "./review.css";
 
 const Review = () => {

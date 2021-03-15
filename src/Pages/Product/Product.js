@@ -19,7 +19,7 @@ import AddReview from "./addReview";
 import Summary from "../Summary/Summary";
 import { MediaQuery, axiosMethod } from "../helper";
 import { itemGet, okukus, cartAdd, buyerID, wishCreate } from "../endpoints";
-import PlaceholderProduct from "./PlaceholderProduct";
+import Placeholder from "../Placeholders/Product";
 import ProductView from "./Products View";
 
 import "./product.css";
@@ -41,7 +41,7 @@ const Product = () => {
   );
 
   return (
-    <>{isLoading ? <PlaceholderProduct /> : <ProductView data={data} />}</>
+    <>{isLoading ? <Placeholder /> : <ProductView data={data} />}</>
   );
 };
 
