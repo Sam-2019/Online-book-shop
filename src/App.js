@@ -6,7 +6,9 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ContextProvider } from "./Pages/Context";
 import "./Pages/okukus.css";
 
-// import Container from "./Design System/Container";
+import File from "./Animate/Animate";
+
+import Container from "./Design System/Container";
 
 const AppBackgroundColour = styled.div`
   background: #ababab3c;
@@ -18,18 +20,22 @@ const queryClient = new QueryClient({
       staleTime: Infinity,
     },
   },
-})
+});
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AppBackgroundColour>
-      <ContextProvider>
-        <Okukus />
+        <ContextProvider>
+          <Okukus />
         </ContextProvider>
       </AppBackgroundColour>
     </QueryClientProvider>
   );
 }
+
+// function App() {
+//   return <File />;
+// }
 
 export default App;
