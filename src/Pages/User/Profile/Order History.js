@@ -5,8 +5,10 @@ import OrderItem from "./order-item";
 import Back from "../../Components/Back";
 import { buyerID, orderHistory } from "../../endpoints";
 import { backendData } from "../../helper";
+import { useData } from "../../Context";
 
 const OrderHistory = () => {
+  const { orderLength } = useData();
   var formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
 
@@ -44,7 +46,6 @@ const OrderHistory = () => {
     }
   );
 
-
   return (
     <div className="user-wrapper">
       <div className="header">
@@ -52,13 +53,12 @@ const OrderHistory = () => {
           <div className="object-1">
             <Back width={30} height={30} />
           </div>
-          <div className="object-2"> Orders ({qty})</div>
+          <div className="object-2"> Orders ({orderLength})</div>
         </div>
       </div>
 
       <div className="main">
         <div className="wrapper-item">
-          
           {/* {Array(10)
             .fill()
             .map((item, index) => (
