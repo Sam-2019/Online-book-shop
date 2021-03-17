@@ -4,8 +4,10 @@ import WishItem from "./wish-item";
 import Back from "../../Components/Back";
 import { buyerID, wishList } from "../../endpoints";
 import { backendData, axiosMethod } from "../../helper";
+import { useData } from "../../Context";
 
 const WishList = () => {
+  const { wishlistLength } = useData();
   var formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
 
@@ -45,7 +47,7 @@ const WishList = () => {
           <div className="object-1">
             <Back width={30} height={30} />
           </div>
-          <div className="object-2"> Wish List ({qty})</div>
+          <div className="object-2"> Wish List ({wishlistLength})</div>
         </div>
       </div>
 
