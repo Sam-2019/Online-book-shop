@@ -12,30 +12,6 @@ const OrderHistory = () => {
   var formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
 
-  const [qty, setQty] = React.useState(0);
-
-  React.useEffect(() => {
-    let didCancel = false;
-
-    async function oData() {
-      const result = await axios({
-        method: "post",
-        url: orderHistory,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
-      if (!didCancel) {
-        setQty(result.data.data.length);
-      }
-    }
-    oData();
-
-    return () => {
-      didCancel = true;
-    };
-  }, [formData]);
-
   const { status, data, error, isFetching, isPreviousData } = useQuery(
     ["orderHistory", orderHistory, formData],
     () => backendData(orderHistory, formData),

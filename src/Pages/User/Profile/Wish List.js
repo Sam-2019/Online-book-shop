@@ -11,35 +11,6 @@ const WishList = () => {
   var formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
 
-  const [qty, setQty] = React.useState(0);
-
-  React.useEffect(() => {
-    let didCancel = false;
-
-    async function wlData() {
-      const { data } = await axiosMethod("post", wishList, formData);
-
-      if (!didCancel) {
-        setQty(data.data.length);
-      }
-    }
-    wlData();
-
-    return () => {
-      didCancel = true;
-    };
-  }, [formData]);
-
-  const { status, data, error, isFetching, isPreviousData } = useQuery(
-    ["wishList", wishList, formData],
-    () => backendData(wishList, formData),
-    {
-      keepPreviousData: true,
-      staleTime: 5000,
-      cacheTime: 5000,
-    }
-  );
-
   return (
     <div className="user-wrapper">
       <div className="header">
