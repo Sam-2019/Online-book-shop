@@ -1,26 +1,9 @@
 import React from "react";
-import styled from "styled-components";
-import { useHistory, useRouteMatch, useParams } from "react-router-dom";
-import { useQuery, useQueryClient } from "react-query";
-import Notify from "../Components/Notify";
-import Back from "../Components/Back";
-import Up from "../Components/Up";
-import Down from "../Components/Down";
-import Right from "../Components/Right";
-import Social from "../Components/Social";
-import Button from "../Components/Button";
-import PopUp from "../Components/Popup";
-import Share from "../Components/Share";
-import StarRating from "../Components/Stars";
-import Love from "../Components/Love";
-import LoveFill from "../Components/LoveFill";
-import ReviewItem from "../Review/reviewItem";
-import AddReview from "./addReview";
-import Summary from "../Summary/Summary";
-import { MediaQuery, axiosMethod } from "../helper";
-import { itemGet, okukus, cartAdd, buyerID, wishCreate } from "../endpoints";
+import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import { itemGet } from "../endpoints";
 import Placeholder from "../Placeholders/Product";
-import ProductView from "./Products View";
+import ProductData from "./productData";
 
 import "./product.css";
 
@@ -40,9 +23,7 @@ const Product = () => {
       })
   );
 
-  return (
-    <>{isLoading ? <Placeholder /> : <ProductView data={data} />}</>
-  );
+  return <>{isLoading ? <Placeholder /> : <ProductData data={data} />}</>;
 };
 
 export default Product;
