@@ -17,30 +17,7 @@ import { useData } from "../Context";
 import { buyerID, locationsGet, feeGet } from "../endpoints";
 
 import "./order.css";
-
-const list = [
-  {
-    id: "0",
-    unique_id: "0",
-    location: "Pick your location",
-    fee: "0.00",
-    disabled: true,
-  },
-  {
-    id: "1",
-    unique_id: "5f97102cd9ba86.00000001",
-    location: "Community 1",
-    fee: "7.00",
-    disabled: false,
-  },
-  {
-    id: "2",
-    unique_id: "5f97102cd9ba86.00000002",
-    location: "Community 2",
-    fee: "7.00",
-    disabled: false,
-  },
-];
+import PaymentProcess from "./PaymentProcess";
 
 const Order = () => {
   const { amount, quantity } = useData();
@@ -159,30 +136,7 @@ const Order = () => {
 
       {state ? (
         <PopUp close={() => setState(false)}>
-          <ol className="">
-            <li>Dial *170# on your phone</li>
-            <li>Select MoMoPay &amp; PayBill</li>
-            <li>Select MoMoPay</li>
-            <li>
-              Enter <strong>283051 </strong> as the Merchant ID
-            </li>
-            <li>Enter Reference</li>
-            <li>Enter Your Pin to confirm payment</li>
-          </ol>
-
-          <div className="other-info">
-            Upon successful payment, please use the details of the payment to
-            fill the fields below
-          </div>
-
-          {/* <Button class_name="primary" name="Okay" /> */}
-          <div className="popup-action">
-            <Button
-              class_name="primary"
-              name="Close"
-              action={() => setState(false)}
-            />
-          </div>
+          <PaymentProcess buttonAction={() => setState(false)} />
         </PopUp>
       ) : null}
 
