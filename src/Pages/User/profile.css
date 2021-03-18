@@ -32,15 +32,13 @@
   display: flex;
   flex-direction: column;
   margin-left: 5px;
-width: 100%;
-
+  width: 100%;
 }
 
 .nameXedit {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
 .user-name {
@@ -108,7 +106,8 @@ width: 100%;
   .left-side {
     padding: 10px;
     margin: 0;
-    width: 100%;
+
+    min-width: 100%;
   }
 
   .right-side {
