@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CartItem from "./cartItem";
 
-const cartData = ({ data }) => {
+const CartData = ({ data }) => {
   const [formData, setFormData] = useState("");
   const [checked, setChecked] = useState([]); //cart items from DB
   const [message, setMessage] = useState("");
@@ -32,9 +32,6 @@ const cartData = ({ data }) => {
   function onFormSubmit(messagE) {
     setMessage(messagE);
   }
-  
-
-
 
   return (
     <div>
@@ -50,4 +47,4 @@ const cartData = ({ data }) => {
   );
 };
 
-export default cartData;
+export default CartData;
