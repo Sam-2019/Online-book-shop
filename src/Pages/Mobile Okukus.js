@@ -22,8 +22,6 @@ import Products from "./Product/Products";
 import Profile from "./User/Profile";
 import Review from "./Review/Review";
 
-import SlideRoutes from "react-slide-routes";
-
 function Mobile() {
   return (
     <Switch>
