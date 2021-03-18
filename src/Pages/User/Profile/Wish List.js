@@ -1,15 +1,26 @@
 import React from "react";
 import { useQuery } from "react-query";
-import WishItem from "./wish-item";
+import WishData from "./wishData";
 import Back from "../../Components/Back";
 import { buyerID, wishList } from "../../endpoints";
-import { backendData, axiosMethod } from "../../helper";
+import { backendData } from "../../helper";
 import { useData } from "../../Context";
 
 const WishList = () => {
   const { wishlistLength } = useData();
+  
   var formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
+
+  const { status, data, error, isFetching, isPreviousData } = useQuery(
+    ["wishlist", wishList, formData],
+    () => backendData(wishList, formData),
+    {
+      keepPreviousData: true,
+      staleTime: 5000,
+      cacheTime: 20000,
+    }
+  );
 
   return (
     <div className="user-wrapper">
@@ -24,13 +35,7 @@ const WishList = () => {
 
       <div className="main ">
         <div className="wrapper-item">
-          {/* {Array(10)
-            .fill()
-            .map((item, index) => (
-              <WishItem key={index} index={index} />
-            ))} */}
-
-          {data ? <Wish data={data} /> : <>Loading</>}
+          {data ? <WishData data={data} /> : <>Loading</>}
         </div>
       </div>
     </div>
@@ -38,13 +43,3 @@ const WishList = () => {
 };
 
 export default WishList;
-
-export const Wish = ({ data }) => {
-  return (
-    <>
-      {data.map((items, i) => (
-        <WishItem key={i} {...items} />
-      ))}
-    </>
-  );
-};
