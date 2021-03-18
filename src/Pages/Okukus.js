@@ -1,15 +1,9 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  useRouteMatch,
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import styled from "styled-components";
 import { MediaQuery } from "./helper";
 
-
-import Mobile from './Mobile Okukus'
-import Desktop from './Desktop Okukus'
+import Mobile from "./Mobile Okukus";
+import Desktop from "./Desktop Okukus";
 
 const Main = styled.div`
   width: 100%;

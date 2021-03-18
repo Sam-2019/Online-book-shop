@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { itemsGet } from "./endpoints";
@@ -147,5 +147,3 @@ export const useDataApi = (url, formData) => {
 
 // document.write('<br>5 days ago was: ' + d.toLocaleString());
 // }
-
-
