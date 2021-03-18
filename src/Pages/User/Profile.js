@@ -11,10 +11,10 @@ import OrderHistory from "./Profile/Order History";
 import WishList from "./Profile/Wish List";
 import ProfilePhoto from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
-import { okukus, profileImageGet, buyerID, profliePhoto } from "../endpoints";
+import { okukus, buyerID } from "../endpoints";
 import { useData } from "../Context";
 
-import { MediaQuery, axiosMethod } from "../helper";
+import { MediaQuery } from "../helper";
 import "./profile.css";
 
 const SmallView = styled.div`
@@ -45,11 +45,7 @@ const Proflie = () => {
   const [name, updateName] = React.useState(false);
   const [verify, setVerify] = React.useState(false);
 
-  //const [profileImage, setProfileImage] = React.useState("");
-
   const [active, setActive] = React.useState("Order History");
-  const formData = new FormData();
-  formData.set("buyer_unique_id", buyerID);
 
   const WebShare = (event) => {
     event.preventDefault();
@@ -100,25 +96,6 @@ const Proflie = () => {
       activePage = <OrderHistory />;
       break;
   }
-
-  // React.useEffect(() => {
-  //   let didCancel = false;
-
-  //   async function userImage() {
-  //     const { data } = await axiosMethod("post", profileImageGet, formData);
-
-  //     if (!didCancel) {
-  //       if (data.error === false && data.message === "account found") {
-  //         setProfileImage(`${okukus}/${data.data.profile_photo_url}`);
-  //       }
-  //     }
-  //   }
-  //   userImage();
-
-  //   return () => {
-  //     didCancel = true;
-  //   };
-  // }, [formData]);
 
   return (
     <div className="user-wrapper">
