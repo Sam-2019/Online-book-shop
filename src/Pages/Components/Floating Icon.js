@@ -3,7 +3,6 @@ import Close from "./Close";
 import Chat from "./Chat";
 import { Transition, animated } from "react-spring/renderprops";
 import "./icons.css";
-import "./spring.css";
 
 const FloatingIcon = () => {
   const [state, setState] = React.useState(false);
