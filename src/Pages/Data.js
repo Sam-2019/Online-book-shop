@@ -36,20 +36,9 @@ import {
   buyerID,
   profileImageGet,
 } from "./endpoints";
-import { axiosMethod, useLocalStorage, backendData } from "./helper";
+import { axiosMethod } from "./helper";
 
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-  useQueryClient,
-} from "react-query";
-
-//Try destructring the responses i.e. {data}
-
-const instance = axios.create({
-  baseURL: dev_site,
-});
+import { useQuery } from "react-query";
 
 const Data = () => {
   var formData = new FormData();
@@ -62,17 +51,6 @@ const Data = () => {
 
   const [orderLength, setOrderLength] = useState(0);
   const [wishlistLength, setWishlistLength] = useState(0);
-
-  const queryClient = useQueryClient();
-
-  async function summaryCart(formData) {
-    const { data } = await axiosMethod("post", cartSummary, formData);
-
-    if (data) {
-    } else {
-      return;
-    }
-  }
 
   useQuery("summaryData", () =>
     axios({
@@ -114,49 +92,49 @@ const Data = () => {
   );
 
   useQuery("orderLength", () =>
-  axios({
-    method: "POST",
-    url: orderHistory,
-    data: formData,
-    headers: { "Content-Type": "multipart/form-data" },
-  })
-    .then((data) => {
-      if (data.data.message === "cart is empty") {
-      } else {
-        setOrderLength(Number(data.data.data.total_quantity));
-        // console.log("Success:", data.data.data);
-      }
+    axios({
+      method: "POST",
+      url: orderHistory,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
     })
-    .catch((error) => {
-      console.error("Error:", error);
+      .then((data) => {
+        if (data.data.message === "cart is empty") {
+        } else {
+          setOrderLength(Number(data.data.data.length));
+          //    console.log("Success:", data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+  );
+
+  useQuery("wishlistLength", () =>
+    axios({
+      method: "POST",
+      url: wishList,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
     })
-);
-
-useQuery("wishlistLength", () =>
-axios({
-  method: "POST",
-  url: wishList,
-  data: formData,
-  headers: { "Content-Type": "multipart/form-data" },
-})
-  .then((data) => {
-    if (data.data.message === "cart is empty") {
-    } else {
-      setWishlistLength(Number(data.data.data.total_quantity));
-
-      // console.log("Success:", data.data.data);
-    }
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  })
-);
+      .then((data) => {
+        if (data.data.message === "cart is empty") {
+        } else {
+          //      setWishlistLength(Number(data.data.data.length));
+          console.log("Success:", data.data.data.length);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+  );
 
   return {
-    summaryCart,
     amount,
     quantity,
     profileImage,
+    orderLength,
+    wishlistLength,
   };
 };
 
