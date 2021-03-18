@@ -9,7 +9,7 @@ import BinFIll from "../Components/BinFill";
 import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
 import Confirm from "../Components/Confirm";
-import {okukus, cartDelete, buyerID, wishCreate } from "../endpoints";
+import { okukus, cartDelete, buyerID, wishCreate } from "../endpoints";
 import { axiosMethod } from "../helper";
 import "./cartItem.css";
 
@@ -119,12 +119,11 @@ const CartItem = ({
         <div className="cart-item-detail">
           <div className="imageXname">
             <div className="image-placeholder-original ">
-            <img
-                  src={`${okukus}/${cover_photo_url}`}
-                  alt="peecha"
-                  className="image-placeholder-original"
-                />
-
+              <img
+                src={`${okukus}/${cover_photo_url}`}
+                alt="peecha"
+                className="image-placeholder-original"
+              />
             </div>
 
             <div className="nameXprice">
