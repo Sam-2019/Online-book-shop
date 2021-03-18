@@ -1,9 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Back from "../Components/Back";
-import {Input} from "../Components/Input";
-import Button from "../Components/Button";
-import Home from "../Components/Home";
 import Message from "../Components/Message";
 import Success from "../Components/Success";
 import "./user.css";

@@ -2,41 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import {
   okukus,
-  dev_site,
-  itemsGet,
-  itemGet,
-  tagsGet,
-  tagGet,
-  userLogin,
-  userRegister,
-  userValidate,
-  userPasswordUpdate,
-  userProfileUpdate,
-  userEmailUpdate,
-  userAccountReset,
-  userAccountVerify,
-  userCreateEmailVerify,
-  userReadEmailVerify,
-  passwordReset,
-  itemSearch,
-  cartAdd,
-  cartGet,
-  cartCount,
-  cartUpdate,
-  cartDelete,
-  cartCheckout,
   cartSummary,
-  orderCreate,
   orderHistory,
-  orderDetail,
-  wishCreate,
   wishList,
-  wishDelete,
-  userWelcome,
   buyerID,
   profileImageGet,
 } from "./endpoints";
-import { axiosMethod } from "./helper";
 
 import { useQuery } from "react-query";
 
@@ -120,7 +91,7 @@ const Data = () => {
       .then((data) => {
         if (data.data.message === "cart is empty") {
         } else {
-          //      setWishlistLength(Number(data.data.data.length));
+          setWishlistLength(Number(data.data.data.length));
           console.log("Success:", data.data.data.length);
         }
       })

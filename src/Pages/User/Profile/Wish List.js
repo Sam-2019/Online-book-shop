@@ -8,11 +8,11 @@ import { useData } from "../../Context";
 
 const WishList = () => {
   const { wishlistLength } = useData();
-  
+
   var formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
 
-  const { status, data, error, isFetching, isPreviousData } = useQuery(
+  const { data } = useQuery(
     ["wishlist", wishList, formData],
     () => backendData(wishList, formData),
     {

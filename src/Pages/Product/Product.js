@@ -12,7 +12,7 @@ const Product = () => {
   var formData = new FormData();
   formData.set("product_unique_id", id);
 
-  const { isLoading, error, data, isFetching } = useQuery(["product"], () =>
+  const { isLoading, data } = useQuery(["product"], () =>
     fetch(itemGet, {
       method: "POST",
       body: formData,

@@ -1,11 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import PropTypes from "prop-types";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import { EyeShow, EyeHide } from "../Components/Eye";
-import Home from "../Components/Home";
 import Message from "../Components/Message";
 import { MediaQuery } from "../helper";
 import "./user.css";

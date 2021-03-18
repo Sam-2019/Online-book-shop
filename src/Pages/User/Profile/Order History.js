@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { useQuery } from "react-query";
 import OrderItem from "./order-item";
 import Back from "../../Components/Back";
@@ -12,7 +11,7 @@ const OrderHistory = () => {
   var formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
 
-  const { status, data, error, isFetching, isPreviousData } = useQuery(
+  const { data } = useQuery(
     ["orderHistory", orderHistory, formData],
     () => backendData(orderHistory, formData),
     {

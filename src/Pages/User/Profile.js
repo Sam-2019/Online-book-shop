@@ -11,7 +11,7 @@ import OrderHistory from "./Profile/Order History";
 import WishList from "./Profile/Wish List";
 import ProfilePhoto from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
-import { okukus, buyerID } from "../endpoints";
+import { okukus } from "../endpoints";
 import { useData } from "../Context";
 
 import { MediaQuery } from "../helper";
@@ -43,7 +43,7 @@ const Proflie = () => {
   const [password, updatePassword] = React.useState(false);
   const [email, updateEmail] = React.useState(false);
   const [name, updateName] = React.useState(false);
-  const [verify, setVerify] = React.useState(false);
+  const [verify] = React.useState(false);
 
   const [active, setActive] = React.useState("Order History");
 

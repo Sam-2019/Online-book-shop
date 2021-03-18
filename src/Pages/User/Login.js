@@ -4,7 +4,6 @@ import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import { EyeShow, EyeHide } from "../Components/Eye";
-import Message from "../Components/Message";
 import { MediaQuery } from "../helper";
 import "./user.css";
 

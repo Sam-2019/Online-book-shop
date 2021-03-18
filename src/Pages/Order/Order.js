@@ -1,12 +1,9 @@
 import React from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
 import { useParams, useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
-import Home from "../Components/Home";
-import Message from "../Components/Message";
 import Summary from "../Summary/Summary";
 import PopUp from "../Components/Popup";
 import Question from "../Components/Question";

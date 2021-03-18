@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory, useRouteMatch, useParams } from "react-router-dom";
-import { useQuery, useQueryClient } from "react-query";
+import { useQueryClient } from "react-query";
 import Notify from "../Components/Notify";
 import Back from "../Components/Back";
 import Up from "../Components/Up";
@@ -18,25 +18,25 @@ import ReviewItem from "../Review/reviewItem";
 import AddReview from "../Review/addReview";
 import Summary from "../Summary/Summary";
 import { MediaQuery, axiosMethod } from "../helper";
-import { itemGet, okukus, cartAdd, buyerID, wishCreate } from "../endpoints";
+import { okukus, cartAdd, buyerID, wishCreate } from "../endpoints";
 import { Spacer } from "../Placeholders/Product";
 
 import "./product.css";
 
-const AddToCart = styled.div`
-  width: 40%;
+// const AddToCart = styled.div`
+//   width: 40%;
 
-  @media (max-width: 540px) {
-  }
-`;
+//   @media (max-width: 540px) {
+//   }
+// `;
 
-const BuyNow = styled.div`
-  width: 59%;
+// const BuyNow = styled.div`
+//   width: 59%;
 
-  @media (max-width: 540px) {
-    width: 58%;
-  }
-`;
+//   @media (max-width: 540px) {
+//     width: 58%;
+//   }
+// `;
 
 const Product = ({ data }) => {
   let history = useHistory();

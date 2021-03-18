@@ -2,21 +2,10 @@ import React from "react";
 import Notify from "../../Components/Notify";
 import Button from "../../Components/Button";
 import Confirm from "../../Components/Confirm";
-import {okukus} from '../../endpoints'
+import { okukus } from "../../endpoints";
 import "./orderitem.css";
 
-const OrderItem = ({
-  cover_photo_url,
-  amount,
-  datetime_ordered,
-  id,
-  order_number,
-  product_author,
-  product_name,
-  product_unique_id,
-  status,
-  unique_id,
-}) => {
+const OrderItem = ({ cover_photo_url, amount, product_name, status }) => {
   const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
   let status2 = "pending";
@@ -63,17 +52,15 @@ const OrderItem = ({
       <div className="item-wrapper ">
         <div className="order-imageXname">
           <div className="image-placeholder  loading">
-          <img
-                  src={`${okukus}/${cover_photo_url}`}
-                  alt="peecha"
-                  className="image-placeholder-original"
-                />
+            <img
+              src={`${okukus}/${cover_photo_url}`}
+              alt="peecha"
+              className="image-placeholder-original"
+            />
           </div>
 
           <div className="order-item-name-price-quantity ">
-            <div className="order-item-name">
-            {product_name}
-            </div>
+            <div className="order-item-name">{product_name}</div>
 
             <div className="order-Item-price-quantity">
               <div className="order-item-price">GHc ₵{amount}</div>
