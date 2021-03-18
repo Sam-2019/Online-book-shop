@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../Components/Button";
 
-const PaymentProcess = ([buttonAction]) => {
+const PaymentProcess = ({ buttonAction }) => {
   return (
     <>
       <ol className="">
