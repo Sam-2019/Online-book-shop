@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import styled from "styled-components";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "react-query";
+import React from "react";
+import { useQuery } from "react-query";
 import { useHistory } from "react-router-dom";
-import { MediaQuery, backendData, axiosMethod } from "../helper";
+import { MediaQuery, backendData } from "../helper";
 import Back from "../Components/Back";
 import Bin from "../Components/Bin";
 import Button from "../Components/Button";
 import Summary from "../Summary/Summary";
-import CartMain from "./cartMain";
+import CartData from "./cartData";
 import { buyerID, cartGet } from "../endpoints";
 import "./cart.css";
 import { useData } from "../Context";
@@ -28,23 +20,6 @@ const Cart = () => {
   var formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
 
-  // React.useEffect(() => {
-  //   let didCancel = false;
-
-  //   async function cartData() {
-  //     const { data } = await axiosMethod("post", cartGet, formData);
-
-  //     if (!didCancel) {
-  //       setQty(data.data.length);
-  //     }
-  //   }
-  //   cartData();
-
-  //   return () => {
-  //     didCancel = true;
-  //   };
-  // }, [formData]);
-
   const { status, data, error, isFetching, isPreviousData } = useQuery(
     ["carts", cartGet, formData],
     () => backendData(cartGet, formData),
@@ -57,11 +32,6 @@ const Cart = () => {
 
   var array = new Uint32Array(1);
   var index = window.crypto.getRandomValues(array);
-
-
-  if(isFetching) {
-    <>Loading!</>
-  }
 
   return (
     <div className="cart-wrapper">
@@ -103,7 +73,7 @@ const Cart = () => {
           </>
         ) : null}
 
-        {data ? <CartMain data={data} /> : <>Loading</>}
+        {data ? <CartData data={data} /> : <>Loading</>}
       </div>
 
       <Summary>
