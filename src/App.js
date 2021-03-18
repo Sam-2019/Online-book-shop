@@ -6,8 +6,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ContextProvider } from "./Pages/Context";
 import "./Pages/okukus.css";
 
-import File from "./Animate/Animate";
-
 import Container from "./Design System/Container";
 
 const AppBackgroundColour = styled.div`
