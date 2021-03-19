@@ -15,19 +15,15 @@
   justify-content: flex-end;
 }
 
-.wishItem-action{
+.wishItem-action {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
-
-
-
-
 .bin-width2 {
   display: none;
-    }
+}
 
 @media (max-width: 540px) {
   .item-wrapper {
@@ -46,8 +42,7 @@
     justify-content: flex-end;
   }
 
-
-  .wishItem-action{
+  .wishItem-action {
     display: flex;
     justify-content: space-between;
     width: 100%;
