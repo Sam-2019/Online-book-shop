@@ -57,7 +57,7 @@ const CartItem = ({
 
     const { data } = await axiosMethod("post", cartDelete, formData);
 
-    console.log(data);
+
 
     if (data.message === "cart item deleted successfully") {
       queryClient.invalidateQueries("summaryData");
