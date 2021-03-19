@@ -13,9 +13,9 @@ const TagItem = ({ id, title, toggle }) => {
     queryClient.invalidateQueries("tagContent");
   }
   return (
-    <p className="selected" onClick={Toggle}>
+    <button className="selected" onClick={Toggle}>
       {title}
-    </p>
+    </button>
   );
 };
 
