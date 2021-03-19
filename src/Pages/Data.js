@@ -92,7 +92,6 @@ const Data = () => {
         if (data.data.message === "cart is empty") {
         } else {
           setWishlistLength(Number(data.data.data.length));
-      
         }
       })
       .catch((error) => {
