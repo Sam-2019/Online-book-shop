@@ -9,6 +9,7 @@ export const profliePhoto =
 
 export const itemsGet = `${okukus}/${dev_site}/get_books.php`;
 export const itemGet = `${okukus}/${dev_site}/get_book.php`;
+
 export const tagsGet = `${okukus}/${dev_site}/get_book_tags.php`;
 export const tagGet = `${okukus}/${dev_site}/get_book_tag.php`;
 
@@ -32,6 +33,7 @@ export const passwordReset = `${okukus}/${dev_site}/update_buyer_password_reset.
 
 export const itemSearch = `${okukus}/${dev_site}/search.php`;
 
+//cart
 export const cartAdd = `${okukus}/${dev_site}/create_cart_item.php`;
 export const cartGet = `${okukus}/${dev_site}/get_cart_items.php`;
 export const cartCount = `${okukus}/${dev_site}/get_cart_count.php`;
@@ -42,10 +44,12 @@ export const cartCheckout = `${okukus}/${dev_site}/create_order_cart.php`;
 
 export const cartSummary = `${okukus}/${dev_site}/read_cart_summary.php`;
 
+//order
 export const orderCreate = `${okukus}/${dev_site}/create_order.php`;
 export const orderHistory = `${okukus}/${dev_site}/get_order_history.php`;
 export const orderDetail = `${okukus}/${dev_site}/get_order_details.php`;
 
+//wishlist
 export const wishCreate = `${okukus}/${dev_site}/create_wishlist_item.php`;
 export const wishList = `${okukus}/${dev_site}/get_wishlist_items.php`;
 export const wishDelete = `${okukus}/${dev_site}/delete_wishlist_item.php`;
@@ -55,5 +59,6 @@ export const userWelcome = `${okukus}/${dev_site}/create_newsletter_subscription
 export const locationsGet = `${okukus}/${dev_site}/get_locations.php`;
 export const feeGet = `${okukus}/${dev_site}/get_location.php`;
 
+//user image
 export const profileImageAdd = `${okukus}/${dev_site}/create_profile_photo.php`;
 export const profileImageGet = `${okukus}/${dev_site}/read_profile_photo_url.php`;
