@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useQueryClient } from "react-query";
-import Notify from "../Components/Notify";
+import { toast } from "react-toastify";
 import Add from "../Components/Add";
 import Subtract from "../Components/Subtract";
 import Bin from "../Components/Bin";
@@ -12,6 +12,8 @@ import Confirm from "../Components/Confirm";
 import { okukus, cartDelete, buyerID, wishCreate } from "../endpoints";
 import { axiosMethod } from "../helper";
 import "./cartItem.css";
+
+toast.configure();
 
 const CartItem = ({
   unit_price,
@@ -26,13 +28,15 @@ const CartItem = ({
 }) => {
   const [loveFill, setLoveFill] = React.useState(false);
   const [binFill, setBinFill] = React.useState(false);
-  const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
-  const [message, setMessage] = React.useState("");
 
   const [count, setCount] = React.useState(Number(quantity));
 
   const queryClient = useQueryClient();
+
+  const notify = (data) => {
+    toast(data, { position: toast.POSITION.BOTTOM_CENTER });
+  };
 
   const updateBin = () => {
     setBinFill(true);
@@ -52,19 +56,15 @@ const CartItem = ({
     formData.set("buyer_unique_id", buyerID);
 
     const { data } = await axiosMethod("post", cartDelete, formData);
-    setMessage(data.message);
+
+    console.log(data);
 
     if (data.message === "cart item deleted successfully") {
       queryClient.invalidateQueries("summaryData");
       queryClient.invalidateQueries("carts");
-      setNotify(true);
+      notify(data.message);
       setConfirm(false);
     }
-
-    const timer = setTimeout(() => {
-      setNotify(false);
-    }, 3000);
-    return () => clearTimeout(timer);
   };
 
   const add2WL = async (e) => {
@@ -77,15 +77,15 @@ const CartItem = ({
     setLoveFill(false);
 
     const { data } = await axiosMethod("post", wishCreate, formData);
-    setMessage(data.message);
 
-    if (data.error === false) {
+    if (!data.error) {
       setLoveFill(true);
-      setNotify(true);
+      notify(data.message);
     }
 
+    notify(data.error);
+
     const timer = setTimeout(() => {
-      setNotify(false);
       setLoveFill(false);
     }, 2000);
     return () => clearTimeout(timer);
@@ -171,9 +171,6 @@ const CartItem = ({
           </div>
         </div>
       </div>
-      {notify ? (
-        <Notify close={() => setNotify(false)}>{message}</Notify>
-      ) : null}
 
       {confirm ? (
         <Confirm

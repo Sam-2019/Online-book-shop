@@ -1,10 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useQueryClient } from "react-query";
-import Notify from "../Components/Notify";
+import { toast } from "react-toastify";
 import Cart from "../Components/Cart";
 import { okukus, buyerID, cartAdd } from "../endpoints";
 import { axiosMethod } from "../helper";
+
+toast.configure();
 
 const ProductsItem = ({
   unique_id,
@@ -12,12 +14,14 @@ const ProductsItem = ({
   product_name,
   unit_price,
 }) => {
-  const [notify, setNotify] = React.useState(false);
-  const [message, setMessage] = React.useState("");
+
 
   let history = useHistory();
 
-  
+  const notify = (data) => {
+    toast(data, { position: toast.POSITION.BOTTOM_CENTER });
+  };
+
   const queryClient = useQueryClient();
 
   const add2Cart = async (e) => {
@@ -28,17 +32,14 @@ const ProductsItem = ({
     formData.set("buyer_unique_id", buyerID);
 
     const { data } = await axiosMethod("post", cartAdd, formData);
-    setMessage(data.message);
+
     queryClient.invalidateQueries("summaryData");
 
-    if (data.error === false) {
-      setNotify(true);
+    if (!data.error) {
+      notify(data.message);
     }
 
-    const timer = setTimeout(() => {
-      setNotify(false);
-    }, 2000);
-    return () => clearTimeout(timer);
+    notify(data.error);
   };
 
   return (
@@ -78,14 +79,10 @@ const ProductsItem = ({
         <div className="priceXcart">
           <div className="products-price">₵{unit_price}</div>
           <div className="products-add2cart" onClick={add2Cart}>
-            <Cart width={17} height={17} color='white'/>
+            <Cart width={17} height={17} color="white" />
           </div>
         </div>
       </div>
-
-      {notify ? (
-        <Notify close={() => setNotify(false)}>{message}</Notify>
-      ) : null}
     </div>
   );
 };
