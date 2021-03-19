@@ -1,16 +1,18 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { Transition, animated } from "react-spring/renderprops";
 import Cart from "../Components/Cart";
 import User from "../Components/User";
 import Search from "../Components/Search";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
+import Justify from "../Components/Justify";
 import Close from "../Components/Close";
 import { MediaQuery } from "../helper";
 
 import "./navigation.css";
 
-const Navigation = () => {
+const Navigation = ({ toggle }) => {
   const [state, setState] = React.useState(false);
   const [query, setQuery] = React.useState("");
 
@@ -24,7 +26,7 @@ const Navigation = () => {
       {state ? (
         <div className="category2 ">
           <Input
-               type='search'
+            type="search"
             class_name="header-input  "
             placeholder="Search"
             value={query}
@@ -55,6 +57,11 @@ const Navigation = () => {
       ) : (
         <>
           <div className="category ">
+            <Justify
+              width={breakpoint < width ? 30 : 20}
+              height={breakpoint < width ? 30 : 20}
+              action={toggle}
+            />
             <div className=" okukus ">OKUKUS</div>
           </div>
 
@@ -62,7 +69,7 @@ const Navigation = () => {
             <>
               <div className="category ">
                 <Input
-                     type='search'
+                  type="search"
                   class_name="header-input  "
                   placeholder="Search"
                   value={query}
