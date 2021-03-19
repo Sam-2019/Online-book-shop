@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ContextProvider } from "./Pages/Context";
 import "./Pages/okukus.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const AppBackgroundColour = styled.div`
   background: #ababab3c;
