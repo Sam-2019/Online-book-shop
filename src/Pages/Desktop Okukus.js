@@ -4,6 +4,7 @@ import {
   Switch,
   useRouteMatch,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Navigation from "./Navigation/Head";
 import Cart from "./Cart/Cart";
 import Login from "./User/Login";
@@ -19,7 +20,7 @@ import Product from "./Product/Product";
 import Products from "./Product/Products";
 import Profile from "./User/Profile";
 import Review from "./Review/Review";
-import TagContent from './Tags/Content'
+import TagContent from "./Tags/Content";
 import Float from "./Components/Floating Icon";
 
 function Desktop() {
@@ -27,6 +28,7 @@ function Desktop() {
     <div>
       <Navigation />
       <Content />
+
     </div>
   );
 }
