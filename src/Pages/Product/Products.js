@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { fetchProjects } from "../helper";
 import ProductsItem from "./productsItem";
 import Placeholder from "../Placeholders/Products";
+import { itemsGet } from "../endpoints";
 import "./products.css";
 
 const queryClient = new QueryClient();
@@ -26,16 +27,14 @@ const Products = () => {
   formData.set("offset", items);
 
   const { status, data, error, isFetching, isPreviousData } = useQuery(
-    ["projects", items],
-    () => fetchProjects(formData),
+    ["projects", items, itemsGet],
+    () => fetchProjects(itemsGet, formData),
     {
       keepPreviousData: true,
       staleTime: 5000,
       cacheTime: 20000,
     }
   );
-
-
 
   // Prefetch the next items!
   React.useEffect(() => {
@@ -45,7 +44,6 @@ const Products = () => {
       );
     }
   }, [data, items]);
-
 
   return (
     <>
