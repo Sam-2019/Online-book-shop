@@ -14,12 +14,10 @@ const ProductsItem = ({
   product_name,
   unit_price,
 }) => {
-
-
   let history = useHistory();
 
   const notify = (data) => {
-    toast(data, { position: toast.POSITION.BOTTOM_CENTER });
+    toast(data)
   };
 
   const queryClient = useQueryClient();

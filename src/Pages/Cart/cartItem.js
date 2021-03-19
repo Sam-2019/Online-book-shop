@@ -35,7 +35,7 @@ const CartItem = ({
   const queryClient = useQueryClient();
 
   const notify = (data) => {
-    toast(data, { position: toast.POSITION.BOTTOM_CENTER });
+    toast(data);
   };
 
   const updateBin = () => {
