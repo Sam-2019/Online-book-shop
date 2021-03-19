@@ -1,0 +1,10 @@
+.tag-wrapper{
+
+}
+
+.back-container{
+    display: flex;
+    justify-content: flex-end;
+    background-color: chartreuse;
+    padding: 10px;
+}
