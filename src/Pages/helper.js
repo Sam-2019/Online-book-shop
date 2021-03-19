@@ -17,10 +17,10 @@ export const axiosMethod = async (type, url, formData) => {
   return method;
 };
 
-export async function fetchProjects(formData) {
+export async function fetchProjects(url, formData) {
   const { data } = await axios({
     method: "post",
-    url: itemsGet,
+    url: url,
     data: formData,
     headers: { "Content-Type": "multipart/form-data" },
   });
