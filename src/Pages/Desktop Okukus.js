@@ -4,7 +4,7 @@ import {
   Switch,
   useRouteMatch,
 } from "react-router-dom";
-import Navigation from "./Navigation/Navigation";
+import Navigation from "./Navigation/Head";
 import Cart from "./Cart/Cart";
 import Login from "./User/Login";
 import Signup from "./User/Signup";
@@ -19,6 +19,7 @@ import Product from "./Product/Product";
 import Products from "./Product/Products";
 import Profile from "./User/Profile";
 import Review from "./Review/Review";
+import TagContent from './Tags/Content'
 import Float from "./Components/Floating Icon";
 
 function Desktop() {
@@ -26,8 +27,6 @@ function Desktop() {
     <div>
       <Navigation />
       <Content />
-
-      <Float />
     </div>
   );
 }
@@ -45,6 +44,10 @@ function Content() {
 
       <Route path="/order/:id">
         <Order />
+      </Route>
+
+      <Route path="/tag/:id">
+        <TagContent />
       </Route>
 
       <Route path="/cart">
