@@ -1,4 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
+import { ToastContainer, Slide } from "react-toastify";
 import { MediaQuery } from "./helper";
 
 import Mobile from "./Mobile Okukus";
@@ -9,7 +10,43 @@ const breakpoint = 540;
 const Okukus = () => {
   const { width } = MediaQuery();
 
-  return <Router>{width > breakpoint ? <Desktop /> : <Mobile />}</Router>;
+  return (
+    <Router>
+      {width > breakpoint ? (
+        <>
+          <Desktop />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={true}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            transition={Slide}
+          />
+        </>
+      ) : (
+        <>
+          <Mobile />
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={true}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            transition={Slide}
+          />
+        </>
+      )}
+    </Router>
+  );
 };
 
 export default Okukus;
