@@ -44,15 +44,15 @@ const Password = () => {
           />
           <div className="eyeIcon">
             {show === "password" ? (
-              <EyeShow
+                  <EyeHide
                 action={() => {
-                  hide("text");
+                  hide("password");
                 }}
               />
             ) : (
-              <EyeHide
+          <EyeShow
                 action={() => {
-                  hide("password");
+                  hide("text");
                 }}
               />
             )}

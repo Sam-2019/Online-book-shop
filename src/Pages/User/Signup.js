@@ -99,15 +99,15 @@ const Signup = () => {
 
           <div className="eyeIcon">
             {show === "password" ? (
-              <EyeShow
-                action={() => {
-                  hide("text");
-                }}
-              />
-            ) : (
               <EyeHide
                 action={() => {
                   hide("password");
+                }}
+              />
+            ) : (
+              <EyeShow
+                action={() => {
+                  hide("text");
                 }}
               />
             )}
