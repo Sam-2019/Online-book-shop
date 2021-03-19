@@ -46,13 +46,13 @@ const Password = () => {
             {show === "password" ? (
                   <EyeHide
                 action={() => {
-                  hide("password");
+                  hide("text");
                 }}
               />
             ) : (
           <EyeShow
                 action={() => {
-                  hide("text");
+                  hide("password");
                 }}
               />
             )}
