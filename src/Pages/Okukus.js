@@ -17,7 +17,7 @@ const Okukus = () => {
           <Desktop />
           <ToastContainer
             position="top-right"
-            autoClose={5000}
+            autoClose={3000}
             hideProgressBar={true}
             newestOnTop={false}
             closeOnClick
@@ -33,13 +33,13 @@ const Okukus = () => {
           <Mobile />
           <ToastContainer
             position="bottom-center"
-            autoClose={5000}
+            autoClose={3000}
             hideProgressBar={true}
             newestOnTop={false}
             closeOnClick
             rtl={false}
             pauseOnFocusLoss
-            draggable
+            draggablePercent={60}
             pauseOnHover
             transition={Slide}
           />
