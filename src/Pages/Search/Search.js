@@ -16,13 +16,10 @@ import "./search.css";
 
 const Search = () => {
   const desktopQuery = new URLSearchParams(useLocation().search).get("q");
+  console.log(desktopQuery)
 
   const [state, setState] = React.useState(true);
-  const [query, setQuery] = React.useState("");
 
-  const [queryResult, setQueryResult] = React.useState([]);
-
-  const queryClient = useQueryClient();
 
   const { width } = MediaQuery();
   const breakpoint = 280;
@@ -48,6 +45,12 @@ const Search = () => {
   //   }
   // };
 
+  var formData = new FormData();
+  formData.set("search_phrase", desktopQuery);
+
+  const { data } = axiosMethod("post", itemSearch, formData);
+  console.log(data);
+
   return (
     <div className="search-wrapper ">
       <div className="header">
@@ -57,7 +60,7 @@ const Search = () => {
               <Back width={30} height={30} />
             </div>
             <div className="category2 ">
-              <SearchBox action={setQuery(false)} />
+              <SearchBox action />
 
               <div className="object-4 cart ">
                 <Close
@@ -79,8 +82,8 @@ const Search = () => {
 
               <div className="object-2">
                 <div className="search-text">
-                  {query !== "" ? (
-                    <> Search Results for "{query}"</>
+                  {desktopQuery !== "" ? (
+                    <> Search Results for "{desktopQuery}"</>
                   ) : (
                     <> Search Results</>
                   )}
@@ -110,7 +113,7 @@ const Search = () => {
           <p className="text-3">Search</p>
         </div>
 
-        {queryResult ? <SearchData data={queryResult} /> : <Placeholder />}
+        {/* {desktopQuery ? <SearchData data={queryResult} /> : <Placeholder />} */}
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 
-const Searchbox = ({ action }) => {
+const Searchbox = () => {
   const [query, setQuery] = React.useState("");
 
   const queryClient = useQueryClient();
@@ -17,7 +17,7 @@ const Searchbox = ({ action }) => {
     } else {
       history.push(`/search?q=${query}`);
       queryClient.invalidateQueries("searchWhat");
-      action
+      
     }
   }
   return (
