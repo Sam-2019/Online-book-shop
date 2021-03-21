@@ -7,6 +7,7 @@ import Close from "../Components/Close";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import SearchData from "./searchData";
+import SearchBox from "./Searchbox";
 import Placeholder from "../Placeholders/Products";
 import { MediaQuery, axiosMethod, backendData } from "../helper";
 import { itemSearch } from "../endpoints";
@@ -26,26 +27,26 @@ const Search = () => {
   const { width } = MediaQuery();
   const breakpoint = 280;
 
-  const find = async () => {
-    queryClient.invalidateQueries("searchContent");
+  // const find = async () => {
+  //   queryClient.invalidateQueries("searchContent");
 
-    var formData = new FormData();
-    formData.set("search_phrase", query);
+  //   var formData = new FormData();
+  //   formData.set("search_phrase", query);
 
-    const { data } = await axiosMethod("post", itemSearch, formData);
+  //   const { data } = await axiosMethod("post", itemSearch, formData);
 
-    console.log(data);
+  //   console.log(data);
 
-    if (!data.error) {
-      setQueryResult(data.data);
-      setState(false);
-    }
+  //   if (!data.error) {
+  //     setQueryResult(data.data);
+  //     setState(false);
+  //   }
 
-    if (data.error) {
-      setQueryResult([]);
-      setQuery("");
-    }
-  };
+  //   if (data.error) {
+  //     setQueryResult([]);
+  //     setQuery("");
+  //   }
+  // };
 
   return (
     <div className="search-wrapper ">
@@ -56,19 +57,7 @@ const Search = () => {
               <Back width={30} height={30} />
             </div>
             <div className="category2 ">
-              <Input
-                type="search"
-                class_name="header-input  "
-                placeholder="Search"
-                value={query}
-                action={(e) => setQuery(e.target.value)}
-              />
-
-              <Button
-                name="Search"
-                class_name="header-primary2"
-                action={find}
-              />
+              <SearchBox action={setQuery(false)} />
 
               <div className="object-4 cart ">
                 <Close
@@ -93,7 +82,7 @@ const Search = () => {
                   {query !== "" ? (
                     <> Search Results for "{query}"</>
                   ) : (
-                    <> Search Results for "{query}"</>
+                    <> Search Results</>
                   )}
                 </div>
               </div>
