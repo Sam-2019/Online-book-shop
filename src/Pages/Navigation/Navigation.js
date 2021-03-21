@@ -30,7 +30,11 @@ const Navigation = ({ toggle }) => {
         <div className="okukus">OKUKUS</div>
       </div>
 
-      {width > 540 ? <SearchBox /> : null}
+      {width > 540 ? (
+        <div className="category">
+          <SearchBox />
+        </div>
+      ) : null}
 
       <div className="category">
         {width < 540 ? (
