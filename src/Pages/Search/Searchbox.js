@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 
-const Searchbox = () => {
+const Searchbox = ({ action }) => {
   const [query, setQuery] = React.useState("");
 
   const queryClient = useQueryClient();
@@ -17,10 +17,11 @@ const Searchbox = () => {
     } else {
       history.push(`/search?q=${query}`);
       queryClient.invalidateQueries("searchWhat");
+      action
     }
   }
   return (
-    <div className="category">
+    <>
       <Input
         type="search"
         class_name="header-input  "
@@ -30,7 +31,7 @@ const Searchbox = () => {
       />
 
       <Button name="Search" class_name="header-primary2" action={Query} />
-    </div>
+    </>
   );
 };
 
