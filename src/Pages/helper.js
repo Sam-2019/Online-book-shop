@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState, useCallback } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { itemsGet } from "./endpoints";
@@ -64,67 +64,67 @@ export const MediaQuery = () => {
   return { width };
 };
 
-const dataFetchReducer = (state, action) => {
-  switch (action.type) {
-    case "FETCH_INIT":
-      return {
-        ...state,
-        isLoading: true,
-        isError: false,
-      };
-    case "FETCH_SUCCESS":
-      return {
-        ...state,
-        isLoading: false,
-        isError: false,
-        data: action.payload,
-      };
-    case "FETCH_FAILURE":
-      return {
-        ...state,
-        isLoading: false,
-        isError: true,
-      };
-    default:
-      throw new Error();
-  }
-};
+// const dataFetchReducer = (state, action) => {
+//   switch (action.type) {
+//     case "FETCH_INIT":
+//       return {
+//         ...state,
+//         isLoading: true,
+//         isError: false,
+//       };
+//     case "FETCH_SUCCESS":
+//       return {
+//         ...state,
+//         isLoading: false,
+//         isError: false,
+//         data: action.payload,
+//       };
+//     case "FETCH_FAILURE":
+//       return {
+//         ...state,
+//         isLoading: false,
+//         isError: true,
+//       };
+//     default:
+//       throw new Error();
+//   }
+// };
 
-export const useDataApi = (url, formData) => {
-  const [state, dispatch] = useReducer(dataFetchReducer, {
-    isLoading: false,
-    isError: false,
-    data: [],
-  });
+// export const useDataApi = (url, formData) => {
+//   const [state, dispatch] = useReducer(dataFetchReducer, {
+//     isLoading: false,
+//     isError: false,
+//     data: [],
+//   });
 
-  useEffect(() => {
-    let didCancel = false;
+//   useEffect(() => {
+//     let didCancel = false;
 
-    const fetchData = async () => {
-      dispatch({ type: "FETCH_INIT" });
+//     const fetchData = async () => {
+//       dispatch({ type: "FETCH_INIT" });
 
-      try {
-        const { data } = await axiosMethod("post", url, formData);
+//       try {
+//         const { data } = await axiosMethod("post", url, formData);
 
-        if (!didCancel) {
-          dispatch({ type: "FETCH_SUCCESS", payload: data });
-        }
-      } catch (error) {
-        if (!didCancel) {
-          dispatch({ type: "FETCH_FAILURE" });
-        }
-      }
-    };
+//         if (!didCancel) {
+//           dispatch({ type: "FETCH_SUCCESS", payload: data });
+//         }
+//       } catch (error) {
+//         if (!didCancel) {
+//           dispatch({ type: "FETCH_FAILURE" });
+//         }
+//       }
+//     };
 
-    fetchData();
+//     fetchData();
 
-    return () => {
-      didCancel = true;
-    };
-  }, []);
+//     return () => {
+//       didCancel = true;
+//     };
+//   }, []);
 
-  return [state];
-};
+//   return [state];
+// };
 
 //  dayjs.extend(relativeTime);
 
@@ -147,3 +147,40 @@ export const useDataApi = (url, formData) => {
 
 // document.write('<br>5 days ago was: ' + d.toLocaleString());
 // }
+
+
+export const useAsync = (getMethod, data) => {
+  const [loading, setLoading] = useState(true);
+  const [success, setSuccess] = useState();
+  const [error, setError] = useState();
+  const [message, setMessage] = useState();
+  const [value, setValue] = useState([]);
+
+  const fetchData = useCallback(async () => {
+    const result = await getMethod(data);
+
+    if (result.error === true) {
+      setTimeout(() => {
+        setError(result.error);
+        setSuccess(result.status);
+        setMessage(result.message);
+        setLoading(false);
+        setValue(null);
+      }, 1000);
+    } else if (result.error === false) {
+      setTimeout(() => {
+        setValue(result.data);
+        setLoading(false);
+        setSuccess(result.status);
+        setMessage(result.message);
+        setError(null);
+      }, 1000);
+    }
+  }, [data, getMethod]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return { value, message, error, loading, success };
+};
