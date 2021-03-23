@@ -1,40 +1,41 @@
 import React from "react";
-import { useQuery, useQueryClient } from "react-query";
 import { useLocation } from "react-router-dom";
 import SearchData from "./searchData";
+import Empty from "./Empty";
 import Placeholder from "../Placeholders/Products";
-import { MediaQuery, axiosMethod, backendData } from "../helper";
+import { useAsync2 } from "../helper";
 import { itemSearch } from "../endpoints";
 import "./search.css";
 
 const Search = () => {
+  let activePage;
   const desktopQuery = new URLSearchParams(useLocation().search).get("q");
 
-  var formData = new FormData();
-  formData.set("search_phrase", desktopQuery);
+  const result = useAsync2("search_phrase", itemSearch, desktopQuery);
+  console.log(result.loading);
 
-  const { status, data, error, isFetching, isPreviousData } = useQuery(
-    ["searchWhat", itemSearch, formData],
-    () => backendData(itemSearch, formData),
-    {
- 
-    }
-  );
-
-  console.log(status);
+  switch (result.message) {
+    case "no results found":
+      activePage = <Empty />;
+      break;
+    case "results found":
+      activePage = <SearchData data={result.value} />;
+      break;
+    default:
+      activePage = <Placeholder />;
+  }
 
   return (
     <div className="search-wrapper ">
-      <div className="header">Hllo</div>
-
       <div className="main">
         <div className="title-makeshift ">
           <div>
-            {status === "loading" ? (
+            {/* {status === "loading" ? (
               <Placeholder />
-            ) : (
-       null      // <SearchData data={data} />
-            )}
+            ) : null // <SearchData data={data} />
+            } */}
+
+            {result.loading ? <Placeholder /> : <>{activePage}</>}
           </div>
         </div>
       </div>
