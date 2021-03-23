@@ -1,6 +1,4 @@
 import React from "react";
-import { useQuery, useQueryClient } from "react-query";
-import axios from "axios";
 import { useLocation, useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import SearchIcon from "../Components/Search";
@@ -9,7 +7,7 @@ import SearchData from "./searchData";
 import SearchBox from "./Searchbox";
 
 import Placeholder from "../Placeholders/Products";
-import { MediaQuery, axiosMethod, backendData, useAsync } from "../helper";
+import { MediaQuery, axiosMethod } from "../helper";
 import { itemSearch } from "../endpoints";
 import GroupComponent from "../Components/GroupComponent";
 import Empty from "./Empty";
@@ -64,7 +62,6 @@ const Search = () => {
           <p className="text-3">Search</p>
         </div>
       );
- 
   }
 
   return (
