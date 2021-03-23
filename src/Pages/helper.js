@@ -163,8 +163,6 @@ export const useAsync = (url, formData) => {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
-
-
     if (result.data.error === true) {
       setTimeout(() => {
         setError(result.data.error);
@@ -182,11 +180,64 @@ export const useAsync = (url, formData) => {
         setError(null);
       }, 1000);
     }
-  }, [formData]);
+  }, [formData, url]);
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  return { value, message, error, loading, success };
+};
+
+export const useAsync2 = (keyword, url, data) => {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState();
+  const [error, setError] = useState();
+  const [message, setMessage] = useState();
+  const [value, setValue] = useState([]);
+
+  const formData = React.useMemo(() => new FormData(), []);
+  formData.set(keyword, data);
+
+  useEffect(() => {
+    let didCancel = false;
+    setLoading(true);
+
+    async function fetchData() {
+      const result = await axios({
+        method: "POST",
+        url: url,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      if (!didCancel) {
+        if (result.data.error === true) {
+          setTimeout(() => {
+            setError(result.data.error);
+            setSuccess(result.data.status);
+            setMessage(result.data.message);
+            setLoading(false);
+            setValue(null);
+          }, 1000);
+        } else if (result.data.error === false) {
+          setTimeout(() => {
+            setValue(result.data.data);
+            setLoading(false);
+            setSuccess(result.data.status);
+            setMessage(result.data.message);
+            setError(null);
+          }, 1000);
+        }
+      }
+    }
+
+    fetchData();
+
+    return () => {
+      didCancel = true;
+    };
+  }, [data]);
 
   return { value, message, error, loading, success };
 };
