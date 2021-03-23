@@ -19,6 +19,10 @@ const Navigation = ({ toggle }) => {
     history.push("/search");
   }
 
+  function home() {
+    history.push("/");
+  }
+
   return (
     <header className="nav-header ">
       <div className="category ">
@@ -27,7 +31,9 @@ const Navigation = ({ toggle }) => {
           height={breakpoint < width ? 30 : 20}
           action={toggle}
         />
-        <div className="okukus">OKUKUS</div>
+        <div className="okukus" onClick={home}>
+          OKUKUS
+        </div>
       </div>
 
       {width > 540 ? (
