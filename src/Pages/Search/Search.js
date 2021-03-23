@@ -64,7 +64,7 @@ const Search = () => {
           <p className="text-3">Search</p>
         </div>
       );
-      break;
+ 
   }
 
   return (
