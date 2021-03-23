@@ -1,55 +1,71 @@
 import React from "react";
 import { useQuery, useQueryClient } from "react-query";
-import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { useLocation, useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import SearchIcon from "../Components/Search";
 import Close from "../Components/Close";
-import { Input } from "../Components/Input";
-import Button from "../Components/Button";
 import SearchData from "./searchData";
 import SearchBox from "./Searchbox";
+
 import Placeholder from "../Placeholders/Products";
-import { MediaQuery, axiosMethod, backendData } from "../helper";
+import { MediaQuery, axiosMethod, backendData, useAsync } from "../helper";
 import { itemSearch } from "../endpoints";
 import GroupComponent from "../Components/GroupComponent";
+import Empty from "./Empty";
 import "./search.css";
 
 const Search = () => {
+  let activePage;
+  let history = useHistory();
   const desktopQuery = new URLSearchParams(useLocation().search).get("q");
-  console.log(desktopQuery)
 
   const [state, setState] = React.useState(true);
+  const [message, setMessage] = React.useState();
+  const [query, setQuery] = React.useState([]);
 
+  const [searchItem, setSearchItem] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   const { width } = MediaQuery();
   const breakpoint = 280;
 
-  // const find = async () => {
-  //   queryClient.invalidateQueries("searchContent");
-
-  //   var formData = new FormData();
-  //   formData.set("search_phrase", query);
-
-  //   const { data } = await axiosMethod("post", itemSearch, formData);
-
-  //   console.log(data);
-
-  //   if (!data.error) {
-  //     setQueryResult(data.data);
-  //     setState(false);
-  //   }
-
-  //   if (data.error) {
-  //     setQueryResult([]);
-  //     setQuery("");
-  //   }
-  // };
-
-  var formData = new FormData();
+  const formData = React.useMemo(() => new FormData(), []);
   formData.set("search_phrase", desktopQuery);
 
-  const { data } = axiosMethod("post", itemSearch, formData);
-  console.log(data);
+  const find = async () => {
+    setLoading(true);
+    if (query === "") {
+      // alert();
+    } else {
+      history.push(`/search?q=${searchItem}`);
+
+      const { data } = await axiosMethod("post", itemSearch, formData);
+
+      if (data) {
+        setMessage(data.message);
+        setQuery(data.data);
+        setLoading(false);
+      }
+    }
+  };
+
+  switch (message) {
+    case "no results found":
+      activePage = <Empty />;
+      break;
+    case "results found":
+      activePage = <SearchData data={query} />;
+      break;
+    default:
+      activePage = (
+        <div className="search-page">
+          <GroupComponent />
+          <p className="text-3">Search</p>
+        </div>
+      );
+      break;
+  }
 
   return (
     <div className="search-wrapper ">
@@ -60,7 +76,11 @@ const Search = () => {
               <Back width={30} height={30} />
             </div>
             <div className="category2 ">
-              <SearchBox action />
+              <SearchBox
+                action={find}
+                input={searchItem}
+                setInput={(e) => setSearchItem(e.target.value)}
+              />
 
               <div className="object-4 cart ">
                 <Close
@@ -106,14 +126,7 @@ const Search = () => {
       </div>
 
       <div className="main">
-        <div className="search-page">
-          <GroupComponent />
-          {/* <div className="text-1">   Sorry we couldn't find any matches for lkmhl;mrl;hm4;lml;hm4;l5hm  </div>
-          <p className="text-2">Please try searching with another term</p> */}
-          <p className="text-3">Search</p>
-        </div>
-
-        {/* {desktopQuery ? <SearchData data={queryResult} /> : <Placeholder />} */}
+        {loading ? <Placeholder /> : <>{activePage}</>}
       </div>
     </div>
   );
