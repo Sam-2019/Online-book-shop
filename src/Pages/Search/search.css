@@ -1,3 +1,27 @@
+.search-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10% 0 0;
+  width: 20%;
+  margin: 0 auto;
+}
+
+.svg-container {
+  text-align: center;
+}
+
+.text-1,
+.text-2,
+.text-3 {
+  text-align: center;
+  color: #7b7979;
+}
+
+.text-3 {
+  font-size: 30px;
+}
+
 @media (max-width: 540px) {
   .search-cart {
     align-items: center;
@@ -8,23 +32,16 @@
     padding: 7px 0;
   }
 
-  .svg-container {
-    text-align: center;
-  }
-
   .search-page {
+    width: 100%;
     padding: 30% 0 0;
   }
+}
 
-  .text-1,
-  .text-2,
-  .text-3 {
-    text-align: center;
-    color: #7b7979;
-  }
-
-  .text-3 {
-    font-size: 30px;
+@media (max-width: 530px) {
+  .search-page {
+    width: 100%;
+    padding: 30% 0 0;
   }
 }
 
