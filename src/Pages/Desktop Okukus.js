@@ -12,7 +12,7 @@ import PasswordReset from "./User/Password Reset";
 import Password from "./User/Password";
 import UserVerify from "./User/User Verify";
 import AccountVerify from "./User/Account Verify";
-import Search from "./Search/Search";
+import Search from "./Search/SearchDesktop";
 import Checkout from "./Checkout/Checkout";
 import Order from "./Order/Order";
 import Product from "./Product/Product";
