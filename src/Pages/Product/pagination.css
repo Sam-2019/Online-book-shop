@@ -1,0 +1,18 @@
+
+
+.previous,
+.current_page,
+.next {
+  font-size: 25px;
+}
+
+.previous {
+  border-left: 1px solid #ff0000;
+}
+
+.next {
+  border-right: 1px solid #cccccc;
+}
+
+.current_page {
+}
