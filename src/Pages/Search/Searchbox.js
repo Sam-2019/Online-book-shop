@@ -4,33 +4,18 @@ import { useHistory } from "react-router-dom";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 
-const Searchbox = () => {
-  const [query, setQuery] = React.useState("");
-
-  const queryClient = useQueryClient();
-
-  let history = useHistory();
-
-  function Query() {
-    if (query === "") {
-      // alert();
-    } else {
-      history.push(`/search?q=${query}`);
-      queryClient.invalidateQueries("searchWhat");
-      
-    }
-  }
+const Searchbox = ({ action, input, setInput }) => {
   return (
     <>
       <Input
         type="search"
         class_name="header-input  "
         placeholder="Search"
-        value={query}
-        action={(e) => setQuery(e.target.value)}
+        value={input}
+        action={setInput}
       />
 
-      <Button name="Search" class_name="header-primary2" action={Query} />
+      <Button name="Search" class_name="header-primary2" action={action} />
     </>
   );
 };
