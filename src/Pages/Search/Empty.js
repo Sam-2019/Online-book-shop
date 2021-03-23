@@ -11,7 +11,7 @@ const Empty = ({ message }) => {
       {/* <div className="text-1">   Sorry we couldn't find any matches for lkmhl;mrl;hm4;lml;hm4;l5hm  </div>
     <p className="text-2">Please try searching with another term</p> */}
 
-      <p className="text-3">No item was found for "{desktopQuery}"</p>);
+      <p className="text-3">No item was found for "{desktopQuery}"</p>
     </div>
   );
 };
