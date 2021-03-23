@@ -25,8 +25,8 @@ const Tags = ({ toggle }) => {
           className="bi bi-arrow-left-circle rounded"
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
-          width={40}
-          height={40}
+          width={35}
+          height={35}
         >
           <path
             fillRule="evenodd"
