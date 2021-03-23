@@ -1,10 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Cart from "../Components/Cart";
 import User from "../Components/User";
 import Search from "../Components/Search";
 import Justify from "../Components/Justify";
-import SearchBox from "../Search/Searchbox";
+import SearchBox from "../Search/Searchbox2";
 import { MediaQuery } from "../helper";
 
 import "./navigation.css";
