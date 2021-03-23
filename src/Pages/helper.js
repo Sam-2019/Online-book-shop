@@ -148,8 +148,7 @@ export const MediaQuery = () => {
 // document.write('<br>5 days ago was: ' + d.toLocaleString());
 // }
 
-
-export const useAsync = (getMethod, data) => {
+export const useAsync = (url, formData) => {
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState();
   const [error, setError] = useState();
@@ -157,26 +156,33 @@ export const useAsync = (getMethod, data) => {
   const [value, setValue] = useState([]);
 
   const fetchData = useCallback(async () => {
-    const result = await getMethod(data);
+    const result = await axios({
+      method: "POST",
+      url: url,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
 
-    if (result.error === true) {
+
+
+    if (result.data.error === true) {
       setTimeout(() => {
-        setError(result.error);
-        setSuccess(result.status);
-        setMessage(result.message);
+        setError(result.data.error);
+        setSuccess(result.data.status);
+        setMessage(result.data.message);
         setLoading(false);
         setValue(null);
       }, 1000);
-    } else if (result.error === false) {
+    } else if (result.data.error === false) {
       setTimeout(() => {
-        setValue(result.data);
+        setValue(result.data.data);
         setLoading(false);
-        setSuccess(result.status);
-        setMessage(result.message);
+        setSuccess(result.data.status);
+        setMessage(result.data.message);
         setError(null);
       }, 1000);
     }
-  }, [data, getMethod]);
+  }, [formData]);
 
   useEffect(() => {
     fetchData();
