@@ -11,6 +11,9 @@ import { buyerID, cartGet } from "../endpoints";
 import "./cart.css";
 import { useData } from "../Context";
 
+import SVGcontainer from "../SVGs/SVGcontainer";
+import EmptyCart from "../SVGs/empty-cart";
+
 const Cart = () => {
   const { amount, quantity } = useData();
   let history = useHistory();
@@ -51,29 +54,39 @@ const Cart = () => {
       </div>
 
       <div className="main">
-        {width > breakpoint ? (
+        {data ? (
           <>
-            <div className="cart_item_wrapper">
-              <div className="checkBox">
-                <input type="checkbox" value="0" hidden />
-              </div>
+            {width > breakpoint ? (
+              <>
+                <div className="cart_item_wrapper">
+                  <div className="checkBox">
+                    <input type="checkbox" value="0" hidden />
+                  </div>
 
-              <div className="cart-item-detail ">
-                <div className="imageXname ">
-                  <div className="item-name">Product name</div>
+                  <div className="cart-item-detail ">
+                    <div className="imageXname ">
+                      <div className="item-name">Product name</div>
 
-                  <div className="item-price">Price</div>
+                      <div className="item-price">Price</div>
+                    </div>
+
+                    <div className="priceXactions">
+                      <div className="binXaddXsubtract">Quantity</div>
+                    </div>
+                  </div>
                 </div>
-
-                <div className="priceXactions">
-                  <div className="binXaddXsubtract">Quantity</div>
-                </div>
-              </div>
-            </div>
+              </>
+            ) : null}
+            <CartData data={data} />
           </>
-        ) : null}
-
-        {data ? <CartData data={data} /> : <>Loading</>}
+        ) : (
+          <SVGcontainer>
+            <EmptyCart />
+            <p className="text-3">
+              No items in <b>your</b> cart yet!
+            </p>
+          </SVGcontainer>
+        )}
       </div>
 
       <Summary>
