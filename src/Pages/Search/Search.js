@@ -9,8 +9,9 @@ import SearchBox from "./Searchbox";
 import Placeholder from "../Placeholders/Products";
 import { MediaQuery, axiosMethod } from "../helper";
 import { itemSearch } from "../endpoints";
-import SearchSVG from "../Components/SearchSVG";
-import Empty from "./Empty";
+import SearchSVG from "../SVGs/search";
+import SVGContainer from "../SVGs/SVGcontainer";
+import NoResult from "./No Result";
 import "./search.css";
 
 const Search = () => {
@@ -50,17 +51,17 @@ const Search = () => {
 
   switch (message) {
     case "no results found":
-      activePage = <Empty />;
+      activePage = <NoResult />;
       break;
     case "results found":
       activePage = <SearchData data={query} />;
       break;
     default:
       activePage = (
-        <div className="empty-page">
+        <SVGContainer>
           <SearchSVG />
           <p className="text-3">Search</p>
-        </div>
+        </SVGContainer>
       );
   }
 
