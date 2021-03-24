@@ -13,7 +13,7 @@ const queryClient = new QueryClient();
 
 const Loading = styled.div`
   text-align: center;
-  margin : 10px 0;
+  padding: 10px 0;
 `;
 
 const Navigator = styled.div`
@@ -29,7 +29,7 @@ const NavigatorActions = styled.div`
   width: 250px;
   background-color: white;
   border: 1px solid #cccccc;
-  margin: 0 0 10px;
+  paddding: 0 0 10px;
   box-shadow: 1px 8px 11px -6px rgba(82, 82, 82, 0.75);
   -webkit-box-shadow: 1px 8px 11px -6px rgba(82, 82, 82, 0.75);
   -moz-box-shadow: 1px 8px 11px -6px rgba(82, 82, 82, 0.75);
@@ -73,8 +73,6 @@ const Next = styled.div`
 `;
 
 const Products = () => {
-  // Queries
-  // const { isLoading, isError, data, error, status } = useProducts();
   const [items, setItems] = React.useState(0);
   const [page, setPages] = React.useState(1);
 
@@ -106,7 +104,6 @@ const Products = () => {
     }
   );
 
-  // Prefetch the next items!
   React.useEffect(() => {
     if (data?.hasMore) {
       queryClient.prefetchQuery(["projects", items + 1], () =>
@@ -131,41 +128,45 @@ const Products = () => {
         )}
       </div>
 
-      <Loading>{isFetching ? <Loader type="ball-pulse-sync" active/> : null}</Loading>
-
-      <Navigator>
-        <NavigatorActions>
-          <Previous onClick={Decrement}>
-            <svg
-              width="24px"
-              height="24px"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.2431 6.34317L14.8288 4.92896L7.75781 12L14.8289 19.0711L16.2431 17.6569L10.5862 12L16.2431 6.34317Z"
-                fill="gray"
-              />
-            </svg>
-          </Previous>
-          <CurrentPage>{page}</CurrentPage>
-          <Next onClick={Increment}>
-            <svg
-              width="24px"
-              height="24px"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10.5859 6.34314L12.0002 4.92892L19.0712 12L12.0002 19.0711L10.5859 17.6568L16.2428 12L10.5859 6.34314Z"
-                fill="gray"
-              />
-            </svg>
-          </Next>
-        </NavigatorActions>
-      </Navigator>
+      <Loading>
+        {isFetching ? (
+          <Loader type="ball-pulse-sync" active />
+        ) : (
+          <Navigator>
+            <NavigatorActions>
+              <Previous onClick={Decrement}>
+                <svg
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.2431 6.34317L14.8288 4.92896L7.75781 12L14.8289 19.0711L16.2431 17.6569L10.5862 12L16.2431 6.34317Z"
+                    fill="gray"
+                  />
+                </svg>
+              </Previous>
+              <CurrentPage>{page}</CurrentPage>
+              <Next onClick={Increment}>
+                <svg
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10.5859 6.34314L12.0002 4.92892L19.0712 12L12.0002 19.0711L10.5859 17.6568L16.2428 12L10.5859 6.34314Z"
+                    fill="gray"
+                  />
+                </svg>
+              </Next>
+            </NavigatorActions>
+          </Navigator>
+        )}
+      </Loading>
     </>
   );
 };
