@@ -1,5 +1,4 @@
 import React from "react";
-import { useQuery, useQueryClient } from "react-query";
 import { useHistory } from "react-router-dom";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
