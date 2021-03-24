@@ -9,7 +9,7 @@ import SearchBox from "./Searchbox";
 import Placeholder from "../Placeholders/Products";
 import { MediaQuery, axiosMethod } from "../helper";
 import { itemSearch } from "../endpoints";
-import GroupComponent from "../Components/GroupComponent";
+import SearchSVG from "../Components/SearchSVG";
 import Empty from "./Empty";
 import "./search.css";
 
@@ -57,8 +57,8 @@ const Search = () => {
       break;
     default:
       activePage = (
-        <div className="search-page">
-          <GroupComponent />
+        <div className="empty-page">
+          <SearchSVG />
           <p className="text-3">Search</p>
         </div>
       );
