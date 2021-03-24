@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import SearchData from "./searchData";
-import Empty from "./Empty";
+import NoResult from "./No Result";
 import Placeholder from "../Placeholders/Products";
 import { useAsync2 } from "../helper";
 import { itemSearch } from "../endpoints";
@@ -16,7 +16,7 @@ const Search = () => {
 
   switch (result.message) {
     case "no results found":
-      activePage = <Empty />;
+      activePage = <NoResult />;
       break;
     case "results found":
       activePage = <SearchData data={result.value} />;
