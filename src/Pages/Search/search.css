@@ -1,16 +1,3 @@
-.empty-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 10% 0 0;
-  width: 35%;
-  margin: 0 auto;
-}
-
-.svg-container {
-  text-align: center;
-}
-
 .text-1,
 .text-2,
 .text-3 {
@@ -31,20 +18,9 @@
     font-size: 16px;
     padding: 7px 0;
   }
-
-  .empty-page {
-    width: 60%;
-    padding: 30% 0 0;
-  }
-
-
 }
 
 @media (max-width: 530px) {
-  .empty-page {
-    width: 90%;
-    padding: 30% 0 0;
-  }
 }
 
 @media (max-width: 320px) {
