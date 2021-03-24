@@ -1,9 +1,9 @@
-.search-page {
+.empty-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 10% 0 0;
-  width: 40%;
+  width: 35%;
   margin: 0 auto;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .text-3 {
-  font-size: 30px;
+  font-size: 23px;
 }
 
 @media (max-width: 540px) {
@@ -32,15 +32,17 @@
     padding: 7px 0;
   }
 
-  .search-page {
-    width: 100%;
+  .empty-page {
+    width: 60%;
     padding: 30% 0 0;
   }
+
+
 }
 
 @media (max-width: 530px) {
-  .search-page {
-    width: 100%;
+  .empty-page {
+    width: 90%;
     padding: 30% 0 0;
   }
 }
