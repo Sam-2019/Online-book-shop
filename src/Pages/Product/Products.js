@@ -1,19 +1,19 @@
 import React from "react";
 import { useQuery, QueryClient } from "react-query";
-
+import Loader from "react-loaders";
 import styled from "styled-components";
-
 import { fetchProjects } from "../helper";
 import ProductsItem from "./productsItem";
 import Placeholder from "../Placeholders/Products";
 import { itemsGet } from "../endpoints";
 import "./products.css";
-import "./pagination.css";
+import "./products.scss";
 
 const queryClient = new QueryClient();
 
 const Loading = styled.div`
   text-align: center;
+  margin : 10px 0;
 `;
 
 const Navigator = styled.div`
@@ -123,8 +123,6 @@ const Products = () => {
         ) : status === "error" ? (
           <div>Error: {error.message}</div>
         ) : (
-          // `data` will either resolve to the latest items's data
-          // or if fetching a new items, the last successful items's data
           <div className="products">
             {data.map((items, index) => (
               <ProductsItem key={index} {...items} />
@@ -133,42 +131,36 @@ const Products = () => {
         )}
       </div>
 
-      {/* <Loading>
-        {isFetching ? null : <span> Current Page: {page}</span>}
-      </Loading> */}
-
-      <Loading>{isFetching ? <span> Loading...</span> : null}</Loading>
+      <Loading>{isFetching ? <Loader type="ball-pulse-sync" active/> : null}</Loading>
 
       <Navigator>
         <NavigatorActions>
           <Previous onClick={Decrement}>
             <svg
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              width={25}
-              height={25}
-              fill="currentColor"
-              className="bi bi-chevron-left"
-              viewBox="0 0 16 16"
             >
               <path
-                fillRule="evenodd"
-                d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                d="M16.2431 6.34317L14.8288 4.92896L7.75781 12L14.8289 19.0711L16.2431 17.6569L10.5862 12L16.2431 6.34317Z"
+                fill="gray"
               />
             </svg>
           </Previous>
           <CurrentPage>{page}</CurrentPage>
           <Next onClick={Increment}>
             <svg
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+              fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              width={25}
-              height={25}
-              fill="currentColor"
-              className="bi bi-chevron-right"
-              viewBox="0 0 16 16"
             >
               <path
-                fillRule="evenodd"
-                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                d="M10.5859 6.34314L12.0002 4.92892L19.0712 12L12.0002 19.0711L10.5859 17.6568L16.2428 12L10.5859 6.34314Z"
+                fill="gray"
               />
             </svg>
           </Next>
