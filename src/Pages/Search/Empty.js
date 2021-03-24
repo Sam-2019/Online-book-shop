@@ -1,15 +1,20 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import GroupComponent from "../Components/GroupComponent";
+import SearchSVG from "../Components/SearchSVG";
 
 const Empty = () => {
   const desktopQuery = new URLSearchParams(useLocation().search).get("q");
 
   return (
-    <div className="search-page">
-      <GroupComponent />
+    <div className="empty-page">
+      <SearchSVG />
 
-      <p className="text-3">No item was found for "{desktopQuery}"</p>
+      <p className="text-3">
+        Sorry we couldn't find any matches for <b>{desktopQuery}</b>
+      </p>
+      {/* <article className="text-3">
+        Please try searching for another item
+      </article> */}
     </div>
   );
 };
