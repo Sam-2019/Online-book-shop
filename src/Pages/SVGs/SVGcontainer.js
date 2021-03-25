@@ -6,7 +6,7 @@ const SvgPage = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 10% 0 0;
-  width: 35%;
+  width: 40%;
   margin: 0 auto;
 
   @media (max-width: 540px) {
