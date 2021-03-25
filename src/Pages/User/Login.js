@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
+import Message from "../Components/Message";
 import { EyeShow, EyeHide } from "../Components/Eye";
 import { MediaQuery } from "../helper";
+import { useData } from "../Context";
 import "./user.css";
 
 const Login = () => {
   let history = useHistory();
+
   const breakpoint = 540;
+  const { loginUser } = useData();
   const { width } = MediaQuery();
+  const [message, setMessage] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [show, hide] = React.useState("password");
 
@@ -23,6 +31,38 @@ const Login = () => {
     default:
       type = "password";
   }
+
+  const clearLogin = () => {
+    setEmail("");
+    setPassword("");
+  };
+
+  const logIn = async (event) => {
+    setMessage("");
+    event.preventDefault();
+    var formData = new FormData();
+
+    let empty = email && password;
+
+    if (empty !== "") {
+      setLoading(true);
+      formData.set("email", email);
+      formData.set("password", password);
+
+      const data = await loginUser(formData);
+      
+      if (data.error === true) {
+        setMessage(data.message);
+        setLoading(false);
+      } else if (data.error === false && data.token) {
+        localStorage.setItem("loginToken", data.token);
+        clearLogin();
+        setLoading(false);
+      } else return;
+    } else if (empty === "") {
+      setMessage("Please fill the form");
+    } else return;
+  };
 
   return (
     <div className="user-wrapper">
@@ -44,16 +84,19 @@ const Login = () => {
               }}
             />
           </div>
-
-          {/* <div className="">
-            <Button name="Next" class_name="header-primary" />
-          </div> */}
         </div>
       </div>
 
       <div className="main">
         <form className="form-wrapper login-box outline">
-          <Input class_name="input " placeholder="Email" onChange type="name" />
+          <Input
+            class_name="input "
+            placeholder="Email"
+            onChange
+            type="name"
+            action={(e) => setEmail(e.target.value)}
+            content={email}
+          />
 
           <Input
             class_name="input"
@@ -61,6 +104,8 @@ const Login = () => {
             onChange
             autoComplete="new-password"
             type={type}
+            action={(e) => setPassword(e.target.value)}
+            content={password}
           />
 
           <div className="eyeIcon">
@@ -79,29 +124,6 @@ const Login = () => {
             )}
           </div>
 
-          {/* <div className="eyeLiner">
-            <Input
-              class_name="password"
-              placeholder="Password"
-              onChange
-              autoComplete="new-password"
-              type={type}
-            />
-            {show === "password" ? (
-              <EyeShow
-                action={() => {
-                  hide("text");
-                }}
-              />
-            ) : (
-              <EyeHide
-                action={() => {
-                  hide("password");
-                }}
-              />
-            )}
-          </div> */}
-
           <div className="forgotten_password_wrapper">
             <span
               className="forgotten_password "
@@ -113,9 +135,14 @@ const Login = () => {
             </span>
           </div>
 
-          {/* <Message class_name="message " message="Hello" /> */}
+          {message ? <Message class_name="message " message={message} /> : null}
 
-          <Button name="Login" class_name="primary" />
+          <Button
+            name="Login"
+            class_name="primary"
+            action={logIn}
+            loading={loading}
+          />
 
           {width > breakpoint ? (
             <Button
