@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import SVGContainer from "../SVGs/SVGcontainer";
-import SearchSVG from "../SVGs/search";
+import SearchSVG from "../SVGs/new-search";
 
 const NoResult = () => {
   const desktopQuery = new URLSearchParams(useLocation().search).get("q");

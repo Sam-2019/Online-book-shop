@@ -9,7 +9,7 @@ import SearchBox from "./Searchbox";
 import Placeholder from "../Placeholders/Products";
 import { MediaQuery, axiosMethod } from "../helper";
 import { itemSearch } from "../endpoints";
-import SearchSVG from "../SVGs/search";
+import SearchSVG from "../SVGs/new-search";
 import SVGContainer from "../SVGs/SVGcontainer";
 import NoResult from "./No Result";
 import "./search.css";
