@@ -29,14 +29,7 @@ const Search = () => {
     <div className="search-wrapper ">
       <div className="main">
         <div className="title-makeshift ">
-          <div>
-            {/* {status === "loading" ? (
-              <Placeholder />
-            ) : null // <SearchData data={data} />
-            } */}
-
-            {result.loading ? <Placeholder /> : <>{activePage}</>}
-          </div>
+          {result.loading ? <Placeholder /> : <>{activePage}</>}
         </div>
       </div>
     </div>
