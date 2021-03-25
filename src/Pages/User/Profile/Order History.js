@@ -6,7 +6,7 @@ import { backendData } from "../../helper";
 import { useData } from "../../Context";
 import EmptyOrderHistory from "../../SVGs/empty-orderhistory";
 import SVGContainer from "../../SVGs/SVGcontainer";
-import HistoryData from './historyData'
+import HistoryData from "./historyData";
 
 const OrderHistory = () => {
   const { orderLength } = useData();
@@ -38,6 +38,9 @@ const OrderHistory = () => {
         <div className="wrapper-item">
           {data === undefined ? (
             <SVGContainer>
+              <p className="text-3">
+                No item in <b>your</b> order history yet!
+              </p>
               <EmptyOrderHistory />
             </SVGContainer>
           ) : null}
@@ -50,4 +53,3 @@ const OrderHistory = () => {
 };
 
 export default OrderHistory;
-

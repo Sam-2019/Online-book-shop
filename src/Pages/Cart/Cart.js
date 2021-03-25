@@ -83,7 +83,7 @@ const Cart = () => {
           <SVGcontainer>
             <EmptyCart />
             <p className="text-3">
-              No items in <b>your</b> cart yet!
+              No item in <b>your</b> cart yet!
             </p>
           </SVGcontainer>
         )}

@@ -40,6 +40,9 @@ const WishList = () => {
           {data === undefined ? (
             <SVGContainer>
               <EmptyWishList />
+              <p className="text-3">
+              No item in <b>your</b> wish list yet!
+            </p>
             </SVGContainer>
           ) : null}
 
