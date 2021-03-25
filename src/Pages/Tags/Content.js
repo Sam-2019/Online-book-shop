@@ -18,9 +18,7 @@ const Content = () => {
     ["tagContent", tagGet, formData],
     () => backendData(tagGet, formData),
     {
-      keepPreviousData: true,
-      staleTime: 5000,
-      cacheTime: 10000,
+      keepPreviousData: false,
     }
   );
 
