@@ -5,6 +5,8 @@ import Back from "../../Components/Back";
 import { buyerID, wishList } from "../../endpoints";
 import { backendData } from "../../helper";
 import { useData } from "../../Context";
+import EmptyWishList from "../../SVGs/empty-wishlist";
+import SVGContainer from "../../SVGs/SVGcontainer";
 
 const WishList = () => {
   const { wishlistLength } = useData();
@@ -35,7 +37,13 @@ const WishList = () => {
 
       <div className="main ">
         <div className="wrapper-item">
-          {data ? <WishData data={data} /> : <>Loading</>}
+          {data === undefined ? (
+            <SVGContainer>
+              <EmptyWishList />
+            </SVGContainer>
+          ) : null}
+
+          {data ? <WishData data={data} /> : null}
         </div>
       </div>
     </div>
