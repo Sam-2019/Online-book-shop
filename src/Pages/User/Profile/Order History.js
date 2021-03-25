@@ -5,6 +5,8 @@ import Back from "../../Components/Back";
 import { buyerID, orderHistory } from "../../endpoints";
 import { backendData } from "../../helper";
 import { useData } from "../../Context";
+import HistorySVG from "../../SVGs/order-history";
+import SVGContainer from "../../SVGs/SVGcontainer";
 
 const OrderHistory = () => {
   const { orderLength } = useData();
@@ -20,6 +22,7 @@ const OrderHistory = () => {
       cacheTime: 5000,
     }
   );
+
 
   return (
     <div className="user-wrapper">
@@ -39,6 +42,12 @@ const OrderHistory = () => {
             .map((item, index) => (
               <OrderItem key={index} />
             ))} */}
+
+          {data === undefined ? (
+            <SVGContainer>
+              <HistorySVG />
+            </SVGContainer>
+          ) : null}
 
           {data ? <Orders data={data} /> : <>Loading</>}
         </div>
