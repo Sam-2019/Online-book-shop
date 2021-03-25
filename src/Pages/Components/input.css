@@ -7,6 +7,14 @@
   width: 100%;
 }
 
+textarea:invalid {
+  border: 2px dashed red;
+}
+
+textarea:valid {
+   border: 2px solid lime;
+}
+
 .password {
   border: 1px solid transparent;
   outline: none;
