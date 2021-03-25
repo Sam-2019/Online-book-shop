@@ -7,11 +7,11 @@ import StarRating from '../Components/StarRating'
 const AddReview = ({ close }) => {
   return (
     <form className=" change ">
-      <TextArea class_name="text-input " placeholder="User Review" onChange />
+    
 
       <StarRating  />
 
-      <Message class_name="message " message="Hello" />
+      <TextArea class_name="text-input " placeholder="Leave a review" onChange />
 
       <Button class_name="primary" name="Post" />
 
