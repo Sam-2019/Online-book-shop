@@ -21,18 +21,7 @@
 .star.selected {
   background-color: rgb(195, 49, 49);
 }
-.star-rating {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-bottom: 6px;
-}
 
-.helloguys {
-  display: flex;
-
-  flex-direction: row;
-}
 .stars {
   display: flex;
   align-items: center;
