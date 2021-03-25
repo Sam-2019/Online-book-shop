@@ -154,7 +154,14 @@ const Product = ({ data }) => {
                 />
               </div>
 
-              <Social width={22} height={25} />
+              <Social
+                width={22}
+                height={25}
+                postTitle={data.data.product_name}
+                postUrl={`https://okukus.com/product/${id}`}
+                hashtags="okukus, okukusBooks, books, shopOkukus, shop@Okukus, okukus.com"
+                via
+              />
             </div>
 
             <div className="product-detail  ">
