@@ -1,12 +1,12 @@
 import React from "react";
 import { useQuery } from "react-query";
-import OrderItem from "./order-item";
 import Back from "../../Components/Back";
 import { buyerID, orderHistory } from "../../endpoints";
 import { backendData } from "../../helper";
 import { useData } from "../../Context";
-import HistorySVG from "../../SVGs/order-history";
+import EmptyOrderHistory from "../../SVGs/empty-orderhistory";
 import SVGContainer from "../../SVGs/SVGcontainer";
+import HistoryData from './historyData'
 
 const OrderHistory = () => {
   const { orderLength } = useData();
@@ -23,7 +23,6 @@ const OrderHistory = () => {
     }
   );
 
-
   return (
     <div className="user-wrapper">
       <div className="header">
@@ -37,19 +36,13 @@ const OrderHistory = () => {
 
       <div className="main">
         <div className="wrapper-item">
-          {/* {Array(10)
-            .fill()
-            .map((item, index) => (
-              <OrderItem key={index} />
-            ))} */}
-
           {data === undefined ? (
             <SVGContainer>
-              <HistorySVG />
+              <EmptyOrderHistory />
             </SVGContainer>
           ) : null}
 
-          {data ? <Orders data={data} /> : <>Loading</>}
+          {data ? <HistoryData data={data} /> : null}
         </div>
       </div>
     </div>
@@ -58,12 +51,3 @@ const OrderHistory = () => {
 
 export default OrderHistory;
 
-const Orders = ({ data }) => {
-  return (
-    <>
-      {data.map((items, i) => (
-        <OrderItem key={i} {...items} />
-      ))}
-    </>
-  );
-};
