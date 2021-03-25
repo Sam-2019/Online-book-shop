@@ -6,7 +6,7 @@
 }
 
 .text-3 {
-  font-size: 23px;
+  font-size: 20px;
 }
 
 @media (max-width: 540px) {
@@ -17,6 +17,10 @@
   .search-text {
     font-size: 16px;
     padding: 7px 0;
+  }
+
+  .text-3 {
+    font-size: 23px;
   }
 }
 
