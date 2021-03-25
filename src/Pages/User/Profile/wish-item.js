@@ -3,11 +3,10 @@ import PropTypes from "prop-types";
 import { useQueryClient } from "react-query";
 import { useHistory } from "react-router-dom";
 import Bin from "../../Components/Bin";
-import Notify from "../../Components/Notify";
+import { toast } from "react-toastify";
 import Confirm from "../../Components/Confirm";
 import Button from "../../Components/Button";
-import { okukus,
-  wishDelete, buyerID } from "../../endpoints";
+import { okukus, wishDelete, buyerID } from "../../endpoints";
 import { MediaQuery, axiosMethod } from "../../helper";
 import "./wishitem.css";
 
@@ -27,21 +26,13 @@ const WishItem = ({
 }) => {
   const breakpoint = 540;
   const { width } = MediaQuery();
-  const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
-  const [message, setMessage] = React.useState("");
 
   const queryClient = useQueryClient();
 
   let history = useHistory();
-
-  const showNotify = () => {
-    setNotify(true);
-
-    const timer = setTimeout(() => {
-      setNotify(false);
-    }, 3000);
-    return () => clearTimeout(timer);
+  const notify = (data) => {
+    toast(data);
   };
 
   const updateBin = () => {
@@ -56,19 +47,14 @@ const WishItem = ({
     formData.set("item_unique_id", unique_id);
 
     const { data } = await axiosMethod("post", wishDelete, formData);
-    setMessage(data.message);
 
-  if (data.message === "wishlist item deleted successfully") {
-     queryClient.invalidateQueries("wishList");
-     setConfirm(false);
-    setNotify(true);
- 
-   }
+    if (data.message === "wishlist item deleted successfully") {
+      queryClient.invalidateQueries("wishList");
+      setConfirm(false);
+      notify(data.message);
+    }
 
-    const timer = setTimeout(() => {
-      setNotify(false);
-     }, 3000);
-    return () => clearTimeout(timer);
+    notify(data.error);
   };
 
   return (
@@ -81,12 +67,11 @@ const WishItem = ({
               history.push(`/product/${product_unique_id}`);
             }}
           >
-      <img
-                  src={`${okukus}/${cover_photo_url}`}
-                  alt="peecha"
-                  className="image-placeholder-original"
-                />
-
+            <img
+              src={`${okukus}/${cover_photo_url}`}
+              alt="peecha"
+              className="image-placeholder-original"
+            />
           </div>
 
           <div className="order-item-name-price-quantity">
@@ -138,10 +123,6 @@ const WishItem = ({
           </div>
         ) : null}
       </div>
-
-      {notify ? (
-        <Notify close={() => setNotify(false)}>{message}</Notify>
-      ) : null}
 
       {confirm ? (
         <Confirm

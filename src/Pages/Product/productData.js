@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory, useRouteMatch, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useQueryClient } from "react-query";
-import Notify from "../Components/Notify";
 import Back from "../Components/Back";
 import Up from "../Components/Up";
 import Down from "../Components/Down";
@@ -22,6 +22,10 @@ import { okukus, cartAdd, buyerID, wishCreate } from "../endpoints";
 import { Spacer } from "../Placeholders/Product";
 
 import "./product.css";
+
+const notify = (data) => {
+  toast(data);
+};
 
 // const AddToCart = styled.div`
 //   width: 40%;
@@ -46,7 +50,6 @@ const Product = ({ data }) => {
   const { width } = MediaQuery();
 
   const [loading, setLoading] = React.useState(false);
-  const [notify, setNotify] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
   const [review, addReview] = React.useState(false);
   const [loveFill, setLoveFill] = React.useState(false);
@@ -72,7 +75,7 @@ const Product = ({ data }) => {
         .share({
           title: title,
           text: "Check us out for all your book needs",
-          url: url,
+          url,
         })
         .then(() => console.log("Successful share"))
         .catch((error) => console.log("Error sharing", error));
@@ -91,19 +94,14 @@ const Product = ({ data }) => {
     setLoading(true);
 
     const { data } = await axiosMethod("post", cartAdd, formData);
-    setMessage(data.message);
 
     if (data.error === false) {
       queryClient.invalidateQueries("carts");
-      setNotify(true);
+      notify(data.message);
     }
 
     setLoading(false);
-
-    const timer = setTimeout(() => {
-      setNotify(false);
-    }, 2000);
-    return () => clearTimeout(timer);
+    notify(data.error);
   };
 
   const add2WL = async (e) => {
@@ -115,11 +113,12 @@ const Product = ({ data }) => {
 
     if (data.error === false) {
       setLoveFill(true);
-      setNotify(true);
+      notify(data.message);
     }
 
+    notify(data.error);
+
     const timer = setTimeout(() => {
-      setNotify(false);
       setLoveFill(false);
     }, 2000);
     return () => clearTimeout(timer);
@@ -291,10 +290,6 @@ const Product = ({ data }) => {
             }}
           />
         </PopUp>
-      ) : null}
-
-      {notify ? (
-        <Notify close={() => setNotify(false)}>{message}</Notify>
       ) : null}
 
       <Summary>

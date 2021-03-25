@@ -1,28 +1,27 @@
 import React from "react";
-import Notify from "../../Components/Notify";
+import { toast } from "react-toastify";
 import Button from "../../Components/Button";
 import Confirm from "../../Components/Confirm";
 import { okukus } from "../../endpoints";
 import "./orderitem.css";
 
 const OrderItem = ({ cover_photo_url, amount, product_name, status }) => {
-  const [notify, setNotify] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
   let status2 = "pending";
   let statusColorX;
   let show;
 
-  const showNotify = () => {
-    setNotify(true);
-
-    const timer = setTimeout(() => {
-      setNotify(false);
-    }, 3000);
-    return () => clearTimeout(timer);
+  const notify = (data) => {
+    toast(data);
   };
 
   const cancelOrder = () => {
     setConfirm(true);
+  };
+
+  const Delete = () => {
+    // notify(data.message);
+    // notify(data.error);
   };
 
   switch (status) {
@@ -84,13 +83,6 @@ const OrderItem = ({ cover_photo_url, amount, product_name, status }) => {
           <div className={`status ${statusColorX}`}>{status}</div>
         </div>
       </div>
-
-      {notify ? (
-        <Notify
-          message="Order successfully cancelled"
-          close={() => setNotify(false)}
-        />
-      ) : null}
 
       {confirm ? (
         <Confirm
