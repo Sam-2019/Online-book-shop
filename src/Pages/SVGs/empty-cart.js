@@ -6,9 +6,10 @@
  **/
 
 import React from "react";
+import {SvgItem} from './SVGcontainer'
 
 const EmptyCart = (props) => (
-  <div className="svg-item">
+  <SvgItem>
     <svg {...props} width={244} height={244} viewBox="0 0 244 244">
       <defs>
         <style>
@@ -71,7 +72,7 @@ const EmptyCart = (props) => (
         />
       </g>
     </svg>
-  </div>
+  </SvgItem>
 );
 
 export default EmptyCart;

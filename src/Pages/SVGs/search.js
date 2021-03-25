@@ -6,9 +6,10 @@
  **/
 
 import React from "react";
+import {SvgItem} from './SVGcontainer'
 
 const SearchSVG = () => (
-  <div className="svg-item">
+  <SvgItem>
     <svg width={130} height={127} viewBox="0 0 130 127">
       <defs>
         <style>
@@ -111,7 +112,7 @@ const SearchSVG = () => (
         transform="translate(79.4 68.44) rotate(171)"
       />
     </svg>
-  </div>
+  </SvgItem>
 );
 
 export default SearchSVG;

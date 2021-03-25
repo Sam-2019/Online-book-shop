@@ -6,9 +6,10 @@
  **/
 
 import React from "react";
+import {SvgItem} from './SVGcontainer'
 
 const EmptyWishlist = props => (
-  <div className="svg-item">
+  <SvgItem>
   <svg {...props} width={244} height={244} viewBox="0 0 244 244">
     <defs>
       <style>
@@ -75,7 +76,7 @@ const EmptyWishlist = props => (
       </g>
     </g>
   </svg>
-  </div>
+  </SvgItem>
 );
 
 export default EmptyWishlist;

@@ -6,10 +6,11 @@
  **/
 
 import React from "react";
+import {SvgItem} from './SVGcontainer'
 
 const Search = props => (
   
-  <div className="svg-item">
+  <SvgItem>
   <svg {...props} width={244} height={239.175} viewBox="0 0 244 239.175">
     <defs>
       <style>
@@ -117,7 +118,7 @@ const Search = props => (
       </g>
     </g>
   </svg>
-  </div>
+  </SvgItem>
 );
 
 export default Search;
