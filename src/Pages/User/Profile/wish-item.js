@@ -10,6 +10,8 @@ import { okukus, wishDelete, buyerID } from "../../endpoints";
 import { MediaQuery, axiosMethod } from "../../helper";
 import "./wishitem.css";
 
+toast.configure();
+
 const WishItem = ({
   availablity,
   cover_photo_url,

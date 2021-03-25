@@ -20,12 +20,9 @@ import Summary from "../Summary/Summary";
 import { MediaQuery, axiosMethod } from "../helper";
 import { okukus, cartAdd, buyerID, wishCreate } from "../endpoints";
 import { Spacer } from "../Placeholders/Product";
-
 import "./product.css";
 
-const notify = (data) => {
-  toast(data);
-};
+toast.configure();
 
 // const AddToCart = styled.div`
 //   width: 40%;
@@ -48,6 +45,10 @@ const Product = ({ data }) => {
   let { url } = useRouteMatch();
 
   const { width } = MediaQuery();
+
+  const notify = (data) => {
+    toast(data);
+  };
 
   const [loading, setLoading] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
