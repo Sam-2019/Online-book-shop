@@ -38,10 +38,10 @@ const OrderHistory = () => {
         <div className="wrapper-item">
           {data === undefined ? (
             <SVGContainer>
+              <EmptyOrderHistory />
               <p className="text-3">
                 No item in <b>your</b> order history yet!
               </p>
-              <EmptyOrderHistory />
             </SVGContainer>
           ) : null}
 
