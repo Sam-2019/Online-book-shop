@@ -46,6 +46,8 @@ export const TextArea = ({
       value={value}
       id={uniqueID}
       name={uniqueName}
+      rows="5"
+      minlength="10"
     />
   );
 };
