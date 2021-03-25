@@ -50,16 +50,15 @@ const WishItem = ({
     formData.set("item_unique_id", unique_id);
 
     const { data } = await axiosMethod("post", wishDelete, formData);
-    queryClient.invalidateQueries("wishList");
 
     if (data.message === "wishlist item deleted successfully") {
+      queryClient.invalidateQueries("wishlist");
+      queryClient.invalidateQueries("wishlistLength");
       setConfirm(false);
       notify(data.message);
-      queryClient.invalidateQueries("wishList");
     }
 
     notify(data.error);
-    queryClient.invalidateQueries("wishList");
   };
 
   return (
