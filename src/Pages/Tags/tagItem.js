@@ -9,7 +9,6 @@ const TagItem = ({ id, title, toggle }) => {
   function Toggle() {
     toggle();
     history.push(`/tag/${title}`);
-
     queryClient.invalidateQueries("tagContent");
   }
   return (
