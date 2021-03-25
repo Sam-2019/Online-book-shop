@@ -22,6 +22,7 @@ import Products from "./Product/Products";
 import Profile from "./User/Profile";
 import Review from "./Review/Review";
 import TagContent from "./Tags/Content";
+import NotFound from "./404/404";
 
 function Mobile() {
   return (
@@ -68,6 +69,10 @@ function Mobile() {
 
       <Route path="/product">
         <ProductPage />
+      </Route>
+
+      <Route>
+        <NotFound />
       </Route>
     </Switch>
   );

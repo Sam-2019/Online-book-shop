@@ -21,6 +21,7 @@ import Profile from "./User/Profile";
 import Review from "./Review/Review";
 import TagContent from "./Tags/Content";
 import Float from "./Components/Floating Icon";
+import NotFound from './404/404' 
 
 function Desktop() {
   return (
@@ -77,6 +78,11 @@ function Content() {
       <Route path="/product">
         <ProductPage />
       </Route>
+
+      <Route>
+        <NotFound />
+      </Route>
+      
     </Switch>
   );
 }
