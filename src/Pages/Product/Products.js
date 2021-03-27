@@ -1,13 +1,13 @@
 import React from "react";
 import { useQuery, QueryClient } from "react-query";
-import Loader from "react-loaders";
+//import Loader from "react-loaders";
 import styled from "styled-components";
 import { fetchProjects } from "../helper";
 import ProductsItem from "./productsItem";
 import Placeholder from "../Placeholders/Products";
 import { itemsGet } from "../endpoints";
+import Loader from "../Loader/loader";
 import "./products.css";
-import "./products.scss";
 
 const queryClient = new QueryClient();
 
@@ -16,7 +16,7 @@ const Loading = styled.div`
   padding: 10px 0;
 `;
 
-const Navigator = styled.div`
+export const Navigator = styled.div`
   display: flex;
   justify-content: center;
 `;
@@ -130,7 +130,7 @@ const Products = () => {
 
       <Loading>
         {isFetching ? (
-          <Loader type="ball-pulse-sync" active />
+          <Loader />
         ) : (
           <Navigator>
             <NavigatorActions>
