@@ -7,10 +7,6 @@ import {
   wishList,
   buyerID,
   profileImageGet,
-  itemsGet,
-  itemGet,
-  tagsGet,
-  tagGet,
   userLogin,
   userRegister,
   userValidate,
@@ -22,17 +18,9 @@ import {
   userCreateEmailVerify,
   userReadEmailVerify,
   passwordReset,
-  itemSearch,
-  cartAdd,
-  cartGet,
-  cartCount,
   cartUpdate,
-  cartDelete,
   cartCheckout,
   orderCreate,
-  orderDetail,
-  wishCreate,
-  wishDelete,
   userWelcome,
   dev_site,
 } from "./endpoints";
@@ -60,21 +48,6 @@ const Data = () => {
 
   const [orderLength, setOrderLength] = useState(0);
   const [wishlistLength, setWishlistLength] = useState(0);
-
-  async function getItem(formData) {
-    const { data } = await axiosMethod("post", itemGet, formData);
-    return data;
-  }
-
-  const getTags = async () => {
-    const data = await axiosMethod("post", tagsGet);
-    return data;
-  };
-
-  async function getTag(formData) {
-    const { data } = await axiosMethod("post", tagGet, formData);
-    return data;
-  }
 
   async function logoutUser() {
     localStorage.removeItem("loginToken");
@@ -178,32 +151,6 @@ const Data = () => {
     return data;
   }
 
-  async function searchItem(formData) {
-    const { data } = await axiosMethod("post", itemSearch, formData);
-    return data;
-  }
-
-  async function addCart(formData) {
-    const { data } = await axiosMethod("post", cartAdd, formData);
-    return data;
-  }
-
-  async function getCart(formData) {
-    const { data } = await axiosMethod("post", cartGet, formData);
-    return data;
-  }
-
-  async function countCart(formData) {
-    const { data } = await axiosMethod("post", cartCount, formData);
-
-    return data;
-  }
-
-  async function deleteCart(formData) {
-    const { data } = await axiosMethod("post", cartDelete, formData);
-    return data;
-  }
-
   async function updateCart(formData) {
     const { data } = await axiosMethod("post", cartUpdate, formData);
     return data;
@@ -221,26 +168,6 @@ const Data = () => {
 
   async function createOrder(formData) {
     const { data } = await axiosMethod("post", orderCreate, formData);
-    return data;
-  }
-
-  async function historyOrder(formData) {
-    const { data } = await axiosMethod("post", orderHistory, formData);
-    return data;
-  }
-
-  async function detailOrder(formData) {
-    const { data } = await axiosMethod("post", orderDetail, formData);
-    return data;
-  }
-
-  async function createWish(formData) {
-    const { data } = await axiosMethod("post", wishCreate, formData);
-    return data;
-  }
-
-  async function deleteWish(formData) {
-    const { data } = await axiosMethod("post", wishDelete, formData);
     return data;
   }
 
@@ -326,11 +253,6 @@ const Data = () => {
   );
 
   return {
-
-    getItem,
-    getTags,
-    getTag,
-
     logoutUser,
     loginUser,
     registerUser,
@@ -346,28 +268,17 @@ const Data = () => {
 
     userPasswordReset,
 
-    searchItem,
-
-    addCart,
-    getCart,
-    countCart,
-    deleteCart,
     updateCart,
     checkoutCart,
     summaryCart,
 
     createOrder,
-    historyOrder,
-    detailOrder,
 
     firstName,
     lastName,
     email,
     uniqueID,
     verfifcationStatus,
-
-    createWish,
-    deleteWish,
 
     welcomeUser,
 
