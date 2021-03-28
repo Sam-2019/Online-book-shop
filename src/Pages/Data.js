@@ -61,16 +61,6 @@ const Data = () => {
   const [orderLength, setOrderLength] = useState(0);
   const [wishlistLength, setWishlistLength] = useState(0);
 
-  async function fetch(url, formData) {
-    const { data } = await axiosMethod("post", url, formData);
-    return data;
-  }
-
-  const getItems = async () => {
-    const data = await axiosMethod("post", itemsGet);
-    return data;
-  };
-
   async function getItem(formData) {
     const { data } = await axiosMethod("post", itemGet, formData);
     return data;
@@ -336,9 +326,7 @@ const Data = () => {
   );
 
   return {
-    fetch,
 
-    getItems,
     getItem,
     getTags,
     getTag,
