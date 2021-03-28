@@ -1,7 +1,5 @@
 import React, { useEffect, useReducer, useState, useCallback } from "react";
 import axios from "axios";
-import { useQuery } from "react-query";
-import { itemsGet } from "./endpoints";
 // import dayjs from "dayjs";
 // import relativeTime from "dayjs/plugin/relativeTime";
 
