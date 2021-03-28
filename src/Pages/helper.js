@@ -20,17 +20,6 @@ export async function fetch(url, formData) {
   return data;
 }
 
-export async function backendData(url, formData) {
-  const { data } = await axios({
-    method: "post",
-    url: url,
-    data: formData,
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-  console.log(data);
-  return data.data;
-}
-
 export const MediaQuery = () => {
   const [width, setWidth] = React.useState(window.innerWidth);
 
