@@ -4,8 +4,8 @@ import WishItem from "./wish-item";
 const wishData = ({ data }) => {
   return (
     <>
-      {data.map((items, i) => (
-        <WishItem key={i} {...items} />
+      {data.map((data, i) => (
+        <WishItem {...data} key={i} />
       ))}
     </>
   );
