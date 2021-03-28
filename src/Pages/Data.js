@@ -37,20 +37,11 @@ import {
   dev_site,
 } from "./endpoints";
 import { useQuery } from "react-query";
+import { axiosMethod } from "./helper";
 
 const instance = axios.create({
   baseURL: dev_site,
 });
-
-const axiosMethod = async (type, url, formData) => {
-  const method = await axios({
-    method: type,
-    url: url,
-    data: formData,
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-  return method;
-};
 
 const Data = () => {
   var formData = new FormData();
@@ -69,6 +60,11 @@ const Data = () => {
 
   const [orderLength, setOrderLength] = useState(0);
   const [wishlistLength, setWishlistLength] = useState(0);
+
+  async function fetch(url, formData) {
+    const { data } = await axiosMethod("post", url, formData);
+    return data;
+  }
 
   const getItems = async () => {
     const data = await axiosMethod("post", itemsGet);
@@ -340,6 +336,8 @@ const Data = () => {
   );
 
   return {
+    fetch,
+
     getItems,
     getItem,
     getTags,
