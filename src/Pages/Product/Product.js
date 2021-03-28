@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import { itemGet } from "../endpoints";
 import Placeholder from "../Placeholders/Product";
 import ProductData from "./productData";
+import { fetch } from "../helper";
 
 import "./product.css";
 
@@ -12,15 +13,8 @@ const Product = () => {
   var formData = new FormData();
   formData.set("product_unique_id", id);
 
-  const { isLoading, data } = useQuery(["product"], () =>
-    fetch(itemGet, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .catch((error) => {
-        console.error("Error:", error);
-      })
+  const { isLoading, data } = useQuery(["product", id, itemGet], () =>
+    fetch(itemGet, formData)
   );
 
   return <>{isLoading ? <Placeholder /> : <ProductData data={data} />}</>;
