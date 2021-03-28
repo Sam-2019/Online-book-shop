@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import Back from "../../Components/Back";
 import { buyerID, orderHistory } from "../../endpoints";
-import { backendData } from "../../helper";
+import { backendData, fetch } from "../../helper";
 import { useData } from "../../Context";
 import EmptyOrderHistory from "../../SVGs/empty-orderhistory";
 import SVGContainer from "../../SVGs/SVGcontainer";
@@ -10,18 +10,21 @@ import HistoryData from "./historyData";
 
 const OrderHistory = () => {
   const { orderLength } = useData();
+
   var formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
 
-  const { data } = useQuery(
-    ["orderHistory", orderHistory, formData],
-    () => backendData(orderHistory, formData),
+  const { status, data } = useQuery(
+    ["orderHistory", buyerID, orderHistory],
+    () => fetch(orderHistory, formData),
     {
       keepPreviousData: true,
       staleTime: 5000,
       cacheTime: 5000,
     }
   );
+
+
 
   return (
     <div className="user-wrapper">
@@ -45,7 +48,7 @@ const OrderHistory = () => {
             </SVGContainer>
           ) : null}
 
-          {data ? <HistoryData data={data} /> : null}
+          {data ? <HistoryData data={data.data} /> : null}
         </div>
       </div>
     </div>
