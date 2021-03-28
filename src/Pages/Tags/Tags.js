@@ -2,20 +2,13 @@ import React from "react";
 import { useQuery } from "react-query";
 import Back from "../Components/Back";
 import { tagsGet } from "../endpoints";
-import { fetchProjects } from "../helper";
+import { fetch } from "../helper";
+
 import TagData from "./tagsData";
 import "./tag.css";
 
 const Tags = ({ toggle }) => {
-  const { status, data, error, isFetching, isPreviousData } = useQuery(
-    ["tagList", tagsGet],
-    () => fetchProjects(tagsGet),
-    {
-      keepPreviousData: true,
-      staleTime: 5000,
-      cacheTime: 5000,
-    }
-  );
+  const { data } = useQuery(["tagList", tagsGet], () => fetch(tagsGet));
 
   return (
     <div className="tag-wrapper">
