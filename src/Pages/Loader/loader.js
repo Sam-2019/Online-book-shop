@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigator } from "../Product/Products";
+import { Navigator } from "../Product/styles";
 import "./loader.css";
 
 const Loader = () => {
