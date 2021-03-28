@@ -16,14 +16,13 @@ import "./cartItem.css";
 toast.configure();
 
 const CartItem = ({
-  unit_price,
-  product_name,
-  cover_photo_url,
   quantity,
-  id,
   product_unique_id,
-  handleToggle,
   unique_id,
+  cover_photo_url,
+  product_name,
+  unit_price,
+  handleToggle,
   onFormSubmit,
 }) => {
   const [loveFill, setLoveFill] = React.useState(false);
@@ -52,12 +51,10 @@ const CartItem = ({
     e.preventDefault();
 
     var formData = new FormData();
-    formData.set("item_unique_id", unique_id);
+
     formData.set("buyer_unique_id", buyerID);
-
+    formData.set("item_unique_id", unique_id);
     const { data } = await axiosMethod("post", cartDelete, formData);
-
-
 
     if (data.message === "cart item deleted successfully") {
       queryClient.invalidateQueries("summaryData");
