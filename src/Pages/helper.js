@@ -5,8 +5,6 @@ import { itemsGet } from "./endpoints";
 // import dayjs from "dayjs";
 // import relativeTime from "dayjs/plugin/relativeTime";
 
-const intervalMs = 10000;
-
 export const axiosMethod = async (type, url, formData) => {
   const method = await axios({
     method: type,
@@ -17,14 +15,8 @@ export const axiosMethod = async (type, url, formData) => {
   return method;
 };
 
-export async function fetchProjects(url, formData) {
-  const { data } = await axios({
-    method: "post",
-    url: url,
-    data: formData,
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-
+export async function fetch(url, formData) {
+  const { data } = await axiosMethod("post", url, formData);
   return data;
 }
 
@@ -35,20 +27,8 @@ export async function backendData(url, formData) {
     data: formData,
     headers: { "Content-Type": "multipart/form-data" },
   });
+  console.log(data);
   return data.data;
-}
-
-export function useProducts() {
-  return useQuery(
-    "products",
-    async () => {
-      const { data } = await axios.get(itemsGet);
-      return data;
-    },
-    {
-      refetchInterval: intervalMs,
-    }
-  );
 }
 
 export const MediaQuery = () => {
@@ -204,12 +184,7 @@ export const useAsync2 = (keyword, url, data) => {
     setLoading(true);
 
     async function fetchData() {
-      const result = await axios({
-        method: "POST",
-        url: url,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const result = axiosMethod("post", url, data);
 
       if (!didCancel) {
         if (result.data.error === true) {
