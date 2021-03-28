@@ -6,7 +6,7 @@ import Placeholder from "../Placeholders/Products";
 import ContentItem from "./contentItem";
 
 import { tagGet } from "../endpoints";
-import { backendData } from "../helper";
+import { backendData, fetch } from "../helper";
 
 const Content = () => {
   let { id } = useParams();
@@ -14,12 +14,8 @@ const Content = () => {
   var formData = new FormData();
   formData.set("tag_title", id);
 
-  const { status, data } = useQuery(
-    ["tagContent", id],
-    () => backendData(tagGet, formData),
-    {
-      keepPreviousData: false,
-    }
+  const { status, data } = useQuery(["tagContent", id, tagGet], () =>
+    fetch(tagGet, formData)
   );
 
   return (
@@ -38,8 +34,8 @@ const Content = () => {
 
         {status === "success" && (
           <div className="products2">
-            {data.map((items, index) => (
-              <ContentItem key={index} {...items} />
+            {data.data.map((data, index) => (
+              <ContentItem data={data} key={index} />
             ))}
           </div>
         )}
