@@ -14,8 +14,8 @@ const Content = () => {
   var formData = new FormData();
   formData.set("tag_title", id);
 
-  const { status, data, error, isFetching, isPreviousData } = useQuery(
-    ["tagContent", tagGet, formData],
+  const { status, data } = useQuery(
+    ["tagContent", id],
     () => backendData(tagGet, formData),
     {
       keepPreviousData: false,
@@ -34,9 +34,9 @@ const Content = () => {
       </div>
 
       <div className="main">
-        {status === "loading" ? (
-          <Placeholder />
-        ) : (
+        {status === "loading" && <Placeholder />}
+
+        {status === "success" && (
           <div className="products2">
             {data.map((items, index) => (
               <ContentItem key={index} {...items} />
