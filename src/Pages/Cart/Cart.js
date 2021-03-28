@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { useHistory } from "react-router-dom";
-import { MediaQuery, backendData } from "../helper";
+import { MediaQuery, fetch } from "../helper";
 import Back from "../Components/Back";
 import Bin from "../Components/Bin";
 import Button from "../Components/Button";
@@ -23,9 +23,9 @@ const Cart = () => {
   var formData = new FormData();
   formData.set("buyer_unique_id", buyerID);
 
-  const { status, data, error, isFetching, isPreviousData } = useQuery(
-    ["carts", cartGet, formData],
-    () => backendData(cartGet, formData),
+  const { status, data } = useQuery(
+    ["carts", buyerID, cartGet, formData],
+    () => fetch(cartGet, formData),
     {
       keepPreviousData: true,
       staleTime: 5000,
@@ -77,7 +77,7 @@ const Cart = () => {
                 </div>
               </>
             ) : null}
-            <CartData data={data} />
+            <CartData data={data.data} />
           </>
         ) : (
           <SVGcontainer>

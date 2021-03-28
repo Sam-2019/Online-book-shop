@@ -35,10 +35,10 @@ const CartData = ({ data }) => {
 
   return (
     <div>
-      {data.map((items, index) => (
+      {data.map((data, index) => (
         <CartItem
           key={index}
-          {...items}
+          {...data}
           handleToggle={handleToggle}
           onFormSubmit={onFormSubmit}
         />
