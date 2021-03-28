@@ -1,83 +1,28 @@
 import React from "react";
 import { useQuery, QueryClient } from "react-query";
 //import Loader from "react-loaders";
-import styled from "styled-components";
-import { fetchProjects } from "../helper";
 import ProductsItem from "./productsItem";
 import Placeholder from "../Placeholders/Products";
 import { itemsGet } from "../endpoints";
 import Loader from "../Loader/loader";
+import { fetch } from "../helper";
+import {
+  Loading,
+  Navigator,
+  NavigatorActions,
+  CurrentPage,
+  Previous,
+  Next,
+} from "./styles";
 import "./products.css";
 
 const queryClient = new QueryClient();
-
-const Loading = styled.div`
-  text-align: center;
-  padding: 10px 0;
-`;
-
-export const Navigator = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const NavigatorActions = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  border-radius: 10px;
-  width: 250px;
-  background-color: white;
-  border: 1px solid #cccccc;
-  paddding: 0 0 10px;
-  box-shadow: 1px 8px 11px -6px rgba(82, 82, 82, 0.75);
-  -webkit-box-shadow: 1px 8px 11px -6px rgba(82, 82, 82, 0.75);
-  -moz-box-shadow: 1px 8px 11px -6px rgba(82, 82, 82, 0.75);
-
-  @media (max-width: 540px) {
-    width: 95%;
-  }
-`;
-
-const CurrentPage = styled.div`
-  font-size: 20px;
-  width: 80px;
-  text-align: center;
-  padding: 5px 0;
-  border-right: 1px solid #cccccc;
-  border-left: 1px solid #cccccc;
-
-  @media (max-width: 540px) {
-    width: 130px;
-  }
-`;
-
-const Previous = styled.div`
-  text-align: center;
-  padding: 5px 0;
-  transition: transform 80ms ease-in;
-
-  :active {
-    transform: scale(0.95);
-  }
-`;
-
-const Next = styled.div`
-  text-align: center;
-  padding: 5px 0;
-  transition: transform 80ms ease-in;
-
-  :active {
-    transform: scale(0.95);
-  }
-`;
 
 const Products = () => {
   const [items, setItems] = React.useState(0);
   const [page, setPages] = React.useState(1);
 
   var formData = new FormData();
-
   formData.set("offset", items);
 
   function Increment() {
@@ -95,8 +40,8 @@ const Products = () => {
   }
 
   const { status, data, error, isFetching, isPreviousData } = useQuery(
-    ["projects", items, itemsGet],
-    () => fetchProjects(itemsGet, formData),
+    ["products", items, itemsGet],
+    () => fetch(itemsGet, formData),
     {
       keepPreviousData: true,
       staleTime: 5000,
@@ -107,7 +52,7 @@ const Products = () => {
   React.useEffect(() => {
     if (data?.hasMore) {
       queryClient.prefetchQuery(["projects", items + 1], () =>
-        fetchProjects(items + 1)
+        fetch(items + 1)
       );
     }
   }, [data, items]);
@@ -115,7 +60,7 @@ const Products = () => {
   return (
     <>
       <div>
-        {status === "loading" ? (
+        {/* {status === "loading" ? (
           <Placeholder />
         ) : status === "error" ? (
           <div>Error: {error.message}</div>
@@ -125,7 +70,20 @@ const Products = () => {
               <ProductsItem key={index} {...items} />
             ))}
           </div>
+        )} */}
+
+        {status === "loading" && <Placeholder />}
+
+        {status === "error" && <div>Error: {error.message}</div>}
+
+        {status === "success" && (
+          <div className="products">
+            {data.map((items, index) => (
+              <ProductsItem key={index} {...items} />
+            ))}
+          </div>
         )}
+        
       </div>
 
       <Loading>
