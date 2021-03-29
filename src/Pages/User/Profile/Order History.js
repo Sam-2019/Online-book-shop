@@ -9,13 +9,13 @@ import SVGContainer from "../../SVGs/SVGcontainer";
 import HistoryData from "./historyData";
 
 const OrderHistory = () => {
-  const { orderLength } = useData();
+  const { uniqueID, orderLength } = useData();
 
   var formData = new FormData();
-  formData.set("buyer_unique_id", buyerID);
+  formData.set("buyer_unique_id", uniqueID);
 
   const { status, data } = useQuery(
-    ["orderHistory", buyerID, orderHistory],
+    ["orderHistory", uniqueID, orderHistory],
     () => fetch(orderHistory, formData),
     {
       keepPreviousData: true,
@@ -23,8 +23,6 @@ const OrderHistory = () => {
       cacheTime: 5000,
     }
   );
-
-
 
   return (
     <div className="user-wrapper">
