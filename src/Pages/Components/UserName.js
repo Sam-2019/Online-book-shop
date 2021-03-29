@@ -1,12 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useData } from "../Context";
 
-const UserName = ({ name }) => {
-  return <div className="user-name">{name}</div>;
+const UserName = () => {
+  const { firstName, lastName } = useData();
+  return <div className="user-name">{`${firstName} ${lastName}`}</div>;
 };
 
 export default UserName;
-
-UserName.propTypes = {
-  name: PropTypes.string,
-};
