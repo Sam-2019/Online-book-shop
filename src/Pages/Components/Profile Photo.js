@@ -1,13 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useData } from "../Context";
 import "./profilePhoto.css";
 
-const ProfilePhoto = ({ ...restProps }) => {
-  return <img alt="img" {...restProps} />;
+const ProfilePhoto = () => {
+  const { profileImage } = useData();
+
+  return <img className="image" src={profileImage} alt="img" />;
 };
 
 export default ProfilePhoto;
-
-ProfilePhoto.propTypes = {
-
-};
