@@ -79,6 +79,7 @@ const ChangePassword = ({ close }) => {
         placeholder="Current Password"
         value={currentPassword}
         action={(e) => setCurrentPassword(e.target.value)}
+        autocomplete="Current Password"
       />
 
       <div className="eyeIcon2">
@@ -103,6 +104,7 @@ const ChangePassword = ({ close }) => {
         placeholder="New Password"
         value={newPassword}
         action={(e) => setNewPassword(e.target.value)}
+        autocomplete="New Password"
       />
 
       <Input
@@ -111,6 +113,7 @@ const ChangePassword = ({ close }) => {
         placeholder="Confirm New Password"
         value={confirmPassword}
         action={(e) => setConfirmPassword(e.target.value)}
+        autocomplete="Confirm Password"
       />
 
       {message ? <Message message={message} class_name="message" /> : null}

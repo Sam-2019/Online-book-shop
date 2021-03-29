@@ -61,12 +61,14 @@ const ChangeEmail = ({ close }) => {
         placeholder="Current Email"
         value={email}
         action={(e) => setEmail(e.target.value)}
+        autocomplete="Email"
       />
       <Input
         class_name="input "
         placeholder="New Email"
         value={new_email}
         action={(e) => setNewEmail(e.target.value)}
+        autocomplete="New Email"
       />
 
       {message ? <Message message={message} class_name="message" /> : null}
