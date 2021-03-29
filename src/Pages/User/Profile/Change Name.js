@@ -65,13 +65,15 @@ const ChangeName = ({ close }) => {
           class_name="input "
           placeholder="First Name"
           value={first_name}
-          onChange={(e) => setFirstName(e.target.value)}
+          action={(e) => setFirstName(e.target.value)}
+    
         />
         <Input
           class_name="input "
           placeholder="Last Name"
           value={last_name}
-          onChange={(e) => setLastName(e.target.value)}
+          action={(e) => setLastName(e.target.value)}
+   
         />
 
         {message ? <Message message={message} class_name="message" /> : null}
