@@ -5,19 +5,13 @@ import {
   cartSummary,
   orderHistory,
   wishList,
-  buyerID,
   profileImageGet,
-  userLogin,
-  userRegister,
   userValidate,
-  userPasswordUpdate,
   userProfileUpdate,
   userEmailUpdate,
   userAccountReset,
   userAccountVerify,
   userCreateEmailVerify,
-  userReadEmailVerify,
-  passwordReset,
   cartUpdate,
   cartCheckout,
   orderCreate,
@@ -25,29 +19,31 @@ import {
   dev_site,
 } from "./endpoints";
 import { useQuery } from "react-query";
-import { axiosMethod } from "./helper";
+import { axiosMethod, fetch } from "./helper";
 
 const instance = axios.create({
   baseURL: dev_site,
 });
 
 const Data = () => {
-  var formData = new FormData();
-  formData.set("buyer_unique_id", buyerID);
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [uniqueID, setUniqueID] = useState("");
+  const [email, setEmail] = useState("KenLay@enron-fraud.com");
+  const [uniqueID, setUniqueID] = useState("5f6657446f2335.80567964");
   const [verfifcationStatus, setVerificationStatus] = useState("");
 
   const [amount, setAmount] = useState(0);
   const [quantity, setQuantity] = useState(0);
 
-  const [profileImage, setProfileImage] = useState("");
+  const [profileImage, setProfileImage] = useState(
+    "https://via.placeholder.com/500x500?text=Okukus.com"
+  );
 
   const [orderLength, setOrderLength] = useState(0);
   const [wishlistLength, setWishlistLength] = useState(0);
+
+  var formData = new FormData();
+  formData.set("buyer_unique_id", uniqueID);
 
   async function logoutUser() {
     localStorage.removeItem("loginToken");
@@ -57,16 +53,9 @@ const Data = () => {
     setEmail("");
     setUniqueID("");
     setVerificationStatus("");
-  }
-
-  async function loginUser(formData) {
-    const { data } = await axiosMethod("post", userLogin, formData);
-    return data;
-  }
-
-  async function registerUser(formData) {
-    const { data } = await axiosMethod("post", userRegister, formData);
-    return data;
+    setProfileImage(
+      "https://pbs.twimg.com/media/EnYV6ekWMAksmcs?format=jpg&name=small"
+    );
   }
 
   async function isLoggedIn() {
@@ -75,36 +64,33 @@ const Data = () => {
 
     formData.set("token", loginToken);
 
-    if (loginToken) {
-      //Adding JWT token to axios default header
-      instance.defaults.headers.common["Authorization"] =
-        "bearer " + loginToken;
+    if (!loginToken) return;
 
-      const { data } = await axiosMethod("post", userValidate, formData);
+    //Adding JWT token to axios default header
+    instance.defaults.headers.common["Authorization"] = "bearer " + loginToken;
 
-      if (data.validity === true && data.buyer === null) {
-        localStorage.removeItem("loginToken");
-      } else if (data.error === true) {
-        localStorage.removeItem("loginToken");
-      } else {
-        return (
-          setFirstName(data.buyer.firstname),
-          setLastName(data.buyer.lastname),
-          setEmail(data.buyer.email),
-          setUniqueID(data.buyer.unique_id),
-          setVerificationStatus(data.buyer.verification_status)
-        );
-      }
-    } else return;
-  }
+    const data = await fetch(userValidate, formData);
 
-  async function updateUserPassword(formData) {
-    const { data } = await axiosMethod("post", userPasswordUpdate, formData);
-    return data;
+    if (data.validity === true && data.buyer === null) {
+      localStorage.removeItem("loginToken");
+    }
+
+    if (data.error === true) {
+      localStorage.removeItem("loginToken");
+    }
+
+    return (
+      setFirstName(data.buyer.firstname),
+      setLastName(data.buyer.lastname),
+      setEmail(data.buyer.email),
+      setUniqueID(data.buyer.unique_id),
+      setVerificationStatus(data.buyer.verification_status),
+      setProfileImage(data.buyer.unique_id)
+    );
   }
 
   async function updateUserProfile(formData) {
-    const { data } = await axiosMethod("post", userProfileUpdate, formData);
+    const data = await fetch(userProfileUpdate, formData);
 
     if (data.error === false) {
       setFirstName(data.data.firstname);
@@ -114,7 +100,7 @@ const Data = () => {
   }
 
   async function updateUserEmail(formData) {
-    const { data } = await axiosMethod("post", userEmailUpdate, formData);
+    const data = await fetch(userEmailUpdate, formData);
 
     if (data.error === false) {
       setEmail(data.data.email);
@@ -123,31 +109,17 @@ const Data = () => {
   }
 
   async function resetUserAccount(formData) {
-    const { data } = await axiosMethod("post", userAccountReset, formData);
+    const data = await fetch(userAccountReset, formData);
     return data;
   }
 
   async function verifyUserAccount(formData) {
-    const { data } = await axiosMethod("post", userAccountVerify, formData);
+    const data = await fetch(userAccountVerify, formData);
     return data;
   }
 
   async function verifyCreateEmail(formData) {
-    const { data } = await axiosMethod("post", userCreateEmailVerify, formData);
-    return data;
-  }
-
-  async function verifyReadEmail(formData) {
-    const readEmailVerify = await axiosMethod(
-      "post",
-      userReadEmailVerify,
-      formData
-    );
-    return readEmailVerify;
-  }
-
-  async function userPasswordReset(formData) {
-    const { data } = await axiosMethod("post", passwordReset, formData);
+    const data = await fetch(userCreateEmailVerify, formData);
     return data;
   }
 
@@ -158,11 +130,6 @@ const Data = () => {
 
   async function checkoutCart(formData) {
     const { data } = await axiosMethod("post", cartCheckout, formData);
-    return data;
-  }
-
-  async function summaryCart(formData) {
-    const { data } = await axiosMethod("post", cartSummary, formData);
     return data;
   }
 
@@ -177,12 +144,7 @@ const Data = () => {
   }
 
   useQuery("summaryData", () =>
-    axios({
-      method: "POST",
-      url: cartSummary,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
+    axiosMethod("post", cartSummary, formData)
       .then((data) => {
         if (data.data.message === "cart is empty") {
         } else {
@@ -197,12 +159,7 @@ const Data = () => {
   );
 
   useQuery("userImage", () =>
-    axios({
-      method: "POST",
-      url: profileImageGet,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
+    axiosMethod("post", profileImageGet, formData)
       .then((data) => {
         if (data.data.message === "account not found") {
         } else {
@@ -216,12 +173,7 @@ const Data = () => {
   );
 
   useQuery("orderLength", () =>
-    axios({
-      method: "POST",
-      url: orderHistory,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
+    axiosMethod("post", orderHistory, formData)
       .then((data) => {
         if (data.data.message === "cart is empty") {
         } else {
@@ -235,12 +187,7 @@ const Data = () => {
   );
 
   useQuery("wishlistLength", () =>
-    axios({
-      method: "POST",
-      url: wishList,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
+    axiosMethod("post", wishList, formData)
       .then((data) => {
         if (data.data.message === "cart is empty") {
         } else {
@@ -254,23 +201,17 @@ const Data = () => {
 
   return {
     logoutUser,
-    loginUser,
-    registerUser,
     isLoggedIn,
-    updateUserPassword,
+
     updateUserProfile,
     updateUserEmail,
     resetUserAccount,
     verifyUserAccount,
 
     verifyCreateEmail,
-    verifyReadEmail,
-
-    userPasswordReset,
 
     updateCart,
     checkoutCart,
-    summaryCart,
 
     createOrder,
 
