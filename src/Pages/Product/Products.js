@@ -13,7 +13,7 @@ import {
   CurrentPage,
   Previous,
   Next,
-} from "./styles";
+} from "../styles";
 import "./products.css";
 
 const queryClient = new QueryClient();
