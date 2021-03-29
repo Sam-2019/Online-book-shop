@@ -1,15 +1,16 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { useHistory } from "react-router-dom";
-import { MediaQuery, fetch } from "../helper";
+import { MediaQuery, fetchMore } from "../helper";
 import Back from "../Components/Back";
 import Bin from "../Components/Bin";
 import Button from "../Components/Button";
 import Summary from "../Summary/Summary";
 import CartData from "./cartData";
+import CartHeader from "./cartHeader";
+import { useData } from "../Context";
 import { cartGet } from "../endpoints";
 import "./cart.css";
-import { useData } from "../Context";
 
 import SVGcontainer from "../SVGs/SVGcontainer";
 import EmptyCart from "../SVGs/empty-cart";
@@ -20,13 +21,12 @@ const Cart = () => {
   const { width } = MediaQuery();
   const breakpoint = 540;
 
-
   var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
 
-  const { status, data } = useQuery(
-    ["carts", uniqueID, cartGet, formData],
-    () => fetch(cartGet, formData),
+  const { status, data, error, isFetching, isPreviousData } = useQuery(
+    ["carts", uniqueID],
+    () => fetchMore(cartGet, formData),
     {
       keepPreviousData: true,
       staleTime: 5000,
@@ -55,30 +55,26 @@ const Cart = () => {
       </div>
 
       <div className="main">
+        {data === undefined ? (
+          <SVGcontainer>
+            <EmptyCart />
+            <p className="text-3">
+              No item in <b>your</b> cart yet!
+            </p>
+          </SVGcontainer>
+        ) : null}
+
         {data ? (
           <>
-            {width > breakpoint ? (
-              <>
-                <div className="cart_item_wrapper">
-                  <div className="checkBox">
-                    <input type="checkbox" value="0" hidden />
-                  </div>
+            {width > breakpoint ? <CartHeader /> : null}
+            <CartData data={data} />
+          </>
+        ) : null}
 
-                  <div className="cart-item-detail ">
-                    <div className="imageXname ">
-                      <div className="item-name">Product name</div>
-
-                      <div className="item-price">Price</div>
-                    </div>
-
-                    <div className="priceXactions">
-                      <div className="binXaddXsubtract">Quantity</div>
-                    </div>
-                  </div>
-                </div>
-              </>
-            ) : null}
-            <CartData data={data.data} />
+        {/* {data ? (
+          <>
+            {width > breakpoint ? <CartHeader /> : null}
+            <CartData data={data} />
           </>
         ) : (
           <SVGcontainer>
@@ -87,7 +83,7 @@ const Cart = () => {
               No item in <b>your</b> cart yet!
             </p>
           </SVGcontainer>
-        )}
+        )} */}
       </div>
 
       <Summary>
