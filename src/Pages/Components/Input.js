@@ -10,7 +10,7 @@ export const Input = ({
   action,
   click,
   uniqueID,
-  uniqueName,
+  uniqueName
 }) => {
   return (
     <input
@@ -22,6 +22,7 @@ export const Input = ({
       value={value}
       id={uniqueID}
       name={uniqueName}
+  
     />
   );
 };
