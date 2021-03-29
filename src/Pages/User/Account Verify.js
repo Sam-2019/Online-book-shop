@@ -1,14 +1,22 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useLocation } from "react-router-dom";
 import Back from "../Components/Back";
-import Input from "../Components/Input";
-import Button from "../Components/Button";
-import Home from "../Components/Home";
 import Message from "../Components/Message";
+import { useAsync2 } from "../helper";
+import { userReadEmailVerify } from "../endpoints";
 import "./user.css";
 import Success from "../Components/Success";
 
 const AccountVerify = () => {
+  let token = new URLSearchParams(useLocation().search).get("token");
+  let email = new URLSearchParams(useLocation().search).get("email");
+
+  var formData = new FormData();
+  formData.set("url_data", token);
+  formData.set("url_data", email);
+
+  const resource = useAsync2(userReadEmailVerify, formData);
+
   return (
     <div className="user-wrapper">
       <div className="header ">
@@ -27,9 +35,11 @@ const AccountVerify = () => {
       </div>
 
       <div className="main">
+        {resource.error === true ? (
+          <Message class_name="message " message={resource.message} />
+        ) : null}
 
-      <Message class_name="message " message="Hello" />
-        <Success />
+        {resource.error === false ? <Success /> : null}
       </div>
     </div>
   );
