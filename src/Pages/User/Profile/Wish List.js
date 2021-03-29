@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import WishData from "./wishData";
 import Back from "../../Components/Back";
 import { wishList } from "../../endpoints";
-import { fetch } from "../../helper";
+import { fetch, fetchMore } from "../../helper";
 import { useData } from "../../Context";
 import EmptyWishList from "../../SVGs/empty-wishlist";
 import SVGContainer from "../../SVGs/SVGcontainer";
@@ -16,7 +16,7 @@ const WishList = () => {
 
   const { status, data } = useQuery(
     ["wishlist", uniqueID, wishList],
-    () => fetch(wishList, formData),
+    () => fetchMore(wishList, formData),
     {
       keepPreviousData: true,
       staleTime: 5000,
@@ -46,7 +46,7 @@ const WishList = () => {
             </SVGContainer>
           ) : null}
 
-          {data ? <WishData data={data.data} /> : null}
+          {data ? <WishData data={data} /> : null}
         </div>
       </div>
     </div>
