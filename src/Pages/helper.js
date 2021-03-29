@@ -169,15 +169,17 @@ export const useAsync2 = (keyword, url, data) => {
   const [message, setMessage] = useState();
   const [value, setValue] = useState([]);
 
-  const formData = React.useMemo(() => new FormData(), []);
-  formData.set(keyword, data);
+  const formData = new FormData();
+  formData.set("search_phrase", data);
 
   useEffect(() => {
     let didCancel = false;
     setLoading(true);
 
+    formData.set(keyword, data);
+
     async function fetchData() {
-      const result = axiosMethod("post", url, data);
+      const result = await axiosMethod("post", url, formData);
 
       if (!didCancel) {
         if (result.data.error === true) {
@@ -188,7 +190,9 @@ export const useAsync2 = (keyword, url, data) => {
             setLoading(false);
             setValue(null);
           }, 1000);
-        } else if (result.data.error === false) {
+        }
+
+        if (result.data.error === false) {
           setTimeout(() => {
             setValue(result.data.data);
             setLoading(false);
