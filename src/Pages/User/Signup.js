@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useMutation } from "react-query";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import { EyeShow, EyeHide } from "../Components/Eye";
 import Message from "../Components/Message";
-import { MediaQuery } from "../helper";
+import { MediaQuery, fetch } from "../helper";
+import { userRegister } from "../endpoints";
 import { useData } from "../Context";
 import "./user.css";
 
 const Signup = () => {
   let history = useHistory();
+  const { isLoggedIn } = useData();
   const breakpoint = 540;
   const { width } = MediaQuery();
-  const { registerUser } = useData();
   const [loading, setLoading] = useState(false);
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
@@ -24,7 +26,6 @@ const Signup = () => {
   const [message, setMessage] = useState("");
 
   const [show, hide] = React.useState("password");
-  var formData = new FormData();
   let type;
 
   switch (show) {
@@ -35,6 +36,10 @@ const Signup = () => {
       type = "password";
   }
 
+  const mutation = useMutation((formData) => {
+    return fetch(userRegister, formData);
+  });
+
   const clearSignup = () => {
     setFirstName("");
     setLastName("");
@@ -44,32 +49,37 @@ const Signup = () => {
   };
 
   const signUp = async (event) => {
-    setMessage("");
     event.preventDefault();
+     var formData = new FormData();
+
+    setMessage("");
     let empty = firstname && lastname && email && password0 && password1;
+
+    if (empty === "") {
+      setMessage("Please fill the form");
+    }
 
     if (empty !== "") {
       setLoading(true);
+ 
       formData.set("firstname", firstname);
       formData.set("lastname", lastname);
       formData.set("email", email);
       formData.set("password0", password0);
       formData.set("password1", password1);
 
-      const data = await registerUser(formData);
-      console.log(data);
-
-      if (data.error === true) {
+      try {
+        const data = await mutation.mutateAsync(formData);
         setMessage(data.message);
+        localStorage.setItem("loginToken", data.token);
+        await isLoggedIn();
         setLoading(false);
-      } else if (data.error === false) {
-        localStorage.setItem("loginToken", data.buyer.token);
+      } catch (error) {
+        console.error(error);
+      } finally {
         clearSignup();
-        setLoading(false);
-      } else return;
-    } else if (empty === "") {
-      setMessage("Please fill the form");
-    } else return;
+      }
+    }
   };
 
   return (
