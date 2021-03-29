@@ -7,7 +7,7 @@ import Bin from "../Components/Bin";
 import Button from "../Components/Button";
 import Summary from "../Summary/Summary";
 import CartData from "./cartData";
-import { buyerID, cartGet } from "../endpoints";
+import { cartGet } from "../endpoints";
 import "./cart.css";
 import { useData } from "../Context";
 
@@ -15,16 +15,17 @@ import SVGcontainer from "../SVGs/SVGcontainer";
 import EmptyCart from "../SVGs/empty-cart";
 
 const Cart = () => {
-  const { amount, quantity } = useData();
+  const { uniqueID, amount, quantity } = useData();
   let history = useHistory();
   const { width } = MediaQuery();
   const breakpoint = 540;
 
+
   var formData = new FormData();
-  formData.set("buyer_unique_id", buyerID);
+  formData.set("buyer_unique_id", uniqueID);
 
   const { status, data } = useQuery(
-    ["carts", buyerID, cartGet, formData],
+    ["carts", uniqueID, cartGet, formData],
     () => fetch(cartGet, formData),
     {
       keepPreviousData: true,
