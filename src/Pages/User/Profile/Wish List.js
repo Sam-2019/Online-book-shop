@@ -2,20 +2,20 @@ import React from "react";
 import { useQuery } from "react-query";
 import WishData from "./wishData";
 import Back from "../../Components/Back";
-import { buyerID, wishList } from "../../endpoints";
+import { wishList } from "../../endpoints";
 import { fetch } from "../../helper";
 import { useData } from "../../Context";
 import EmptyWishList from "../../SVGs/empty-wishlist";
 import SVGContainer from "../../SVGs/SVGcontainer";
 
 const WishList = () => {
-  const { wishlistLength } = useData();
+  const { wishlistLength, uniqueID } = useData();
 
   var formData = new FormData();
-  formData.set("buyer_unique_id", buyerID);
+  formData.set("buyer_unique_id", uniqueID);
 
   const { status, data } = useQuery(
-    ["wishlist", buyerID, wishList],
+    ["wishlist", uniqueID, wishList],
     () => fetch(wishList, formData),
     {
       keepPreviousData: true,
