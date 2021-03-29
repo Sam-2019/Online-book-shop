@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import Back from "../Components/Back";
 import Pen from "../Components/Pen";
 import PopUp from "../Components/Popup";
@@ -11,39 +10,20 @@ import OrderHistory from "./Profile/Order History";
 import WishList from "./Profile/Wish List";
 import ProfilePhoto from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
+import Verification from "../Components/Verify";
 import { okukus } from "../endpoints";
-import { useData } from "../Context";
-
+import { SmallView } from "../styles";
 import { MediaQuery } from "../helper";
 import "./profile.css";
 
-const SmallView = styled.div`
-  width: 320px;
-  padding: 0 0 0 10px;
-
-  @media (max-width: 540px) {
-    padding: 0;
-  }
-
-  @media (max-width: 320px) {
-    padding: 0;
-  }
-
-  @media (max-width: 280px) {
-    padding: 0;
-  }
-`;
-
-const Proflie = () => {
+function Proflie() {
   let history = useHistory();
   let { width } = MediaQuery();
-  const { profileImage } = useData();
   const breakpoint = 540;
   let activePage;
   const [password, updatePassword] = React.useState(false);
   const [email, updateEmail] = React.useState(false);
   const [name, updateName] = React.useState(false);
-  const [verify] = React.useState(false);
 
   const [active, setActive] = React.useState("Order History");
 
@@ -60,8 +40,7 @@ const Proflie = () => {
       navigator
         .share({
           title: okukus,
-          text:
-            "Your one-stop shop for a wide selection of books, magazines & just about anything else. ",
+          text: "Your one-stop shop for a wide selection of books, magazines & just about anything else. ",
           url: okukus,
         })
         .then(() => {
@@ -107,8 +86,7 @@ const Proflie = () => {
               height={30}
               action={() => {
                 window.history.back();
-              }}
-            />
+              } } />
           </div>
           <div className="object-2"> Profile</div>
         </div>
@@ -120,32 +98,21 @@ const Proflie = () => {
             <div className="user-detail">
               <div className="user-category">
                 <div className="object-5">
-                  <ProfilePhoto
-                    className="image"
-                    src={profileImage}
-                    alt="img"
-                  />
+                  <ProfilePhoto />
                 </div>
 
                 <div className="nameXeditXverify">
                   <div className="nameXedit">
-                    <UserName name="Dan Nii Tackie" />
+                    <UserName />
                     <Pen
                       width={15}
                       height={15}
                       action={() => {
                         updateName(true);
-                      }}
-                    />
+                      } } />
                   </div>
 
-                  <div className="user-verify">
-                    {verify ? (
-                      <span className="verify">Verified</span>
-                    ) : (
-                      <span className="not-verify">Unverified</span>
-                    )}
-                  </div>
+                  <Verification />
                 </div>
               </div>
             </div>
@@ -157,36 +124,36 @@ const Proflie = () => {
                     className="option-list"
                     onClick={() => {
                       setActive("Order History");
-                    }}
+                    } }
                   >
-                    Order History
+                          Order History
                   </div>
 
                   <div
                     className="option-list"
                     onClick={() => {
                       setActive("Wish List");
-                    }}
+                    } }
                   >
-                    Wish List
+                             Wish List
                   </div>
 
                   <div
                     className="option-list"
                     onClick={() => {
                       setActive("Change Email");
-                    }}
+                    } }
                   >
-                    Change Email
+                                  Change Email
                   </div>
 
                   <div
                     className="option-list"
                     onClick={() => {
                       setActive("Change Password");
-                    }}
+                    } }
                   >
-                    Change Password
+                                   Change Password
                   </div>
 
                   <div className="option-list"> Customer Service</div>
@@ -201,16 +168,16 @@ const Proflie = () => {
                     className="option-list"
                     onClick={() => {
                       history.push("/user/order history");
-                    }}
+                    } }
                   >
-                    Order History
+                     Order History
                   </div>
 
                   <div
                     className="option-list"
                     onClick={() => {
                       history.push("/user/wishlist");
-                    }}
+                    } }
                   >
                     Wish List
                   </div>
@@ -219,21 +186,21 @@ const Proflie = () => {
                     className="option-list"
                     onClick={() => {
                       updateEmail(true);
-                    }}
+                    } }
                   >
-                    Change Email
+                                       Change Email
                   </div>
 
                   <div
                     className="option-list"
                     onClick={() => {
                       updatePassword(true);
-                    }}
+                    } }
                   >
-                    Change Password
+                       Change Password
                   </div>
 
-                  <div className="option-list" onClick={() => {}}>
+                  <div className="option-list" onClick={() => { } }>
                     Customer Service
                   </div>
 
@@ -259,8 +226,7 @@ const Proflie = () => {
             <ChangeName
               close={() => {
                 updateName(false);
-              }}
-            />
+              } } />
           </PopUp>
         ) : null}
 
@@ -269,8 +235,7 @@ const Proflie = () => {
             <ChangePassword
               close={() => {
                 updatePassword(false);
-              }}
-            />
+              } } />
           </PopUp>
         ) : null}
 
@@ -279,18 +244,17 @@ const Proflie = () => {
             <ChangeEmail
               close={() => {
                 updateEmail(false);
-              }}
-            />
+              } } />
           </PopUp>
         ) : null}
       </div>
 
       {/* <>
-        {isError && <div>Something went wrong ...</div>}
-
-        {isLoading ? <div>Loading ...</div> : <>hello</>}
-      </> */}
+              {isError && <div>Something went wrong ...</div>}
+      
+              {isLoading ? <div>Loading ...</div> : <>hello</>}
+            </> */}
     </div>
   );
-};
+}
 export default Proflie;
