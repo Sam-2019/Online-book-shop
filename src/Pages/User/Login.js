@@ -112,6 +112,7 @@ const Login = () => {
             placeholder="Email"
             action={(e) => setEmail(e.target.value)}
             value={email}
+            autocomplete="Email"
           />
 
           <Input
@@ -120,6 +121,7 @@ const Login = () => {
             type={type}
             action={(e) => setPassword(e.target.value)}
             value={password}
+            autocomplete="Password"
           />
 
           <div className="eyeIcon">
