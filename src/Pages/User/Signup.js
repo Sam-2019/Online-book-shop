@@ -114,7 +114,7 @@ const Signup = () => {
           <Input
             class_name="input "
             placeholder="First name "
-            onChange={(e) => setFirstName(e.target.value)}
+            action={(e) => setFirstName(e.target.value)}
             value={firstname}
             autocomplete="First Name"
           />
@@ -122,7 +122,7 @@ const Signup = () => {
           <Input
             class_name="input "
             placeholder="Last name "
-            onChange={(e) => setLastName(e.target.value)}
+            action={(e) => setLastName(e.target.value)}
             value={lastname}
             autocomplete="Last Name"
           />
@@ -130,7 +130,7 @@ const Signup = () => {
           <Input
             class_name="input "
             placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
+            action={(e) => setEmail(e.target.value)}
             value={email}
             autocomplete="Email"
           />
@@ -138,7 +138,7 @@ const Signup = () => {
           <Input
             class_name="input"
             placeholder="Password"
-            onChange={(e) => setPassword0(e.target.value)}
+            action={(e) => setPassword0(e.target.value)}
             value={password0}
             autocomplete="Password"
             type={type}
@@ -163,8 +163,8 @@ const Signup = () => {
           <Input
             class_name="input "
             placeholder="Confirm Password"
-            onChange={(e) => setPassword1(e.target.value)}
-            content={password1}
+            action={(e) => setPassword1(e.target.value)}
+            value={password1}
             autocomplete="Confirm Password"
             type={type}
           />
@@ -173,7 +173,7 @@ const Signup = () => {
             type="date"
             class_name="input "
             placeholder="Date of birth"
-            onChange
+            action
           /> */}
 
           {message ? <Message class_name="message " message={message} /> : null}
