@@ -115,29 +115,32 @@ const Signup = () => {
             class_name="input "
             placeholder="First name "
             onChange={(e) => setFirstName(e.target.value)}
-            content={firstname}
+            value={firstname}
+            autoComplete="First Name"
           />
 
           <Input
             class_name="input "
             placeholder="Last name "
             onChange={(e) => setLastName(e.target.value)}
-            content={lastname}
+            value={lastname}
+            autoComplete="Last Name"
           />
 
           <Input
             class_name="input "
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
-            content={email}
+            value={email}
+            autoComplete="Email"
           />
 
           <Input
             class_name="input"
             placeholder="Password"
             onChange={(e) => setPassword0(e.target.value)}
-            content={password0}
-            autoComplete="new-password"
+            value={password0}
+            autoComplete="Password"
             type={type}
           />
 
@@ -162,7 +165,7 @@ const Signup = () => {
             placeholder="Confirm Password"
             onChange={(e) => setPassword1(e.target.value)}
             content={password1}
-            autoComplete="new-password"
+            autoComplete="Confirm Password"
             type={type}
           />
 
