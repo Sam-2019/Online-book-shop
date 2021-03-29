@@ -66,14 +66,14 @@ const ChangeName = ({ close }) => {
           placeholder="First Name"
           value={first_name}
           action={(e) => setFirstName(e.target.value)}
-    
+          autocomplete="First Name"
         />
         <Input
           class_name="input "
           placeholder="Last Name"
           value={last_name}
           action={(e) => setLastName(e.target.value)}
-   
+          autocomplete="Last Name"
         />
 
         {message ? <Message message={message} class_name="message" /> : null}
