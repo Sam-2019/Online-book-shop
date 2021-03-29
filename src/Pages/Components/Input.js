@@ -10,7 +10,8 @@ export const Input = ({
   action,
   click,
   uniqueID,
-  uniqueName
+  uniqueName,
+  autocomplete
 }) => {
   return (
     <input
@@ -22,6 +23,7 @@ export const Input = ({
       value={value}
       id={uniqueID}
       name={uniqueName}
+      autoComplete={autocomplete}
   
     />
   );
@@ -62,6 +64,7 @@ Input.propTypes = {
   click: PropTypes.func,
   uniqueID: PropTypes.number,
   uniqueName: PropTypes.string,
+  autocomplete: PropTypes.string
 };
 
 TextArea.propTypes = {
