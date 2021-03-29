@@ -78,7 +78,7 @@ const ChangePassword = ({ close }) => {
         type={type}
         placeholder="Current Password"
         value={currentPassword}
-        onChange={(e) => setCurrentPassword(e.target.value)}
+        action={(e) => setCurrentPassword(e.target.value)}
       />
 
       <div className="eyeIcon2">
@@ -102,7 +102,7 @@ const ChangePassword = ({ close }) => {
         type={type}
         placeholder="New Password"
         value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
+        action={(e) => setNewPassword(e.target.value)}
       />
 
       <Input
@@ -110,7 +110,7 @@ const ChangePassword = ({ close }) => {
         type={type}
         placeholder="Confirm New Password"
         value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
+        action={(e) => setConfirmPassword(e.target.value)}
       />
 
       {message ? <Message message={message} class_name="message" /> : null}
