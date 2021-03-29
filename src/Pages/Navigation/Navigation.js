@@ -44,15 +44,13 @@ const Navigation = ({ toggle }) => {
 
       <div className="category">
         {width < 540 ? (
-          <>
-            <div className="object-3 search  ">
-              <Search
-                width={breakpoint < width ? 30 : 20}
-                height={breakpoint < width ? 30 : 20}
-                action={newSearch}
-              />
-            </div>
-          </>
+          <div className="object-3 search  ">
+            <Search
+              width={breakpoint < width ? 30 : 20}
+              height={breakpoint < width ? 30 : 20}
+              action={newSearch}
+            />
+          </div>
         ) : null}
 
         <div className="object-4 cart  ">
