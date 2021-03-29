@@ -50,7 +50,7 @@ const Signup = () => {
 
   const signUp = async (event) => {
     event.preventDefault();
-     var formData = new FormData();
+    var formData = new FormData();
 
     setMessage("");
     let empty = firstname && lastname && email && password0 && password1;
@@ -61,7 +61,7 @@ const Signup = () => {
 
     if (empty !== "") {
       setLoading(true);
- 
+
       formData.set("firstname", firstname);
       formData.set("lastname", lastname);
       formData.set("email", email);
