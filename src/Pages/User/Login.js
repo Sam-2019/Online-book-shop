@@ -1,26 +1,30 @@
 import React, { useState } from "react";
+import { useMutation } from "react-query";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Message from "../Components/Message";
 import { EyeShow, EyeHide } from "../Components/Eye";
-import { MediaQuery } from "../helper";
+import { MediaQuery, fetch } from "../helper";
+import { userLogin } from "../endpoints";
 import { useData } from "../Context";
 import "./user.css";
 
 const Login = () => {
   let history = useHistory();
+  const { isLoggedIn } = useData();
 
   const breakpoint = 540;
-  const { loginUser } = useData();
   const { width } = MediaQuery();
-  const [message, setMessage] = React.useState("");
+
+  const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [loading, setLoading] = useState(false);
 
-  const [show, hide] = React.useState("password");
+  const [show, hide] = useState("password");
 
   let type;
 
@@ -32,36 +36,50 @@ const Login = () => {
       type = "password";
   }
 
+  // const mutation = useMutation((formData) => {
+  //   return loginUser(formData);
+  // });
+
+  const mutation = useMutation((formData) => {
+    return fetch(userLogin, formData);
+  });
+
   const clearLogin = () => {
     setEmail("");
     setPassword("");
   };
 
   const logIn = async (event) => {
-    setMessage("");
     event.preventDefault();
-    var formData = new FormData();
+      var formData = new FormData();
+
+    setMessage("");
 
     let empty = email && password;
 
+    if (empty === "") {
+      setMessage("Please fill the form");
+    }
+
     if (empty !== "") {
       setLoading(true);
+
       formData.set("email", email);
       formData.set("password", password);
 
-      const data = await loginUser(formData);
-      
-      if (data.error === true) {
+      try {
+        const data = await mutation.mutateAsync(formData);
+        console.log(data);
         setMessage(data.message);
-        setLoading(false);
-      } else if (data.error === false && data.token) {
         localStorage.setItem("loginToken", data.token);
-        clearLogin();
+        await isLoggedIn();
         setLoading(false);
-      } else return;
-    } else if (empty === "") {
-      setMessage("Please fill the form");
-    } else return;
+      } catch (error) {
+        console.error(error);
+      } finally {
+        clearLogin();
+      }
+    }
   };
 
   return (
@@ -92,20 +110,16 @@ const Login = () => {
           <Input
             class_name="input "
             placeholder="Email"
-            onChange
-            type="name"
             action={(e) => setEmail(e.target.value)}
-            content={email}
+            value={email}
           />
 
           <Input
             class_name="input"
             placeholder="Password"
-            onChange
-            autoComplete="new-password"
             type={type}
             action={(e) => setPassword(e.target.value)}
-            content={password}
+            value={password}
           />
 
           <div className="eyeIcon">
