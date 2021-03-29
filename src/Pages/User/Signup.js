@@ -116,7 +116,7 @@ const Signup = () => {
             placeholder="First name "
             onChange={(e) => setFirstName(e.target.value)}
             value={firstname}
-            autoComplete="First Name"
+            autocomplete="First Name"
           />
 
           <Input
@@ -124,7 +124,7 @@ const Signup = () => {
             placeholder="Last name "
             onChange={(e) => setLastName(e.target.value)}
             value={lastname}
-            autoComplete="Last Name"
+            autocomplete="Last Name"
           />
 
           <Input
@@ -132,7 +132,7 @@ const Signup = () => {
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
-            autoComplete="Email"
+            autocomplete="Email"
           />
 
           <Input
@@ -140,7 +140,7 @@ const Signup = () => {
             placeholder="Password"
             onChange={(e) => setPassword0(e.target.value)}
             value={password0}
-            autoComplete="Password"
+            autocomplete="Password"
             type={type}
           />
 
@@ -165,7 +165,7 @@ const Signup = () => {
             placeholder="Confirm Password"
             onChange={(e) => setPassword1(e.target.value)}
             content={password1}
-            autoComplete="Confirm Password"
+            autocomplete="Confirm Password"
             type={type}
           />
 
