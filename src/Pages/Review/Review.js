@@ -1,7 +1,7 @@
 import React from "react";
 import Back from "../Components/Back";
 import ReviewItem from "./reviewItem";
-import { data } from "./reviewData";
+import { reviewData } from "./reviewData";
 import "./review.css";
 
 const Review = () => {
@@ -12,13 +12,13 @@ const Review = () => {
           <div className="object-1">
             <Back width={30} height={30} />
           </div>
-          <div className="object-2">Review ({data.length})</div>
+          <div className="object-2">Review ({reviewData.length})</div>
         </div>
       </div>
 
       <div className="main">
         <div className=" wrapper-item">
-          {data.map((item, index) => (
+          {reviewData.map((item, index) => (
             <ReviewItem key={index} {...item} />
           ))}
         </div>
