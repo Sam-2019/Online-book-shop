@@ -8,7 +8,7 @@ import StarRating from "../Components/Stars";
 
 import Summary from "../Summary/Summary";
 import { MediaQuery } from "../helper";
-
+import image from './250x350.png';
 import "./product.css";
 
 export const Spacer = styled.div`
@@ -40,7 +40,7 @@ const Placeholder = () => {
             <div className="product-divide">
               <div className="product-image-wrapper">
                 <img
-                  src="https://via.placeholder.com/250x350?text=Okukus.com"
+                  src={image}
                   alt="peecha"
                   className="product-image"
                 />
