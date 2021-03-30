@@ -112,49 +112,46 @@ const CartItem = ({
 
     if (empty !== "") {
       formData.set("buyer_unique_id", uniqueID);
-      formData.set("item_unique_id", id);
+      formData.set("item_unique_id", unique_id);
       formData.set("item_quantity", count);
 
       try {
         const data = await mutation.mutateAsync(formData);
-        console.log(data);
+        notify(data.message);
       } catch (error) {
         console.error(error);
       } finally {
-        // notify(data.message);
+        setCount((count) => count + 1);
+        queryClient.invalidateQueries("summaryData");
+        queryClient.invalidateQueries("carts");
       }
     }
-
-    //setCount((count) => count + 1);
   };
 
-  const minusItem = async (event) => {
-    event.preventDefault();
-
-    let empty = id && count;
-
-    if (empty === "") {
-    }
-
+  const minusItem = async (e) => {
+    e.preventDefault();
     if (count <= 1) {
+      return;
     }
 
-    if (empty !== "") {
+    if (count >= 1) {
+      //let empty = unique_id && count;
+
       formData.set("buyer_unique_id", uniqueID);
-      formData.set("item_unique_id", id);
+      formData.set("item_unique_id", unique_id);
       formData.set("item_quantity", count);
 
       try {
         const data = await mutation.mutateAsync(formData);
-        console.log(data);
+        notify(data.message);
       } catch (error) {
         console.error(error);
       } finally {
-        // notify(data.message);
+        setCount((count) => count - 1);
+        queryClient.invalidateQueries("summaryData");
+        queryClient.invalidateQueries("carts");
       }
     }
-
-    //setCount((count) => count - 1);
   };
 
   return (
