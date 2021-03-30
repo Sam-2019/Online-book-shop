@@ -1,6 +1,7 @@
 import React from "react";
 import Cart from "../Components/Cart";
-import { MediaQuery, axiosMethod } from "../helper";
+import { MediaQuery } from "../helper";
+import image from './150.png';
 import "./products.css";
 
 const Mobile = () => {
@@ -44,7 +45,7 @@ const Item = () => {
       <div className="products-group">
         <div className="products-image-wrapper">
           <img
-            src="https://via.placeholder.com/150?text=Okukus.com"
+            src={image}
             alt="alt"
             className="products-image"
           />
