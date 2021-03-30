@@ -1,65 +1,3 @@
-.idk {
-}
-
-.products {
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25% ;
-  padding-right: 10px;
-  padding-top: 10px;
-}
-
-.products-wrapper {
-  background-color: #ffffff;
-  border-radius: 10px;
-  margin: 0 0 10px 10px;
-}
-
-.products-wrapper:hover,
-.products-wrapper:focus {
-  box-shadow: 0rem 0rem 01rem 0rem #00000032 !important;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.products-group {
-  padding: 5px;
-  border-radius: 10px;
-}
-
-.products-discount-rate {
-  z-index: 2;
-  border-radius: 10px 0 10px 0;
-  width: 60px;
-  text-align: center;
-  position: absolute;
-  padding: 5px;
-  color: white;
-  font-weight: 500;
-  background: linear-gradient(
-    45deg,
-    #18bc4c 0%,
-    #23cc3c 25%,
-    #27dc2d 50%,
-    #97e63c 75%,
-    #bef033 100%
-  );
-}
-
-.products-image-wrapper {
-  border-radius: 10px;
-  width: 100%;
-  height: 220px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-}
-
-.products-image {
-  border-radius: 10px;
-  width: 70%;
-  height: 100%;
-}
-
 .placeholder-products-name {
   white-space: nowrap;
   width: 98%;
@@ -67,31 +5,25 @@
   text-overflow: ellipsis;
   text-align: center;
   margin-bottom: 5px;
-
 }
 
 .placeholder-item_name {
   font-size: 13px;
-
 }
 
 .placeholder-products-discount-price {
   color: cadetblue;
   font-size: 10px;
   text-decoration: line-through;
-
 }
 
 .placeholder-priceXcart {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 .placeholder-products-price {
   color: #00d919;
-
-
 }
 
 .placeholder-products-add2cart {
@@ -102,137 +34,11 @@
   color: rgb(255, 255, 255);
 }
 
-.products-add2cart:active {
-  transform: scale(0.95);
-}
-
 @media (max-width: 540px) {
-  .idk {
-  }
-
-  .products {
-    grid-template-columns: 50% 50%;
-  }
-
-  .products-wrapper {
-  }
-
-  .products-group {
-  }
-
-  .products-discount-rate {
-  }
-
-  .products-image_wrapper {
-  }
-
-  .products-image {
-    width: 100%;
-  }
-
-  .products-name {
-  }
-
-  .products-discount-price {
-  }
-
-  .priceXcart {
-  }
-
-  .products-add2cart {
-  }
 }
 
 @media (max-width: 320px) {
-  .products {
-  }
-
-  .products-wrapper {
-  }
-
-  .products-wrapper:hover,
-  .products-wrapper:focus {
-  }
-
-  .products-discount-rate {
-    width: 50px;
-    padding: 2px;
-
-    font-size: 15px;
-  }
-
-  .products-image-wrapper {
-    border-radius: 10px;
-    width: auto;
-    height: 200px;
-    text-align: center;
-  }
-
-  .products-image {
-    border-radius: 10px;
-    width: 100%;
-    height: 100%;
-  }
-
-  .products-image {
-  }
-
-  .products-name {
-  }
-
-  .products-discount-price {
-  }
-
-  .priceXcart {
-  }
-  .products-price {
-  }
-
-  .products-add2cart {
-  }
 }
 
 @media (max-width: 280px) {
-  .products {
-  }
-
-  .products-wrapper {
-  }
-
-  .products-wrapper:hover,
-  .products-wrapper:focus {
-  }
-
-  .products-discount-rate {
-  }
-
-  .products-image-wrapper {
-    border-radius: 10px;
-    width: auto;
-    height: 170px;
-    text-align: center;
-  }
-
-  .products-image {
-    border-radius: 10px;
-    width: 100%;
-    height: 100%;
-  }
-
-  .products-image {
-  }
-
-  .products-name {
-  }
-
-  .products-discount-price {
-  }
-
-  .priceXcart {
-  }
-  .products-price {
-  }
-
-  .products-add2cart {
-  }
 }
