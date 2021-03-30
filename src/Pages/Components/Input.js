@@ -50,7 +50,7 @@ export const TextArea = ({
       id={uniqueID}
       name={uniqueName}
       rows="5"
-      minlength="10"
+      minlength="50"
     />
   );
 };
