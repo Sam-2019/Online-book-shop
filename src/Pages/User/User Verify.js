@@ -36,7 +36,7 @@ const UserVerify = () => {
 
       <div className="main">
         {resource.error === true ? (
-          <Message class_name="message " message={message} />
+          <Message class_name="message " message={resource.message} />
         ) : null}
 
         {resource.error === false ? <Success /> : null}
