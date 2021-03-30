@@ -6,7 +6,7 @@ import Placeholder from "../Placeholders/Products";
 import ContentItem from "./contentItem";
 
 import { tagGet } from "../endpoints";
-import { backendData, fetch } from "../helper";
+import { fetch } from "../helper";
 
 const Content = () => {
   let { id } = useParams();
@@ -33,7 +33,7 @@ const Content = () => {
         {status === "loading" && <Placeholder />}
 
         {status === "success" && (
-          <div className="products2">
+          <div className="products">
             {data.data.map((data, index) => (
               <ContentItem data={data} key={index} />
             ))}
