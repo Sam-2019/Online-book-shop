@@ -1,16 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useQueryClient } from "react-query";
+import { useQueryClient, useMutation } from "react-query";
 import { toast } from "react-toastify";
 import Add from "../Components/Add";
 import Subtract from "../Components/Subtract";
 import Bin from "../Components/Bin";
+import { fetch } from "../helper";
 import BinFIll from "../Components/BinFill";
 import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
 import Confirm from "../Components/Confirm";
-import { okukus, cartDelete, buyerID, wishCreate } from "../endpoints";
+import {
+  okukus,
+  cartDelete,
+  buyerID,
+  wishCreate,
+  cartUpdate,
+} from "../endpoints";
 import { axiosMethod } from "../helper";
+import { useData } from "../Context";
 import "./cartItem.css";
 
 toast.configure();
@@ -22,20 +30,27 @@ const CartItem = ({
   cover_photo_url,
   product_name,
   unit_price,
+  id,
   handleToggle,
   onFormSubmit,
 }) => {
+  const { uniqueID } = useData();
   const [loveFill, setLoveFill] = React.useState(false);
   const [binFill, setBinFill] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
 
   const [count, setCount] = React.useState(Number(quantity));
+  var formData = new FormData();
 
   const queryClient = useQueryClient();
 
   const notify = (data) => {
     toast(data);
   };
+
+  const mutation = useMutation((formData) => {
+    return fetch(cartUpdate, formData);
+  });
 
   const updateBin = () => {
     setBinFill(true);
@@ -88,17 +103,59 @@ const CartItem = ({
     return () => clearTimeout(timer);
   };
 
-  function Plus() {
-    setCount((count) => count + 1);
-  }
+  const plusItem = async (event) => {
+    event.preventDefault();
+    let empty = id && count;
 
-  function Minus() {
-    if (count <= 1) {
-      return;
-    } else {
-      setCount((count) => count - 1);
+    if (empty === "") {
     }
-  }
+
+    if (empty !== "") {
+      formData.set("buyer_unique_id", uniqueID);
+      formData.set("item_unique_id", id);
+      formData.set("item_quantity", count);
+
+      try {
+        const data = await mutation.mutateAsync(formData);
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        // notify(data.message);
+      }
+    }
+
+    //setCount((count) => count + 1);
+  };
+
+  const minusItem = async (event) => {
+    event.preventDefault();
+
+    let empty = id && count;
+
+    if (empty === "") {
+    }
+
+    if (count <= 1) {
+    }
+
+    if (empty !== "") {
+      formData.set("buyer_unique_id", uniqueID);
+      formData.set("item_unique_id", id);
+      formData.set("item_quantity", count);
+
+      try {
+        const data = await mutation.mutateAsync(formData);
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        // notify(data.message);
+      }
+    }
+
+    //setCount((count) => count - 1);
+  };
 
   return (
     <>
@@ -155,13 +212,13 @@ const CartItem = ({
             "
               >
                 <div className="subtract">
-                  <Subtract width={16} height={25} action={Minus} />
+                  <Subtract width={16} height={25} action={minusItem} />
                 </div>
 
                 <div className="quantity">{count}</div>
 
                 <div className="add">
-                  <Add width={16} height={25} action={Plus} />
+                  <Add width={16} height={25} action={plusItem} />
                 </div>
               </div>
             </div>
