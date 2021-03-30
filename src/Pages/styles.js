@@ -8,6 +8,11 @@ export const Loading = styled.div`
 export const Navigator = styled.div`
   display: flex;
   justify-content: center;
+
+  
+  @media (max-width: 540px) {
+
+  }
 `;
 
 export const NavigatorActions = styled.div`
@@ -24,7 +29,11 @@ export const NavigatorActions = styled.div`
   -moz-box-shadow: 1px 8px 11px -6px rgba(82, 82, 82, 0.75);
 
   @media (max-width: 540px) {
-    width: 95%;
+    width: 50%;
+  }
+
+  @media (max-width: 414px) {
+    width: 80%;
   }
 `;
 
