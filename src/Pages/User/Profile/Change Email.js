@@ -55,7 +55,7 @@ const ChangeEmail = ({ close }) => {
   };
 
   return (
-    <form className=" change ">
+    <form className=" change">
       <Input
         class_name="input "
         placeholder="Current Email"
