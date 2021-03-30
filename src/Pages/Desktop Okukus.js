@@ -22,6 +22,8 @@ import Review from "./Review/Review";
 import TagContent from "./Tags/Content";
 import Float from "./Components/Floating Icon";
 import NotFound from './404/404' 
+import Footer from './Footer/Footer'
+
 
 function Desktop() {
   return (
@@ -37,6 +39,7 @@ function Content() {
     <Switch>
       <Route exact path="/">
         <Home />
+        <Footer />
       </Route>
 
       <Route path="/checkout">

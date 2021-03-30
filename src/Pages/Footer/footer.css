@@ -1,0 +1,54 @@
+.footer {
+  background-color: #474747b8;
+  color: #fff;
+}
+
+.footer_wrapper {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.copyright {
+  padding: 0 0.5em 0.5em 0.5em;
+  text-align: center;
+  font-size: 13px;
+}
+
+.company_overview,
+.mission,
+.visit,
+.reach {
+  padding: 0.5em 0.5em 0em 0.5em;
+  width: 25%;
+}
+
+.contact {
+  color: #fff;
+}
+
+p {
+  font-size: 13px;
+}
+
+h5 {
+  font-weight: 100;
+}
+
+
+@media (max-width: 540px) {
+  .footer_wrapper {
+    flex-direction: column;
+  }
+
+  .company_overview,
+  .mission,
+  .visit,
+  .reach {
+    width: 100%;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+}

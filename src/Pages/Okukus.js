@@ -5,6 +5,7 @@ import { MediaQuery } from "./helper";
 import Mobile from "./Mobile Okukus";
 import Desktop from "./Desktop Okukus";
 
+
 const breakpoint = 540;
 
 const Okukus = () => {

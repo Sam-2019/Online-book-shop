@@ -23,12 +23,14 @@ import Profile from "./User/Profile";
 import Review from "./Review/Review";
 import TagContent from "./Tags/Content";
 import NotFound from "./404/404";
+import Footer from "./Footer/Footer";
 
 function Mobile() {
   return (
     <Switch>
       <Route exact path="/">
         <Home />
+        <Footer />
       </Route>
 
       <Route path="/checkout">
