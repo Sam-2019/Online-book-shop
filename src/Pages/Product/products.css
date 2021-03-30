@@ -1,5 +1,3 @@
-
-
 .products {
   padding-right: 10px;
   padding-top: 10px;
@@ -12,13 +10,6 @@
   padding-inline-start: 0;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 5px 0 0;
-}
-
-.products2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  padding-right: 10px;
-  padding-top: 10px;
 }
 
 .products-wrapper {
@@ -124,32 +115,15 @@
     grid-template-columns: 50% 50%;
   }
 
-  .products-wrapper {
-  }
-
-  .products-group {
-  }
-
-  .products-discount-rate {
-  }
-
-  .products-image_wrapper {
-  }
-
   .products-image {
     width: 100%;
   }
+}
 
-  .products-name {
-  }
-
-  .products-discount-price {
-  }
-
-  .priceXcart {
-  }
-
-  .products-add2cart {
+@media (max-width: 414px) {
+  .products-image {
+    width: 145px;
+    height: auto;
   }
 }
 
