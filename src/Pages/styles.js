@@ -71,10 +71,17 @@ export const Next = styled.div`
 `;
 
 export const SmallView = styled.div`
-  width: 320px;
-  padding: 0 0 0 10px;
+  width: 330px;
+  margin: 10px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
 
   @media (max-width: 540px) {
+    padding: 0;
+  }
+
+  @media (max-width: 414px) {
     padding: 0;
   }
 
