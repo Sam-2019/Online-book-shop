@@ -20,24 +20,23 @@ import {
 } from "./endpoints";
 import { useQuery } from "react-query";
 import { axiosMethod, fetch } from "./helper";
+import image from "./Placeholders/250x350.png";
 
 const instance = axios.create({
   baseURL: dev_site,
 });
 
 const Data = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("KenLay@enron-fraud.com");
+  const [firstName, setFirstName] = useState("Daniel");
+  const [lastName, setLastName] = useState("Twum");
+  const [email, setEmail] = useState("daniel-twum@enron-fraud.com");
   const [uniqueID, setUniqueID] = useState("5f6657446f2335.80567964");
   const [verfifcationStatus, setVerificationStatus] = useState("");
 
   const [amount, setAmount] = useState(0);
   const [quantity, setQuantity] = useState(0);
 
-  const [profileImage, setProfileImage] = useState(
-    "https://via.placeholder.com/500x500?text=Okukus.com"
-  );
+  const [profileImage, setProfileImage] = useState(image);
 
   const [orderLength, setOrderLength] = useState(0);
   const [wishlistLength, setWishlistLength] = useState(0);
@@ -53,9 +52,7 @@ const Data = () => {
     setEmail("");
     setUniqueID("");
     setVerificationStatus("");
-    setProfileImage(
-      "https://pbs.twimg.com/media/EnYV6ekWMAksmcs?format=jpg&name=small"
-    );
+    setProfileImage(image);
   }
 
   async function isLoggedIn() {
@@ -158,20 +155,6 @@ const Data = () => {
       })
   );
 
-  useQuery("userImage", () =>
-    axiosMethod("post", profileImageGet, formData)
-      .then((data) => {
-        if (data.data.message === "account not found") {
-        } else {
-          setProfileImage(`${okukus}/${data.data.data.profile_photo_url}`);
-          // console.log("Success:", data);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
   useQuery("orderLength", () =>
     axiosMethod("post", orderHistory, formData)
       .then((data) => {
@@ -192,6 +175,18 @@ const Data = () => {
         if (data.data.message === "cart is empty") {
         } else {
           setWishlistLength(Number(data.data.data.length));
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+  );
+
+  useQuery("profileImage", () =>
+    axiosMethod("post", profileImageGet, formData)
+      .then((data) => {
+        if (data.data.message === "account found") {
+          setProfileImage(data.data.data.profile_photo_url);
         }
       })
       .catch((error) => {
