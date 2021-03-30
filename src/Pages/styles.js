@@ -29,7 +29,7 @@ export const NavigatorActions = styled.div`
   -moz-box-shadow: 1px 8px 11px -6px rgba(82, 82, 82, 0.75);
 
   @media (max-width: 540px) {
-    width: 50%;
+    width: 65%;
   }
 
   @media (max-width: 414px) {
@@ -46,7 +46,7 @@ export const CurrentPage = styled.div`
   border-left: 1px solid #cccccc;
 
   @media (max-width: 540px) {
-    width: 130px;
+    width: 120px;
   }
 `;
 
