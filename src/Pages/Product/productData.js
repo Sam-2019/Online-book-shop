@@ -21,6 +21,7 @@ import { MediaQuery, axiosMethod } from "../helper";
 import { okukus, cartAdd, buyerID, wishCreate } from "../endpoints";
 import { Spacer } from "../Placeholders/Product";
 import "./product.css";
+import { reviewData } from "../Review/reviewData";
 
 toast.configure();
 
@@ -124,6 +125,8 @@ const Product = ({ data }) => {
     }, 2000);
     return () => clearTimeout(timer);
   };
+
+  //console.log(reviewData.slice(0, 2));
 
   return (
     <div className="product-wrapper">
@@ -273,11 +276,10 @@ const Product = ({ data }) => {
                 </div>
               </div>
 
-              {Array(2)
-                .fill()
-                .map((item, index) => (
-                  <ReviewItem key={index} />
-                ))}
+              {reviewData.slice(0, 2).map((item, index) => (
+                <ReviewItem key={index} {...item} />
+              ))}
+              
             </div>
           </div>
         </div>
