@@ -1,4 +1,4 @@
-export const data = [
+export const reviewData = [
   {
     picture: "https://randomuser.me/api/portraits/men/81.jpg",
     name: "Sanni Huhtala",
