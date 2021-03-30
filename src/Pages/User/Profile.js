@@ -102,7 +102,10 @@ function Proflie() {
             <div className="user-detail">
               <div className="user-category">
                 <div className="object-5">
-                  <ProfilePhoto src={profileImage} className="image" />
+                  <ProfilePhoto
+                    src={`https://okukus.com/${profileImage}`}
+                    className="image"
+                  />
                 </div>
 
                 <div className="nameXeditXverify">
