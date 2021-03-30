@@ -1,8 +1,8 @@
 import React from "react";
 import { useQuery } from "react-query";
 import Back from "../../Components/Back";
-import { buyerID, orderHistory } from "../../endpoints";
-import { backendData, fetch } from "../../helper";
+import { orderHistory } from "../../endpoints";
+import { fetchMore } from "../../helper";
 import { useData } from "../../Context";
 import EmptyOrderHistory from "../../SVGs/empty-orderhistory";
 import SVGContainer from "../../SVGs/SVGcontainer";
@@ -16,7 +16,7 @@ const OrderHistory = () => {
 
   const { status, data } = useQuery(
     ["orderHistory", uniqueID, orderHistory],
-    () => fetch(orderHistory, formData),
+    () => fetchMore(orderHistory, formData),
     {
       keepPreviousData: true,
       staleTime: 5000,
@@ -46,7 +46,7 @@ const OrderHistory = () => {
             </SVGContainer>
           ) : null}
 
-          {data ? <HistoryData data={data.data} /> : null}
+          {data ? <HistoryData data={data} /> : null}
         </div>
       </div>
     </div>
