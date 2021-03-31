@@ -6,7 +6,7 @@
  **/
 
 import React from "react";
-import {SvgItem} from './SVGcontainer'
+import { SvgItem } from "./SVGcontainer";
 
 const SearchSVG = () => (
   <SvgItem>
