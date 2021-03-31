@@ -44,6 +44,9 @@ const Login = () => {
     return fetch(userLogin, formData);
   });
 
+  const home = () => {
+    history.push("./");
+  };
   const clearLogin = () => {
     setEmail("");
     setPassword("");
@@ -51,7 +54,7 @@ const Login = () => {
 
   const logIn = async (event) => {
     event.preventDefault();
-      var formData = new FormData();
+    var formData = new FormData();
 
     setMessage("");
 
@@ -73,11 +76,16 @@ const Login = () => {
         setMessage(data.message);
         localStorage.setItem("loginToken", data.token);
         await isLoggedIn();
-        setLoading(false);
+
+        if (data.error === false) {
+          home();
+        }
+        
       } catch (error) {
         console.error(error);
       } finally {
         clearLogin();
+        setLoading(false);
       }
     }
   };
