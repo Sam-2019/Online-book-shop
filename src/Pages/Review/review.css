@@ -40,9 +40,6 @@
   font-size: 10px;
 }
 
-.stars {
-}
-
 .star-box {
   background-color: yellow;
   text-align: justify;
@@ -91,8 +88,6 @@
 }
 
 @media (max-width: 320px) {
-  .stars {
-  }
 }
 
 @media (max-width: 280px) {
