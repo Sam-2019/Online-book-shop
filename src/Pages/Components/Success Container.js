@@ -16,4 +16,6 @@ const SuccessWrapper = ({ children }) => {
 
 export default SuccessWrapper;
 
-SuccessWrapper.propTypes = {};
+SuccessWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+};

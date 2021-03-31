@@ -1,5 +1,6 @@
 import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
 import Cart from "../Components/Cart";
 import User from "../Components/User";
 import Search from "../Components/Search";
@@ -88,4 +89,6 @@ const Navigation = ({ toggle }) => {
 
 export default Navigation;
 
-Navigation.propTypes = {};
+Navigation.propTypes = {
+  toggle: PropTypes.func,
+};

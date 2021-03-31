@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { TextArea } from "../Components/Input";
 import Button from "../Components/Button";
 import Message from "../Components/Message";
@@ -41,3 +42,7 @@ const AddReview = ({ close }) => {
 };
 
 export default AddReview;
+
+AddReview.propTypes = {
+  close: PropTypes.func,
+};

@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import { useQueryClient } from "react-query";
 
-const TagItem = ({ id, title, toggle }) => {
+const TagItem = ({ title, toggle }) => {
   let history = useHistory();
   const queryClient = useQueryClient();
 
@@ -19,3 +20,8 @@ const TagItem = ({ id, title, toggle }) => {
 };
 
 export default TagItem;
+
+TagItem.propTypes = {
+  toggle: PropTypes.func,
+  title: PropTypes.string,
+};

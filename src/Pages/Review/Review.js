@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Back from "../Components/Back";
 import ReviewItem from "./reviewItem";
 import { reviewData } from "./reviewData";
@@ -28,3 +29,7 @@ const Review = () => {
 };
 
 export default Review;
+
+Review.propTypes = {
+  reviewData: PropTypes.array,
+};

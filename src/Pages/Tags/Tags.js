@@ -1,9 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useQuery } from "react-query";
-import Back from "../Components/Back";
 import { tagsGet } from "../endpoints";
 import { fetch } from "../helper";
-
 import TagData from "./tagsData";
 import "./tag.css";
 
@@ -38,3 +37,6 @@ const Tags = ({ toggle }) => {
 };
 
 export default Tags;
+Tags.propTypes = {
+  toggle: PropTypes.func,
+};

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "../Components/Button";
 
 const PaymentProcess = ({ buttonAction }) => {
@@ -29,3 +30,7 @@ const PaymentProcess = ({ buttonAction }) => {
 };
 
 export default PaymentProcess;
+
+PaymentProcess.propTypes = {
+  buttonAction: PropTypes.func,
+};

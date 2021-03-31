@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import { useQueryClient } from "react-query";
 import { toast } from "react-toastify";
@@ -86,3 +87,10 @@ const ContentItem = ({
 };
 
 export default ContentItem;
+
+ContentItem.propTypes = {
+  unique_id: PropTypes.string,
+  cover_photo_url: PropTypes.string,
+  product_name: PropTypes.string,
+  unit_price: PropTypes.string,
+};

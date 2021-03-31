@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import TagItem from "./tagItem";
 
 const TagData = ({ data, toggle }) => {
@@ -12,3 +13,8 @@ const TagData = ({ data, toggle }) => {
 };
 
 export default TagData;
+
+TagData.propTypes = {
+  toggle: PropTypes.func,
+  data: PropTypes.array,
+};

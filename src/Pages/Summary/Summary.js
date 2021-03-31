@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./summary.css";
 import styled from "styled-components";
 
@@ -23,3 +24,7 @@ const Summary = ({ children }) => {
 };
 
 export default Summary;
+
+Summary.propTypes = {
+  children: PropTypes.node.isRequired,
+};

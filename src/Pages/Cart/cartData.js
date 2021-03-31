@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import CartItem from "./cartItem";
 
 const CartData = ({ data }) => {
@@ -37,3 +38,7 @@ const CartData = ({ data }) => {
 };
 
 export default CartData;
+
+CartData.propTypes = {
+  data: PropTypes.array,
+};

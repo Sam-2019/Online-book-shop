@@ -1,8 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import StarRating from "../Components/Stars";
 import ProfilePhoto from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
 import TimeStamp from "../Components/Time Stamp";
+import FillText from "./fillText";
 
 import "./review.css";
 
@@ -59,13 +61,10 @@ const ReviewItem = ({ picture, name, time_stamp, rating, comment }) => {
 
 export default ReviewItem;
 
-const FillText = ({ comment, toggle }) => {
-  return (
-    <>
-      {comment}{" "}
-      <span className="read-more" onClick={toggle}>
-        ...less
-      </span>
-    </>
-  );
+ReviewItem.propTypes = {
+  comment: PropTypes.string,
+  picture: PropTypes.string,
+  name: PropTypes.string,
+  time_stamp: PropTypes.string,
+  rating: PropTypes.number,
 };

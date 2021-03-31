@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import SearchItem from "./searchItem";
 
 const SearchData = ({ data }) => {
@@ -12,3 +13,7 @@ const SearchData = ({ data }) => {
 };
 
 export default SearchData;
+
+SearchData.propTypes = {
+  data: PropTypes.array,
+};
