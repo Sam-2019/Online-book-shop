@@ -22,7 +22,6 @@ function Nav() {
         peakingWidth={100}
         panTolerance={20}
         offset={0}
-      
         className="hamburger"
         overlayClassName="blue"
         overlayColor="rgba(52, 52, 52, 0.866)"
