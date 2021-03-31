@@ -10,7 +10,6 @@ toast.configure();
 
 const OrderItem = ({ cover_photo_url, amount, product_name, status }) => {
   const [confirm, setConfirm] = React.useState(false);
-  let status2 = "pending";
   let statusColorX;
   let show;
 
