@@ -7,9 +7,6 @@
   border-radius: 10px;
 }
 
-.cart_item_wrapper:last-child {
-}
-
 .checkBox {
   width: 3%;
   display: flex;
@@ -130,9 +127,6 @@
 
 .subtract {
   border-right: 1px solid #cccccc;
-}
-
-.quantity {
 }
 
 .checker:checked {

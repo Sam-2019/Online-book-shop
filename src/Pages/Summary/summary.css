@@ -43,8 +43,6 @@
 }
 
 @media (max-width: 540px) {
-  .summary-wrapper {
-  }
 
   .amountXshipping {
     flex-direction: column;

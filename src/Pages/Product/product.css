@@ -1,6 +1,3 @@
-.product-wrapper {
-}
-
 .product-body {
   display: flex;
   padding: 10px 0 0;
@@ -231,9 +228,6 @@
 }
 
 @media (max-width: 540px) {
-  .product-wrapper {
-  }
-
   .product-body {
     flex-direction: column;
     padding: 10px 10px 0;
@@ -249,18 +243,12 @@
     width: 100%;
   }
 
-  .product-image {
-  }
-
   .nameXauthor {
     margin-top: 10px;
   }
 
   .product-action {
     width: 100%;
-  }
-
-  .addReview {
   }
 
   .addCart,
@@ -282,26 +270,12 @@
 }
 
 @media (max-width: 320px) {
-  .product-wrapper {
-  }
-
   .rating-wrapper {
     flex-direction: column;
   }
 
-  .product-quantity {
-  }
-  .product-price {
-  }
-
-  .addReviewXseeMore {
-  }
-
   .addReview {
     display: none;
-  }
-
-  .review-numbersXright {
   }
 
   .product-action {
