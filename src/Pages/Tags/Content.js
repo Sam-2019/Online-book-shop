@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import Back from "../Components/Back";
 import Placeholder from "../Placeholders/Products";
 import ContentItem from "./contentItem";
-
 import { tagGet } from "../endpoints";
 import { fetch } from "../helper";
 
