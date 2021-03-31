@@ -65,9 +65,19 @@
 
 .bi-star-fill {
   color: #808080;
+  transition: transform 0.2s;
 }
 
 .bi-star-filled {
+  color: #52cd0b;
+  transition: transform 0.2s;
+}
+
+.bi-star-fill:hover,
+.bi-star-filled:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5);
   color: #52cd0b;
 }
 
