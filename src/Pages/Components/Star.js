@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./star.css";
 
 const Star = ({ type, width, height, selected = false, action = (f) => f }) => {
-  let ratingType;
+
 
   return (
     <svg
