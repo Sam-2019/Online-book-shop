@@ -2,12 +2,8 @@ import React from "react";
 import axios from "axios";
 import { useQueryClient } from "react-query";
 import ProfilePhoto from "./Profile Photo";
-import {
-  buyerID,
-  profileImageAdd,
-  profileImageGet,
-  okukus,
-} from "../endpoints";
+import { profileImageAdd } from "../endpoints";
+import { axiosMethod } from "../helper";
 import { useData } from "../Context";
 import "./profilePhoto.css";
 
@@ -18,10 +14,10 @@ const ProfiilePhotoUpdate = () => {
   const [loading, setLoading] = React.useState(false);
   const formData = new FormData();
 
-  const { profileImage } = useData();
+  const { profileImage, uniqueID } = useData();
   const queryClient = useQueryClient();
 
-  formData.set("buyer_unique_id", buyerID);
+  formData.set("buyer_unique_id", uniqueID);
 
   const openBox = () => {
     setChange(!change);
@@ -40,24 +36,27 @@ const ProfiilePhotoUpdate = () => {
 
     formData.append("file_profile_photo", pic);
 
-    const { data } = await axios({
-      method: "post",
-      url: profileImageAdd,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    });
+    try {
+      const { data } = await axiosMethod("post", profileImageAdd, formData);
 
-    if (data.error === false) {
-      setLoading(false);
-      reader.readAsDataURL(pic);
       console.log(data);
-      queryClient.invalidateQueries("userImage");
-    } else if (data.error === true) {
+      if (data.error === true) {
+        setLoading(false);
+      }
+
+      if (data.error === false) {
+        reader.readAsDataURL(pic);
+        queryClient.invalidateQueries("profileImage");
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      await queryClient.invalidateQueries("profileImage");
       setLoading(false);
     }
-  };
 
-  queryClient.invalidateQueries("userImage");
+    await queryClient.invalidateQueries("profileImage");
+  };
 
   //{error: true, message: "JPG, JPEG, & PNG files are allowed to upload."}
 
@@ -85,7 +84,10 @@ const ProfiilePhotoUpdate = () => {
           {imagePreviewUrl ? (
             <ProfilePhoto className="just-image" src={imagePreviewUrl} />
           ) : (
-            <ProfilePhoto className="just-image" src={profileImage} />
+            <ProfilePhoto
+              className="just-image"
+              src={`https://okukus.com/${profileImage}`}
+            />
           )}
 
           <div className="middle" onClick={openBox}>
