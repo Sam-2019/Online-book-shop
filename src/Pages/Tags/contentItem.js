@@ -8,14 +8,12 @@ import { axiosMethod } from "../helper";
 
 toast.configure();
 
-const ContentItem = ({ 
-
+const ContentItem = ({
   unique_id,
   cover_photo_url,
   product_name,
-  unit_price,}) => {
-
-  console.log()
+  unit_price,
+}) => {
   let history = useHistory();
 
   const queryClient = useQueryClient();
