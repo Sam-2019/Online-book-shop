@@ -1,7 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-
 import Cart from "../Components/Cart";
 import { okukus, buyerID, cartAdd } from "../endpoints";
 import { axiosMethod } from "../helper";
@@ -26,7 +26,6 @@ const ContentItem = ({
     formData.set("buyer_unique_id", buyerID);
 
     const { data } = await axiosMethod("post", cartAdd, formData);
-    console.log(data);
 
     if (!data.error) {
       notify(data.message);
@@ -81,3 +80,10 @@ const ContentItem = ({
 };
 
 export default ContentItem;
+
+ContentItem.propTypes = {
+  unique_id: PropTypes.string,
+  cover_photo_url: PropTypes.string,
+  product_name: PropTypes.string,
+  unit_price: PropTypes.string,
+};
