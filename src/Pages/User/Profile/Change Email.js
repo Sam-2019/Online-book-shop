@@ -3,7 +3,6 @@ import { useMutation } from "react-query";
 import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
-import Data from "../../Data";
 import { userEmailUpdate } from "../../endpoints";
 import { useData } from "../../Context";
 import "./change.css";
