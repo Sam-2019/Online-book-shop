@@ -18,7 +18,7 @@ const ProductsItem = ({
   let history = useHistory();
 
   const notify = (data) => {
-    toast(data)
+    toast.success(data);
   };
 
   const queryClient = useQueryClient();
