@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import StarRating from "../Components/Stars";
 import ProfilePhoto from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
@@ -7,17 +7,20 @@ import TimeStamp from "../Components/Time Stamp";
 import "./review.css";
 
 const ReviewItem = ({ picture, name, time_stamp, rating, comment }) => {
-  const [contractDescription, expandDescription] = React.useState(true);
+
 
   var date = new Date(time_stamp).toLocaleString();
 
-  const ToggleDescription = () => {
-    expandDescription(!contractDescription);
+  const [fullText, setFullTest] = React.useState(false);
+
+  const toggle = () => {
+    setFullTest(!fullText);
   };
+
 
   return (
     <div className=" review-wrapper">
-      <div className="review-head">
+      <div className="review-head ">
         <div className="profile-image">
           <ProfilePhoto className="image" src={picture} />
         </div>
@@ -32,19 +35,41 @@ const ReviewItem = ({ picture, name, time_stamp, rating, comment }) => {
           </div>
         </div>
       </div>
+      {/* {comment.length > 150 ? "Long" : "Short"} */}
+
+      {comment.length > 150 ? (
+        <>
+          {fullText ? (
+            <FillText comment={comment} toggle={toggle} />
+          ) : (
+            <>
+              {comment.substr(0, 218)}{" "}
+              <span className="read-more" onClick={toggle}>
+                ...more
+              </span>
+            </>
+          )}
+        </>
+      ) : (
+        <> {comment} </>
+      )}
 
       <div>
-        <span
-          className={contractDescription ? "review-body" : "review-body-morel"}
-        >
-          {comment}
-        </span><span onClick={ToggleDescription} className='read-more'>
-        {contractDescription ? "read more" : ""}
-      </span>
+        <span></span>
       </div>
-  
     </div>
   );
 };
 
 export default ReviewItem;
+
+const FillText = ({ comment, toggle }) => {
+  return (
+    <>
+      {comment}{" "}
+      <span className="read-more" onClick={toggle}>
+        ...less
+      </span>
+    </>
+  );
+};
