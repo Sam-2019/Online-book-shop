@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="footer_wrapper ">
-        <div className="company_overview ">
+        <div className="company_overview">
           <h5>Company Overview</h5>
 
           <p>

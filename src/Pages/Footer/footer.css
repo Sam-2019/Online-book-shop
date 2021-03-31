@@ -19,7 +19,7 @@
 .visit,
 .reach {
   padding: 0.5em 0.5em 0em 0.5em;
-  width: 25%;
+  width: 100%;
 }
 
 .contact {
@@ -34,8 +34,7 @@ h5 {
   font-weight: 100;
 }
 
-
-@media (max-width: 540px) {
+@media (max-width: 600px) {
   .footer_wrapper {
     flex-direction: column;
   }
@@ -46,9 +45,10 @@ h5 {
   .reach {
     width: 100%;
   }
+}
 
+@media (max-width: 540px) {
   p {
     font-size: 15px;
   }
-
 }
