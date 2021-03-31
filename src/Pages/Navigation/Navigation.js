@@ -7,12 +7,14 @@ import Search from "../Components/Search";
 import Justify from "../Components/Justify";
 import SearchBox from "../Search/Searchbox2";
 import { MediaQuery } from "../helper";
+import { useData } from "../Context";
 
 import "./navigation.css";
 
 const Navigation = ({ toggle }) => {
   let history = useHistory();
   const { width } = MediaQuery();
+  const { auth } = useData();
 
   const breakpoint = 280;
 
@@ -44,7 +46,7 @@ const Navigation = ({ toggle }) => {
       ) : null}
 
       <div className="category">
-        {width < 540 ? (
+        {width <= 540 ? (
           <div className="object-3 search  ">
             <Search
               width={breakpoint < width ? 30 : 20}
@@ -64,24 +66,26 @@ const Navigation = ({ toggle }) => {
           />
         </div>
 
-        <div className="object-4 user  ">
-          <User
-            width={breakpoint < width ? 30 : 20}
-            height={breakpoint < width ? 30 : 20}
-            action={() => {
-              history.push("/user/profile");
+        {auth ? (
+          <div className="object-4 user  ">
+            <User
+              width={breakpoint < width ? 30 : 20}
+              height={breakpoint < width ? 30 : 20}
+              action={() => {
+                history.push("/user/profile");
+              }}
+            />
+          </div>
+        ) : (
+          <div
+            className="object-4 user  "
+            onClick={() => {
+              history.push("/login");
             }}
-          />
-        </div>
-
-        <div
-          className="object-4 user  "
-          onClick={() => {
-            history.push("/login");
-          }}
-        >
-          Login
-        </div>
+          >
+            Login
+          </div>
+        )}
       </div>
     </header>
   );

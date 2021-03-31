@@ -26,6 +26,7 @@ const instance = axios.create({
 });
 
 const Data = () => {
+  const [auth, setAuth] = useState(false);
   const [firstName, setFirstName] = useState("Daniel");
   const [lastName, setLastName] = useState("Twum");
   const [email, setEmail] = useState("daniel-twum@enron-fraud.com");
@@ -80,8 +81,8 @@ const Data = () => {
       setLastName(data.buyer.lastname),
       setEmail(data.buyer.email),
       setUniqueID(data.buyer.unique_id),
-      setVerificationStatus(data.buyer.verification_status),
-      setProfileImage(data.buyer.unique_id)
+      setVerificationStatus(data.buyer.verification_status)
+      //setProfileImage(data.buyer.unique_id)
     );
   }
 
@@ -203,6 +204,7 @@ const Data = () => {
   // console.log(cartData);
 
   return {
+    auth,
     logoutUser,
     isLoggedIn,
 
