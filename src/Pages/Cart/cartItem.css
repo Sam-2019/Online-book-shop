@@ -105,7 +105,7 @@
   font-size: 13px;
   display: flex;
   align-items: center;
-justify-content: center;
+  justify-content: center;
   order: 0;
 }
 
@@ -133,7 +133,24 @@ justify-content: center;
 }
 
 .quantity {
+}
 
+.checker:checked {
+  background-color: hotpink;
+}
+
+.checker:not(:checked) {
+  opacity: 0.6;
+  background-color: rgb(193, 105, 255);
+}
+
+/* Only style checked checkboxes */
+input[type="checkbox"]:checked {
+  padding-left: 1em;
+}
+
+input:not(:checked) {
+  opacity: 0.6;
 }
 
 @media (max-width: 540px) {
