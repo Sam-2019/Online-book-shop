@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import Button from "../../Components/Button";
 import Confirm from "../../Components/Confirm";
@@ -100,3 +101,10 @@ const OrderItem = ({ cover_photo_url, amount, product_name, status }) => {
 };
 
 export default OrderItem;
+
+OrderItem.propTypes = {
+  cover_photo_url: PropTypes.string,
+  product_name: PropTypes.string,
+  amount: PropTypes.string,
+  status: PropTypes.string,
+};

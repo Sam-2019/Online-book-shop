@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useQueryClient } from "react-query";
 import { useHistory } from "react-router-dom";
-import Bin from "../../Components/Bin";
 import { toast } from "react-toastify";
 import Confirm from "../../Components/Confirm";
 import Button from "../../Components/Button";
@@ -145,6 +144,16 @@ const WishItem = ({
 export default WishItem;
 
 WishItem.propTypes = {
-  index: PropTypes.number,
-  // i:PropTypes.Number
+  availablity: PropTypes.string,
+  cover_photo_url: PropTypes.string,
+  existence: PropTypes.string,
+  id: PropTypes.string,
+  product_author: PropTypes.string,
+  product_category: PropTypes.string,
+  product_description: PropTypes.string,
+  product_name: PropTypes.string,
+  product_unique_id: PropTypes.string,
+  stock: PropTypes.string,
+  unique_id: PropTypes.string,
+  unit_price: PropTypes.string,
 };
