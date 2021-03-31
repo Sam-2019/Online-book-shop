@@ -3,7 +3,7 @@ import "./success.scss";
 
 const Success = () => {
   return (
-    <div className="success ">
+    <div className="success">
       <svg
         id="successAnimation"
         className="animated"
