@@ -3,7 +3,6 @@ import { useQuery } from "react-query";
 import { useHistory } from "react-router-dom";
 import { MediaQuery, fetchMore } from "../helper";
 import Back from "../Components/Back";
-import Bin from "../Components/Bin";
 import Button from "../Components/Button";
 import Summary from "../Summary/Summary";
 import CartData from "./cartData";
@@ -17,14 +16,14 @@ import EmptyCart from "../SVGs/empty-cart";
 
 const Cart = () => {
   const { uniqueID, amount, quantity } = useData();
-  let history = useHistory();
+  const history = useHistory();
   const { width } = MediaQuery();
   const breakpoint = 540;
 
   var formData = new FormData();
   formData.set("buyer_unique_id", uniqueID);
 
-  const { status, data, error, isFetching, isPreviousData } = useQuery(
+  const { data } = useQuery(
     ["carts", uniqueID],
     () => fetchMore(cartGet, formData),
     {
@@ -34,8 +33,8 @@ const Cart = () => {
     }
   );
 
-  var array = new Uint32Array(1);
-  var index = window.crypto.getRandomValues(array);
+  const array = new Uint32Array(1);
+  const index = window.crypto.getRandomValues(array);
 
   return (
     <div className="cart-wrapper">
@@ -47,11 +46,6 @@ const Cart = () => {
           <div className="object-2"> Cart ({quantity})</div>
         </div>
 
-        <div className="category">
-          <div className="object-3">
-            <Bin width={30} height={30} />
-          </div>
-        </div>
       </div>
 
       <div className="main">
@@ -70,20 +64,6 @@ const Cart = () => {
             <CartData data={data} />
           </>
         ) : null}
-
-        {/* {data ? (
-          <>
-            {width > breakpoint ? <CartHeader /> : null}
-            <CartData data={data} />
-          </>
-        ) : (
-          <SVGcontainer>
-            <EmptyCart />
-            <p className="text-3">
-              No item in <b>your</b> cart yet!
-            </p>
-          </SVGcontainer>
-        )} */}
       </div>
 
       <Summary>
