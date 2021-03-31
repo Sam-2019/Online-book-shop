@@ -8,20 +8,23 @@ import { axiosMethod } from "../helper";
 
 toast.configure();
 
-const ContentItem = ({ data }) => {
+const ContentItem = ({ 
+
+  unique_id,
+  cover_photo_url,
+  product_name,
+  unit_price,}) => {
+
+  console.log()
   let history = useHistory();
 
   const queryClient = useQueryClient();
-
-  const notify = (data) => {
-    toast(data);
-  };
 
   const add2Cart = async (e) => {
     e.preventDefault();
 
     var formData = new FormData();
-    formData.set("product_unique_id", data.unique_id);
+    formData.set("product_unique_id", unique_id);
     formData.set("buyer_unique_id", buyerID);
 
     const { data } = await axiosMethod("post", cartAdd, formData);
@@ -35,6 +38,10 @@ const ContentItem = ({ data }) => {
     notify(data.error);
   };
 
+  const notify = (data) => {
+    toast(data);
+  };
+
   return (
     <div className="products-wrapper">
       {/* <div className="products-discount-rate">-30%</div> */}
@@ -42,11 +49,11 @@ const ContentItem = ({ data }) => {
         <div
           className="products-image-wrapper"
           onClick={() => {
-            history.push(`/product/${data.unique_id}`);
+            history.push(`/product/${unique_id}`);
           }}
         >
           <img
-            src={`${okukus}/${data.cover_photo_url}`}
+            src={`${okukus}/${cover_photo_url}`}
             alt="alt"
             className="products-image"
           />
@@ -54,10 +61,10 @@ const ContentItem = ({ data }) => {
         <div
           className="products-name "
           onClick={() => {
-            history.push(`/product/${data.unique_id}`);
+            history.push(`/product/${unique_id}`);
           }}
         >
-          <span className="item_name ">{data.product_name}</span>
+          <span className="item_name ">{product_name}</span>
         </div>
 
         {/* <div
@@ -70,7 +77,7 @@ const ContentItem = ({ data }) => {
         </div>  */}
 
         <div className="priceXcart">
-          <div className="products-price">₵{data.unit_price}</div>
+          <div className="products-price">₵{unit_price}</div>
           <div className="products-add2cart" onClick={add2Cart}>
             <Cart width={17} height={17} color="white" />
           </div>

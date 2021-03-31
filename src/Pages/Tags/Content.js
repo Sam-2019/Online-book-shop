@@ -35,7 +35,7 @@ const Content = () => {
         {status === "success" && (
           <div className="products">
             {data.data.map((data, index) => (
-              <ContentItem data={data} key={index} />
+              <ContentItem {...data} key={index} />
             ))}
           </div>
         )}
