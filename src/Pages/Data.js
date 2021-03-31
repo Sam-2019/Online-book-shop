@@ -18,7 +18,7 @@ import {
   dev_site,
 } from "./endpoints";
 import { useQuery } from "react-query";
-import { axiosMethod, fetch, useAsync } from "./helper";
+import { axiosMethod, fetch, useLocalStorage } from "./helper";
 import image from "./Placeholders/250x350.png";
 
 const instance = axios.create({
@@ -26,11 +26,11 @@ const instance = axios.create({
 });
 
 const Data = () => {
-  const [auth, setAuth] = useState(false);
-  const [firstName, setFirstName] = useState("Daniel");
-  const [lastName, setLastName] = useState("Twum");
-  const [email, setEmail] = useState("daniel-twum@enron-fraud.com");
-  const [uniqueID, setUniqueID] = useState("5f6657446f2335.80567964");
+  const [auth, setAuth] = useLocalStorage("loginToken", "");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [uniqueID, setUniqueID] = useState("");
   const [verfifcationStatus, setVerificationStatus] = useState("");
 
   const [amount, setAmount] = useState(0);
@@ -67,6 +67,7 @@ const Data = () => {
     instance.defaults.headers.common["Authorization"] = "bearer " + loginToken;
 
     const data = await fetch(userValidate, formData);
+    console.log(data)
 
     if (data.validity === true && data.buyer === null) {
       localStorage.removeItem("loginToken");
@@ -77,6 +78,7 @@ const Data = () => {
     }
 
     return (
+      setAuth((prevAuth) => !prevAuth),
       setFirstName(data.buyer.firstname),
       setLastName(data.buyer.lastname),
       setEmail(data.buyer.email),
@@ -143,7 +145,11 @@ const Data = () => {
   useQuery("summaryData", () =>
     axiosMethod("post", cartSummary, formData)
       .then((data) => {
-        if (data.data.message === "cart is empty") {
+        console.log(data);
+        if (
+          data.data.message === "cart is empty" ||
+          "no value for post variable"
+        ) {
           setQuantity(0);
           setAmount(0);
         } else {
@@ -160,7 +166,11 @@ const Data = () => {
   useQuery("orderLength", () =>
     axiosMethod("post", orderHistory, formData)
       .then((data) => {
-        if (data.data.message === "cart is empty") {
+        console.log(data);
+        if (
+          data.data.message === "cart is empty" ||
+          "no value for post variable"
+        ) {
           setOrderLength(0);
         } else {
           setOrderLength(Number(data.data.data.length));
@@ -175,7 +185,11 @@ const Data = () => {
   useQuery("wishlistLength", () =>
     axiosMethod("post", wishList, formData)
       .then((data) => {
-        if (data.data.message === "cart is empty") {
+        console.log(data);
+        if (
+          data.data.message === "cart is empty" ||
+          "no value for post variable"
+        ) {
           setWishlistLength(0);
         } else {
           setWishlistLength(Number(data.data.data.length));
