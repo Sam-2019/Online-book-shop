@@ -15,7 +15,7 @@ const ContentItem = ({
   let history = useHistory();
 
   const notify = (data) => {
-    toast(data);
+    toast.success(data);
   };
 
   const add2Cart = async (e) => {

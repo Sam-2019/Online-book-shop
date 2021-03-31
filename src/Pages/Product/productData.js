@@ -33,7 +33,7 @@ const Product = ({ data }) => {
   const { width } = MediaQuery();
 
   const notify = (data) => {
-    toast(data);
+    toast.success(data);
   };
 
   const [loading, setLoading] = React.useState(false);

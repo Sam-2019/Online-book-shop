@@ -38,7 +38,7 @@ const ContentItem = ({
   };
 
   const notify = (data) => {
-    toast(data);
+    toast.success(data);
   };
 
   return (
