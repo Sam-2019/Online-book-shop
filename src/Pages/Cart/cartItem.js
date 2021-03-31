@@ -44,7 +44,7 @@ const CartItem = ({
   const queryClient = useQueryClient();
 
   const notify = (data) => {
-    toast(data);
+    toast.success(data);
   };
 
   const mutation = useMutation((formData) => {
@@ -77,6 +77,8 @@ const CartItem = ({
       queryClient.invalidateQueries("summaryData");
     }
 
+    notify(data.error);
+
     queryClient.invalidateQueries("carts");
   };
 
@@ -94,7 +96,10 @@ const CartItem = ({
     if (!data.error) {
       setLoveFill(true);
       notify(data.message);
+      queryClient.invalidateQueries("wishlistLength");
     }
+
+    queryClient.invalidateQueries("wishlist");
 
     notify(data.error);
 

@@ -34,7 +34,7 @@ const WishItem = ({
   let history = useHistory();
 
   const notify = (data) => {
-    toast(data);
+    toast.success(data);
   };
 
   const updateBin = () => {
@@ -51,13 +51,15 @@ const WishItem = ({
     const { data } = await axiosMethod("post", wishDelete, formData);
 
     if (data.message === "wishlist item deleted successfully") {
-      queryClient.invalidateQueries("wishlist");
       queryClient.invalidateQueries("wishlistLength");
       setConfirm(false);
       notify(data.message);
+      queryClient.invalidateQueries("wishlistLength");
     }
 
     notify(data.error);
+
+    queryClient.invalidateQueries("wishlist");
   };
 
   return (

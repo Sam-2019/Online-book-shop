@@ -15,7 +15,7 @@ const OrderItem = ({ cover_photo_url, amount, product_name, status }) => {
   let show;
 
   const notify = (data) => {
-    toast(data);
+    toast.success(data);
   };
 
   const cancelOrder = () => {
