@@ -97,28 +97,53 @@ const Order = () => {
   switch (value) {
     case "Pick your location":
       show = "";
-
       break;
     default:
       show = "(Shipping inclusive)";
   }
 
-  const getFee = async () => {
-    formData.set("buyer_unique_id", buyerID);
-    formData.set("location_name", value);
+  // const getFee = async () => {
+  //   formData.set("buyer_unique_id", buyerID);
+  //   formData.set("location_name", value);
 
-    const response = await axios({
-      method: "post",
-      url: feeGet,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    response ? setFee(response.data.data) : setFee(0);
-  };
+  //   const response = await axios({
+  //     method: "post",
+  //     url: feeGet,
+  //     data: formData,
+  //     headers: { "Content-Type": "multipart/form-data" },
+  //   });
+  //   response ? setFee(response.data.data) : setFee(0);
+  // };
+
+  // React.useEffect(() => {
+  //   getFee();
+  // }, [getFee]);
 
   React.useEffect(() => {
+    let didCancel = false;
+
+    const getFee = async () => {
+      formData.set("buyer_unique_id", buyerID);
+      formData.set("location_name", value);
+
+      const response = await axios({
+        method: "post",
+        url: feeGet,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      if (!didCancel) {
+        response ? setFee(response.data.data) : setFee(0);
+      }
+    };
+
     getFee();
-  }, [getFee]);
+
+    return () => {
+      didCancel = true;
+    };
+  }, [formData]);
 
   return (
     <div className="order-wrapper">
