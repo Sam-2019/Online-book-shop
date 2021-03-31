@@ -146,7 +146,7 @@ const WishItem = ({
 export default WishItem;
 
 WishItem.propTypes = {
-  availablity: PropTypes.string,
+  availablity: PropTypes.bool,
   cover_photo_url: PropTypes.string,
   existence: PropTypes.string,
   id: PropTypes.string,
