@@ -103,9 +103,6 @@ const Signup = () => {
             />
           </div>
 
-          {/* <div className="">
-            <Button name="Next" class_name="header-primary" />
-          </div> */}
         </div>
       </div>
 
@@ -168,13 +165,6 @@ const Signup = () => {
             autocomplete="Confirm Password"
             type={type}
           />
-
-          {/* <Input
-            type="date"
-            class_name="input "
-            placeholder="Date of birth"
-            action
-          /> */}
 
           {message ? <Message class_name="message " message={message} /> : null}
 
