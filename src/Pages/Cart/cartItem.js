@@ -71,10 +71,12 @@ const CartItem = ({
     const { data } = await axiosMethod("post", cartDelete, formData);
 
     if (data.message === "cart item deleted successfully") {
+      queryClient.invalidateQueries("summaryData");
       notify(data.message);
       setConfirm(false);
+      queryClient.invalidateQueries("summaryData");
     }
-    queryClient.invalidateQueries("summaryData");
+
     queryClient.invalidateQueries("carts");
   };
 
@@ -163,7 +165,7 @@ const CartItem = ({
             value={unique_id}
             id={product_name}
             name={product_name}
-            className='checker'
+            className="checker"
           />
         </div>
 
@@ -241,5 +243,11 @@ export default CartItem;
 
 CartItem.propTypes = {
   handleToggle: PropTypes.func,
-  // i:PropTypes.Number
+  unique_id: PropTypes.string,
+  cover_photo_url: PropTypes.string,
+  product_name: PropTypes.string,
+  unit_price: PropTypes.string,
+  quantity: PropTypes.string,
+  product_unique_id: PropTypes.string,
+  id: PropTypes.string,
 };
