@@ -32,7 +32,6 @@ const CartItem = ({
   unit_price,
   id,
   handleToggle,
-  onFormSubmit,
 }) => {
   const { uniqueID } = useData();
   const [loveFill, setLoveFill] = React.useState(false);
@@ -164,6 +163,7 @@ const CartItem = ({
             value={unique_id}
             id={product_name}
             name={product_name}
+            className='checker'
           />
         </div>
 
