@@ -259,12 +259,6 @@ function Proflie() {
           </PopUp>
         ) : null}
       </div>
-
-      {/* <>
-              {isError && <div>Something went wrong ...</div>}
-      
-              {isLoading ? <div>Loading ...</div> : <>hello</>}
-            </> */}
     </div>
   );
 }

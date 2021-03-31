@@ -8,23 +8,11 @@ import { itemSearch } from "../endpoints";
 import "./search.css";
 
 const Search = () => {
-  let activePage;
   const desktopQuery = new URLSearchParams(useLocation().search).get("q");
 
   //const formData = React.useMemo(() => new FormData(), []);
 
   const result = useAsync2("search_phrase", itemSearch, desktopQuery);
-
-  // switch (result.message) {
-  //   case "no results found":
-  //     activePage = <NoResult />;
-  //     break;
-  //   case "results found":
-  //     activePage = <SearchData data={result.value} />;
-  //     break;
-  //   default:
-  //     activePage = <Placeholder />;
-  // }
 
   return (
     <div className="search-wrapper ">

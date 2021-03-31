@@ -60,17 +60,7 @@ const Products = () => {
   return (
     <>
       <div>
-        {/* {status === "loading" ? (
-          <Placeholder />
-        ) : status === "error" ? (
-          <div>Error: {error.message}</div>
-        ) : (
-          <div className="products">
-            {data.map((items, index) => (
-              <ProductsItem key={index} {...items} />
-            ))}
-          </div>
-        )} */}
+
 
         {status === "loading" && <Placeholder />}
 

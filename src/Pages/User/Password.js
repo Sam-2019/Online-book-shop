@@ -150,7 +150,6 @@ const Password = () => {
             />
           )}
 
-          {/* <Button name="Signup" class_name="secondary" /> */}
         </form>
       </div>
     </div>
