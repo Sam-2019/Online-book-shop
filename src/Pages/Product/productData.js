@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import PropTypes from "prop-types";
 import { useHistory, useRouteMatch, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useQueryClient } from "react-query";
@@ -24,21 +24,6 @@ import "./product.css";
 import { reviewData } from "../Review/reviewData";
 
 toast.configure();
-
-// const AddToCart = styled.div`
-//   width: 40%;
-
-//   @media (max-width: 540px) {
-//   }
-// `;
-
-// const BuyNow = styled.div`
-//   width: 59%;
-
-//   @media (max-width: 540px) {
-//     width: 58%;
-//   }
-// `;
 
 const Product = ({ data }) => {
   let history = useHistory();
@@ -279,7 +264,6 @@ const Product = ({ data }) => {
               {reviewData.slice(0, 2).map((item, index) => (
                 <ReviewItem key={index} {...item} />
               ))}
-              
             </div>
           </div>
         </div>
@@ -331,3 +315,7 @@ const Product = ({ data }) => {
 };
 
 export default Product;
+
+Product.propTypes = {
+  data: PropTypes.array,
+};
