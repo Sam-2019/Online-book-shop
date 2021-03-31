@@ -128,36 +128,41 @@ export const useAsync = (url, formData) => {
   const [message, setMessage] = useState();
   const [value, setValue] = useState([]);
 
-  const fetchData = useCallback(async () => {
-    const result = await axios({
-      method: "POST",
-      url: url,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-
-    if (result.data.error === true) {
-      setTimeout(() => {
-        setError(result.data.error);
-        setSuccess(result.data.status);
-        setMessage(result.data.message);
-        setLoading(false);
-        setValue(null);
-      }, 1000);
-    } else if (result.data.error === false) {
-      setTimeout(() => {
-        setValue(result.data.data);
-        setLoading(false);
-        setSuccess(result.data.status);
-        setMessage(result.data.message);
-        setError(null);
-      }, 1000);
-    }
-  }, [formData, url]);
-
   useEffect(() => {
+    let didCancel = false;
+
+    async function fetchData() {
+      const result = await axiosMethod("post", url, formData);
+
+      if (!didCancel) {
+        if (result.data.error === true) {
+          setTimeout(() => {
+            setError(result.data.error);
+            setSuccess(result.data.status);
+            setMessage(result.data.message);
+            setLoading(false);
+            setValue(null);
+          }, 1000);
+        }
+
+        if (result.data.error === false) {
+          setTimeout(() => {
+            setValue(result.data.data);
+            setLoading(false);
+            setSuccess(result.data.status);
+            setMessage(result.data.message);
+            setError(null);
+          }, 1000);
+        }
+      }
+    }
+
     fetchData();
-  }, [fetchData]);
+
+    return () => {
+      didCancel = true;
+    };
+  }, [formData]);
 
   return { value, message, error, loading, success };
 };
