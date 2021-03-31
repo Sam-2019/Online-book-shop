@@ -48,12 +48,6 @@
   text-align: justify;
 }
 
-.review-body {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
-
 .review-body-more {
   overflow: hidden;
   word-wrap: break-word;
@@ -93,12 +87,6 @@
 
   .stars {
     justify-content: flex-end;
-  }
-
-  .review-body {
-    overflow: hidden;
-    word-wrap: break-word;
-    text-align: justify;
   }
 }
 
