@@ -2,6 +2,7 @@ $circle-length: 151px;
 $check-length: 36px;
 
 .success {
+  
   align-items: center;
   background-color: transparent;
 }
@@ -114,8 +115,6 @@ $check-length: 36px;
   }
 }
 
-.success-wrapper {
-}
 
 .success-item {
   margin: 10px auto;
@@ -134,24 +133,26 @@ $check-length: 36px;
 }
 
 @media (max-width: 540px) {
-  .success-wrapper {
-  }
+  
 
-  .success-item,
-  .confirm {
-    text-align: justify;
-  }
 }
 
 @media (max-width: 375px) {
-  .success-wrapper {
-  }
+
 }
 
 @media (max-width: 320px) {
-  .success-wrapper {
-    padding: 10px 20px;
-  }
+
+  
+.success-item {
+  margin: 0 auto;
+  padding: 0 ;
+}
+
+
+  // .success-wrapper {
+  //   padding: 10px 20px;
+  // }
 }
 
 @media (max-width: 280px) {
