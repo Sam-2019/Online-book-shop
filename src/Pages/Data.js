@@ -1,7 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {
-  okukus,
   cartSummary,
   orderHistory,
   wishList,
@@ -19,7 +18,7 @@ import {
   dev_site,
 } from "./endpoints";
 import { useQuery } from "react-query";
-import { axiosMethod, fetch } from "./helper";
+import { axiosMethod, fetch, useAsync } from "./helper";
 import image from "./Placeholders/250x350.png";
 
 const instance = axios.create({
@@ -144,6 +143,8 @@ const Data = () => {
     axiosMethod("post", cartSummary, formData)
       .then((data) => {
         if (data.data.message === "cart is empty") {
+          setQuantity(0);
+          setAmount(0);
         } else {
           setQuantity(Number(data.data.data.total_quantity));
           setAmount(Number(data.data.data.total_amount));
@@ -159,6 +160,7 @@ const Data = () => {
     axiosMethod("post", orderHistory, formData)
       .then((data) => {
         if (data.data.message === "cart is empty") {
+          setOrderLength(0);
         } else {
           setOrderLength(Number(data.data.data.length));
           //    console.log("Success:", data);
@@ -173,6 +175,7 @@ const Data = () => {
     axiosMethod("post", wishList, formData)
       .then((data) => {
         if (data.data.message === "cart is empty") {
+          setWishlistLength(0);
         } else {
           setWishlistLength(Number(data.data.data.length));
         }
@@ -187,12 +190,17 @@ const Data = () => {
       .then((data) => {
         if (data.data.message === "account found") {
           setProfileImage(data.data.data.profile_photo_url);
+        } else {
+          setProfileImage(image);
         }
       })
       .catch((error) => {
         console.error("Error:", error);
       })
   );
+
+  //const cartData = useAsync(cartSummary, formData);
+  // console.log(cartData);
 
   return {
     logoutUser,
