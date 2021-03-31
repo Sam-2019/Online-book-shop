@@ -35,6 +35,10 @@ export const NavigatorActions = styled.div`
   @media (max-width: 414px) {
     width: 80%;
   }
+
+  @media (max-width: 320px) {
+    width: 95%;
+  }
 `;
 
 export const CurrentPage = styled.div`
