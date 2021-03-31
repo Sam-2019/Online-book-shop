@@ -4,11 +4,9 @@ import CartItem from "./cartItem";
 const CartData = ({ data }) => {
   const [formData, setFormData] = useState("");
   const [checked, setChecked] = useState([]); //cart items from DB
-  const [message, setMessage] = useState("");
 
   useEffect(() => {
     setFormData(new FormData());
-    onFormSubmit();
   }, []);
 
   const handleToggle = (c) => () => {
@@ -29,19 +27,10 @@ const CartData = ({ data }) => {
     // var data = formData.get("categories");
   };
 
-  function onFormSubmit(messagE) {
-    setMessage(messagE);
-  }
-
   return (
     <div>
       {data.map((data, index) => (
-        <CartItem
-          key={index}
-          {...data}
-          handleToggle={handleToggle}
-          onFormSubmit={onFormSubmit}
-        />
+        <CartItem key={index} {...data} handleToggle={handleToggle} />
       ))}
     </div>
   );
