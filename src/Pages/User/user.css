@@ -21,7 +21,7 @@
 }
 
 .signup-box {
-  margin: 6em auto;
+  margin: 5.5em auto;
 }
 
 .forgotten_password_wrapper {
@@ -37,41 +37,37 @@
   .login-box {
     margin: 8em 10px;
   }
-  
+
   .signup-box {
     margin: 7.5em 10px;
   }
-
 }
 
 @media (max-width: 375px) {
   .login-box {
     margin: 10em 10px;
   }
-  
+
   .signup-box {
     margin: 6.5em 10px;
   }
 }
 
 @media (max-width: 320px) {
-
   .login-box {
     margin: 6em 10px;
   }
-  
+
   .signup-box {
-    margin: 4em 10px;
+    margin: 3em 10px;
   }
 }
 
 @media (max-width: 280px) {
-
-
   .login-box {
     margin: 8em 10px;
   }
-  
+
   .signup-box {
     margin: 6em 10px;
   }

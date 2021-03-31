@@ -21,6 +21,10 @@
   min-height: 100vh;
 }
 
+.user-wrapper {
+  min-height: 79vh;
+}
+
 .cart-wrapper,
 .product-wrapper {
   min-height: 85vh;
@@ -113,16 +117,6 @@
     padding-bottom: 3.7em;
   }
 
-  .home-wrapper,
-  .cart-wrapper,
-  .checkout-wrapper,
-  .order-wrapper,
-  .profile-wrapper,
-  .search-wrapper,
-  .user-wrapper,
-  .not-found-wrapper {
-  }
-
   .header {
     background-color: #ffffff;
     width: 100%;
@@ -166,9 +160,6 @@
     margin: 0 0 47px 0;
   }
 
-  .wrapper {
-  }
-
   .title {
     padding: 0px 0px;
   }
@@ -191,9 +182,6 @@
 }
 
 @media (max-width: 320px) {
-  .cart-wrapper {
-  }
-
   .header-input {
     width: 100%;
   }
