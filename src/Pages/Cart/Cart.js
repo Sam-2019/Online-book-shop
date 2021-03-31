@@ -45,7 +45,6 @@ const Cart = () => {
           </div>
           <div className="object-2"> Cart ({quantity})</div>
         </div>
-
       </div>
 
       <div className="main">
