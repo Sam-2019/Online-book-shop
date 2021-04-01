@@ -7,7 +7,7 @@ import Button from "../Components/Button";
 import Summary from "../Summary/Summary";
 import PopUp from "../Components/Popup";
 import Question from "../Components/Question";
-import Success from "../Components/Success Container";
+import Success from "../Components/Success";
 import { MediaQuery } from "../helper";
 import { useData } from "../Context";
 
@@ -316,7 +316,8 @@ const Order = () => {
       </Summary>
 
       {success ? (
-        <Success close={() => setSuccess(false)}>
+        <PopUp>
+          <Success />
           <div className="order-success">
             <div>
               {/* Hi <span className="customer-name">Kenneth Akanpaacharuk</span>, */}
@@ -336,7 +337,7 @@ const Order = () => {
               history.push("/");
             }}
           />
-        </Success>
+        </PopUp>
       ) : null}
     </div>
   );
