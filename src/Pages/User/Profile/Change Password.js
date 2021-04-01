@@ -9,7 +9,7 @@ import Data from "../../Data";
 import "./change.css";
 
 const ChangePassword = ({ close }) => {
-  const { uniqueID, email } = Data();
+  const { uniqueID } = Data();
 
   const [show, hide] = React.useState("password");
 
@@ -67,11 +67,11 @@ const ChangePassword = ({ close }) => {
         reset();
       }
     }
-  };
+  }
 
   return (
     <form>
-      <p>{email}</p>
+
 
       <Input
         class_name="input "
