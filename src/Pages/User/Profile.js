@@ -1,14 +1,14 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
-import Pen from "../Components/Pen";
 import PopUp from "../Components/Popup";
 import ChangePassword from "./Profile/Change Password";
 import ChangeEmail from "./Profile/Change Email";
 import ChangeName from "./Profile/Change Name";
 import OrderHistory from "./Profile/Order History";
+import ProfilePic from "./Profile/Change ProfilePic";
 import WishList from "./Profile/Wish List";
-import ProfilePhoto from "../Components/Profile Photo";
+import Photo from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
 import Verification from "../Components/Verify";
 import { okukus } from "../endpoints";
@@ -26,6 +26,7 @@ function Proflie() {
   const [password, updatePassword] = React.useState(false);
   const [email, updateEmail] = React.useState(false);
   const [name, updateName] = React.useState(false);
+  const [profilePhoto, updateProfilePhoto] = React.useState(false);
 
   const [active, setActive] = React.useState("Order History");
 
@@ -59,6 +60,13 @@ function Proflie() {
       break;
     case "Wish List":
       activePage = <WishList />;
+      break;
+    case "Change Name":
+      activePage = (
+        <SmallView>
+          <ChangeName />
+        </SmallView>
+      );
       break;
     case "Change Email":
       activePage = (
@@ -101,8 +109,13 @@ function Proflie() {
           <div className="left-side">
             <div className="user-detail">
               <div className="user-category">
-                <div className="object-5">
-                  <ProfilePhoto
+                <div
+                  className="object-5"
+                  onClick={() => {
+                    updateProfilePhoto(true);
+                  }}
+                >
+                  <Photo
                     src={`https://okukus.com/${profileImage}`}
                     className="image"
                   />
@@ -111,13 +124,13 @@ function Proflie() {
                 <div className="nameXeditXverify">
                   <div className="nameXedit">
                     <UserName />
-                    <Pen
+                    {/* <Pen
                       width={15}
                       height={15}
                       action={() => {
                         updateName(true);
                       }}
-                    />
+                    /> */}
                   </div>
 
                   <Verification />
@@ -144,6 +157,15 @@ function Proflie() {
                     }}
                   >
                     Wish List
+                  </div>
+
+                  <div
+                    className="option-list"
+                    onClick={() => {
+                      setActive("Change Name");
+                    }}
+                  >
+                    Change Name
                   </div>
 
                   <div
@@ -188,6 +210,15 @@ function Proflie() {
                     }}
                   >
                     Wish List
+                  </div>
+
+                  <div
+                    className="option-list"
+                    onClick={() => {
+                      updateName(true);
+                    }}
+                  >
+                    Change Name
                   </div>
 
                   <div
@@ -256,6 +287,12 @@ function Proflie() {
                 updateEmail(false);
               }}
             />
+          </PopUp>
+        ) : null}
+
+        {profilePhoto ? (
+          <PopUp>
+            <ProfilePic close={() => updateProfilePhoto(false)} />
           </PopUp>
         ) : null}
       </div>
