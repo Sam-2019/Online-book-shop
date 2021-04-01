@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { useQueryClient } from "react-query";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import Confirm from "../../Components/Confirm";
+import PopUp from "../../Components/Popup";
+import {ConfirmDelete} from "../../styles";
 import Button from "../../Components/Button";
 import { okukus, wishDelete, buyerID } from "../../endpoints";
 import { MediaQuery, axiosMethod } from "../../helper";
@@ -130,14 +131,18 @@ const WishItem = ({
       </div>
 
       {confirm ? (
-        <Confirm
-          close={() => setConfirm(false)}
-          primary="Remove"
-          primaryaction={removeItem}
-          secondary="Cancel"
-        >
-          Are you sure you want to remove this item from your wish list?
-        </Confirm>
+        <PopUp>
+          <ConfirmDelete>
+            Are you sure you want to remove this item from your wish list?
+          </ConfirmDelete>
+
+          <Button class_name="primary" name="Remove" action={removeItem} />
+          <Button
+            class_name="secondary"
+            name="Cancel"
+            action={() => setConfirm(false)}
+          />
+        </PopUp>
       ) : null}
     </>
   );

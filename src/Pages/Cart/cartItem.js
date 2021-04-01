@@ -9,7 +9,8 @@ import { fetch } from "../helper";
 import BinFIll from "../Components/BinFill";
 import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
-import Confirm from "../Components/Confirm";
+import PopUp from "../Components/Popup";
+import {ConfirmDelete} from "../styles";
 import {
   okukus,
   cartDelete,
@@ -231,14 +232,19 @@ const CartItem = ({
       </div>
 
       {confirm ? (
-        <Confirm
-          close={() => setConfirm(false)}
-          primary="Delete"
-          primaryaction={deleteItem}
-          secondary="Cancel"
-        >
-          Are you sure you want to remove this product from your shopping cart?
-        </Confirm>
+        <PopUp>
+          <ConfirmDelete>
+            Are you sure you want to remove this product from your shopping
+            cart?
+          </ConfirmDelete>
+
+          <Button class_name="primary" name="Remove" action={removeItem} />
+          <Button
+            class_name="secondary"
+            name="Cancel"
+            action={() => setConfirm(false)}
+          />
+        </PopUp>
       ) : null}
     </>
   );

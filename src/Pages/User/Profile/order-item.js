@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import Button from "../../Components/Button";
-import Confirm from "../../Components/Confirm";
+import PopUp from "../../Components/Popup";
+import { ConfirmDelete } from "../../styles";
 import { okukus } from "../../endpoints";
 import "./orderitem.css";
 
@@ -87,13 +88,18 @@ const OrderItem = ({ cover_photo_url, amount, product_name, status }) => {
       </div>
 
       {confirm ? (
-        <Confirm
-          close={() => setConfirm(false)}
-          primary="Cancel Order"
-          secondary="Close"
-        >
-          Are you sure you want to cancel this order?
-        </Confirm>
+        <PopUp>
+          <ConfirmDelete>
+            Are you sure you want to cancel this order?
+          </ConfirmDelete>
+
+          <Button class_name="primary" name="Remove" action={removeItem} />
+          <Button
+            class_name="secondary"
+            name="Cancel"
+            action={() => setConfirm(false)}
+          />
+        </PopUp>
       ) : null}
     </>
   );
