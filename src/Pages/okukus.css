@@ -85,10 +85,6 @@
   padding: 15px 0;
 }
 
-.change {
-  margin-top: 10px;
-}
-
 .main {
   width: 100%;
   max-width: 980px;
@@ -172,9 +168,6 @@
     padding: 15px 0;
   }
 
-  .change {
-    margin-top: 10px;
-  }
 
   .main {
     margin: 0 auto;
