@@ -8,6 +8,7 @@ import Justify from "../Components/Justify";
 import SearchBox from "../Search/Searchbox2";
 import { MediaQuery } from "../helper";
 import { useData } from "../Context";
+import Dropdown from "./Dropdown";
 
 import "./navigation.css";
 
@@ -68,13 +69,7 @@ const Navigation = ({ toggle }) => {
 
         {auth ? (
           <div className="object-4 user  ">
-            <User
-              width={breakpoint < width ? 30 : 20}
-              height={breakpoint < width ? 30 : 20}
-              action={() => {
-                history.push("/user/profile");
-              }}
-            />
+            <Dropdown />
           </div>
         ) : (
           <div
