@@ -66,5 +66,5 @@ ReviewItem.propTypes = {
   picture: PropTypes.string,
   name: PropTypes.string,
   time_stamp: PropTypes.string,
-  rating: PropTypes.number,
+  rating: PropTypes.string,
 };
