@@ -22,7 +22,7 @@ const AddReview = ({ close }) => {
   }
 
   return (
-    <form className=" change ">
+    <form>
       <StarRating />
 
       <TextArea
