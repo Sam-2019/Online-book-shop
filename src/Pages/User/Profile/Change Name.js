@@ -4,7 +4,6 @@ import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
 import { userProfileUpdate } from "../../endpoints";
-import ProfilePhotoUpdate from "../../Components/Profile Photo Update ";
 import { useData } from "../../Context";
 
 import "./change.css";
@@ -57,37 +56,33 @@ const ChangeName = ({ close }) => {
   };
 
   return (
-    <>
-      <ProfilePhotoUpdate />
+    <form>
+      <Input
+        class_name="input "
+        placeholder="First Name"
+        value={first_name}
+        action={(e) => setFirstName(e.target.value)}
+        autocomplete="First Name"
+      />
+      <Input
+        class_name="input "
+        placeholder="Last Name"
+        value={last_name}
+        action={(e) => setLastName(e.target.value)}
+        autocomplete="Last Name"
+      />
 
-      <form className=" change ">
-        <Input
-          class_name="input "
-          placeholder="First Name"
-          value={first_name}
-          action={(e) => setFirstName(e.target.value)}
-          autocomplete="First Name"
-        />
-        <Input
-          class_name="input "
-          placeholder="Last Name"
-          value={last_name}
-          action={(e) => setLastName(e.target.value)}
-          autocomplete="Last Name"
-        />
+      {message ? <Message message={message} class_name="message" /> : null}
 
-        {message ? <Message message={message} class_name="message" /> : null}
+      <Button
+        class_name="primary"
+        name="Update"
+        action={updateDetail}
+        loading={loading}
+      />
 
-        <Button
-          class_name="primary"
-          name="Update"
-          action={updateDetail}
-          loading={loading}
-        />
-
-        {/* <Button class_name="secondary" name="Cancel" action={close} /> */}
-      </form>
-    </>
+      <Button class_name="secondary" name="Cancel" action={close} />
+    </form>
   );
 };
 
