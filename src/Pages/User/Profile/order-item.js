@@ -23,7 +23,8 @@ const OrderItem = ({ cover_photo_url, amount, product_name, status }) => {
   };
 
   const Delete = () => {
-    // notify(data.message);
+    notify("Order cancelled");
+    setConfirm(false);
     // notify(data.error);
   };
 
@@ -93,10 +94,10 @@ const OrderItem = ({ cover_photo_url, amount, product_name, status }) => {
             Are you sure you want to cancel this order?
           </ConfirmDelete>
 
-          <Button class_name="primary" name="Remove" action={removeItem} />
+          <Button class_name="primary" name="Cancel Order" action={Delete} />
           <Button
             class_name="secondary"
-            name="Cancel"
+            name="Ignore"
             action={() => setConfirm(false)}
           />
         </PopUp>
