@@ -1,6 +1,7 @@
 .user-detailsXother-pages {
   display: flex;
   justify-content: space-between;
+  min-height: 91.5vh;
 }
 
 .left-side {
