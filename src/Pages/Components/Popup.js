@@ -1,15 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Close from "../Components/Close";
 import "./popup.css";
 
 const PopUp = ({ children, close }) => {
   return (
     <div className="popup-wrapper">
       <div className="popup">
-        <div className="close-button">
+        {/* <div className="close-button">
           <Close width={30} height={30} action={close} />
-        </div>
+        </div> */}
 
         <div>{children}</div>
       </div>
