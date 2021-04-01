@@ -9,9 +9,7 @@ export const Navigator = styled.div`
   display: flex;
   justify-content: center;
 
-  
   @media (max-width: 540px) {
-
   }
 `;
 
@@ -97,3 +95,25 @@ export const SmallView = styled.div`
     padding: 0;
   }
 `;
+
+export const ConfirmDelete = styled.div`
+  padding: 10px;
+  text-align: center;
+
+  @media (max-width: 540px) {
+  }
+
+  @media (max-width: 375px) {
+  }
+
+  @media (max-width: 320px) {
+  }
+
+  @media (max-width: 280px) {
+  }
+`;
+
+export const Spacer = styled.div`
+  padding: 0 0 10px;
+`;
+
