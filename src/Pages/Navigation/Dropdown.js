@@ -50,7 +50,7 @@ export default function Dropdown() {
           <div
             onClick={() => {
               logoutUser();
-              history.push("./");
+              history.push("/");
             }}
             className="dropdownItem"
           >
