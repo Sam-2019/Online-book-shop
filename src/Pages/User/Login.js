@@ -72,7 +72,7 @@ const Login = () => {
 
       try {
         const data = await mutation.mutateAsync(formData);
-        console.log(data);
+       // console.log(data);
         setMessage(data.message);
         localStorage.setItem("loginToken", data.token);
         await isLoggedIn();
