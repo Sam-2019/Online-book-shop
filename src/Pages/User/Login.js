@@ -72,7 +72,7 @@ const Login = () => {
 
       try {
         const data = await mutation.mutateAsync(formData);
-       // console.log(data);
+        // console.log(data);
         setMessage(data.message);
         localStorage.setItem("loginToken", data.token);
         await isLoggedIn();
@@ -80,12 +80,12 @@ const Login = () => {
         if (data.error === false) {
           home();
         }
-        
       } catch (error) {
         console.error(error);
       } finally {
         clearLogin();
         setLoading(false);
+        history.push("/");
       }
     }
   };
