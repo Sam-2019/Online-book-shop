@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useQueryClient, useMutation } from "react-query";
 import { toast } from "react-toastify";
+import Button from '../Components/Button'
 import Add from "../Components/Add";
 import Subtract from "../Components/Subtract";
 import Bin from "../Components/Bin";
@@ -238,7 +239,7 @@ const CartItem = ({
             cart?
           </ConfirmDelete>
 
-          <Button class_name="primary" name="Remove" action={removeItem} />
+          <Button class_name="primary" name="Remove" action={deleteItem} />
           <Button
             class_name="secondary"
             name="Cancel"
