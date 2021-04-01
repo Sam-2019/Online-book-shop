@@ -70,7 +70,7 @@ const ChangePassword = ({ close }) => {
   };
 
   return (
-    <form className=" change ">
+    <form>
       <p>{email}</p>
 
       <Input
