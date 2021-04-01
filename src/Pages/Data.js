@@ -52,6 +52,7 @@ const Data = () => {
     setEmail("");
     setUniqueID("");
     setVerificationStatus("");
+    setAuth(!auth);
     setProfileImage(image);
   }
 
@@ -68,6 +69,7 @@ const Data = () => {
 
     const data = await fetch(userValidate, formData);
 
+    //console.log(data);
 
     if (data.validity === true && data.buyer === null) {
       localStorage.removeItem("loginToken");
@@ -145,7 +147,6 @@ const Data = () => {
   useQuery("summaryData", () =>
     axiosMethod("post", cartSummary, formData)
       .then((data) => {
-    ;
         if (
           data.data.message === "cart is empty" ||
           "no value for post variable"
@@ -166,7 +167,6 @@ const Data = () => {
   useQuery("orderLength", () =>
     axiosMethod("post", orderHistory, formData)
       .then((data) => {
-    ;
         if (
           data.data.message === "cart is empty" ||
           "no value for post variable"
@@ -185,7 +185,6 @@ const Data = () => {
   useQuery("wishlistLength", () =>
     axiosMethod("post", wishList, formData)
       .then((data) => {
-    ;
         if (
           data.data.message === "cart is empty" ||
           "no value for post variable"
