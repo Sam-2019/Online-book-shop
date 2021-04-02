@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useQueryClient, useMutation } from "react-query";
 import { toast } from "react-toastify";
-import Button from '../Components/Button'
+import Button from "../Components/Button";
 import Add from "../Components/Add";
 import Subtract from "../Components/Subtract";
 import Bin from "../Components/Bin";
@@ -11,7 +11,7 @@ import BinFIll from "../Components/BinFill";
 import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
 import PopUp from "../Components/Popup";
-import {ConfirmDelete} from "../styles";
+import { ConfirmDelete } from "../styles";
 import {
   okukus,
   cartDelete,
@@ -66,8 +66,6 @@ const CartItem = ({
   const deleteItem = async (e) => {
     e.preventDefault();
 
-    var formData = new FormData();
-
     formData.set("buyer_unique_id", buyerID);
     formData.set("item_unique_id", unique_id);
     const { data } = await axiosMethod("post", cartDelete, formData);
@@ -87,7 +85,6 @@ const CartItem = ({
   const add2WL = async (e) => {
     e.preventDefault();
 
-    var formData = new FormData();
     formData.set("product_unique_id", product_unique_id);
     formData.set("buyer_unique_id", buyerID);
 
