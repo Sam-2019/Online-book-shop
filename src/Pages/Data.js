@@ -11,7 +11,6 @@ import {
   userAccountReset,
   userAccountVerify,
   userCreateEmailVerify,
-  cartUpdate,
   cartCheckout,
   orderCreate,
   userWelcome,
@@ -27,11 +26,11 @@ const instance = axios.create({
 
 const Data = () => {
   const [auth, setAuth] = useLocalStorage("loginToken", "");
-  const [firstName, setFirstName] = useState("Oluwafunmilayo");
-  const [lastName, setLastName] = useState("Ntombizodwa");
-  const [email, setEmail] = useState("");
-  const [uniqueID, setUniqueID] = useState("5f6657446f2335.80567964");
-  const [verfifcationStatus, setVerificationStatus] = useState("");
+  const [firstName, setFirstName] = useLocalStorage("firstName", "");
+  const [lastName, setLastName] = useLocalStorage("lastName", "");
+  const [email, setEmail] = useLocalStorage("email", "");
+  const [uniqueID, setUniqueID] = useLocalStorage("uniqueID", "");
+  const [verfifcationStatus, setVerificationStatus] = useState(false);
 
   const [amount, setAmount] = useState(0);
   const [quantity, setQuantity] = useState(0);
@@ -69,6 +68,7 @@ const Data = () => {
 
     const data = await fetch(userValidate, formData);
 
+
     //console.log(data);
 
     if (data.validity === true && data.buyer === null) {
@@ -95,16 +95,6 @@ const Data = () => {
     return data;
   }
 
-  async function verifyCreateEmail(formData) {
-    const data = await fetch(userCreateEmailVerify, formData);
-    return data;
-  }
-
-  async function updateCart(formData) {
-    const { data } = await axiosMethod("post", cartUpdate, formData);
-    return data;
-  }
-
   async function checkoutCart(formData) {
     const { data } = await axiosMethod("post", cartCheckout, formData);
     return data;
@@ -121,8 +111,10 @@ const Data = () => {
   }
 
   useQuery("summaryData", () =>
+
     axiosMethod("post", cartSummary, formData)
       .then((data) => {
+        console.log(data);
         if (
           data.data.message === "cart is empty" ||
           "no value for post variable"
@@ -241,14 +233,8 @@ const Data = () => {
     logoutUser,
     isLoggedIn,
 
-
-
-
     verifyUserAccount,
 
-    verifyCreateEmail,
-
-    updateCart,
     checkoutCart,
 
     createOrder,
