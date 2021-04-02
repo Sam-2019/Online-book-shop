@@ -19,6 +19,7 @@ import AddReview from "../Review/addReview";
 import Summary from "../Summary/Summary";
 import { MediaQuery, axiosMethod } from "../helper";
 import { okukus, cartAdd, buyerID, wishCreate } from "../endpoints";
+import { useData } from "../Context";
 import { Spacer } from "../Placeholders/Product";
 import "./product.css";
 import { reviewData } from "../Review/reviewData";
@@ -30,17 +31,15 @@ const Product = ({ data }) => {
   let { id } = useParams();
   let { url } = useRouteMatch();
 
-  const { width } = MediaQuery();
+  const { auth } = useData();
 
-  const notify = (data) => {
-    toast.success(data);
-  };
+  const { width } = MediaQuery();
 
   const [loading, setLoading] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
   const [review, addReview] = React.useState(false);
   const [loveFill, setLoveFill] = React.useState(false);
-  const [message, setMessage] = React.useState("");
+  const [reviewData, setReviewData] = React.useState([]);
 
   const ToggleDescription = () => {
     expandDescription(!contractDescription);
@@ -78,40 +77,59 @@ const Product = ({ data }) => {
 
   const add2Cart = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    if (auth) {
+      setLoading(true);
 
-    const { data } = await axiosMethod("post", cartAdd, formData);
+      const { data } = await axiosMethod("post", cartAdd, formData);
 
-    if (data.error === false) {
-      queryClient.invalidateQueries("carts");
-      notify(data.message);
+      if (!data.error) {
+        queryClient.invalidateQueries("carts");
+        queryClient.invalidateQueries("summaryData");
+        queryClient.invalidateQueries("orderLength");
+        toast.success(data.message);
+      }
+
+      setLoading(false);
+      toast.error(data.error);
     }
-
-    setLoading(false);
-    notify(data.error);
   };
 
   const add2WL = async (e) => {
     e.preventDefault();
-    setLoveFill(false);
-
-    const { data } = await axiosMethod("post", wishCreate, formData);
-    setMessage(data.message);
-
-    if (data.error === false) {
-      setLoveFill(true);
-      notify(data.message);
-    }
-
-    notify(data.error);
-
-    const timer = setTimeout(() => {
+    if (auth) {
       setLoveFill(false);
-    }, 2000);
-    return () => clearTimeout(timer);
+
+      const { data } = await axiosMethod("post", wishCreate, formData);
+
+      if (!data.error) {
+        setLoveFill(true);
+        toast.success(data.message);
+        queryClient.invalidateQueries("wishlistLength");
+        queryClient.invalidateQueries("wishlist");
+      }
+
+      toast.error(data.error);
+
+      const timer = setTimeout(() => {
+        setLoveFill(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
   };
 
-  //console.log(reviewData.slice(0, 2));
+  const reviewItem = () => {
+    if (auth) {
+      addReview(true);
+    }
+    toast.warning("Login to write a review ");
+  };
+
+  const buyItem = () => {
+    if (auth) {
+      history.push(`/order/${id}`);
+    }
+    toast.warning("Login to buy item ");
+  };
 
   return (
     <div className="product-wrapper">
@@ -177,7 +195,7 @@ const Product = ({ data }) => {
 
                   <div className="spacer"></div>
 
-                  <span className="product-discount-price">GHC999</span>
+                  {/* <span className="product-discount-price">GHC999</span> */}
                 </div>
               </div>
 
@@ -261,9 +279,15 @@ const Product = ({ data }) => {
                 </div>
               </div>
 
-              {reviewData.slice(0, 2).map((item, index) => (
-                <ReviewItem key={index} {...item} />
-              ))}
+              <div>
+                {reviewData ? (
+                  <>
+                    {reviewData.slice(0, 2).map((item, index) => (
+                      <ReviewItem key={index} {...item} />
+                    ))}
+                  </>
+                ) : null}
+              </div>
             </div>
           </div>
         </div>
@@ -281,12 +305,7 @@ const Product = ({ data }) => {
 
       <Summary>
         {width > 540 ? (
-          <div
-            className="addReview2 "
-            onClick={() => {
-              addReview(true);
-            }}
-          >
+          <div className="addReview2 " onClick={reviewItem}>
             Add Review
           </div>
         ) : null}
@@ -301,13 +320,7 @@ const Product = ({ data }) => {
 
           <Spacer />
 
-          <Button
-            name="Buy Now"
-            class_name="buyNow"
-            action={() => {
-              history.push(`/order/${id}`);
-            }}
-          />
+          <Button name="Buy Now" class_name="buyNow" action={buyItem} />
         </div>
       </Summary>
     </div>

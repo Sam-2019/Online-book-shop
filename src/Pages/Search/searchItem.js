@@ -14,24 +14,22 @@ const ContentItem = ({
 }) => {
   let history = useHistory();
 
-  const notify = (data) => {
-    toast.success(data);
-  };
-
   const add2Cart = async (e) => {
     e.preventDefault();
 
-    var formData = new FormData();
-    formData.set("product_unique_id", unique_id);
-    formData.set("buyer_unique_id", buyerID);
+    if (auth) {
+      var formData = new FormData();
+      formData.set("product_unique_id", unique_id);
+      formData.set("buyer_unique_id", buyerID);
 
-    const { data } = await axiosMethod("post", cartAdd, formData);
+      const { data } = await axiosMethod("post", cartAdd, formData);
 
-    if (!data.error) {
-      notify(data.message);
+      if (!data.error) {
+        toast.success(data);
+      }
+
+      toast.error(data.error);
     }
-
-    notify(data.error);
   };
 
   return (

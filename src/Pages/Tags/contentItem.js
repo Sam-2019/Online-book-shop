@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import Cart from "../Components/Cart";
 import { okukus, buyerID, cartAdd } from "../endpoints";
 import { axiosMethod } from "../helper";
+import { useData } from "../Context";
 
 toast.configure();
 
@@ -16,25 +17,27 @@ const ContentItem = ({
   unit_price,
 }) => {
   let history = useHistory();
+  const { auth } = useData();
 
   const queryClient = useQueryClient();
 
   const add2Cart = async (e) => {
     e.preventDefault();
+    if (auth) {
+      var formData = new FormData();
+      formData.set("product_unique_id", unique_id);
+      formData.set("buyer_unique_id", buyerID);
 
-    var formData = new FormData();
-    formData.set("product_unique_id", unique_id);
-    formData.set("buyer_unique_id", buyerID);
+      const { data } = await axiosMethod("post", cartAdd, formData);
 
-    const { data } = await axiosMethod("post", cartAdd, formData);
+      queryClient.invalidateQueries("summaryData");
 
-    queryClient.invalidateQueries("summaryData");
+      if (!data.error) {
+        notify(data.message);
+      }
 
-    if (!data.error) {
-      notify(data.message);
+      notify(data.error);
     }
-
-    notify(data.error);
   };
 
   const notify = (data) => {
