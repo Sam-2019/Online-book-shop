@@ -118,17 +118,23 @@ const Product = ({ data }) => {
   };
 
   const reviewItem = () => {
+    if (!auth) {
+      toast.warning("Login to write a review ");
+    }
+
     if (auth) {
       addReview(true);
     }
-    toast.warning("Login to write a review ");
   };
 
   const buyItem = () => {
     if (auth) {
       history.push(`/order/${id}`);
     }
-    toast.warning("Login to buy item ");
+
+    if (!auth) {
+      toast.warning("Login to buy item ");
+    }
   };
 
   return (
