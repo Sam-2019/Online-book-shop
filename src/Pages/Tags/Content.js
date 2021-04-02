@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Back from "../Components/Back";
 import Placeholder from "../Placeholders/Products";
+import ProductsItem from "../Product/productsItem";
 import ContentItem from "./contentItem";
 import { tagGet } from "../endpoints";
 import { fetch } from "../helper";
@@ -34,7 +35,7 @@ const Content = () => {
         {status === "success" && (
           <div className="products">
             {data.data.map((data, index) => (
-              <ContentItem {...data} key={index} />
+              <ProductsItem {...data} key={index} />
             ))}
           </div>
         )}

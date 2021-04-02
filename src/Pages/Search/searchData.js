@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import SearchItem from "./searchItem";
+import ProductsItem from '../Product/productsItem'
 
 const SearchData = ({ data }) => {
   return (
     <div className="products">
       {data.map((items, index) => (
-        <SearchItem key={index} {...items} />
+        <ProductsItem key={index} {...items} />
       ))}
     </div>
   );
