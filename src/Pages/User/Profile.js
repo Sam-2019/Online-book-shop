@@ -122,16 +122,14 @@ function Proflie() {
                 </div>
 
                 <div className="nameXeditXverify">
-                  <div className="nameXedit">
-                    <UserName />
-                    {/* <Pen
+                  <UserName />
+                  {/* <Pen
                       width={15}
                       height={15}
                       action={() => {
                         updateName(true);
                       }}
                     /> */}
-                  </div>
 
                   <Verification />
                 </div>
