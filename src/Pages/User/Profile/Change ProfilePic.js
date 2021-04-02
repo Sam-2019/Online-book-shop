@@ -62,18 +62,20 @@ const ProfiilePhotoUpdate = ({ close }) => {
 
     try {
       const data = await mutation.mutateAsync(formData);
-      // console.log(data);
+    //  console.log(data);
       // setMessage(data.message);
       notify(data.message);
       setLoading(false);
-      queryClient.invalidateQueries("profileImage");
+      await queryClient.invalidateQueries("profileImage");
     } catch (error) {
       console.error(error);
     } finally {
-      queryClient.invalidateQueries("profileImage");
+      await queryClient.invalidateQueries("profileImage");
 
       close();
     }
+
+    queryClient.invalidateQueries("profileImage");
 
     // const response = await axios({
     //   method: "post",
