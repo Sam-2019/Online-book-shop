@@ -17,7 +17,7 @@ import "./order.css";
 import PaymentProcess from "./PaymentProcess";
 
 const Order = () => {
-  const { amount, quantity } = useData();
+  const { amount, quantity, auth } = useData();
 
   let breakpoint = 540;
   let history = useHistory();
@@ -144,6 +144,13 @@ const Order = () => {
       didCancel = true;
     };
   }, [formData]);
+
+  function orderItem() {
+    if (auth) {
+      history.push(`/order/${id}`);
+      setSuccess(true);
+    }
+  }
 
   return (
     <div className="order-wrapper">
@@ -308,10 +315,7 @@ const Order = () => {
         <Button
           class_name="checkout"
           name={`Order  (${quantity})`}
-          action={() => {
-            history.push(`/order/${id}`);
-            setSuccess(true);
-          }}
+          action={orderItem}
         />
       </Summary>
 

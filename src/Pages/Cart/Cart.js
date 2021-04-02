@@ -15,7 +15,7 @@ import SVGcontainer from "../SVGs/SVGcontainer";
 import EmptyCart from "../SVGs/empty-cart";
 
 const Cart = () => {
-  const { uniqueID, amount, quantity } = useData();
+  const { uniqueID, amount, quantity, auth } = useData();
   const history = useHistory();
   const { width } = MediaQuery();
   const breakpoint = 540;
@@ -35,6 +35,12 @@ const Cart = () => {
 
   const array = new Uint32Array(1);
   const index = window.crypto.getRandomValues(array);
+
+  function orderItem() {
+    if (auth) {
+      history.push(`/order/${index[0]}`);
+    }
+  }
 
   return (
     <div className="cart-wrapper">
@@ -74,9 +80,7 @@ const Cart = () => {
         <Button
           class_name="checkout"
           name={`Check Out  (${quantity})`}
-          action={() => {
-            history.push(`/order/${index[0]}`);
-          }}
+          action={orderItem}
         />
       </Summary>
     </div>
