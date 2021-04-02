@@ -7,6 +7,36 @@ import { MediaQuery } from "../helper";
 
 import "./review.css";
 
+const ReviewItem = () => {
+  return (
+    <div className=" review-wrapper">
+      <div className="review-head">
+        <div className="profile-image">
+          <ProfilePhoto
+            className="image"
+            src="https://via.placeholder.com/150?text=Okukus.com"
+          />
+        </div>
+
+        <div className="usernameXstar ">
+          <div className="nameXtime">
+            <div className="nameDate">
+              <UserName name="Loading" />
+
+              <TimeStamp timestamp="Loading" />
+            </div>
+
+            <StarRating value={0} type="user-rating" />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span>Loading...</span>
+      </div>
+    </div>
+  );
+};
 const Mobile = () => {
   return (
     <>
@@ -36,33 +66,6 @@ const Placeholder = () => {
 
   return <div>{width > 540 ? <Desktop /> : <Mobile />}</div>;
 };
-const ReviewItem = () => {
-  return (
-    <div className=" review-wrapper">
-      <div className="review-head">
-        <div className="profile-image">
-          <ProfilePhoto
-            className="image"
-            src="https://via.placeholder.com/150?text=Okukus.com"
-          />
-        </div>
 
-        <div className="usernameXstar ">
-          <div className="nameXtime">
-            <UserName name="Loading" />
-
-            <TimeStamp timestamp="Loading" />
-
-            <StarRating value={0} type="user-rating" />
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <span>Loading...</span>
-      </div>
-    </div>
-  );
-};
 
 export default Placeholder;
