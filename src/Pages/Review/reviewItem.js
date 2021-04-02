@@ -26,9 +26,12 @@ const ReviewItem = ({ picture, name, time_stamp, rating, comment }) => {
 
         <div className="usernameXstar ">
           <div className="nameXtime">
-            <UserName name={name} />
 
-            <TimeStamp timestamp={date} />
+            <div className="nameDate">
+              <UserName name={name} />
+
+              <TimeStamp timestamp={date} />
+            </div>
 
             <StarRating value={Number(rating)} type="user-rating" />
           </div>
