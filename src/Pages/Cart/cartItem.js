@@ -96,9 +96,8 @@ const CartItem = ({
       setLoveFill(true);
       notify(data.message);
       queryClient.invalidateQueries("wishlistLength");
+      queryClient.invalidateQueries("wishlist");
     }
-
-    queryClient.invalidateQueries("wishlist");
 
     notify(data.error);
 
