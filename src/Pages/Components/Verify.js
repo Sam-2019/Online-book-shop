@@ -70,7 +70,7 @@ const Verify = () => {
 
   return (
     <Verification>
-      {verfifcationStatus !== "Verified" ? (
+      {verfifcationStatus === "Verified" ? (
         <Verified>Verified</Verified>
       ) : (
         <NotVerified onClick={verify}>Unverified</NotVerified>
