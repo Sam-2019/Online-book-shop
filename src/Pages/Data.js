@@ -27,10 +27,10 @@ const instance = axios.create({
 
 const Data = () => {
   const [auth, setAuth] = useLocalStorage("loginToken", "");
-  const [firstName, setFirstName] = useState("Winner");
-  const [lastName, setLastName] = useState("Gen Zkgmklsm knfklgg");
+  const [firstName, setFirstName] = useState("Oluwafunmilayo");
+  const [lastName, setLastName] = useState("Ntombizodwa");
   const [email, setEmail] = useState("");
-  const [uniqueID, setUniqueID] = useState("");
+  const [uniqueID, setUniqueID] = useState("5f6657446f2335.80567964");
   const [verfifcationStatus, setVerificationStatus] = useState("");
 
   const [amount, setAmount] = useState(0);
