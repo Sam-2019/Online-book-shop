@@ -27,8 +27,8 @@ const instance = axios.create({
 
 const Data = () => {
   const [auth, setAuth] = useLocalStorage("loginToken", "");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("Winner");
+  const [lastName, setLastName] = useState("Gen Zkgmklsm knfklgg");
   const [email, setEmail] = useState("");
   const [uniqueID, setUniqueID] = useState("");
   const [verfifcationStatus, setVerificationStatus] = useState("");
@@ -88,30 +88,6 @@ const Data = () => {
       setVerificationStatus(data.buyer.verification_status)
       //setProfileImage(data.buyer.unique_id)
     );
-  }
-
-  async function updateUserProfile(formData) {
-    const data = await fetch(userProfileUpdate, formData);
-
-    if (data.error === false) {
-      setFirstName(data.data.firstname);
-      setLastName(data.data.lastname);
-    }
-    return data;
-  }
-
-  async function updateUserEmail(formData) {
-    const data = await fetch(userEmailUpdate, formData);
-
-    if (data.error === false) {
-      setEmail(data.data.email);
-    }
-    return data;
-  }
-
-  async function resetUserAccount(formData) {
-    const data = await fetch(userAccountReset, formData);
-    return data;
   }
 
   async function verifyUserAccount(formData) {
@@ -213,6 +189,50 @@ const Data = () => {
       })
   );
 
+  useQuery("updateName", () =>
+    axiosMethod("post", userProfileUpdate, formData)
+      .then((data) => {
+        if (data.error === false) {
+          setFirstName(data.data.firstname);
+          setLastName(data.data.lastname);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+  );
+
+  useQuery("updateEmail", () =>
+    axiosMethod("post", userEmailUpdate, formData)
+      .then((data) => {
+        if (data.error === false) {
+          setEmail(data.data.email);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+  );
+
+  // async function updateUserProfile(formData) {
+  //   const data = await fetch(userProfileUpdate, formData);
+
+  //   if (data.error === false) {
+  //     setFirstName(data.data.firstname);
+  //     setLastName(data.data.lastname);
+  //   }
+  //   return data;
+  // }
+
+  // async function updateUserEmail(formData) {
+  //   const data = await fetch(userEmailUpdate, formData);
+
+  //   if (data.error === false) {
+  //     setEmail(data.data.email);
+  //   }
+  //   return data;
+  // }
+
   //const cartData = useAsync(cartSummary, formData);
   // console.log(cartData);
 
@@ -221,9 +241,9 @@ const Data = () => {
     logoutUser,
     isLoggedIn,
 
-    updateUserProfile,
-    updateUserEmail,
-    resetUserAccount,
+
+
+
     verifyUserAccount,
 
     verifyCreateEmail,
