@@ -73,7 +73,8 @@
 .buyNow:active,
 .addCart:active,
 .addReview:active,
-.uploadImage:active{
+.uploadImage:active,
+.not-verify:active{
   transform: scale(0.95);
 }
 
