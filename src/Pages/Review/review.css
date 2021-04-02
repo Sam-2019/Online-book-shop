@@ -26,10 +26,18 @@
   padding: 0 0 0 5px;
 }
 
+
+
 .nameXtime {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.nameDate{
+display: flex;
+align-items: center;
+justify-content: space-between;
 }
 
 .name {
@@ -77,6 +85,10 @@
   .name {
     font-size: 14px;
   }
+
+  .nameDate{
+    display: grid;
+    }
 
   .dateXtime {
     font-size: 10px;
