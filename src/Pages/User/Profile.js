@@ -20,7 +20,7 @@ import "./profile.css";
 function Proflie() {
   let history = useHistory();
   let { width } = MediaQuery();
-  const { profileImage } = useData();
+  const { profileImage, firstName, lastName } = useData();
   const breakpoint = 540;
   let activePage;
   const [password, updatePassword] = React.useState(false);
@@ -122,7 +122,7 @@ function Proflie() {
                 </div>
 
                 <div className="nameXeditXverify">
-                  <UserName />
+                  <UserName name={`${firstName} ${lastName}`} />
                   {/* <Pen
                       width={15}
                       height={15}
