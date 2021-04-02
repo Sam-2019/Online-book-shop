@@ -3,6 +3,7 @@ import {
   Route,
   Switch,
   useRouteMatch,
+  Redirect
 } from "react-router-dom";
 import Navigation from "./Navigation/Head";
 import Cart from "./Cart/Cart";
@@ -20,10 +21,10 @@ import Products from "./Product/Products";
 import Profile from "./User/Profile";
 import Review from "./Review/Review";
 import TagContent from "./Tags/Content";
-import Float from "./Components/Floating Icon";
-import NotFound from './404/404' 
-import Footer from './Footer/Footer'
+import NotFound from "./404/404";
+import Footer from "./Footer/Footer";
 
+import { useData } from "./Context";
 
 function Desktop() {
   return (
@@ -35,6 +36,7 @@ function Desktop() {
 }
 
 function Content() {
+  const { auth } = useData();
   return (
     <Switch>
       <Route exact path="/">
@@ -42,12 +44,12 @@ function Content() {
         <Footer />
       </Route>
 
-      <Route path="/checkout">
-        <Checkout />
-      </Route>
+      <Route path="/checkout"> {auth ? <Checkout /> : <Redirect to="/" />}  </Route>
+      <Route path="/order/:id">{auth ? <Order /> : <Redirect to="/" />}</Route>
+      <Route path="/user">{auth ? <User /> : <Redirect to="/" />}</Route>
 
-      <Route path="/order/:id">
-        <Order />
+      <Route path="/account">
+        <Account />
       </Route>
 
       <Route path="/tag/:id">
@@ -70,14 +72,6 @@ function Content() {
         <Search />
       </Route>
 
-      <Route path="/user">
-        <User />
-      </Route>
-
-      <Route path="/account">
-        <Account />
-      </Route>
-
       <Route path="/product">
         <ProductPage />
       </Route>
@@ -85,7 +79,6 @@ function Content() {
       <Route>
         <NotFound />
       </Route>
-      
     </Switch>
   );
 }

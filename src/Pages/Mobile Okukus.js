@@ -3,6 +3,7 @@ import {
   Route,
   Switch,
   useRouteMatch,
+  Redirect
 } from "react-router-dom";
 import Navigation from "./Navigation/Head";
 import Cart from "./Cart/Cart";
@@ -25,7 +26,10 @@ import TagContent from "./Tags/Content";
 import NotFound from "./404/404";
 import Footer from "./Footer/Footer";
 
+import { useData } from "./Context";
+
 function Mobile() {
+  const { auth } = useData();
   return (
     <Switch>
       <Route exact path="/">
@@ -33,12 +37,12 @@ function Mobile() {
         <Footer />
       </Route>
 
-      <Route path="/checkout">
-        <Checkout />
-      </Route>
+      <Route path="/checkout">{auth ? <Checkout /> : <Redirect to="/" />}{" "}</Route>
+      <Route path="/order/:id">{auth ? <Order /> : <Redirect to="/" />}</Route>
+      <Route path="/user">{auth ? <User /> : <Redirect to="/" />}</Route>
 
-      <Route path="/order/:id">
-        <Order />
+      <Route path="/account">
+        <Account />
       </Route>
 
       <Route path="/tag/:id">
@@ -59,14 +63,6 @@ function Mobile() {
 
       <Route path="/search">
         <Search />
-      </Route>
-
-      <Route path="/user">
-        <User />
-      </Route>
-
-      <Route path="/account">
-        <Account />
       </Route>
 
       <Route path="/product">
