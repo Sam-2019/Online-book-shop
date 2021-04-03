@@ -68,7 +68,6 @@ const Data = () => {
 
     const data = await fetch(userValidate, formData);
 
-
     //console.log(data);
 
     if (data.validity === true && data.buyer === null) {
@@ -97,6 +96,7 @@ const Data = () => {
 
   async function checkoutCart(formData) {
     const { data } = await axiosMethod("post", cartCheckout, formData);
+    console.log(data)
     return data;
   }
 
@@ -111,7 +111,6 @@ const Data = () => {
   }
 
   useQuery("summaryData", () =>
-
     axiosMethod("post", cartSummary, formData)
       .then((data) => {
         console.log(data);
@@ -205,6 +204,18 @@ const Data = () => {
         console.error("Error:", error);
       })
   );
+
+  useQuery("updatePassword", () =>
+  axiosMethod("post", userEmailUpdate, formData)
+    .then((data) => {
+      if (data.error === false) {
+        setEmail(data.data.email);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    })
+);
 
   // async function updateUserProfile(formData) {
   //   const data = await fetch(userProfileUpdate, formData);
