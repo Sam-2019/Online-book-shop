@@ -85,7 +85,6 @@ const Login = () => {
       } finally {
         clearLogin();
         setLoading(false);
-        history.push("/");
       }
     }
   };
