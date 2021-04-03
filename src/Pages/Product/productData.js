@@ -22,7 +22,7 @@ import { okukus, cartAdd, buyerID, wishCreate } from "../endpoints";
 import { useData } from "../Context";
 import { Spacer } from "../Placeholders/Product";
 import "./product.css";
-import { reviewData } from "../Review/reviewData";
+
 
 toast.configure();
 
