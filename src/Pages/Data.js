@@ -53,6 +53,10 @@ const Data = () => {
     setVerificationStatus("");
     setAuth(!auth);
     setProfileImage(image);
+    setQuantity(0);
+    setAmount(0);
+    setOrderLength(0);
+    setWishlistLength(0);
   }
 
   async function isLoggedIn() {
@@ -96,7 +100,7 @@ const Data = () => {
 
   async function checkoutCart(formData) {
     const { data } = await axiosMethod("post", cartCheckout, formData);
-    console.log(data)
+    console.log(data);
     return data;
   }
 
@@ -113,14 +117,15 @@ const Data = () => {
   useQuery("summaryData", () =>
     axiosMethod("post", cartSummary, formData)
       .then((data) => {
-        console.log(data);
         if (
           data.data.message === "cart is empty" ||
           "no value for post variable"
         ) {
           setQuantity(0);
           setAmount(0);
-        } else {
+        }
+
+        if (data.data.message === "cart contains items") {
           setQuantity(Number(data.data.data.total_quantity));
           setAmount(Number(data.data.data.total_amount));
           // console.log("Success:", data.data.data);
@@ -206,16 +211,16 @@ const Data = () => {
   );
 
   useQuery("updatePassword", () =>
-  axiosMethod("post", userEmailUpdate, formData)
-    .then((data) => {
-      if (data.error === false) {
-        setEmail(data.data.email);
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    })
-);
+    axiosMethod("post", userEmailUpdate, formData)
+      .then((data) => {
+        if (data.error === false) {
+          setEmail(data.data.email);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+  );
 
   // async function updateUserProfile(formData) {
   //   const data = await fetch(userProfileUpdate, formData);
