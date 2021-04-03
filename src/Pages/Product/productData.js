@@ -255,12 +255,7 @@ const Product = ({ data }) => {
 
                 <div className="add-review-wrapper">
                   {width > 540 ? null : (
-                    <div
-                      className="addReview2 "
-                      onClick={() => {
-                        addReview(true);
-                      }}
-                    >
+                    <div className="addReview2 " onClick={reviewItem}>
                       Add Review
                     </div>
                   )}
