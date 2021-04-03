@@ -153,7 +153,7 @@ export default WishItem;
 WishItem.propTypes = {
   availablity: PropTypes.bool,
   cover_photo_url: PropTypes.string,
-  existence: PropTypes.string,
+  existence: PropTypes.bool,
   id: PropTypes.string,
   product_author: PropTypes.string,
   product_category: PropTypes.string,
