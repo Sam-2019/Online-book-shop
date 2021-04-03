@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMutation } from "react-query";
+import { useQueryClient,useMutation } from "react-query";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
@@ -25,6 +25,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const [show, hide] = useState("password");
+
+  const queryClient = useQueryClient();
 
   let type;
 
@@ -85,6 +87,7 @@ const Login = () => {
       } finally {
         clearLogin();
         setLoading(false);
+        queryClient.invalidateQueries("summaryData");
       }
     }
   };
