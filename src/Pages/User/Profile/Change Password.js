@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { useMutation } from "react-query";
+import { useQueryClient,useMutation } from "react-query";
 import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
 import { EyeShow, EyeHide } from "../../Components/Eye";
 import { userPasswordUpdate } from "../../endpoints";
-import Data from "../../Data";
+import { fetch } from "../../helper";
+import { useData } from "../../Context";
 import "./change.css";
 
 const ChangePassword = ({ close }) => {
-  const { uniqueID } = Data();
+  const { uniqueID } = useData();
 
   const [show, hide] = React.useState("password");
 
@@ -19,6 +20,7 @@ const ChangePassword = ({ close }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
 
+  const queryClient = useQueryClient();
   let type;
 
   switch (show) {
@@ -65,14 +67,13 @@ const ChangePassword = ({ close }) => {
         console.error(error);
       } finally {
         reset();
+        queryClient.invalidateQueries("updatePassword");
       }
     }
-  }
+  };
 
   return (
     <form>
-
-
       <Input
         class_name="input "
         type={type}

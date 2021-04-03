@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useMutation } from "react-query";
+import { useQueryClient,useMutation } from "react-query";
 import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
 import { userEmailUpdate } from "../../endpoints";
 import { useData } from "../../Context";
+import { fetch } from "../../helper";
 import "./change.css";
 
 const ChangeEmail = ({ close }) => {
@@ -15,6 +16,7 @@ const ChangeEmail = ({ close }) => {
   const [new_email, setNewEmail] = useState("");
   const [message, setMessage] = useState("");
 
+  const queryClient = useQueryClient();
   const reset = () => {
     setEmail("");
     setNewEmail("");
@@ -49,6 +51,7 @@ const ChangeEmail = ({ close }) => {
         console.error(error);
       } finally {
         reset();
+        queryClient.invalidateQueries("updateEmail");
       }
     }
   };

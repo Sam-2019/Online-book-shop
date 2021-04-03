@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useMutation } from "react-query";
+import { useQueryClient,useMutation } from "react-query";
 import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
 import { userProfileUpdate } from "../../endpoints";
 import { useData } from "../../Context";
+import { fetch } from "../../helper";
 
 import "./change.css";
 
@@ -16,6 +17,7 @@ const ChangeName = ({ close }) => {
   const [last_name, setLastName] = useState("");
   const [message, setMessage] = useState("");
 
+  const queryClient = useQueryClient();
   const clear = () => {
     setFirstName("");
     setLastName("");
@@ -51,6 +53,7 @@ const ChangeName = ({ close }) => {
         console.error(error);
       } finally {
         clear();
+        queryClient.invalidateQueries("updateName");
       }
     }
   };
