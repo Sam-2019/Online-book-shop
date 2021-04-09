@@ -4,6 +4,7 @@ import { useHistory, useRouteMatch, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useQueryClient } from "react-query";
 import Back from "../Components/Back";
+import Home from '../Components/Home'
 import Up from "../Components/Up";
 import Down from "../Components/Down";
 import Right from "../Components/Right";
@@ -142,7 +143,7 @@ const Product = ({ data }) => {
       <div className="header">
         <div className="category ">
           <div className="object-1">
-            <Back width={30} height={30} />
+            <Home width={30} height={30} />
           </div>
           <div className="object-2">{data.data.product_name}</div>
         </div>
