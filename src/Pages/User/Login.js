@@ -1,19 +1,17 @@
 import React, { useState } from "react";
-import { useQueryClient,useMutation } from "react-query";
+
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Message from "../Components/Message";
 import { EyeShow, EyeHide } from "../Components/Eye";
-import { MediaQuery, fetch } from "../helper";
-import { userLogin } from "../endpoints";
-import { useData } from "../Context";
+import { MediaQuery } from "../helper";
+
 import "./user.css";
 
 const Login = () => {
   let history = useHistory();
-  const { isLoggedIn } = useData();
 
   const breakpoint = 540;
   const { width } = MediaQuery();
@@ -26,8 +24,6 @@ const Login = () => {
 
   const [show, hide] = useState("password");
 
-  const queryClient = useQueryClient();
-
   let type;
 
   switch (show) {
@@ -38,17 +34,6 @@ const Login = () => {
       type = "password";
   }
 
-  // const mutation = useMutation((formData) => {
-  //   return loginUser(formData);
-  // });
-
-  const mutation = useMutation((formData) => {
-    return fetch(userLogin, formData);
-  });
-
-  const home = () => {
-    history.push("./");
-  };
   const clearLogin = () => {
     setEmail("");
     setPassword("");
@@ -56,7 +41,6 @@ const Login = () => {
 
   const logIn = async (event) => {
     event.preventDefault();
-    var formData = new FormData();
 
     setMessage("");
 
@@ -69,25 +53,12 @@ const Login = () => {
     if (empty !== "") {
       setLoading(true);
 
-      formData.set("email", email);
-      formData.set("password", password);
-
       try {
-        const data = await mutation.mutateAsync(formData);
-        // console.log(data);
-        setMessage(data.message);
-        await localStorage.setItem("loginToken", data.token);
-        await isLoggedIn();
-
-        if (data.error === false) {
-          home();
-        }
       } catch (error) {
         console.error(error);
       } finally {
         clearLogin();
         setLoading(false);
-        queryClient.invalidateQueries("summaryData");
       }
     }
   };

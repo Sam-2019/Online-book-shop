@@ -1,18 +1,13 @@
 import React, { useState } from "react";
-import { useQueryClient, useMutation } from "react-query";
+
 import { toast } from "react-toastify";
 import ProfilePhoto from "../../Components/Profile Photo";
 import Button from "../../Components/Button";
-import Message from "../../Components/Message";
-import { profileImageAdd } from "../../endpoints";
-import { useData } from "../../Context";
 import { Spacer } from "../../styles";
-import { fetch } from "../../helper";
+
 import "./change.css";
 
 const ProfiilePhotoUpdate = ({ close }) => {
-  const { profileImage, uniqueID } = useData();
-
   const [change, setChange] = React.useState(false);
   const [file, setFile] = React.useState("");
   const [imagePreviewUrl, setimagePreviewUrl] = React.useState("");
@@ -20,15 +15,8 @@ const ProfiilePhotoUpdate = ({ close }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const formData = new FormData();
-
-  const queryClient = useQueryClient();
-  const mutation = useMutation((formData) => {
-    return fetch(profileImageAdd, formData);
-  });
-
   const notify = (data) => {
-    toast.success(data);
+
   };
 
   const openBox = () => {
@@ -36,7 +24,7 @@ const ProfiilePhotoUpdate = ({ close }) => {
   };
 
   const Change = (e) => {
-    // console.log("clicked!!!");
+
     e.preventDefault();
 
     let reader = new FileReader();
@@ -56,38 +44,13 @@ const ProfiilePhotoUpdate = ({ close }) => {
 
     e.preventDefault();
 
-    //console.log(file);
-    formData.set("buyer_unique_id", uniqueID);
-    formData.append("file_profile_photo", file);
-
     try {
-      const data = await mutation.mutateAsync(formData);
-    //  console.log(data);
-      // setMessage(data.message);
-      notify(data.message);
       setLoading(false);
-      await queryClient.invalidateQueries("profileImage");
     } catch (error) {
       console.error(error);
     } finally {
-      await queryClient.invalidateQueries("profileImage");
-
       close();
     }
-
-    queryClient.invalidateQueries("profileImage");
-
-    // const response = await axios({
-    //   method: "post",
-    //   url: profileImageAdd,
-    //   data: formData,
-    //   headers: { "Content-Type": "multipart/form-data" },
-    // });
-
-    // if (response) {
-    //   setLoading(false);
-    //   console.log(response);
-    // }
   };
 
   return (
@@ -97,10 +60,7 @@ const ProfiilePhotoUpdate = ({ close }) => {
           {imagePreviewUrl ? (
             <ProfilePhoto className="just-image" src={imagePreviewUrl} />
           ) : (
-            <ProfilePhoto
-              className="just-image"
-              src={`https://okukus.com/${profileImage}`}
-            />
+            <ProfilePhoto className="just-image" src />
           )}
         </div>
         <div className="middle" onClick={openBox}>

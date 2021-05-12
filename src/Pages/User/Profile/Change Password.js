@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQueryClient,useMutation } from "react-query";
+
 import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
@@ -10,7 +10,7 @@ import { useData } from "../../Context";
 import "./change.css";
 
 const ChangePassword = ({ close }) => {
-  const { uniqueID } = useData();
+
 
   const [show, hide] = React.useState("password");
 
@@ -20,7 +20,7 @@ const ChangePassword = ({ close }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const queryClient = useQueryClient();
+
   let type;
 
   switch (show) {
@@ -31,10 +31,6 @@ const ChangePassword = ({ close }) => {
       type = "password";
   }
 
-  const mutation = useMutation((formData) => {
-    return fetch(userPasswordUpdate, formData);
-  });
-
   const reset = () => {
     setCurrentPassword("");
     setNewPassword("");
@@ -44,7 +40,7 @@ const ChangePassword = ({ close }) => {
   const updatePassword = async (event) => {
     setMessage();
     event.preventDefault();
-    var formData = new FormData();
+
 
     let empty = currentPassword && newPassword && confirmPassword;
 
@@ -54,20 +50,16 @@ const ChangePassword = ({ close }) => {
 
     if (empty !== "") {
       setLoading(true);
-      formData.set("buyer_unique_id", uniqueID);
-      formData.set("current_password", currentPassword);
-      formData.set("new_password", newPassword);
-      formData.set("confirm_password", confirmPassword);
+
 
       try {
-        const data = await mutation.mutateAsync(formData);
-        setMessage(data.message);
+
         setLoading(false);
       } catch (error) {
         console.error(error);
       } finally {
         reset();
-        queryClient.invalidateQueries("updatePassword");
+
       }
     }
   };

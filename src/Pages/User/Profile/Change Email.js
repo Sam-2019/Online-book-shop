@@ -1,30 +1,23 @@
 import React, { useState } from "react";
-import { useQueryClient,useMutation } from "react-query";
 import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
-import { userEmailUpdate } from "../../endpoints";
+
 import { useData } from "../../Context";
-import { fetch } from "../../helper";
+
 import "./change.css";
 
 const ChangeEmail = ({ close }) => {
-  const { uniqueID } = useData();
   const [loading, setLoading] = useState(false);
 
   const [email, setEmail] = useState("");
   const [new_email, setNewEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const queryClient = useQueryClient();
   const reset = () => {
     setEmail("");
     setNewEmail("");
   };
-
-  const mutation = useMutation((formData) => {
-    return fetch(userEmailUpdate, formData);
-  });
 
   const updateEmail = async (event) => {
     event.preventDefault();
@@ -40,18 +33,13 @@ const ChangeEmail = ({ close }) => {
 
     if (empty !== "") {
       setLoading(true);
-      formData.set("buyer_unique_id", uniqueID);
-      formData.set("email", email);
 
       try {
-        const data = await mutation.mutateAsync(formData);
-        setMessage(data.message);
         setLoading(false);
       } catch (error) {
         console.error(error);
       } finally {
         reset();
-        queryClient.invalidateQueries("updateEmail");
       }
     }
   };

@@ -1,59 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useQueryClient, useMutation } from "react-query";
+
 import { toast } from "react-toastify";
 import Button from "../Components/Button";
 import Add from "../Components/Add";
 import Subtract from "../Components/Subtract";
 import Bin from "../Components/Bin";
-import { fetch } from "../helper";
 import BinFIll from "../Components/BinFill";
 import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
 import PopUp from "../Components/Popup";
 import { ConfirmDelete } from "../styles";
-import {
-  okukus,
-  cartDelete,
-  buyerID,
-  wishCreate,
-  cartUpdate,
-} from "../endpoints";
-import { axiosMethod } from "../helper";
-import { useData } from "../Context";
 import "./cartItem.css";
 
 toast.configure();
 
-const CartItem = ({
-  quantity,
-  product_unique_id,
-  unique_id,
-  cover_photo_url,
-  product_name,
-  unit_price,
-  id,
-  handleToggle,
-}) => {
-  const { uniqueID } = useData();
+const CartItem = () => {
+
   const [loveFill, setLoveFill] = React.useState(false);
   const [binFill, setBinFill] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
 
-  const [count, setCount] = React.useState(Number(quantity));
-  var formData = new FormData();
+  const [count, setCount] = React.useState(0);
 
-  const queryClient = useQueryClient();
+  const deleteItem = async (e) => {
+    e.preventDefault();
 
-  const notify = (data) => {
-    toast.success(data);
-  };
-
-  const mutation = useMutation((formData) => {
-    return fetch(cartUpdate, formData);
-  });
-
-  const updateBin = () => {
     setBinFill(true);
 
     const timer = setTimeout(() => {
@@ -63,43 +35,10 @@ const CartItem = ({
     return () => clearTimeout(timer);
   };
 
-  const deleteItem = async (e) => {
-    e.preventDefault();
-
-    formData.set("buyer_unique_id", buyerID);
-    formData.set("item_unique_id", unique_id);
-    const { data } = await axiosMethod("post", cartDelete, formData);
-
-    if (data.message === "cart item deleted successfully") {
-      queryClient.invalidateQueries("summaryData");
-      notify(data.message);
-      setConfirm(false);
-      queryClient.invalidateQueries("summaryData");
-    }
-
-    notify(data.error);
-
-    queryClient.invalidateQueries("carts");
-  };
-
   const add2WL = async (e) => {
     e.preventDefault();
 
-    formData.set("product_unique_id", product_unique_id);
-    formData.set("buyer_unique_id", buyerID);
-
-    setLoveFill(false);
-
-    const { data } = await axiosMethod("post", wishCreate, formData);
-
-    if (!data.error) {
-      setLoveFill(true);
-      notify(data.message);
-      queryClient.invalidateQueries("wishlistLength");
-      queryClient.invalidateQueries("wishlist");
-    }
-
-    notify(data.error);
+    setLoveFill(true);
 
     const timer = setTimeout(() => {
       setLoveFill(false);
@@ -109,53 +48,10 @@ const CartItem = ({
 
   const plusItem = async (event) => {
     event.preventDefault();
-    let empty = id && count;
-
-    if (empty === "") {
-    }
-
-    if (empty !== "") {
-      formData.set("buyer_unique_id", uniqueID);
-      formData.set("item_unique_id", unique_id);
-      formData.set("item_quantity", count);
-
-      try {
-        const data = await mutation.mutateAsync(formData);
-        notify(data.message);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setCount((count) => count + 1);
-        queryClient.invalidateQueries("summaryData");
-        queryClient.invalidateQueries("carts");
-      }
-    }
   };
 
   const minusItem = async (e) => {
     e.preventDefault();
-    if (count <= 1) {
-      return;
-    }
-
-    if (count >= 1) {
-      //let empty = unique_id && count;
-
-      formData.set("buyer_unique_id", uniqueID);
-      formData.set("item_unique_id", unique_id);
-      formData.set("item_quantity", count);
-
-      try {
-        const data = await mutation.mutateAsync(formData);
-        notify(data.message);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setCount((count) => count - 1);
-        queryClient.invalidateQueries("summaryData");
-        queryClient.invalidateQueries("carts");
-      }
-    }
   };
 
   return (
@@ -163,11 +59,11 @@ const CartItem = ({
       <div className="cart_item_wrapper">
         <div className="checkBox">
           <input
-            onChange={handleToggle(unique_id)}
+            onChange
             type="checkbox"
-            value={unique_id}
-            id={product_name}
-            name={product_name}
+            value
+            id
+            name
             className="checker"
           />
         </div>
@@ -176,18 +72,18 @@ const CartItem = ({
           <div className="imageXname">
             <div className="image-placeholder-original ">
               <img
-                src={`${okukus}/${cover_photo_url}`}
+                src
                 alt="peecha"
                 className="image-placeholder-original"
               />
             </div>
 
             <div className="nameXprice">
-              <label htmlFor={product_name} className="item-name">
-                {product_name}
+              <label htmlFor={} className="item-name">
+                {}
               </label>
 
-              <div className="item-price">GHc {unit_price}</div>
+              <div className="item-price">GHc {}</div>
             </div>
           </div>
 
@@ -250,12 +146,5 @@ const CartItem = ({
 export default CartItem;
 
 CartItem.propTypes = {
-  handleToggle: PropTypes.func,
-  unique_id: PropTypes.string,
-  cover_photo_url: PropTypes.string,
-  product_name: PropTypes.string,
-  unit_price: PropTypes.string,
-  quantity: PropTypes.string,
-  product_unique_id: PropTypes.string,
-  id: PropTypes.string,
+
 };

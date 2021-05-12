@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useMutation } from "react-query";
+
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import { EyeShow, EyeHide } from "../Components/Eye";
 import Message from "../Components/Message";
-import { MediaQuery, fetch } from "../helper";
-import { userRegister } from "../endpoints";
-import { useData } from "../Context";
+import { MediaQuery } from "../helper";
 import "./user.css";
 
 const Signup = () => {
   let history = useHistory();
-  const { isLoggedIn } = useData();
+
   const breakpoint = 540;
   const { width } = MediaQuery();
   const [loading, setLoading] = useState(false);
@@ -36,10 +34,6 @@ const Signup = () => {
       type = "password";
   }
 
-  const mutation = useMutation((formData) => {
-    return fetch(userRegister, formData);
-  });
-
   const clearSignup = () => {
     setFirstName("");
     setLastName("");
@@ -50,7 +44,6 @@ const Signup = () => {
 
   const signUp = async (event) => {
     event.preventDefault();
-    var formData = new FormData();
 
     setMessage("");
     let empty = firstname && lastname && email && password0 && password1;
@@ -62,17 +55,7 @@ const Signup = () => {
     if (empty !== "") {
       setLoading(true);
 
-      formData.set("firstname", firstname);
-      formData.set("lastname", lastname);
-      formData.set("email", email);
-      formData.set("password0", password0);
-      formData.set("password1", password1);
-
       try {
-        const data = await mutation.mutateAsync(formData);
-        setMessage(data.message);
-        localStorage.setItem("loginToken", data.token);
-        await isLoggedIn();
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -102,7 +85,6 @@ const Signup = () => {
               }}
             />
           </div>
-
         </div>
       </div>
 

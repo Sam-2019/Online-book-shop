@@ -1,22 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import {
-  cartSummary,
-  orderHistory,
-  wishList,
-  profileImageGet,
   userValidate,
-  userProfileUpdate,
-  userEmailUpdate,
-  userAccountReset,
   userAccountVerify,
-  userCreateEmailVerify,
   cartCheckout,
   orderCreate,
   userWelcome,
   dev_site,
 } from "./endpoints";
-import { useQuery } from "react-query";
+
 import { axiosMethod, fetch, useLocalStorage } from "./helper";
 import image from "./Placeholders/250x350.png";
 
@@ -67,12 +59,9 @@ const Data = () => {
 
     if (!loginToken) return;
 
-    //Adding JWT token to axios default header
     instance.defaults.headers.common["Authorization"] = "bearer " + loginToken;
 
     const data = await fetch(userValidate, formData);
-
-    //console.log(data);
 
     if (data.validity === true && data.buyer === null) {
       localStorage.removeItem("loginToken");
@@ -89,7 +78,6 @@ const Data = () => {
       setEmail(data.buyer.email),
       setUniqueID(data.buyer.unique_id),
       setVerificationStatus(data.buyer.verification_status)
-      //setProfileImage(data.buyer.unique_id)
     );
   }
 
@@ -113,136 +101,6 @@ const Data = () => {
     const { data } = await axiosMethod("post", userWelcome, formData);
     return data;
   }
-
-  useQuery("summaryData", () =>
-    axiosMethod("post", cartSummary, formData)
-      .then((data) => {
-        if (
-          data.data.message === "cart is empty" ||
-          "no value for post variable"
-        ) {
-          setQuantity(0);
-          setAmount(0);
-        }
-
-        if (data.data.message === "cart contains items") {
-          setQuantity(Number(data.data.data.total_quantity));
-          setAmount(Number(data.data.data.total_amount));
-          // console.log("Success:", data.data.data);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  useQuery("orderLength", () =>
-    axiosMethod("post", orderHistory, formData)
-      .then((data) => {
-        if (
-          data.data.message === "cart is empty" ||
-          "no value for post variable"
-        ) {
-          setOrderLength(0);
-        } else {
-          setOrderLength(Number(data.data.data.length));
-          //    console.log("Success:", data);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  useQuery("wishlistLength", () =>
-    axiosMethod("post", wishList, formData)
-      .then((data) => {
-        if (
-          data.data.message === "cart is empty" ||
-          "no value for post variable"
-        ) {
-          setWishlistLength(0);
-        } else {
-          setWishlistLength(Number(data.data.data.length));
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  useQuery("profileImage", () =>
-    axiosMethod("post", profileImageGet, formData)
-      .then((data) => {
-        if (data.data.message === "account found") {
-          setProfileImage(data.data.data.profile_photo_url);
-        } else {
-          setProfileImage(image);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  useQuery("updateName", () =>
-    axiosMethod("post", userProfileUpdate, formData)
-      .then((data) => {
-        if (data.error === false) {
-          setFirstName(data.data.firstname);
-          setLastName(data.data.lastname);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  useQuery("updateEmail", () =>
-    axiosMethod("post", userEmailUpdate, formData)
-      .then((data) => {
-        if (data.error === false) {
-          setEmail(data.data.email);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  useQuery("updatePassword", () =>
-    axiosMethod("post", userEmailUpdate, formData)
-      .then((data) => {
-        if (data.error === false) {
-          setEmail(data.data.email);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  // async function updateUserProfile(formData) {
-  //   const data = await fetch(userProfileUpdate, formData);
-
-  //   if (data.error === false) {
-  //     setFirstName(data.data.firstname);
-  //     setLastName(data.data.lastname);
-  //   }
-  //   return data;
-  // }
-
-  // async function updateUserEmail(formData) {
-  //   const data = await fetch(userEmailUpdate, formData);
-
-  //   if (data.error === false) {
-  //     setEmail(data.data.email);
-  //   }
-  //   return data;
-  // }
-
-  //const cartData = useAsync(cartSummary, formData);
-  // console.log(cartData);
 
   return {
     auth,

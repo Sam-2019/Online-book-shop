@@ -14,13 +14,12 @@ import Verification from "../Components/Verify";
 import { okukus } from "../endpoints";
 import { SmallView } from "../styles";
 import { MediaQuery } from "../helper";
-import { useData } from "../Context";
 import "./profile.css";
 
 function Proflie() {
   let history = useHistory();
   let { width } = MediaQuery();
-  const { profileImage, firstName, lastName } = useData();
+
   const breakpoint = 540;
   let activePage;
   const [password, updatePassword] = React.useState(false);
@@ -116,13 +115,13 @@ function Proflie() {
                   }}
                 >
                   <Photo
-                    src={`https://okukus.com/${profileImage}`}
+                    src
                     className="image"
                   />
                 </div>
 
                 <div className="nameXeditXverify">
-                  <UserName name={`${firstName} ${lastName}`} />
+                  <UserName />
                   {/* <Pen
                       width={15}
                       height={15}

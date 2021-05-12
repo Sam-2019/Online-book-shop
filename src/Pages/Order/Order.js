@@ -1,6 +1,5 @@
 import React from "react";
-import axios from "axios";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
@@ -9,19 +8,14 @@ import PopUp from "../Components/Popup";
 import Question from "../Components/Question";
 import Success from "../Components/Success";
 import { MediaQuery } from "../helper";
-import { useData } from "../Context";
-
-import { buyerID, locationsGet, feeGet } from "../endpoints";
 
 import "./order.css";
 import PaymentProcess from "./PaymentProcess";
 
 const Order = () => {
-  const { amount, quantity, auth } = useData();
-
   let breakpoint = 540;
   let history = useHistory();
-  let { id } = useParams();
+
   const { width } = MediaQuery();
   const [paymentMethod, setPaymentMethod] = React.useState("");
   const [state, setState] = React.useState(false);
@@ -29,39 +23,12 @@ const Order = () => {
 
   const [loading, setLoading] = React.useState(true);
   const [value, setValue] = React.useState("Pick your location");
-  const [fee, setFee] = React.useState(0);
+  const [fee, setFee] = React.useState(10);
   const [items, setItems] = React.useState([]);
   let show;
-  var formData = new FormData();
 
   React.useEffect(() => {
     let unmounted = false;
-
-    async function fetchData() {
-      formData.set("buyer_unique_id", buyerID);
-      const response = await axios({
-        method: "post",
-        url: locationsGet,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
-      const body = await response.data;
-
-      if (!unmounted) {
-        setItems(
-          body.data.map(({ location, unique_id, disabled }) => ({
-            uniqueID: unique_id,
-            label: location,
-            value: location,
-            disable: disabled,
-          }))
-        );
-        setLoading(false);
-      }
-    }
-
-    fetchData();
 
     return () => {
       unmounted = true;
@@ -102,54 +69,16 @@ const Order = () => {
       show = "(Shipping inclusive)";
   }
 
-  // const getFee = async () => {
-  //   formData.set("buyer_unique_id", buyerID);
-  //   formData.set("location_name", value);
-
-  //   const response = await axios({
-  //     method: "post",
-  //     url: feeGet,
-  //     data: formData,
-  //     headers: { "Content-Type": "multipart/form-data" },
-  //   });
-  //   response ? setFee(response.data.data) : setFee(0);
-  // };
-
-  // React.useEffect(() => {
-  //   getFee();
-  // }, [getFee]);
-
   React.useEffect(() => {
     let didCancel = false;
-
-    const getFee = async () => {
-      formData.set("buyer_unique_id", buyerID);
-      formData.set("location_name", value);
-
-      const response = await axios({
-        method: "post",
-        url: feeGet,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
-      if (!didCancel) {
-        response ? setFee(response.data.data) : setFee(0);
-      }
-    };
-
-    getFee();
 
     return () => {
       didCancel = true;
     };
-  }, [formData]);
+  }, []);
 
   function orderItem() {
-    if (auth) {
-      history.push(`/order/${id}`);
-      setSuccess(true);
-    }
+    setSuccess(true);
   }
 
   return (
@@ -299,22 +228,14 @@ const Order = () => {
       <Summary>
         <div className="amountXshipping">
           <div className={show ? "amount2" : "amount1"}>
-            {/* Total: {fee === undefined ? ` $${amount}` : ` $${amount + fee}`} */}
-            Total:{" "}
-            {fee === undefined ? (
-              <>${Intl.NumberFormat().format(amount)}</>
-            ) : (
-              <>${Intl.NumberFormat().format(amount + fee)}</>
-            )}
+            Total: ${Intl.NumberFormat().format(100)}
           </div>
-          <div className="shipping">
-            {value === "Pick your location" ? <></> : <>(Shipping ${fee})</>}
-          </div>
+          <div className="shipping">(Shipping ${fee})</div>
         </div>
 
         <Button
           class_name="checkout"
-          name={`Order  (${quantity})`}
+          name={`Order  (100)`}
           action={orderItem}
         />
       </Summary>
@@ -323,10 +244,7 @@ const Order = () => {
         <PopUp>
           <Success />
           <div className="order-success">
-            <div>
-              {/* Hi <span className="customer-name">Kenneth Akanpaacharuk</span>, */}
-            </div>{" "}
-            Thank you for shopping with us! Your order{" "}
+            <div></div> Thank you for shopping with us! Your order{" "}
             <span className="orderID">11111111111</span> has been placed,
             pending confirmation. We will call you within 24 hours (calling
             hours: Mon-Fri 8:30am-5:30pm) to confirm your order . Once the order

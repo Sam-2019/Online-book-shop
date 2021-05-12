@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import Home from "../Components/Home";
-import { useMutation } from "react-query";
 import { useHistory } from "react-router-dom";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Message from "../Components/Message";
 import { EyeShow, EyeHide } from "../Components/Eye";
-import { useData } from "../Context";
-import { fetch } from "../helper";
-import { userPasswordUpdate } from "../endpoints";
+
 import "./user.css";
 
 const Password = () => {
   let history = useHistory;
-  const { email } = useData();
 
   const [loading, setLoading] = useState(false);
   const [newPassword, setNewPassword] = useState("");
@@ -33,10 +29,6 @@ const Password = () => {
       type = "password";
   }
 
-  const mutation = useMutation((formData) => {
-    return fetch(userPasswordUpdate, formData);
-  });
-
   const clear = () => {
     setNewPassword("");
     setConfirmPassword("");
@@ -44,7 +36,6 @@ const Password = () => {
 
   const updatePassword = async (event) => {
     event.preventDefault();
-    var formData = new FormData();
 
     setMessage("");
 
@@ -57,20 +48,12 @@ const Password = () => {
     if (empty !== "") {
       setLoading(true);
 
-      formData.set("buyer_unique_id", email);
-      formData.set("new_password", newPassword);
-      formData.set("confirm_password", confirmPassword);
-
       try {
-        const data = await mutation.mutateAsync(formData);
-        console.log(data);
-        setMessage(data.message);
         setLoading(false);
       } catch (error) {
         console.error(error);
       } finally {
         clear();
-        localStorage.removeItem("email");
       }
     }
   };
@@ -149,7 +132,6 @@ const Password = () => {
               loading={loading}
             />
           )}
-
         </form>
       </div>
     </div>
