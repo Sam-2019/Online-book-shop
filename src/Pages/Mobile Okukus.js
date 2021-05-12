@@ -92,11 +92,11 @@ function ProductPage() {
   let { path } = useRouteMatch();
   return (
     <Switch>
-      <Route exact path={`${path}/:id`}>
+      <Route exact path={`${path}/:sku`}>
         <Product />
       </Route>
 
-      <Route path={`${path}/:id/review`}>
+      <Route path={`${path}/:sku/review`}>
         <Review />
       </Route>
     </Switch>

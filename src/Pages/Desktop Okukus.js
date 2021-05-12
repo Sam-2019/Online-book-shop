@@ -95,7 +95,7 @@ function ProductPage() {
   let { path } = useRouteMatch();
   return (
     <Switch>
-      <Route exact path={`${path}/:id`}>
+      <Route exact path={`${path}/:sku`}>
         <Product />
       </Route>
 
