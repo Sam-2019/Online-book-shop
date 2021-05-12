@@ -1,10 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useHistory, useRouteMatch, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useQueryClient } from "react-query";
-import Back from "../Components/Back";
-import Home from '../Components/Home'
+import Home from "../Components/Home";
 import Up from "../Components/Up";
 import Down from "../Components/Down";
 import Right from "../Components/Right";
@@ -18,22 +15,15 @@ import LoveFill from "../Components/LoveFill";
 import ReviewItem from "../Review/reviewItem";
 import AddReview from "../Review/addReview";
 import Summary from "../Summary/Summary";
-import { MediaQuery, axiosMethod } from "../helper";
-import { okukus, cartAdd, buyerID, wishCreate } from "../endpoints";
-import { useData } from "../Context";
+import { MediaQuery } from "../helper";
 import { Spacer } from "../Placeholders/Product";
 import "./product.css";
-
 
 toast.configure();
 
 const Product = ({ data }) => {
-  let history = useHistory();
-  let { id } = useParams();
-  let { url } = useRouteMatch();
-
-  const { auth } = useData();
-
+  console.log(data.id);
+  
   const { width } = MediaQuery();
 
   const [loading, setLoading] = React.useState(false);
@@ -69,74 +59,23 @@ const Product = ({ data }) => {
     }
   };
 
-  const queryClient = useQueryClient();
-  queryClient.invalidateQueries("product");
-
-  var formData = new FormData();
-  formData.set("product_unique_id", id);
-  formData.set("buyer_unique_id", buyerID);
-
   const add2Cart = async (e) => {
     e.preventDefault();
-    if (auth) {
-      setLoading(true);
-
-      const { data } = await axiosMethod("post", cartAdd, formData);
-
-      if (!data.error) {
-        queryClient.invalidateQueries("carts");
-        queryClient.invalidateQueries("summaryData");
-        queryClient.invalidateQueries("orderLength");
-        toast.success(data.message);
-      }
-
-      setLoading(false);
-      toast.error(data.error);
-    }
   };
 
   const add2WL = async (e) => {
     e.preventDefault();
-    if (auth) {
+    setLoveFill(false);
+
+    const timer = setTimeout(() => {
       setLoveFill(false);
-
-      const { data } = await axiosMethod("post", wishCreate, formData);
-
-      if (!data.error) {
-        setLoveFill(true);
-        toast.success(data.message);
-        queryClient.invalidateQueries("wishlistLength");
-        queryClient.invalidateQueries("wishlist");
-      }
-
-      toast.error(data.error);
-
-      const timer = setTimeout(() => {
-        setLoveFill(false);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
+    }, 2000);
+    return () => clearTimeout(timer);
   };
 
-  const reviewItem = () => {
-    if (!auth) {
-      toast.warning("Login to write a review ");
-    }
+  const reviewItem = () => {};
 
-    if (auth) {
-      addReview(true);
-    }
-  };
-
-  const buyItem = () => {
-    if (auth) {
-      history.push(`/order/${id}`);
-    }
-
-    if (!auth) {
-      toast.warning("Login to buy item ");
-    }
-  };
+  const buyItem = () => {};
 
   return (
     <div className="product-wrapper">
@@ -145,7 +84,7 @@ const Product = ({ data }) => {
           <div className="object-1">
             <Home width={30} height={30} />
           </div>
-          <div className="object-2">{data.data.product_name}</div>
+          <div className="object-2"></div>
         </div>
 
         <div className="category ">
@@ -160,18 +99,14 @@ const Product = ({ data }) => {
           <div className="product-body">
             <div className="product-divide">
               <div className="product-image-wrapper">
-                <img
-                  src={`${okukus}/${data.data.cover_photo_url}`}
-                  alt="peecha"
-                  className="product-image"
-                />
+                <img src alt="peecha" className="product-image" />
               </div>
 
               <Social
                 width={22}
                 height={25}
-                postTitle={data.data.product_name}
-                postUrl={`https://okukus.com/product/${id}`}
+                postTitle
+                postUrl
                 hashtags="okukus, okukusBooks, books, shopOkukus, shop@Okukus, okukus.com"
                 via
               />
@@ -180,7 +115,7 @@ const Product = ({ data }) => {
             <div className="product-detail  ">
               <div className="nameXauthor outline">
                 <div className="nameXaction">
-                  <div className="product-name "> {data.data.product_name}</div>
+                  <div className="product-name "> </div>
 
                   <div className="love " onClick={add2WL}>
                     {loveFill ? (
@@ -191,14 +126,10 @@ const Product = ({ data }) => {
                   </div>
                 </div>
 
-                <span className="product-author  ">
-                  {data.data.product_author}
-                </span>
+                <span className="product-author  "></span>
 
                 <div className="prices">
-                  <div className="product-price">
-                    GHC {data.data.unit_price}
-                  </div>
+                  <div className="product-price">GHC</div>
 
                   <div className="spacer"></div>
 
@@ -216,9 +147,7 @@ const Product = ({ data }) => {
                 <div className="product-title">Description</div>
 
                 {width > 540 ? (
-                  <div className="product-description-full">
-                    {data.data.product_description}{" "}
-                  </div>
+                  <div className="product-description-full"></div>
                 ) : (
                   <>
                     <div
@@ -227,9 +156,7 @@ const Product = ({ data }) => {
                           ? "product-description"
                           : "product-description-full"
                       }
-                    >
-                      {data.data.product_description}{" "}
-                    </div>
+                    ></div>
                     <div className="down">
                       {contractDescription ? (
                         <Down
@@ -268,14 +195,7 @@ const Product = ({ data }) => {
                   ) : null}
 
                   <div className="see-more">
-                    <span
-                      className="addReview2"
-                      onClick={() => {
-                        history.push(`${url}/review`);
-                      }}
-                    >
-                      Reviews
-                    </span>
+                    <span className="addReview2">Reviews</span>
                     <Right width={20} height={20} />
                   </div>
                 </div>
