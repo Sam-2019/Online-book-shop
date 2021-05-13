@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
+import { gql, useMutation } from "@apollo/client";
 import Home from "../Components/Home";
 import Up from "../Components/Up";
 import Down from "../Components/Down";
@@ -17,13 +18,36 @@ import AddReview from "../Review/addReview";
 import Summary from "../Summary/Summary";
 import { MediaQuery } from "../helper";
 import { Spacer } from "../Placeholders/Product";
+import { useData } from "../Context";
 import "./product.css";
 
 toast.configure();
 
-const Product = ({ data }) => {
-  console.log(data.id);
-  
+const ADD_CART = gql`
+  mutation AddCart(
+    $user: ID!
+    $product: ID!
+    $quantity: String!
+    $price: String!
+  ) {
+    addCart(
+      user: $user
+      product: $product
+      quantity: $quantity
+      price: $price
+    ) {
+      id
+      user
+      product
+      price
+      quantity
+    }
+  }
+`;
+
+const Product = ({ results }) => {
+  // console.log(results);
+  const [addCart, { data }] = useMutation(ADD_CART);
   const { width } = MediaQuery();
 
   const [loading, setLoading] = React.useState(false);
@@ -59,13 +83,25 @@ const Product = ({ data }) => {
     }
   };
 
-  const add2Cart = async (e) => {
-    e.preventDefault();
+  // console.log(results.id);
+
+  const add2Cart = async () => {
+    
+    const productID = await results.id;
+
+    addCart({
+      variables: {
+        user: "609bfb663aef9216e4528eed",
+        product: productID,
+        quantity: results.quantity,
+        price: results.price,
+      },
+    });
   };
 
   const add2WL = async (e) => {
     e.preventDefault();
-    setLoveFill(false);
+    setLoveFill(true);
 
     const timer = setTimeout(() => {
       setLoveFill(false);
@@ -73,7 +109,9 @@ const Product = ({ data }) => {
     return () => clearTimeout(timer);
   };
 
-  const reviewItem = () => {};
+  const reviewItem = () => {
+    addReview(true);
+  };
 
   const buyItem = () => {};
 
@@ -84,7 +122,7 @@ const Product = ({ data }) => {
           <div className="object-1">
             <Home width={30} height={30} />
           </div>
-          <div className="object-2"></div>
+          <div className="object-2">{results.name}</div>
         </div>
 
         <div className="category ">
@@ -99,14 +137,18 @@ const Product = ({ data }) => {
           <div className="product-body">
             <div className="product-divide">
               <div className="product-image-wrapper">
-                <img src alt="peecha" className="product-image" />
+                <img
+                  src={results.imageURL}
+                  alt="peecha"
+                  className="product-image"
+                />
               </div>
 
               <Social
                 width={22}
                 height={25}
-                postTitle
-                postUrl
+                postTitle={results.name}
+                postUrl={`https://okukus.com/product/${results.sku}`}
                 hashtags="okukus, okukusBooks, books, shopOkukus, shop@Okukus, okukus.com"
                 via
               />
@@ -115,7 +157,7 @@ const Product = ({ data }) => {
             <div className="product-detail  ">
               <div className="nameXauthor outline">
                 <div className="nameXaction">
-                  <div className="product-name "> </div>
+                  <div className="product-name ">{results.name}</div>
 
                   <div className="love " onClick={add2WL}>
                     {loveFill ? (
@@ -126,10 +168,10 @@ const Product = ({ data }) => {
                   </div>
                 </div>
 
-                <span className="product-author  "></span>
+                <span className="product-author  ">{results.author}</span>
 
                 <div className="prices">
-                  <div className="product-price">GHC</div>
+                  <div className="product-price">$ {results.price}</div>
 
                   <div className="spacer"></div>
 
@@ -147,7 +189,9 @@ const Product = ({ data }) => {
                 <div className="product-title">Description</div>
 
                 {width > 540 ? (
-                  <div className="product-description-full"></div>
+                  <div className="product-description-full">
+                    {results.detail}
+                  </div>
                 ) : (
                   <>
                     <div
@@ -156,7 +200,9 @@ const Product = ({ data }) => {
                           ? "product-description"
                           : "product-description-full"
                       }
-                    ></div>
+                    >
+                      {results.detail}
+                    </div>
                     <div className="down">
                       {contractDescription ? (
                         <Down
@@ -252,5 +298,10 @@ const Product = ({ data }) => {
 export default Product;
 
 Product.propTypes = {
-  data: PropTypes.object,
+  results: PropTypes.object,
+  id: PropTypes.string,
+  user: PropTypes.string,
+  product: PropTypes.string,
+  price: PropTypes.string,
+  quantity: PropTypes.string,
 };
