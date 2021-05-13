@@ -15,13 +15,23 @@ import "./cartItem.css";
 
 toast.configure();
 
-const CartItem = () => {
+const CartItem = ( {  id, product, price, quantity,   handleToggle, }) => {
 
   const [loveFill, setLoveFill] = React.useState(false);
   const [binFill, setBinFill] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
 
-  const [count, setCount] = React.useState(0);
+  const [count, setCount] = React.useState(Number(quantity));
+
+  const updateBin = () => {
+    setBinFill(true);
+
+    const timer = setTimeout(() => {
+      setBinFill(false);
+    }, 1000);
+    setConfirm(true);
+    return () => clearTimeout(timer);
+  };
 
   const deleteItem = async (e) => {
     e.preventDefault();
@@ -59,11 +69,11 @@ const CartItem = () => {
       <div className="cart_item_wrapper">
         <div className="checkBox">
           <input
-            onChange
+           onChange={handleToggle(id)}
             type="checkbox"
-            value
-            id
-            name
+            value={id}
+            id={product}
+            name={product}
             className="checker"
           />
         </div>
@@ -79,11 +89,11 @@ const CartItem = () => {
             </div>
 
             <div className="nameXprice">
-              <label htmlFor={} className="item-name">
-                {}
+              <label htmlFor={product} className="item-name">
+                {product}
               </label>
 
-              <div className="item-price">GHc {}</div>
+              <div className="item-price">GHc {price}</div>
             </div>
           </div>
 
