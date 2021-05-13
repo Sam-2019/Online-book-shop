@@ -132,3 +132,26 @@ export const products = [
       "From the number-one New York Times best-selling author of Liar's Poker and 'one of the country's most popular business journalists' (The New York Times Michael Lewis, comes an engaging new book about Wall Street.  Michael Lewis, the best-selling author of Boomerang, The Big Short, The Blind Side, Moneyball, and many others, returns to the financial world to give listeners a ringside seat as the biggest news story in years prepares to hit Wall Street.",
   },
 ];
+
+
+export const cartInfo = [
+  {
+    id: "6099a48ac268590778baf75a",
+    name: "Expectations Investing: Reading Stock Prices for Better Returns",
+    author: "Alfred Rappaport, Michael J. Mauboussin, Peter L. Bernstein",
+    sku: "expectations investing",
+    price: "148.95",
+    imageURL:
+      "https://images-na.ssl-images-amazon.com/images/I/41t1esOD4+L._SX328_BO1,204,203,200_.jpg",
+    quantity: 5,
+  },
+  {
+    _d: "6099a5aac268590778baf75b",
+    name: "The Psychology of Money: Timeless Lessons on Wealth, Greed, and Happiness",
+    author: "Morgan Housel",
+    sku: "the psychology of money",
+    price: "16.24",
+    imageURL: "https://m.media-amazon.com/images/I/51jRBz6Ug3L.jpg",
+    quantity: 5,
+  },
+];
