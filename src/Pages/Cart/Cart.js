@@ -1,5 +1,6 @@
 import React from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 import { MediaQuery } from "../helper";
 import Back from "../Components/Back";
 import Button from "../Components/Button";
@@ -7,36 +8,33 @@ import Summary from "../Summary/Summary";
 import CartData from "./cartData";
 import CartHeader from "./cartHeader";
 import "./cart.css";
+import { products } from "../jsdata";
+import { GET_CART } from "../graphQL functions";
 
 import SVGcontainer from "../SVGs/SVGcontainer";
 import EmptyCart from "../SVGs/empty-cart";
 
 import { useData } from "../Context";
 
-const GET_CART = gql`
-  query User($id: ID!) {
-    user(id: $id) {
-      cart {
-        product
-        price
-        quantity
-      }
-    }
-  }
-`;
+
 
 const Cart = () => {
   const { uniqueID } = useData();
   const id = String(uniqueID);
   const breakpoint = 540;
   const { width } = MediaQuery();
+  let history = useHistory();
 
-  const { loading, error, data } = useQuery(GET_CART, {
-    variables: { id },
-  });
+  // const { loading, error, data } = useQuery(GET_CART, {
+  //   variables: { id },
+  // });
 
-  function orderItem() {}
+  const array = new Uint32Array(1);
+  const index = window.crypto.getRandomValues(array);
 
+  function orderItem() {
+    history.push(`/order/${index[0]}`);
+  }
   return (
     <div className="cart-wrapper">
       <div className="header">
@@ -44,12 +42,12 @@ const Cart = () => {
           <div className="object-1">
             <Back width={30} height={30} />
           </div>
-          <div className="object-2"> Cart (100)</div>
+          <div className="object-2"> Cart ({products.length})</div>
         </div>
       </div>
 
       <div className="main">
-        {data === undefined ? (
+        {cartInfo === undefined ? (
           <SVGcontainer>
             <EmptyCart />
             <p className="text-3">
@@ -58,10 +56,10 @@ const Cart = () => {
           </SVGcontainer>
         ) : null}
 
-        {data ? (
+        {cartInfo ? (
           <>
             {width > breakpoint ? <CartHeader /> : null}
-            <CartData data={data.user} />
+            <CartData data={products} />
           </>
         ) : null}
       </div>
@@ -72,7 +70,7 @@ const Cart = () => {
         </div>
         <Button
           class_name="checkout"
-          name={`Check Out  (100)`}
+          name={`Check Out  (${products.length})`}
           action={orderItem}
         />
       </Summary>
