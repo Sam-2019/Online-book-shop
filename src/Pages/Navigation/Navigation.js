@@ -30,11 +30,11 @@ const Navigation = ({ toggle }) => {
   return (
     <header className="nav-header ">
       <div className="category ">
-        <Justify
+        {/* <Justify
           width={breakpoint < width ? 30 : 20}
           height={breakpoint < width ? 30 : 20}
           action={toggle}
-        />
+        /> */}
         <div className="okukus" onClick={home}>
           OKUKUS
         </div>
@@ -67,20 +67,18 @@ const Navigation = ({ toggle }) => {
           />
         </div>
 
-        {auth ? (
-          <div className="object-4 user  ">
-            <Dropdown />
-          </div>
-        ) : (
-          <div
-            className="object-4 user  "
-            onClick={() => {
-              history.push("/login");
-            }}
-          >
-            Login
-          </div>
-        )}
+        <div className="object-4 user  ">
+          <Dropdown />
+        </div>
+
+        <div
+          className="object-4 user  "
+          onClick={() => {
+            history.push("/login");
+          }}
+        >
+          Login
+        </div>
       </div>
     </header>
   );
