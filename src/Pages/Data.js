@@ -10,7 +10,6 @@ import {
 } from "./endpoints";
 
 import { axiosMethod, fetch, useLocalStorage } from "./helper";
-import image from "./Placeholders/250x350.png";
 
 const instance = axios.create({
   baseURL: dev_site,
@@ -21,16 +20,23 @@ const Data = () => {
   const [firstName, setFirstName] = useLocalStorage("firstName", "");
   const [lastName, setLastName] = useLocalStorage("lastName", "");
   const [email, setEmail] = useLocalStorage("email", "");
-  const [uniqueID, setUniqueID] = useLocalStorage("uniqueID", "609bfb663aef9216e4528eed");
+  const [uniqueID, setUniqueID] = useLocalStorage(
+    "uniqueID",
+    "609bfb663aef9216e4528eed"
+  );
   const [verfifcationStatus, setVerificationStatus] = useState(false);
 
   const [amount, setAmount] = useState(0);
   const [quantity, setQuantity] = useState(0);
 
-  const [profileImage, setProfileImage] = useState(image);
+  const [profileImage, setProfileImage] = useState(
+    "https://i.redd.it/liptgenrd1b01.png"
+  );
 
   const [orderLength, setOrderLength] = useState(0);
   const [wishlistLength, setWishlistLength] = useState(0);
+
+  console.log(firstName);
 
   async function logoutUser() {
     localStorage.removeItem("loginToken");
@@ -41,7 +47,7 @@ const Data = () => {
     setUniqueID("");
     setVerificationStatus("");
     setAuth(!auth);
-    setProfileImage(image);
+    setProfileImage("");
     setQuantity(0);
     setAmount(0);
     setOrderLength(0);
