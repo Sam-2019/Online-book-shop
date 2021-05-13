@@ -16,8 +16,6 @@ import EmptyCart from "../SVGs/empty-cart";
 
 import { useData } from "../Context";
 
-
-
 const Cart = () => {
   const { uniqueID } = useData();
   const id = String(uniqueID);
@@ -47,7 +45,7 @@ const Cart = () => {
       </div>
 
       <div className="main">
-        {cartInfo === undefined ? (
+        {products === undefined ? (
           <SVGcontainer>
             <EmptyCart />
             <p className="text-3">
@@ -56,7 +54,7 @@ const Cart = () => {
           </SVGcontainer>
         ) : null}
 
-        {cartInfo ? (
+        {products ? (
           <>
             {width > breakpoint ? <CartHeader /> : null}
             <CartData data={products} />
