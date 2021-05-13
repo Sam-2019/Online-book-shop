@@ -14,12 +14,14 @@ import Verification from "../Components/Verify";
 import { okukus } from "../endpoints";
 import { SmallView } from "../styles";
 import { MediaQuery } from "../helper";
+import { useData } from "../Context";
 import "./profile.css";
 
 function Proflie() {
   let history = useHistory();
   let { width } = MediaQuery();
 
+  const { profileImage} = useData();
   const breakpoint = 540;
   let activePage;
   const [password, updatePassword] = React.useState(false);
@@ -42,8 +44,7 @@ function Proflie() {
       navigator
         .share({
           title: okukus,
-          text:
-            "Your one-stop shop for a wide selection of books, magazines & just about anything else. ",
+          text: "Your one-stop shop for a wide selection of books, magazines & just about anything else. ",
           url: okukus,
         })
         .then(() => {
@@ -114,14 +115,11 @@ function Proflie() {
                     updateProfilePhoto(true);
                   }}
                 >
-                  <Photo
-                    src
-                    className="image"
-                  />
+                  <Photo src={profileImage} className="image" />
                 </div>
 
                 <div className="nameXeditXverify">
-                  <UserName />
+                  <UserName name="Ken Jonathan" />
                   {/* <Pen
                       width={15}
                       height={15}

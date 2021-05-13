@@ -10,21 +10,20 @@ import "./change.css";
 const ProfiilePhotoUpdate = ({ close }) => {
   const [change, setChange] = React.useState(false);
   const [file, setFile] = React.useState("");
-  const [imagePreviewUrl, setimagePreviewUrl] = React.useState("");
+  const [imagePreviewUrl, setimagePreviewUrl] = React.useState(
+    "https://i.redd.it/liptgenrd1b01.png"
+  );
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const notify = (data) => {
-
-  };
+  const notify = (data) => {};
 
   const openBox = () => {
     setChange(!change);
   };
 
   const Change = (e) => {
-
     e.preventDefault();
 
     let reader = new FileReader();
