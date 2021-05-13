@@ -15,8 +15,7 @@ import "./cartItem.css";
 
 toast.configure();
 
-const CartItem = ( {  id, product, price, quantity,   handleToggle, }) => {
-
+const CartItem = ({ id, sku, price, imageURL, quantity, handleToggle }) => {
   const [loveFill, setLoveFill] = React.useState(false);
   const [binFill, setBinFill] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
@@ -58,10 +57,17 @@ const CartItem = ( {  id, product, price, quantity,   handleToggle, }) => {
 
   const plusItem = async (event) => {
     event.preventDefault();
+
+    setCount((c) => c + 1);
   };
 
   const minusItem = async (e) => {
     e.preventDefault();
+
+    if (count <= 1) {
+      return;
+    }
+    return setCount((c) => c - 1);
   };
 
   return (
@@ -69,11 +75,11 @@ const CartItem = ( {  id, product, price, quantity,   handleToggle, }) => {
       <div className="cart_item_wrapper">
         <div className="checkBox">
           <input
-           onChange={handleToggle(id)}
+            onChange={handleToggle(id)}
             type="checkbox"
             value={id}
-            id={product}
-            name={product}
+            id={id}
+            name={id}
             className="checker"
           />
         </div>
@@ -82,15 +88,15 @@ const CartItem = ( {  id, product, price, quantity,   handleToggle, }) => {
           <div className="imageXname">
             <div className="image-placeholder-original ">
               <img
-                src
+                src={imageURL}
                 alt="peecha"
                 className="image-placeholder-original"
               />
             </div>
 
             <div className="nameXprice">
-              <label htmlFor={product} className="item-name">
-                {product}
+              <label htmlFor={id} className="item-name">
+                {sku}
               </label>
 
               <div className="item-price">GHc {price}</div>
@@ -137,8 +143,7 @@ const CartItem = ( {  id, product, price, quantity,   handleToggle, }) => {
       {confirm ? (
         <PopUp>
           <ConfirmDelete>
-            Are you sure you want to remove this product from your shopping
-            cart?
+            Are you sure you want to remove this id from your shopping cart?
           </ConfirmDelete>
 
           <Button class_name="primary" name="Remove" action={deleteItem} />
@@ -155,6 +160,4 @@ const CartItem = ( {  id, product, price, quantity,   handleToggle, }) => {
 
 export default CartItem;
 
-CartItem.propTypes = {
-
-};
+CartItem.propTypes = {};
