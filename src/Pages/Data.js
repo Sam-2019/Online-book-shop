@@ -21,7 +21,7 @@ const Data = () => {
   const [firstName, setFirstName] = useLocalStorage("firstName", "");
   const [lastName, setLastName] = useLocalStorage("lastName", "");
   const [email, setEmail] = useLocalStorage("email", "");
-  const [uniqueID, setUniqueID] = useLocalStorage("uniqueID", "");
+  const [uniqueID, setUniqueID] = useLocalStorage("uniqueID", "609bfb663aef9216e4528eed");
   const [verfifcationStatus, setVerificationStatus] = useState(false);
 
   const [amount, setAmount] = useState(0);
@@ -31,9 +31,6 @@ const Data = () => {
 
   const [orderLength, setOrderLength] = useState(0);
   const [wishlistLength, setWishlistLength] = useState(0);
-
-  var formData = new FormData();
-  formData.set("buyer_unique_id", uniqueID);
 
   async function logoutUser() {
     localStorage.removeItem("loginToken");
