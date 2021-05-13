@@ -45,10 +45,27 @@ const ADD_CART = gql`
   }
 `;
 
+const ADD_WISHLIST = gql`
+  mutation AddWishlist($user: ID!, $product: ID!) {
+    addWishlist(user: $user, product: $product) {
+      id
+      user
+      product
+    }
+  }
+`;
+
 const Product = ({ results }) => {
-  // console.log(results);
-  const [addCart, { data }] = useMutation(ADD_CART);
+  const [addCart, { loading: cartLoading, error: cartError, data: cartData }] =
+    useMutation(ADD_CART);
+
+  const [
+    addWishlist,
+    { loading: wishLoading, error: wishError, data: wishData },
+  ] = useMutation(ADD_WISHLIST);
   const { width } = MediaQuery();
+
+  const { uniqueID } = useData();
 
   const [loading, setLoading] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
@@ -84,27 +101,46 @@ const Product = ({ results }) => {
   };
 
   // console.log(results.id);
+  // console.log(typeof "609bfb663aef9216e4528eed");
+  //  console.log(typeof results.id);
+  //  console.log(typeof results.quantity);
+  // console.log(typeof results.price);
 
   const add2Cart = async () => {
-    
-    const productID = await results.id;
-
     addCart({
       variables: {
-        user: "609bfb663aef9216e4528eed",
-        product: productID,
-        quantity: results.quantity,
-        price: results.price,
+        user: String(uniqueID),
+        product: String(results.id),
+        quantity: String(results.quantity),
+        price: String(results.price),
       },
     });
+
+    if (cartError) {
+      toast.error(cartError);
+    }
+
+    toast.success("Item added to cart");
   };
 
   const add2WL = async (e) => {
     e.preventDefault();
     setLoveFill(true);
 
+    addWishlist({
+      variables: {
+        user: "609bfb663aef9216e4528eed",
+        product: String(results.id),
+      },
+    });
+
+    if (wishError) {
+      toast.error(cartError);
+    }
+
     const timer = setTimeout(() => {
       setLoveFill(false);
+      toast.success("Item added to wish list");
     }, 2000);
     return () => clearTimeout(timer);
   };
@@ -122,7 +158,7 @@ const Product = ({ results }) => {
           <div className="object-1">
             <Home width={30} height={30} />
           </div>
-          <div className="object-2">{results.name}</div>
+          <div className="object-2">{results.sku}</div>
         </div>
 
         <div className="category ">
@@ -267,6 +303,8 @@ const Product = ({ results }) => {
             close={() => {
               addReview(false);
             }}
+            user={uniqueID}
+            product={results.id}
           />
         </PopUp>
       ) : null}
