@@ -1,14 +1,40 @@
 import React from "react";
+import { useQuery, gql } from "@apollo/client";
+import { MediaQuery } from "../helper";
 import Back from "../Components/Back";
 import Button from "../Components/Button";
 import Summary from "../Summary/Summary";
+import CartData from "./cartData";
+import CartHeader from "./cartHeader";
 import "./cart.css";
 
 import SVGcontainer from "../SVGs/SVGcontainer";
 import EmptyCart from "../SVGs/empty-cart";
 
+import { useData } from "../Context";
+
+const GET_CART = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      cart {
+        product
+        price
+        quantity
+      }
+    }
+  }
+`;
+
 const Cart = () => {
-  
+  const { uniqueID } = useData();
+  const id = String(uniqueID);
+  const breakpoint = 540;
+  const { width } = MediaQuery();
+
+  const { loading, error, data } = useQuery(GET_CART, {
+    variables: { id },
+  });
+
   function orderItem() {}
 
   return (
@@ -23,12 +49,21 @@ const Cart = () => {
       </div>
 
       <div className="main">
-        <SVGcontainer>
-          <EmptyCart />
-          <p className="text-3">
-            No item in <b>your</b> cart yet!
-          </p>
-        </SVGcontainer>
+        {data === undefined ? (
+          <SVGcontainer>
+            <EmptyCart />
+            <p className="text-3">
+              No item in <b>your</b> cart yet!
+            </p>
+          </SVGcontainer>
+        ) : null}
+
+        {data ? (
+          <>
+            {width > breakpoint ? <CartHeader /> : null}
+            <CartData data={data.user} />
+          </>
+        ) : null}
       </div>
 
       <Summary>
