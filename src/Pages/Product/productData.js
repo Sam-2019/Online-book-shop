@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
-import { gql, useMutation } from "@apollo/client";
+import { useHistory, useRouteMatch, useParams } from "react-router-dom";
+import { useMutation } from "@apollo/client";
 import Home from "../Components/Home";
 import Up from "../Components/Up";
 import Down from "../Components/Down";
@@ -19,41 +20,12 @@ import Summary from "../Summary/Summary";
 import { MediaQuery } from "../helper";
 import { Spacer } from "../Placeholders/Product";
 import { useData } from "../Context";
+import { reviewData } from "../Review/reviewData";
 import "./product.css";
 
+import { ADD_CART, ADD_WISHLIST } from "../graphQL functions";
+
 toast.configure();
-
-const ADD_CART = gql`
-  mutation AddCart(
-    $user: ID!
-    $product: ID!
-    $quantity: String!
-    $price: String!
-  ) {
-    addCart(
-      user: $user
-      product: $product
-      quantity: $quantity
-      price: $price
-    ) {
-      id
-      user
-      product
-      price
-      quantity
-    }
-  }
-`;
-
-const ADD_WISHLIST = gql`
-  mutation AddWishlist($user: ID!, $product: ID!) {
-    addWishlist(user: $user, product: $product) {
-      id
-      user
-      product
-    }
-  }
-`;
 
 const Product = ({ results }) => {
   const [addCart, { loading: cartLoading, error: cartError, data: cartData }] =
@@ -66,12 +38,14 @@ const Product = ({ results }) => {
   const { width } = MediaQuery();
 
   const { uniqueID } = useData();
+  let history = useHistory();
+  let { sku } = useParams();
+  let { url } = useRouteMatch();
 
   const [loading, setLoading] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
   const [review, addReview] = React.useState(false);
   const [loveFill, setLoveFill] = React.useState(false);
-  const [reviewData, setReviewData] = React.useState([]);
 
   const ToggleDescription = () => {
     expandDescription(!contractDescription);
@@ -149,7 +123,9 @@ const Product = ({ results }) => {
     addReview(true);
   };
 
-  const buyItem = () => {};
+  const buyItem = () => {
+    history.push(`/order/${sku}`);
+  };
 
   return (
     <div className="product-wrapper">
@@ -277,7 +253,14 @@ const Product = ({ results }) => {
                   ) : null}
 
                   <div className="see-more">
-                    <span className="addReview2">Reviews</span>
+                    <span
+                      className="addReview2"
+                      onClick={() => {
+                        history.push(`${url}/review`);
+                      }}
+                    >
+                      Reviews
+                    </span>
                     <Right width={20} height={20} />
                   </div>
                 </div>

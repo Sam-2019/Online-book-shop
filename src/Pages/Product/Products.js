@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery} from "@apollo/client";
 import ProductsItem from "./productsItem";
 import Placeholder from "../Placeholders/Products";
 import {
@@ -12,18 +12,7 @@ import {
   Spacer,
 } from "../styles";
 import "./products.css";
-
-const GET_PRODUCTS = gql`
-  query {
-    products {
-      id
-      name
-      sku
-      price
-      imageURL
-    }
-  }
-`;
+import { GET_PRODUCTS } from "../graphQL functions";
 
 const Products = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);

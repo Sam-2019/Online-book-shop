@@ -1,16 +1,38 @@
 import React from "react";
+import { useMutation } from "@apollo/client";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import Cart from "../Components/Cart";
+import { useData } from "../Context";
+import { ADD_CART } from "../graphQL functions";
 
 toast.configure();
 
-const ProductsItem = ({ id, name, price, imageURL, sku }) => {
+const ProductsItem = ({ id, name, price, imageURL, sku, quantity }) => {
   let history = useHistory();
+  const { uniqueID } = useData();
+
+  const [addCart, { loading: cartLoading, error: cartError, data: cartData }] =
+    useMutation(ADD_CART);
 
   const add2Cart = async (e) => {
     e.preventDefault();
+
+    addCart({
+      variables: {
+        user: String(uniqueID),
+        product: String(id),
+        quantity: String(quantity),
+        price: String(price),
+      },
+    });
+
+    if (cartError) {
+      toast.error(cartError);
+    }
+
+    toast.success("Item added to cart");
   };
 
   return (

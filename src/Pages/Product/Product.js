@@ -1,26 +1,12 @@
 import React from "react";
 import { useHistory, useRouteMatch, useParams } from "react-router-dom";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { GET_PRODUCT } from "../graphQL functions";
 
 import Placeholder from "../Placeholders/Product";
 import ProductData from "./productData";
 
 import "./product.css";
-
-const GET_PRODUCT = gql`
-  query Product($sku: String!) {
-    product(sku: $sku) {
-      id
-      name
-      sku
-      author
-      price
-      imageURL
-      quantity
-      detail
-    }
-  }
-`;
 
 const Product = () => {
   let history = useHistory();
