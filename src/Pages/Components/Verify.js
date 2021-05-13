@@ -1,10 +1,6 @@
 import React from "react";
-import { useMutation } from "react-query";
 import styled from "styled-components";
 import { toast } from "react-toastify";
-import { useData } from "../Context";
-import { userCreateEmailVerify } from "../endpoints";
-import { fetch } from "../helper";
 
 toast.configure();
 
@@ -40,41 +36,20 @@ const NotVerified = styled.div`
 `;
 
 const Verify = () => {
-  const { verfifcationStatus, email } = useData();
-
   const notify = (data) => {
     toast.success(data);
   };
 
-  const mutation = useMutation((formData) => {
-    return fetch(userCreateEmailVerify, formData);
-  });
-
   const verify = async (event) => {
-    var formData = new FormData();
-    event.preventDefault();
-    formData.set("buyer_email", email);
-
     try {
-      const data = await mutation.mutateAsync(formData);
-      console.log(data);
-
-      if (data) {
-        notify(data.message);
-      }
     } catch (error) {
-      console.error(error);
     } finally {
     }
   };
 
   return (
     <Verification>
-      {verfifcationStatus === "Verified" ? (
-        <Verified>Verified</Verified>
-      ) : (
-        <NotVerified onClick={verify}>Unverified</NotVerified>
-      )}
+      <NotVerified onClick={verify}>Unverified</NotVerified>
     </Verification>
   );
 };
