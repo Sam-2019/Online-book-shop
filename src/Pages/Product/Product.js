@@ -24,17 +24,17 @@ const GET_PRODUCT = gql`
 
 const Product = () => {
   let history = useHistory();
-  let { id } = useParams();
+  let { sku } = useParams();
   let { url } = useRouteMatch();
 
   const { loading, error, data } = useQuery(GET_PRODUCT, {
-    variables: { id },
+    variables: { sku },
   });
 
   if (loading) return <Placeholder />;
   if (error) return `Error! ${error}`;
 
-  return <ProductData data={data} />;
+  return <ProductData results={data.product} />;
 };
 
 export default Product;
