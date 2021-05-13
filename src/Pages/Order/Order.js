@@ -111,23 +111,14 @@ const Order = () => {
         `}
           >
             <div className="page_title"> Shipping Information</div>
-            <select
-              id="select"
-              className="input"
-              autoFocus
-              required
-              disabled={loading}
-              value={value}
-              onChange={(e) => {
-                setValue(e.target.value);
-              }}
-            >
-              {items.map(({ value, disable }) => (
-                <option key={value} value={value} disabled={disable}>
-                  {value}
-                </option>
-              ))}
+
+            <select name="locations" id="select" className="input">
+              <option value="tema">Tema</option>
+              <option value="accra">Accra</option>
+              <option value="kumasi">Kumasi</option>
+              <option value="bolga">Bolga</option>
             </select>
+
             <Input class_name="input " placeholder="Location" onChange />
             <Input class_name="input " placeholder="Digital Address" onChange />
             <Input class_name="input " placeholder="Phone Number" onChange />
