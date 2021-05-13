@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import CartItem from "./cartItem";
 
-const CartData = () => {
+const CartData = ({ data }) => {
+  console.log(data.cart);
   const [formData, setFormData] = useState("");
   const [checked, setChecked] = useState([]); //cart items from DB
 
@@ -27,7 +29,13 @@ const CartData = () => {
     // var data = formData.get("categories");
   };
 
-  return <div></div>;
+  return (
+    <div>
+      {data.cart.map((data, index) => (
+        <CartItem key={index} {...data} handleToggle={handleToggle} />
+      ))}
+    </div>
+  );
 };
 
 export default CartData;
