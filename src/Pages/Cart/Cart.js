@@ -14,18 +14,15 @@ import { GET_CART } from "../graphQL functions";
 import SVGcontainer from "../SVGs/SVGcontainer";
 import EmptyCart from "../SVGs/empty-cart";
 
-import { useData } from "../Context";
-
 const Cart = () => {
-  const { uniqueID } = useData();
-  const id = String(uniqueID);
+  const id = String("609bfb663aef9216e4528eed");
   const breakpoint = 540;
   const { width } = MediaQuery();
   let history = useHistory();
 
-  // const { loading, error, data } = useQuery(GET_CART, {
-  //   variables: { id },
-  // });
+  const { loading, error, data } = useQuery(GET_CART, {
+    variables: { id },
+  });
 
   const array = new Uint32Array(1);
   const index = window.crypto.getRandomValues(array);
@@ -45,7 +42,7 @@ const Cart = () => {
       </div>
 
       <div className="main">
-        {products === undefined ? (
+        {data === undefined ? (
           <SVGcontainer>
             <EmptyCart />
             <p className="text-3">
@@ -54,10 +51,10 @@ const Cart = () => {
           </SVGcontainer>
         ) : null}
 
-        {products ? (
+        {data ? (
           <>
             {width > breakpoint ? <CartHeader /> : null}
-            <CartData data={products} />
+            <CartData data={data} />
           </>
         ) : null}
       </div>
