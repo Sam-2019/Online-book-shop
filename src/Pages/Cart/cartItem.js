@@ -78,8 +78,8 @@ const CartItem = ({ id, sku, price, imageURL, quantity, handleToggle }) => {
             onChange={handleToggle(id)}
             type="checkbox"
             value={id}
-            id={id}
-            name={id}
+            id={sku}
+            name={sku}
             className="checker"
           />
         </div>
@@ -95,11 +95,11 @@ const CartItem = ({ id, sku, price, imageURL, quantity, handleToggle }) => {
             </div>
 
             <div className="nameXprice">
-              <label htmlFor={id} className="item-name">
+              <label htmlFor={sku} className="item-name">
                 {sku}
               </label>
 
-              <div className="item-price">GHc {price}</div>
+              <div className="item-price">$ {price}</div>
             </div>
           </div>
 
