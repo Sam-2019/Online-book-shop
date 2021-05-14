@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import CartItem from "./cartItem";
 
 const CartData = ({ data }) => {
-
   const [formData, setFormData] = useState("");
   const [checked, setChecked] = useState([]); //cart items from DB
 
@@ -31,7 +30,7 @@ const CartData = ({ data }) => {
 
   return (
     <div>
-      {data.map((data, index) => (
+      {data.carts.map((data, index) => (
         <CartItem key={index} {...data} handleToggle={handleToggle} />
       ))}
     </div>
