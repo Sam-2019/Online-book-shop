@@ -109,7 +109,7 @@ const Product = ({ results }) => {
     });
 
     if (wishError) {
-      toast.error(cartError);
+      toast.error(wishError);
     }
 
     const timer = setTimeout(() => {
