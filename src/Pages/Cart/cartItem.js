@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
 import Button from "../Components/Button";
 import Add from "../Components/Add";
@@ -11,6 +11,7 @@ import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
 import PopUp from "../Components/Popup";
 import { ConfirmDelete } from "../styles";
+import { DELETE_CART, ADD_WISHLIST } from "../graphQL functions";
 import "./cartItem.css";
 
 toast.configure();
@@ -21,6 +22,16 @@ const CartItem = ({ id, sku, price, imageURL, quantity, handleToggle }) => {
   const [confirm, setConfirm] = React.useState(false);
 
   const [count, setCount] = React.useState(Number(quantity));
+
+  const [
+    deleteCart,
+    { loading: deleteLoading, error: deleteError, data: deleteData },
+  ] = useMutation(DELETE_CART);
+
+  const [
+    addWishlist,
+    { loading: wishLoading, error: wishError, data: wishData },
+  ] = useMutation(ADD_WISHLIST);
 
   const updateBin = () => {
     setBinFill(true);
@@ -37,8 +48,19 @@ const CartItem = ({ id, sku, price, imageURL, quantity, handleToggle }) => {
 
     setBinFill(true);
 
+    deleteCart({
+      variables: {
+        id: String(id),
+      },
+    });
+
+    if (deleteError) {
+      toast.error(deleteError);
+    }
+
     const timer = setTimeout(() => {
       setBinFill(false);
+      toast.success("Item deleted");
     }, 1000);
     setConfirm(true);
     return () => clearTimeout(timer);
@@ -46,11 +68,22 @@ const CartItem = ({ id, sku, price, imageURL, quantity, handleToggle }) => {
 
   const add2WL = async (e) => {
     e.preventDefault();
-
     setLoveFill(true);
+
+    addWishlist({
+      variables: {
+        user: "609bfb663aef9216e4528eed",
+        product: String(id),
+      },
+    });
+
+    if (wishError) {
+      toast.error(wishError);
+    }
 
     const timer = setTimeout(() => {
       setLoveFill(false);
+      toast.success("Item added to wish list");
     }, 2000);
     return () => clearTimeout(timer);
   };
