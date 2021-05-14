@@ -4,15 +4,12 @@ export const GET_CART = gql`
   query Carts($id: ID!) {
     carts(id: $id) {
       id
-      product {
-        id
-        sku
-        name
-        author
-        price
-        imageURL
-        quantity
-      }
+      sku
+      name
+      author
+      price
+      imageURL
+      quantity
     }
   }
 `;
@@ -64,13 +61,29 @@ export const ADD_WISHLIST = gql`
 `;
 
 export const GET_PRODUCTS = gql`
-query {
-  products {
-    id
-    name
-    sku
-    price
-    imageURL
+  query {
+    products {
+      id
+      name
+      sku
+      price
+      imageURL
+    }
   }
-}
+`;
+
+export const DELETE_CART = gql`
+  mutation DeleteCart($id: ID!) {
+    deleteCart(id: $id) {
+      id
+    }
+  }
+`;
+
+export const DELETE_WISHLIST = gql`
+  mutation DeleteWishlist($id: ID!) {
+    deleteWishlist(id: $id) {
+      id
+    }
+  }
 `;
