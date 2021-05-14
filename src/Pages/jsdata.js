@@ -1,6 +1,6 @@
 export const products = [
   {
-    _id: "6099a0f3c268590778baf757",
+    id: "6099a0f3c268590778baf757",
     name: "The Spider Network: The Wild Story of a Math Genius, a Gang of Backstabbing Bankers, and One of the Greatest Scams in Financial History",
     author: "David Enrich",
     sku: "the spider network",
@@ -13,7 +13,7 @@ export const products = [
   },
 
   {
-    _id: "6099a320c268590778baf758",
+    id: "6099a320c268590778baf758",
     name: "Antifragile: Things That Gain from Disorder",
     author: "Nassim Nicholas Taleb ",
     sku: "antifragile",
@@ -25,7 +25,7 @@ export const products = [
       "From the bestselling author of The Black Swan and one of the foremost philosophers of our time, Nassim Nicholas Taleb, a book on how some systems actually benefit from disorder.In The Black Swan Taleb outlined a problem; in Antifragile he offers a definitive solution: how to gain from disorder and chaos while being protected from fragilities and adverse events. For what he calls the 'antifragile' is one step beyond robust, as it benefits from adversity, uncertainty and stressors, just as human bones get stronger when subjected to stress and tension.Taleb stands uncertainty on its head, making it desirable, and proposing that things be built in an antifragile manner. Extremely ambitious and multidisciplinary, Antifragile provides a blueprint for how to behave-and thrive-in a world we don't understand and which is too uncertain for us to even try to understand. He who is not antifragile will perish. Why is the city state better than the nation state, why is debt bad for you, and why is almost everything modern bound to fail? The book covers innovation, health, biology, medicine, life decisions, politics, foreign policy, urban planning, war, personal finance, and economic systems. Throughout, the voice and recipes of the ancient wisdom from Phoenician, Roman, Greek, and Medieval sources are heard loud and clear.",
   },
   {
-    _id: "6099a3c9c268590778baf759",
+    id: "6099a3c9c268590778baf759",
     name: "More Than You Know: Finding Financial Wisdom in Unconventional Places",
     author: "Michael J. Mauboussin",
     sku: "more than you know",
@@ -37,7 +37,7 @@ export const products = [
       "Michael Mauboussin, one of Wall Street's most creative and influential minds offers provocative new ways of thinking about the stock market, investing, and how we make decisions.",
   },
   {
-    _id: "6099a48ac268590778baf75a",
+    id: "6099a48ac268590778baf75a",
     name: "Expectations Investing: Reading Stock Prices for Better Returns",
     author: "Alfred Rappaport, Michael J. Mauboussin, Peter L. Bernstein",
     sku: "expectations investing",
@@ -49,7 +49,7 @@ export const products = [
       "Expectations Investing offers a unique and powerful alternative for identifying value-price gaps. Rappaport and Mauboussin provide everything the reader needs to utilize the discounted cash flow model successfully. And they add an important twist: they suggest that rather than forecasting cash flows, investors should begin by estimating the expectations embedded in a company's stock price. An investor who has a fix on the market's expectations can then assess the likelihood of expectations revisions. To help investors anticipate such revisions, Rappaport and Mauboussin introduce an 'expectations infrastructure' framework for tracing the process of value creation from the basic economic forces that shape a company's performance to the resulting impact on sales, costs, and investment. Investors who use Expectations Investing will have a fundamentally new way to evaluate all stocks, setting them on the path to success. Managers will be able to use the book to devise, adjust, and communicate their company's strategy in light of shareholder expectations.",
   },
   {
-    _id: "6099a5aac268590778baf75b",
+    id: "6099a5aac268590778baf75b",
     name: "The Psychology of Money: Timeless Lessons on Wealth, Greed, and Happiness",
     author: "Morgan Housel",
     sku: "the psychology of money",
@@ -61,7 +61,7 @@ export const products = [
   },
 
   {
-    _id: "6099aa566b1d082a00af22e3",
+    id: "6099aa566b1d082a00af22e3",
     name: "Bailout Nation: How Greed and Easy Money Corrupted Wall Street and Shook the World Economy",
     author: "Barry Ritholtz",
     sku: "bailout nation",
@@ -73,7 +73,7 @@ export const products = [
   },
 
   {
-    _id: "6099ab216b1d082a00af22e4",
+    id: "6099ab216b1d082a00af22e4",
     name: "The 48 Laws of Power",
     author: "Robert Greene",
     sku: "48 laws of power",
@@ -85,7 +85,7 @@ export const products = [
       "In the book that People magazine proclaimed “beguiling” and “fascinating,” Robert Greene and Joost Elffers have distilled three thousand years of the history of power into 48 essential laws by drawing from the philosophies of Machiavelli, Sun Tzu, and Carl Von Clausewitz and also from the lives of figures ranging from Henry Kissinger to P.T. Barnum. Some laws teach the need for prudence (“Law 1: Never Outshine the Master”, others teach the value of confidence (“Law 28: Enter Action with Boldness”, and many recommend absolute self-preservation (“Law 15: Crush Your Enemy Totally”. Every law, though, has one thing in common: an interest in total domination. In a bold and arresting two-color package, The 48 Laws of Power is ideal whether your aim is conquest, self-defense, or simply to understand the rules of the game.",
   },
   {
-    _id: "6099afe16b1d082a00af22e5",
+    id: "6099afe16b1d082a00af22e5",
     name: "Skin in the Game: Hidden Asymmetries in Daily Life",
     author: "Nassim Nicholas Taleb",
     sku: "skin in the game",
@@ -97,7 +97,7 @@ export const products = [
       "In his most provocative and practical book yet, one of the foremost thinkers of our time redefines what it means to understand the world, succeed in a profession, contribute to a fair and just society, detect nonsense, and influence others. Citing examples ranging from Hammurabi to Seneca, Antaeus the Giant to Donald Trump, Nassim Nicholas Taleb shows how the willingness to accept one’s own risks is an essential attribute of heroes, saints, and flourishing people in all walks of life.",
   },
   {
-    _id: "6099b07c6b1d082a00af22e6",
+    id: "6099b07c6b1d082a00af22e6",
     name: "Misbehaving: The Making of Behavioral Economics",
     author: "Richard H. Thaler",
     sku: "misbehaving",
@@ -109,7 +109,7 @@ export const products = [
   },
 
   {
-    _id: "6099b2596b1d082a00af22e7",
+    id: "6099b2596b1d082a00af22e7",
     name: "Thinking, Fast and Slow",
     author: "Daniel Kahneman",
     sku: "thinking fast and slow",
@@ -121,7 +121,7 @@ export const products = [
   },
 
   {
-    _id: "609a7fdbbc7958071ca94fac",
+    id: "609a7fdbbc7958071ca94fac",
     name: "Flash Boys: A Wall Street Revolt",
     author: "Michael Lewis",
     sku: "flash boys",
