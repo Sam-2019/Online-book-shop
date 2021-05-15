@@ -17,7 +17,8 @@
 .search-wrapper,
 .user-wrapper,
 .page-wrapper,
-.not-found-wrapper {
+.not-found-wrapper,
+.admin-wrapper {
   min-height: 100vh;
 }
 
