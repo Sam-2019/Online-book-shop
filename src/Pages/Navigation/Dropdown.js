@@ -18,7 +18,7 @@ export default function Dropdown() {
 
   return (
     <div className="menu-container">
-      <button onClick={onClick} className="menu-trigger">
+      <div onClick={onClick} className="menu-trigger">
         {/* <ProfilePhoto
           src={`https://okukus.com/${profileImage}`}
           className="User avatar"
@@ -32,7 +32,7 @@ export default function Dropdown() {
           width={breakpoint < width ? 30 : 20}
           height={breakpoint < width ? 30 : 20}
         />
-      </button>
+      </div>
 
       <nav
         ref={dropdownRef}
