@@ -132,7 +132,7 @@ const Login = () => {
             </span>
           </div>
 
-          {message ? <Message class_name="message " message={message} /> : null}
+          {message && <Message class_name="message " message={message} />}
 
           <Button
             name="Login"
@@ -141,7 +141,7 @@ const Login = () => {
             loading={loading}
           />
 
-          {width > breakpoint ? (
+          {width > breakpoint && (
             <Button
               name="Signup"
               class_name="secondary"
@@ -149,7 +149,7 @@ const Login = () => {
                 history.push("/signup");
               }}
             />
-          ) : null}
+          ) }
         </form>
       </div>
     </div>
