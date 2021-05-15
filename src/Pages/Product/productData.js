@@ -231,9 +231,9 @@ const Product = ({ results }) => {
               </div>
 
               <div className="review-box outline">
-                {width > 540 ? (
+                {width > 540 && (
                   <div className="product-title ">Ratings and Reviews</div>
-                ) : null}
+                ) }
 
                 {width > 540 ? null : (
                   <div className="product-title ">Reviews</div>
@@ -246,11 +246,11 @@ const Product = ({ results }) => {
                     </div>
                   )}
 
-                  {width > 540 ? (
+                  {width > 540 &&(
                     <div className="rating-stars">
                       <StarRating value={3.7} width={15} height={15} />
                     </div>
-                  ) : null}
+                  ) }
 
                   <div className="see-more">
                     <span
@@ -267,13 +267,13 @@ const Product = ({ results }) => {
               </div>
 
               <div>
-                {reviewData ? (
+                {reviewData && (
                   <>
                     {reviewData.slice(0, 2).map((item, index) => (
                       <ReviewItem key={index} {...item} />
                     ))}
                   </>
-                ) : null}
+                ) }
               </div>
             </div>
           </div>
@@ -293,11 +293,11 @@ const Product = ({ results }) => {
       )}
 
       <Summary>
-        {width > 540 ? (
+        {width > 540 && (
           <div className="addReview2 " onClick={reviewItem}>
             Add Review
           </div>
-        ) : null}
+        ) }
 
         <div className="product-action">
           <Button
