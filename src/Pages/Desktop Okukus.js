@@ -21,6 +21,7 @@ import Profile from "./User/Profile";
 import Review from "./Review/Review";
 import TagContent from "./Tags/Content";
 import NotFound from "./404/404";
+import Admin from "./Admin/Admin";
 
 function Desktop() {
   return (
@@ -36,6 +37,10 @@ function Content() {
     <Switch>
       <Route exact path="/">
         <Home />
+      </Route>
+
+      <Route path="/admin">
+        <Admin />
       </Route>
 
       <Route path="/checkout">
