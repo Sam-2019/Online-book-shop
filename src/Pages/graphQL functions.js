@@ -1,5 +1,36 @@
 import { gql } from "@apollo/client";
 
+export const ADD_PRODUCT = gql`
+  mutation AddProduct(
+    $name: String!
+    $sku: String!
+    $price: String!
+    $imageURL: String!
+    $quantity: Int!
+    $author: String!
+    $detail: String!
+  ) {
+    addProduct(
+      name: $name
+      sku: $sku
+      price: $price
+      imageURL: $imageURL
+      quantity: $quantity
+      author: $author
+      detail: $detail
+    ) {
+      id
+      name
+      sku
+      price
+      imageURL
+      quantity
+      author
+      detail
+    }
+  }
+`;
+
 export const GET_CART = gql`
   query Carts($id: ID!) {
     carts(id: $id) {
@@ -83,6 +114,14 @@ export const DELETE_CART = gql`
 export const DELETE_WISHLIST = gql`
   mutation DeleteWishlist($id: ID!) {
     deleteWishlist(id: $id) {
+      id
+    }
+  }
+`;
+
+export const DELETE_PRODUCT = gql`
+  mutation DeleteProduct($id: ID!) {
+    deleteProduct(id: $id) {
       id
     }
   }
