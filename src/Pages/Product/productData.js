@@ -280,7 +280,7 @@ const Product = ({ results }) => {
         </div>
       </div>
 
-      {review ? (
+      {review && (
         <PopUp close={() => addReview(false)}>
           <AddReview
             close={() => {
@@ -290,7 +290,7 @@ const Product = ({ results }) => {
             product={results.id}
           />
         </PopUp>
-      ) : null}
+      )}
 
       <Summary>
         {width > 540 ? (
