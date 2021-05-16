@@ -41,6 +41,7 @@ export const GET_CART = gql`
       price
       imageURL
       quantity
+      cartID
     }
   }
 `;
@@ -104,8 +105,8 @@ export const GET_PRODUCTS = gql`
 `;
 
 export const DELETE_CART = gql`
-  mutation DeleteCart($id: ID!) {
-    deleteCart(id: $id) {
+  mutation DeleteCart($id: ID!, $user: ID!) {
+    deleteCart(id: $id, user: $user) {
       id
     }
   }
