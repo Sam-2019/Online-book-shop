@@ -21,6 +21,8 @@ const CartItem = ({ id, sku, price, imageURL, quantity, handleToggle }) => {
   const [binFill, setBinFill] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
 
+  const user ="609bfb663aef9216e4528eed"
+
   const [count, setCount] = React.useState(Number(quantity));
 
   const [
@@ -51,6 +53,7 @@ const CartItem = ({ id, sku, price, imageURL, quantity, handleToggle }) => {
     deleteCart({
       variables: {
         id: String(id),
+        user: String(user)
       },
     });
 
