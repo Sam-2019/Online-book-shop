@@ -37,90 +37,6 @@ export const MediaQuery = () => {
   return { width };
 };
 
-// const dataFetchReducer = (state, action) => {
-//   switch (action.type) {
-//     case "FETCH_INIT":
-//       return {
-//         ...state,
-//         isLoading: true,
-//         isError: false,
-//       };
-//     case "FETCH_SUCCESS":
-//       return {
-//         ...state,
-//         isLoading: false,
-//         isError: false,
-//         data: action.payload,
-//       };
-//     case "FETCH_FAILURE":
-//       return {
-//         ...state,
-//         isLoading: false,
-//         isError: true,
-//       };
-//     default:
-//       throw new Error();
-//   }
-// };
-
-// export const useDataApi = (url, formData) => {
-//   const [state, dispatch] = useReducer(dataFetchReducer, {
-//     isLoading: false,
-//     isError: false,
-//     data: [],
-//   });
-
-//   useEffect(() => {
-//     let didCancel = false;
-
-//     const fetchData = async () => {
-//       dispatch({ type: "FETCH_INIT" });
-
-//       try {
-//         const { data } = await axiosMethod("post", url, formData);
-
-//         if (!didCancel) {
-//           dispatch({ type: "FETCH_SUCCESS", payload: data });
-//         }
-//       } catch (error) {
-//         if (!didCancel) {
-//           dispatch({ type: "FETCH_FAILURE" });
-//         }
-//       }
-//     };
-
-//     fetchData();
-
-//     return () => {
-//       didCancel = true;
-//     };
-//   }, []);
-
-//   return [state];
-// };
-
-//  dayjs.extend(relativeTime);
-
-// var dateData =dayjs("2013-03-10T02:00:00Z").fromNow() ;
-// console.log(dateData)
-
-// function myFunction() {
-//   var d = new Date();
-//   var n = d.toISOString();
-//   document.getElementById("demo").innerHTML = n;
-
-//   var date = new Date('2013-03-10T02:00:00Z').toLocaleString();
-//    document.getElementById("demo2").innerHTML =date;
-
-//    var d = new Date();
-
-// document.write('Today is: ' + d.toLocaleString());
-
-// d.setDate(d.getDate() - 5);
-
-// document.write('<br>5 days ago was: ' + d.toLocaleString());
-// }
-
 export const useAsync = (url, formData) => {
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState();
@@ -227,7 +143,7 @@ export function useLocalStorage(key, initialValue) {
       // Get from local storage by key
       const item = window.localStorage.getItem(key);
       // Parse stored json or if none return initialValue
-      return item ? JSON.parse(item) : initialValue;
+      return item ? item : initialValue;
     } catch (error) {
       // If error also return initialValue
       console.log(error);
@@ -244,7 +160,7 @@ export function useLocalStorage(key, initialValue) {
       // Save state
       setStoredValue(valueToStore);
       // Save to local storage
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      window.localStorage.setItem(key, valueToStore);
     } catch (error) {
       // A more advanced implementation would handle the error case
       console.log(error);
