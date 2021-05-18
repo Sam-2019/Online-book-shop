@@ -34,7 +34,7 @@ export const ADD_PRODUCT = gql`
 export const GET_CART = gql`
   query Carts($id: ID!) {
     carts(id: $id) {
-      id
+      cartID
       sku
       name
       author
@@ -124,6 +124,38 @@ export const DELETE_PRODUCT = gql`
   mutation DeleteProduct($id: ID!) {
     deleteProduct(id: $id) {
       id
+    }
+  }
+`;
+
+export const SIGNUP = gql`
+  mutation Signup(
+    $password: String!
+    $first_name: String!
+    $last_name: String!
+    $email: String!
+  ) {
+    signup(
+      password: $password
+      first_name: $first_name
+      last_name: $last_name
+      email: $email
+    ) {
+      id
+      password
+      first_name
+      last_name
+      email
+    }
+  }
+`;
+
+export const LOGIN = gql`
+  query Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      user
+      token
+      tokenexpiration
     }
   }
 `;
