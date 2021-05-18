@@ -18,7 +18,7 @@ const AppBackgroundColour = styled.div`
 `;
 
 const client = new ApolloClient({
-  uri: "http://localhost:5000/graphql",
+  uri: "https://new-ecommerce-be.herokuapp.com/graphql",
   cache: new InMemoryCache(),
 });
 
