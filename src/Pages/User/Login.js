@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useLazyQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
@@ -7,6 +7,7 @@ import Button from "../Components/Button";
 import Message from "../Components/Message";
 import { EyeShow, EyeHide } from "../Components/Eye";
 import { MediaQuery } from "../helper";
+import { LOGIN } from "../graphQL functions";
 
 import "./user.css";
 
@@ -23,6 +24,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const [show, hide] = useState("password");
+
+  const [loginUser, { error, data }] = useLazyQuery(LOGIN);
 
   let type;
 
@@ -51,14 +54,16 @@ const Login = () => {
     }
 
     if (empty !== "") {
-      setLoading(true);
-
       try {
-      } catch (error) {
-        console.error(error);
-      } finally {
-        clearLogin();
-        setLoading(false);
+        loginUser({ variables: { email, password } });
+
+        if (data) {
+          localStorage.setItem("loginToken", data.login.token);
+          localStorage.setItem("uniqueID", data.login.user);
+          clearLogin();
+        }
+      } catch (err) {
+        console.log(err);
       }
     }
   };
@@ -149,10 +154,11 @@ const Login = () => {
                 history.push("/signup");
               }}
             />
-          ) }
+          )}
         </form>
       </div>
     </div>
   );
 };
+
 export default Login;
