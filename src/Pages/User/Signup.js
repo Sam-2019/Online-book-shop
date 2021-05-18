@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-
+import { useMutation } from "@apollo/client";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
@@ -8,6 +8,8 @@ import { EyeShow, EyeHide } from "../Components/Eye";
 import Message from "../Components/Message";
 import { MediaQuery } from "../helper";
 import "./user.css";
+
+import { SIGNUP } from "../graphQL functions";
 
 const Signup = () => {
   let history = useHistory();
@@ -18,8 +20,7 @@ const Signup = () => {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [password0, setPassword0] = useState("");
-  const [password1, setPassword1] = useState("");
+  const [password, setPassword] = useState("");
 
   const [message, setMessage] = useState("");
 
@@ -34,19 +35,21 @@ const Signup = () => {
       type = "password";
   }
 
+  const [signup, { loading: Loading, error: Error, data: Data }] =
+    useMutation(SIGNUP);
+
   const clearSignup = () => {
     setFirstName("");
     setLastName("");
     setEmail("");
-    setPassword0("");
-    setPassword1("");
+    setPassword("");
   };
 
   const signUp = async (event) => {
     event.preventDefault();
 
     setMessage("");
-    let empty = firstname && lastname && email && password0 && password1;
+    let empty = firstname && lastname && email && password;
 
     if (empty === "") {
       setMessage("Please fill the form");
@@ -56,6 +59,14 @@ const Signup = () => {
       setLoading(true);
 
       try {
+        signup({
+          variables: {
+            password: String(password),
+            first_name: String(firstname),
+            last_name: String(lastname),
+            email: String(email),
+          },
+        });
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -117,8 +128,8 @@ const Signup = () => {
           <Input
             class_name="input"
             placeholder="Password"
-            action={(e) => setPassword0(e.target.value)}
-            value={password0}
+            action={(e) => setPassword(e.target.value)}
+            value={password}
             autocomplete="Password"
             type={type}
           />
@@ -138,15 +149,6 @@ const Signup = () => {
               />
             )}
           </div>
-
-          <Input
-            class_name="input "
-            placeholder="Confirm Password"
-            action={(e) => setPassword1(e.target.value)}
-            value={password1}
-            autocomplete="Confirm Password"
-            type={type}
-          />
 
           {message ? <Message class_name="message " message={message} /> : null}
 
