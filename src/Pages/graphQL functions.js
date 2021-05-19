@@ -30,22 +30,6 @@ export const ADD_PRODUCT = gql`
     }
   }
 `;
-
-export const GET_CART = gql`
-  query Carts($id: ID!) {
-    carts(id: $id) {
-      cartID
-      sku
-      name
-      author
-      price
-      imageURL
-      quantity
-      cartID
-    }
-  }
-`;
-
 export const GET_PRODUCT = gql`
   query Product($sku: String!) {
     product(sku: $sku) {
@@ -57,6 +41,25 @@ export const GET_PRODUCT = gql`
       imageURL
       quantity
       detail
+    }
+  }
+`;
+export const GET_PRODUCTS = gql`
+  query {
+    products {
+      id
+      name
+      sku
+      price
+      imageURL
+    }
+  }
+`;
+
+export const DELETE_PRODUCT = gql`
+  mutation DeleteProduct($id: ID!) {
+    deleteProduct(id: $id) {
+      id
     }
   }
 `;
@@ -82,24 +85,17 @@ export const ADD_CART = gql`
   }
 `;
 
-export const ADD_WISHLIST = gql`
-  mutation AddWishlist($user: ID!, $product: ID!) {
-    addWishlist(user: $user, product: $product) {
-      id
-      user
-      product
-    }
-  }
-`;
-
-export const GET_PRODUCTS = gql`
-  query {
-    products {
-      id
-      name
+export const GET_CART = gql`
+  query Carts($id: ID!) {
+    carts(id: $id) {
+      cartID
+      productID
       sku
+      name
+      author
       price
       imageURL
+      quantity
     }
   }
 `;
@@ -107,22 +103,6 @@ export const GET_PRODUCTS = gql`
 export const DELETE_CART = gql`
   mutation DeleteCart($id: ID!, $user: ID!) {
     deleteCart(id: $id, user: $user) {
-      id
-    }
-  }
-`;
-
-export const DELETE_WISHLIST = gql`
-  mutation DeleteWishlist($id: ID!) {
-    deleteWishlist(id: $id) {
-      id
-    }
-  }
-`;
-
-export const DELETE_PRODUCT = gql`
-  mutation DeleteProduct($id: ID!) {
-    deleteProduct(id: $id) {
       id
     }
   }
@@ -156,6 +136,36 @@ export const LOGIN = gql`
       user
       token
       tokenexpiration
+    }
+  }
+`;
+
+export const ADD_WISHLIST = gql`
+  mutation AddWishlist($user: ID!, $product: ID!) {
+    addWishlist(user: $user, product: $product) {
+      id
+      user
+      product
+    }
+  }
+`;
+
+export const GET_WISHLIST = gql`
+  query Wishlist($id: ID!) {
+    wishlist(id: $id) {
+      wishID
+      productID
+      name
+      sku
+      price
+    }
+  }
+`;
+
+export const DELETE_WISHLIST = gql`
+  mutation DeleteWishlist($id: ID!) {
+    deleteWishlist(id: $id) {
+      id
     }
   }
 `;
