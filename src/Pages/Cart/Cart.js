@@ -1,10 +1,8 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { useHistory } from "react-router-dom";
 
 import Back from "../Components/Back";
-import Button from "../Components/Button";
-import Summary from "../Summary/Summary";
+
 import CartData from "./cartData";
 
 import "./cart.css";
@@ -20,21 +18,40 @@ const Cart = () => {
 
   const id = String(uniqueID);
 
-  console.log(id);
-
   const { loading, error, data, refetch } = useQuery(GET_CART, {
     variables: { id },
   });
 
-  console.log(data);
+  let view;
 
-  let history = useHistory();
+  if (data === undefined) {
+    return (
+      <SVGcontainer>
+        <EmptyCart />
+        <p className="text-3">
+          No item in <b>your</b> cart yet!
+        </p>
+      </SVGcontainer>
+    );
+  }
 
-  const array = new Uint32Array(1);
-  const index = window.crypto.getRandomValues(array);
+  if (data.carts.length === 0) {
+    view = (
+      <SVGcontainer>
+        <EmptyCart />
+        <p className="text-3">
+          No item in <b>your</b> cart yet!
+        </p>
+      </SVGcontainer>
+    );
+  }
 
-  function orderItem() {
-    history.push(`/order/${index[0]}`);
+  if (data.carts.length > 0) {
+    view = (
+      <div className="">
+        <CartData data={data.carts} refetch={refetch} />
+      </div>
+    );
   }
 
   return (
@@ -48,29 +65,7 @@ const Cart = () => {
         </div>
       </div>
 
-      <div className="main">
-        {loading ? (
-          <SVGcontainer>
-            <EmptyCart />
-            <p className="text-3">
-              No item in <b>your</b> cart yet!
-            </p>
-          </SVGcontainer>
-        ) : (
-          <CartData data={data.carts} refetch={refetch} />
-        )}
-      </div>
-
-      <Summary>
-        <div className="amountX">
-          <div className="amount">Total: $100</div>
-        </div>
-        <Button
-          class_name="checkout"
-          name={`Check Out  (${products.length})`}
-          action={orderItem}
-        />
-      </Summary>
+      <div>{view}</div>
     </div>
   );
 };
