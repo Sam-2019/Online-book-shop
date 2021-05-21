@@ -12,16 +12,25 @@ import LoveFill from "../Components/LoveFill";
 import PopUp from "../Components/Popup";
 import { ConfirmDelete } from "../styles";
 import { DELETE_CART, ADD_WISHLIST } from "../graphQL functions";
+import { useData } from "../Context";
 import "./cartItem.css";
 
 toast.configure();
 
-const CartItem = ({ id, sku, price, imageURL, quantity, handleToggle, cartID }) => {
+const CartItem = ({
+  productID,
+  sku,
+  price,
+  imageURL,
+  quantity,
+  handleToggle,
+  cartID,
+  refetch,
+}) => {
   const [loveFill, setLoveFill] = React.useState(false);
   const [binFill, setBinFill] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
-
-  const user = "609bfb663aef9216e4528eed";
+  const { uniqueID } = useData();
 
   const [count, setCount] = React.useState(Number(quantity));
 
@@ -53,7 +62,7 @@ const CartItem = ({ id, sku, price, imageURL, quantity, handleToggle, cartID }) 
     deleteCart({
       variables: {
         id: String(cartID),
-        user: String(user),
+        user: String(uniqueID),
       },
     });
 
@@ -63,9 +72,11 @@ const CartItem = ({ id, sku, price, imageURL, quantity, handleToggle, cartID }) 
 
     const timer = setTimeout(() => {
       setBinFill(false);
+      setConfirm(false);
       toast.success("Item deleted");
+      refetch();
     }, 1000);
-    setConfirm(true);
+
     return () => clearTimeout(timer);
   };
 
@@ -75,8 +86,8 @@ const CartItem = ({ id, sku, price, imageURL, quantity, handleToggle, cartID }) 
 
     addWishlist({
       variables: {
-        user: "609bfb663aef9216e4528eed",
-        product: String(id),
+        user: String(uniqueID),
+        product: String(productID),
       },
     });
 
@@ -111,9 +122,9 @@ const CartItem = ({ id, sku, price, imageURL, quantity, handleToggle, cartID }) 
       <div className="cart_item_wrapper">
         <div className="checkBox">
           <input
-            onChange={handleToggle(id)}
+            onChange={handleToggle(productID)}
             type="checkbox"
-            value={id}
+            value={productID}
             id={sku}
             name={sku}
             className="checker"
