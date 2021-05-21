@@ -158,6 +158,7 @@ export const GET_WISHLIST = gql`
       name
       sku
       price
+      imageURL
     }
   }
 `;
@@ -165,6 +166,49 @@ export const GET_WISHLIST = gql`
 export const DELETE_WISHLIST = gql`
   mutation DeleteWishlist($id: ID!) {
     deleteWishlist(id: $id) {
+      id
+    }
+  }
+`;
+
+export const ADD_ORDER = gql`
+  mutation AddOrder(
+    $user: ID!
+    $products: [ID]
+    $orderNumber: String
+    $orderValue: String
+  ) {
+    addOrder(
+      user: $user
+      products: $products
+      orderNumber: $orderNumber
+      orderValue: $orderValue
+    ) {
+      id
+      user
+      orderNumber
+      orderValue
+    }
+  }
+`;
+
+export const GET_ORDER = gql`
+  query UserOrder($id: ID!) {
+    userOrder(id: $id) {
+      id
+      name
+      sku
+      status
+      quantity
+      price
+      imageURL
+    }
+  }
+`;
+
+export const DELETE_ORDER = gql`
+  mutation DeleteOrder($id: ID!) {
+    deleteOrder(id: $id) {
       id
     }
   }
