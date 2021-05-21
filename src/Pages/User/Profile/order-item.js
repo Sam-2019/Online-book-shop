@@ -4,12 +4,11 @@ import { toast } from "react-toastify";
 import Button from "../../Components/Button";
 import PopUp from "../../Components/Popup";
 import { ConfirmDelete } from "../../styles";
-import { okukus } from "../../endpoints";
 import "./orderitem.css";
 
 toast.configure();
 
-const OrderItem = ({ cover_photo_url, amount, product_name, status }) => {
+const OrderItem = ({ imageURL, price, name, status, sku, quantity }) => {
   const [confirm, setConfirm] = React.useState(false);
   let statusColorX;
   let show;
@@ -56,19 +55,19 @@ const OrderItem = ({ cover_photo_url, amount, product_name, status }) => {
         <div className="order-imageXname">
           <div className="image-placeholder  loading">
             <img
-              src={`${okukus}/${cover_photo_url}`}
+              src={imageURL}
               alt="peecha"
               className="image-placeholder-original"
             />
           </div>
 
           <div className="order-item-name-price-quantity ">
-            <div className="order-item-name">{product_name}</div>
+            <div className="order-item-name">{name}</div>
 
             <div className="order-Item-price-quantity">
-              <div className="order-item-price">GHc ₵{amount}</div>
+              <div className="order-item-price">GHc ₵{price}</div>
 
-              <div className="order-item-price">Quantity</div>
+              <div className="order-item-price">{quantity}</div>
             </div>
           </div>
         </div>
