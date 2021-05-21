@@ -8,6 +8,7 @@ import Message from "../Components/Message";
 import { EyeShow, EyeHide } from "../Components/Eye";
 import { MediaQuery } from "../helper";
 import { LOGIN } from "../graphQL functions";
+import { useData } from "../Context";
 
 import "./user.css";
 
@@ -16,6 +17,7 @@ const Login = () => {
 
   const breakpoint = 540;
   const { width } = MediaQuery();
+  const { login } = useData();
 
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
@@ -57,9 +59,10 @@ const Login = () => {
       try {
         loginUser({ variables: { email, password } });
 
+        console.log(data);
+
         if (data) {
-          localStorage.setItem("loginToken", data.login.token);
-          localStorage.setItem("uniqueID", data.login.user);
+          login(data);
           clearLogin();
         }
       } catch (err) {
