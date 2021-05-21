@@ -85,7 +85,7 @@ const Product = ({ results }) => {
       variables: {
         user: String(uniqueID),
         product: String(results.id),
-        quantity: String(results.quantity),
+        quantity: String(1),
         price: String(results.price),
       },
     });
@@ -103,7 +103,7 @@ const Product = ({ results }) => {
 
     addWishlist({
       variables: {
-        user: "609bfb663aef9216e4528eed",
+        user: String(uniqueID),
         product: String(results.id),
       },
     });
@@ -233,7 +233,7 @@ const Product = ({ results }) => {
               <div className="review-box outline">
                 {width > 540 && (
                   <div className="product-title ">Ratings and Reviews</div>
-                ) }
+                )}
 
                 {width > 540 ? null : (
                   <div className="product-title ">Reviews</div>
@@ -246,11 +246,11 @@ const Product = ({ results }) => {
                     </div>
                   )}
 
-                  {width > 540 &&(
+                  {width > 540 && (
                     <div className="rating-stars">
                       <StarRating value={3.7} width={15} height={15} />
                     </div>
-                  ) }
+                  )}
 
                   <div className="see-more">
                     <span
@@ -273,7 +273,7 @@ const Product = ({ results }) => {
                       <ReviewItem key={index} {...item} />
                     ))}
                   </>
-                ) }
+                )}
               </div>
             </div>
           </div>
@@ -297,7 +297,7 @@ const Product = ({ results }) => {
           <div className="addReview2 " onClick={reviewItem}>
             Add Review
           </div>
-        ) }
+        )}
 
         <div className="product-action">
           <Button
