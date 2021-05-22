@@ -23,7 +23,7 @@ const ProductsItem = ({ id, name, price, imageURL, sku, quantity }) => {
       variables: {
         user: String(uniqueID),
         product: String(id),
-        quantity: String(quantity),
+        quantity: String(1),
         price: String(price),
       },
     });
