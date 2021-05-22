@@ -1,15 +1,14 @@
 import React from "react";
-import { useQuery, useMutation } from "@apollo/client";
-import { GET_PRODUCTS, DELETE_PRODUCT } from "../graphQL functions";
+import { useMutation } from "@apollo/client";
+import { DELETE_PRODUCT } from "../graphQL functions";
 
-const AllBooks = ({ closeform }) => {
-  const { loading, error, data } = useQuery(GET_PRODUCTS);
-
-  console.log(data);
+const AllBooks = ({ closeform, data }) => {
 
   return (
     <div id="admin-form-wrapper">
-      <Products data={data} />
+      <div className="product-container">
+        <Products data={data} />
+      </div>
 
       <div className="button-wrapper">
         <button onClick={closeform} className="cancelForm-button">
@@ -22,7 +21,7 @@ const AllBooks = ({ closeform }) => {
 
 export default AllBooks;
 
-const Products = async ({ data }) => {
+const Products = ({ data }) => {
   const content = data.products;
 
   return (

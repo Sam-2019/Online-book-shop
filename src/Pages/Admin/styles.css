@@ -29,6 +29,7 @@
   animation-fill-mode: forwards;
   display: flex;
   align-content: center;
+  flex-direction: column;
 }
 
 #admin-form {
@@ -69,7 +70,6 @@
   border: 1px solid #00d919;
   color: #ffffff;
   margin-right: 10px;
-
 }
 
 .cancelForm-button {
@@ -78,15 +78,25 @@
   color: #00d919;
 }
 
-.book-image{
-    width: 50px;
-
+.book-image {
+  width: 50px;
 }
 
-.product-view{
-    border: 1px solid red;
+.product-view {
 }
 
-.product-item{
-    border: 1px solid red;
+.product-item {
+}
+
+.product-container {
+  background-color: antiquewhite;
+  padding: 8px 0 0 0;
+
+  display: grid;
+  /* grid-template-columns: 25% 25% 25% 25% ;
+  padding-right: 10px;
+  padding-top: 10px; */
+
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
 }
