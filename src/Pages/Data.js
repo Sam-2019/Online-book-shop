@@ -25,9 +25,19 @@ const Data = () => {
     setProfileImage("");
   }
 
+  async function login(data) {
+    await localStorage.setItem("loginToken", data.login.token);
+    await localStorage.setItem("uniqueID", data.login.user);
+
+    if (data){
+      setAuth()
+    }
+  }
+
   return {
     auth,
     logoutUser,
+    login,
 
     firstName,
     lastName,
