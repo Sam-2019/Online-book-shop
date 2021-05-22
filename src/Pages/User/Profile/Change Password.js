@@ -1,25 +1,24 @@
 import React, { useState } from "react";
-
+import { useMutation } from "@apollo/client";
 import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
 import { EyeShow, EyeHide } from "../../Components/Eye";
-import { userPasswordUpdate } from "../../endpoints";
-import { fetch } from "../../helper";
 import { useData } from "../../Context";
 import "./change.css";
+import { UPDATE_PASSWORD } from "../../graphQL functions";
 
 const ChangePassword = ({ close }) => {
-
-
   const [show, hide] = React.useState("password");
-
-  const [loading, setLoading] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
 
+  const { uniqueID } = useData();
+
+  const [updatePassword, { loading, error, data }] =
+    useMutation(UPDATE_PASSWORD);
 
   let type;
 
@@ -31,35 +30,38 @@ const ChangePassword = ({ close }) => {
       type = "password";
   }
 
-  const reset = () => {
+  const clear = () => {
     setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");
   };
 
-  const updatePassword = async (event) => {
-    setMessage();
+  const update = async (event) => {
+    setMessage("");
     event.preventDefault();
-
 
     let empty = currentPassword && newPassword && confirmPassword;
 
     if (empty === "") {
-      setMessage("Please fill the form");
+      return setMessage("Please fill the form");
     }
 
-    if (empty !== "") {
-      setLoading(true);
+    if (newPassword !== confirmPassword) {
+      return setMessage("Password mismatch");
+    }
 
+    if (newPassword === confirmPassword) {
+      await updatePassword({
+        variables: {
+          id: String(uniqueID),
+          password: String(currentPassword),
+          new_password: String(newPassword),
+          confirm_password: String(confirmPassword),
+        },
+      });
 
-      try {
-
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        reset();
-
+      if (loading === false) {
+        clear();
       }
     }
   };
@@ -114,7 +116,7 @@ const ChangePassword = ({ close }) => {
       <Button
         class_name="primary"
         name="Update"
-        action={updatePassword}
+        action={update}
         loading={loading}
       />
 
