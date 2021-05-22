@@ -48,7 +48,7 @@ const CartData = ({ data, refetch }) => {
     // var data = formData.get("categories");
   };
 
- // console.log(checked);
+//  console.log(checked);
 
   const [
     addOrder,
@@ -63,8 +63,8 @@ const CartData = ({ data, refetch }) => {
       variables: {
         user: String(uniqueID),
         products: checked,
-        orderNumber: index,
-        orderValue: index,
+        orderNumber: String(index),
+        orderValue: String(index),
       },
     });
 
