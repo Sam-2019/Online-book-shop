@@ -213,3 +213,97 @@ export const DELETE_ORDER = gql`
     }
   }
 `;
+export const UPDATE_USER = gql`
+  mutation UpdateUser(
+    $id: ID!
+    $password: String
+    $username: String
+    $first_name: String
+    $last_name: String
+    $email: String
+    $phone_number: String
+  ) {
+    updateUser(
+      id: $id
+      password: $password
+      username: $username
+      first_name: $first_name
+      last_name: $last_name
+      email: $email
+      phone_number: $phone_number
+    ) {
+      id
+      username
+      password
+      last_name
+      last_name
+      email
+      photoURL
+      phone_number
+      verified
+    }
+  }
+`;
+
+export const UPDATE_NAME = gql`
+  mutation UpdateUserName($id: ID!, $first_name: String, $last_name: String) {
+    updateUserName(id: $id, first_name: $first_name, last_name: $last_name) {
+      id
+      first_name
+      last_name
+    }
+  }
+`;
+
+export const UPDATE_PASSWORD = gql`
+  mutation UpdateUserPassword($id: ID!, $password: String) {
+    updateUserPassword(id: $id, password: $password) {
+      id
+      password
+    }
+  }
+`;
+
+export const UPDATE_EMAIL = gql`
+  mutation UpdateUserEmail($id: ID!, $email: String, $new_email: String) {
+    updateUserEmail(id: $id, email: $email, new_email: $new_email) {
+      id
+      email
+    }
+  }
+`;
+export const UPDATE_USERNAME = gql`
+  mutation UpdateUserDetail($id: ID!, $username: String) {
+    updateUserDetail(id: $id, username: $username) {
+      id
+      username
+    }
+  }
+`;
+
+export const UPDATE_PHONE_NUMBER = gql`
+  mutation UpdateUserDetail($id: ID!, $phone_number: String) {
+    updateUserDetail(id: $id, phone_number: $phone_number) {
+      id
+      phone_number
+    }
+  }
+`;
+
+export const UPDATE_VERIFICATION = gql`
+  mutation UpdateUserDetail($id: ID!, $verified: Boolean) {
+    updateUserDetail(id: $id, verified: $verified) {
+      id
+      verified
+    }
+  }
+`;
+
+export const UPDATE_PHOTOURL = gql`
+  mutation UpdateUserDetail($id: ID!, $photoURL: String) {
+    updateUserDetail(id: $id, photoURL: $photoURL) {
+      id
+      photoURL
+    }
+  }
+`;
