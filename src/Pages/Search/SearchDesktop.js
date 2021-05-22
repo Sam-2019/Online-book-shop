@@ -3,8 +3,6 @@ import { useLocation } from "react-router-dom";
 import SearchData from "./searchData";
 import NoResult from "./No Result";
 import Placeholder from "../Placeholders/Products";
-import { useAsync2 } from "../helper";
-import { itemSearch } from "../endpoints";
 import "./search.css";
 
 const Search = () => {
@@ -12,7 +10,7 @@ const Search = () => {
 
   //const formData = React.useMemo(() => new FormData(), []);
 
-  const result = useAsync2("search_phrase", itemSearch, desktopQuery);
+
 
   return (
     <div className="search-wrapper ">
