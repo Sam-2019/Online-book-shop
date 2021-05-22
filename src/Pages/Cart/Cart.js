@@ -6,7 +6,6 @@ import Back from "../Components/Back";
 import CartData from "./cartData";
 
 import "./cart.css";
-import { products } from "../jsdata";
 import { GET_CART } from "../graphQL functions";
 
 import SVGcontainer from "../SVGs/SVGcontainer";
@@ -26,12 +25,25 @@ const Cart = () => {
 
   if (data === undefined) {
     return (
-      <SVGcontainer>
-        <EmptyCart />
-        <p className="text-3">
-          No item in <b>your</b> cart yet!
-        </p>
-      </SVGcontainer>
+      <div className="cart-wrapper">
+        <div className="header">
+          <div className="category">
+            <div className="object-1">
+              <Back width={30} height={30} />
+            </div>
+            <div className="object-2"> Cart </div>
+          </div>
+        </div>
+
+        <div>
+          <SVGcontainer>
+            <EmptyCart />
+            <p className="text-3">
+              No item in <b>your</b> cart yet!
+            </p>
+          </SVGcontainer>
+        </div>
+      </div>
     );
   }
 
