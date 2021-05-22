@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-
+import { useMutation } from "@apollo/client";
 import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
 
+import { UPDATE_NAME } from "../../graphQL functions";
+import { useData } from "../../Context";
+
 import "./change.css";
 
 const ChangeName = ({ close }) => {
-
-
-  const [loading, setLoading] = useState(false);
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [message, setMessage] = useState("");
 
+  const { uniqueID } = useData();
+
+  const [updateName, { loading, error, data }] = useMutation(UPDATE_NAME);
 
   const clear = () => {
     setFirstName("");
@@ -27,22 +30,19 @@ const ChangeName = ({ close }) => {
     let empty = first_name && last_name;
 
     if (empty === "") {
-      setMessage("Please fill the form");
+      return setMessage("Please fill the form");
     }
 
-    if (empty !== "") {
-      setLoading(true);
+    await updateName({
+      variables: {
+        id: String(uniqueID),
+        first_name: String(first_name),
+        last_name: String(last_name),
+      },
+    });
 
-
-      try {
-
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        clear();
-
-      }
+    if (loading === false) {
+      clear();
     }
   };
 
@@ -77,4 +77,4 @@ const ChangeName = ({ close }) => {
   );
 };
 
-export default ChangeName
+export default ChangeName;
