@@ -7,8 +7,7 @@ import SearchData from "./searchData";
 import SearchBox from "./Searchbox";
 
 import Placeholder from "../Placeholders/Products";
-import { MediaQuery, axiosMethod } from "../helper";
-import { itemSearch } from "../endpoints";
+import { MediaQuery } from "../helper";
 import SearchSVG from "../SVGs/new-search";
 import SVGContainer from "../SVGs/SVGcontainer";
 import NoResult from "./No Result";
@@ -32,29 +31,12 @@ const Search = () => {
   const formData = React.useMemo(() => new FormData(), []);
   formData.set("search_phrase", desktopQuery);
 
-  const find = async () => {
-    setLoading(true);
-    if (query === "") {
-      // alert();
-    } else {
-      history.push(`/search?q=${searchItem}`);
-
-      const { data } = await axiosMethod("post", itemSearch, formData);
-
-      if (data) {
-        setMessage(data.message);
-        setQuery(data.data);
-        setLoading(false);
-      }
-    }
-  };
-
   switch (message) {
     case "no results found":
       activePage = <NoResult />;
       break;
     case "results found":
-      activePage = <SearchData data={query} />;
+      activePage = <SearchData />;
       break;
     default:
       activePage = (
@@ -73,9 +55,9 @@ const Search = () => {
             <div className="object-1">
               <Back width={30} height={30} />
             </div>
-            <div className="category2 ">
+            <div className="category2">
               <SearchBox
-                action={find}
+                action
                 input={searchItem}
                 setInput={(e) => setSearchItem(e.target.value)}
               />
