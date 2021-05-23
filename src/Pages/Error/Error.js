@@ -2,7 +2,7 @@ import React from "react";
 import Share from "../Components/Share";
 import Back from "../Components/Back";
 
-const ProductError = (message) => {
+const ProductError = ({ children }) => {
   return (
     <div className="product-wrapper">
       <div className="header">
@@ -23,7 +23,7 @@ const ProductError = (message) => {
       <div className="main">
         <div className="wrapper">
           <div className="product-body">
-            <div className="product-detail  ">{`Error! ${message}`}</div>
+            <div className="product-detail">{children}</div>
           </div>
         </div>
       </div>
