@@ -1,5 +1,15 @@
 import { gql } from "@apollo/client";
 
+export const SEARCH = gql`
+  query Search($text: String!) {
+    search(text: $text) {
+      id
+      name
+      author
+    }
+  }
+`;
+
 export const ADD_PRODUCT = gql`
   mutation AddProduct(
     $name: String!
@@ -44,6 +54,7 @@ export const GET_PRODUCT = gql`
     }
   }
 `;
+
 export const GET_PRODUCTS = gql`
   query {
     products {
