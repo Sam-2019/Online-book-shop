@@ -11,7 +11,7 @@ const Search = () => {
   const desktopQuery = new URLSearchParams(useLocation().search).get("q");
   const text = String(desktopQuery);
 
-  const { loading, error, data, refetch, networkStatus } = useQuery(SEARCH, {
+  const { loading, data } = useQuery(SEARCH, {
     variables: { text },
   });
 
