@@ -6,6 +6,9 @@ export const SEARCH = gql`
       id
       name
       author
+      price
+      imageURL
+      sku
     }
   }
 `;
