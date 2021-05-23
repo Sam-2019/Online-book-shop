@@ -86,8 +86,7 @@ const Search = () => {
       </div>
     );
   }
-
-  if (loading === true) {
+  if (loading) {
     view = <Placeholder />;
   }
 
