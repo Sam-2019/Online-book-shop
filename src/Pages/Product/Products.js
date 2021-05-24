@@ -1,5 +1,5 @@
-import React from "react";
-import { useQuery} from "@apollo/client";
+import React, { useState } from "react";
+import { useQuery } from "@apollo/client";
 import ProductsItem from "./productsItem";
 import Placeholder from "../Placeholders/Products";
 import {
@@ -15,7 +15,32 @@ import "./products.css";
 import { GET_PRODUCTS } from "../graphQL functions";
 
 const Products = () => {
-  const { loading, error, data } = useQuery(GET_PRODUCTS);
+  const [count, setCount] = useState(1);
+  let limit = 0;
+
+  const { loading, data, fetchMore, error } = useQuery(GET_PRODUCTS, {
+    variables: {
+      offset: count,
+      limit: 12,
+    },
+  });
+
+  const [state, setState] = useState(0);
+
+  const increment = () => {
+    setCount((c) => c + 1);
+
+    setState((c) => c + 12);
+  };
+
+  //console.log(state);
+
+  const decrement = () => {
+    if (count <= 1) {
+      return;
+    }
+    return setCount((c) => c - 1);
+  };
 
   if (loading)
     return (
@@ -35,7 +60,7 @@ const Products = () => {
     <Loading>
       {data && (
         <div className="products">
-          {data.products.map((items, index) => (
+          {data.products.data.map((items, index) => (
             <ProductsItem key={index} {...items} />
           ))}
         </div>
@@ -45,7 +70,7 @@ const Products = () => {
 
       <Navigator>
         <NavigatorActions>
-          <Previous>
+          <Previous onClick={decrement}>
             <svg
               width="24px"
               height="24px"
@@ -59,8 +84,8 @@ const Products = () => {
               />
             </svg>
           </Previous>
-          <CurrentPage>1</CurrentPage>
-          <Next>
+          <CurrentPage>{count}</CurrentPage>
+          <Next onClick={increment}>
             <svg
               width="24px"
               height="24px"
