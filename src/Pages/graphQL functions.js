@@ -43,6 +43,7 @@ export const ADD_PRODUCT = gql`
     }
   }
 `;
+
 export const GET_PRODUCT = gql`
   query Product($sku: String!) {
     product(sku: $sku) {
@@ -230,6 +231,7 @@ export const DELETE_ORDER = gql`
     }
   }
 `;
+
 export const UPDATE_USER = gql`
   mutation UpdateUser(
     $id: ID!
@@ -297,6 +299,7 @@ export const UPDATE_EMAIL = gql`
     }
   }
 `;
+
 export const UPDATE_USERNAME = gql`
   mutation UpdateUserDetail($id: ID!, $username: String) {
     updateUserDetail(id: $id, username: $username) {
@@ -338,6 +341,14 @@ export const GET_USER = gql`
     user(id: $id) {
       id
       verified
+    }
+  }
+`;
+
+export const ADD_REVIEW = gql`
+  mutation AddReview($user: ID!, $product: ID!, $rating: Int!, $text: String!) {
+    addReview(user: $user, product: $product, rating: $rating, text: $text) {
+      id
     }
   }
 `;
