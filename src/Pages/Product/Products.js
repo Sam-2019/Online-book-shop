@@ -16,24 +16,26 @@ import { GET_PRODUCTS } from "../graphQL functions";
 
 const Products = () => {
   const [count, setCount] = useState(1);
-  let limit = 0;
+  let limit = 12;
 
-  const { loading, data, fetchMore, error } = useQuery(GET_PRODUCTS, {
+  const { loading, data, error } = useQuery(GET_PRODUCTS, {
     variables: {
       offset: count,
       limit: 12,
     },
   });
 
-  const [state, setState] = useState(0);
+  const [state, setState] = useState(limit);
 
   const increment = () => {
+    if (state > data.products.count) {
+      return;
+    }
+
     setCount((c) => c + 1);
 
     setState((c) => c + 12);
   };
-
-  //console.log(state);
 
   const decrement = () => {
     if (count <= 1) {
@@ -58,13 +60,11 @@ const Products = () => {
 
   return (
     <Loading>
-      {data && (
-        <div className="products">
-          {data.products.data.map((items, index) => (
-            <ProductsItem key={index} {...items} />
-          ))}
-        </div>
-      )}
+      <div className="products">
+        {data.products.data.map((items, index) => (
+          <ProductsItem key={index} {...items} />
+        ))}
+      </div>
 
       <Spacer />
 
