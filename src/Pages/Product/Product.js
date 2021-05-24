@@ -16,8 +16,6 @@ const Product = () => {
     variables: { sku: sku },
   });
 
-  console.log(data);
-
   if (loading) return <Placeholder />;
   if (error) return <Error>{`Error! ${error}`}</Error>;
 
