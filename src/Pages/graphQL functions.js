@@ -59,13 +59,16 @@ export const GET_PRODUCT = gql`
 `;
 
 export const GET_PRODUCTS = gql`
-  query {
-    products {
-      id
-      name
-      sku
-      price
-      imageURL
+  query Data($limit: Int!, $offset: Int!) {
+    products(limit: $limit, offset: $offset) {
+      count
+      data {
+        id
+        name
+        sku
+        price
+        imageURL
+      }
     }
   }
 `;
@@ -326,6 +329,15 @@ export const UPDATE_PHOTOURL = gql`
     updateUserDetail(id: $id, photoURL: $photoURL) {
       id
       photoURL
+    }
+  }
+`;
+
+export const GET_USER = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      id
+      verified
     }
   }
 `;
