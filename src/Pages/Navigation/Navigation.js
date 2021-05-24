@@ -36,7 +36,7 @@ const Navigation = ({ toggle }) => {
           action={toggle}
         /> */}
         <div className="okukus" onClick={home}>
-          OKUKUS
+          MAJORS
         </div>
       </div>
 
