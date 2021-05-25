@@ -55,6 +55,16 @@ export const GET_PRODUCT = gql`
       imageURL
       quantity
       detail
+      review {
+        id
+        rating
+        text
+        created_at
+        user {
+          first_name
+          last_name
+        }
+      }
     }
   }
 `;
@@ -349,6 +359,21 @@ export const ADD_REVIEW = gql`
   mutation AddReview($user: ID!, $product: ID!, $rating: Int!, $text: String!) {
     addReview(user: $user, product: $product, rating: $rating, text: $text) {
       id
+    }
+  }
+`;
+
+export const GET_PRODUCT_REVIEWS = gql`
+  query Review($sku: String!) {
+    reviews(sku: $sku) {
+      id
+      user {
+        first_name
+        last_name
+        photoURL
+      }
+      text
+      rating
     }
   }
 `;
