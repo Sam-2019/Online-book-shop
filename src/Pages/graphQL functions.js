@@ -63,6 +63,7 @@ export const GET_PRODUCT = gql`
         user {
           first_name
           last_name
+          photoURL
         }
       }
     }
