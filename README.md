@@ -1,6 +1,6 @@
 # Online Bookstore
 
-[Demo](https://mokukus.netlify.app/), improved look for [old project](https://okukus.netlify.app).
+[Demo](https://majorbooks.netlify.app), improved look for [old project](https://okukus.netlify.app).
 
 Create your own account or use `username: qaz@1.com` and `password: 123`
 
