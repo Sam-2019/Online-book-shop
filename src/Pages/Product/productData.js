@@ -20,7 +20,6 @@ import Summary from "../Summary/Summary";
 import { MediaQuery } from "../helper";
 import { Spacer } from "../Placeholders/Product";
 import { useData } from "../Context";
-import { reviewData } from "../Review/reviewData";
 import "./product.css";
 
 import { ADD_CART, ADD_WISHLIST } from "../graphQL functions";
@@ -267,13 +266,9 @@ const Product = ({ results }) => {
               </div>
 
               <div>
-                {reviewData && (
-                  <>
-                    {reviewData.slice(0, 2).map((item, index) => (
-                      <ReviewItem key={index} {...item} />
-                    ))}
-                  </>
-                )}
+                {results.review.slice(0, 2).map((item, index) => (
+                  <ReviewItem key={index} {...item} />
+                ))}
               </div>
             </div>
           </div>
