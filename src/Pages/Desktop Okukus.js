@@ -104,7 +104,7 @@ function ProductPage() {
         <Product />
       </Route>
 
-      <Route path={`${path}/:id/review`}>
+      <Route path={`${path}/:sku/review`}>
         <Review />
       </Route>
     </Switch>
