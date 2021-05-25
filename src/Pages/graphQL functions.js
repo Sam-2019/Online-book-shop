@@ -375,6 +375,7 @@ export const GET_PRODUCT_REVIEWS = gql`
       }
       text
       rating
+      created_at
     }
   }
 `;
