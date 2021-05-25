@@ -266,7 +266,7 @@ const Product = ({ results }) => {
               </div>
 
               <div>
-                {results.review.slice(0, 2).map((item, index) => (
+                {results.review.slice(0,3).map((item, index) => (
                   <ReviewItem key={index} {...item} />
                 ))}
               </div>
