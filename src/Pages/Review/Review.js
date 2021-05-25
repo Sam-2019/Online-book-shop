@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import Back from "../Components/Back";
-import ReviewItem from "./reviewItem";
+import ReviewData from "./reviewData";
 
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT_REVIEWS } from "../graphQL functions";
@@ -14,8 +14,6 @@ const Review = () => {
   const { loading, error, data } = useQuery(GET_PRODUCT_REVIEWS, {
     variables: { sku },
   });
-
-  console.log(data.reviews);
 
   let view;
 
@@ -43,7 +41,7 @@ const Review = () => {
   }
 
   if (data.reviews.length > 0) {
-    view = <ReviewItem data={data.reviews} />;
+    view = <ReviewData data={data.reviews} />;
   }
 
   return (
