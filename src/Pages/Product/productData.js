@@ -123,8 +123,10 @@ const Product = ({ results }) => {
   };
 
   const buyItem = () => {
-    history.push(`/order/${sku}`);
+    history.push(`/order/${sku}`)
   };
+
+  const productRating = Number(`${results.rating}.00`);
 
   return (
     <div className="product-wrapper">
@@ -192,10 +194,10 @@ const Product = ({ results }) => {
 
               {width > 540 ? null : (
                 <div className="rateItem outline">
-                  {results.rating === 0 ? (
+                  {productRating === 0 ? (
                     "No yet ratings yet"
                   ) : (
-                    <StarRating value={results.rating} width={15} height={15} />
+                    <StarRating value={productRating} width={15} height={15} />
                   )}
                 </div>
               )}
@@ -251,11 +253,11 @@ const Product = ({ results }) => {
 
                   {width > 540 && (
                     <div className="rating-stars">
-                      {results.rating === 0 ? (
+                      {productRating === 0 ? (
                         "No yet ratings yet"
                       ) : (
                         <StarRating
-                          value={results.rating}
+                          value={productRating}
                           width={15}
                           height={15}
                         />
