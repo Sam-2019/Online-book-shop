@@ -27,15 +27,12 @@ const Data = () => {
     let didCancel = false;
 
     function verify() {
-
-
-
       if (userInfo) {
         setVerificationStatus(userInfo.user.verify);
       }
     }
 
-    console.log(verfifcationStatus)
+    console.log(verfifcationStatus);
 
     verify();
 
@@ -61,12 +58,8 @@ const Data = () => {
     await localStorage.setItem("uniqueID", data.login.user);
 
     if (data) {
-      setAuth();
     }
   }
-
-
-
 
   return {
     auth,
