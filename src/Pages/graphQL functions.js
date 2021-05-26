@@ -54,6 +54,7 @@ export const GET_PRODUCT = gql`
       price
       imageURL
       quantity
+      rating
       detail
       review {
         id
