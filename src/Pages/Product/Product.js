@@ -12,7 +12,6 @@ import "./product.css";
 const Product = () => {
   let { sku } = useParams();
 
-  console.log(sku);
 
   const { loading, error, data } = useQuery(GET_PRODUCT, {
     variables: { sku: sku },
