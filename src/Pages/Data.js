@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocalStorage } from "./helper";
+import { useQuery } from "@apollo/client";
+import { GET_USER } from "./graphQL functions";
 
 const Data = () => {
   const [auth, setAuth] = useLocalStorage("loginToken", "");
@@ -12,6 +14,35 @@ const Data = () => {
   const [profileImage, setProfileImage] = useState(
     "https://i.redd.it/liptgenrd1b01.png"
   );
+
+  const {
+    loading,
+    error,
+    data: userInfo,
+  } = useQuery(GET_USER, {
+    variables: { id: uniqueID },
+  });
+
+  useEffect(() => {
+    let didCancel = false;
+
+    function verify() {
+
+
+
+      if (userInfo) {
+        setVerificationStatus(userInfo.user.verify);
+      }
+    }
+
+    console.log(verfifcationStatus)
+
+    verify();
+
+    return () => {
+      didCancel = true;
+    };
+  }, [userInfo]);
 
   async function logoutUser() {
     localStorage.removeItem("loginToken");
@@ -29,10 +60,13 @@ const Data = () => {
     await localStorage.setItem("loginToken", data.login.token);
     await localStorage.setItem("uniqueID", data.login.user);
 
-    if (data){
-      setAuth()
+    if (data) {
+      setAuth();
     }
   }
+
+
+
 
   return {
     auth,

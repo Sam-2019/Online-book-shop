@@ -1,6 +1,9 @@
 import React from "react";
+import { useMutation } from "@apollo/client";
 import styled from "styled-components";
 import { toast } from "react-toastify";
+import { UPDATE_VERIFICATION } from "../graphQL functions";
+import { useData } from "../Context";
 
 toast.configure();
 
@@ -36,15 +39,21 @@ const NotVerified = styled.div`
 `;
 
 const Verify = () => {
+  const { uniqueID } = useData();
+  const [verifyUser, { loading, error, data }] =
+    useMutation(UPDATE_VERIFICATION);
+
   const notify = (data) => {
     toast.success(data);
   };
 
   const verify = async (event) => {
-    try {
-    } catch (error) {
-    } finally {
-    }
+    await verifyUser({
+      variables: {
+        id: String(uniqueID),
+        verified: Boolean(true),
+      },
+    });
   };
 
   return (
