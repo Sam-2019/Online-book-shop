@@ -192,7 +192,11 @@ const Product = ({ results }) => {
 
               {width > 540 ? null : (
                 <div className="rateItem outline">
-                  <StarRating value={3.7} width={15} height={15} />
+                  {result.rating === 0 ? (
+                    "No yet ratings yet"
+                  ) : (
+                    <StarRating value={result.rating} width={15} height={15} />
+                  )}
                 </div>
               )}
 
@@ -247,7 +251,15 @@ const Product = ({ results }) => {
 
                   {width > 540 && (
                     <div className="rating-stars">
-                      <StarRating value={3.7} width={15} height={15} />
+                      {result.rating === 0 ? (
+                        "No yet ratings yet"
+                      ) : (
+                        <StarRating
+                          value={result.rating}
+                          width={15}
+                          height={15}
+                        />
+                      )}
                     </div>
                   )}
 
