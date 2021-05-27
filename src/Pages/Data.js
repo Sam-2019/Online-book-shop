@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import { useLocalStorage } from "./helper";
 import { useQuery } from "@apollo/client";
-import { GET_USER } from "./graphQL functions";
+import {GET_USER} from './graphQL functions'
 
 const Data = () => {
-  const [auth, setAuth] = useLocalStorage("loginToken", "");
   const [firstName, setFirstName] = useLocalStorage("firstName", "");
   const [lastName, setLastName] = useLocalStorage("lastName", "");
   const [email, setEmail] = useLocalStorage("email", "");
-  const [uniqueID, setUniqueID] = useLocalStorage("uniqueID", "");
+  const [uniqueID, setUniqueID] = useState("");
   const [verfifcationStatus, setVerificationStatus] = useState(false);
+
+  const [auth, setAuth] = useState(false);
+
+  const token = localStorage.getItem("loginToken");
+  const id = localStorage.getItem("uniqueID");
 
   const [profileImage, setProfileImage] = useState(
     "https://i.redd.it/liptgenrd1b01.png"
@@ -20,42 +24,47 @@ const Data = () => {
     error,
     data: userInfo,
   } = useQuery(GET_USER, {
-    variables: { id: uniqueID },
+    variables: { id: id },
   });
+
+
 
   useEffect(() => {
     let didCancel = false;
 
-    function verify() {
-      if (userInfo) {
-        setVerificationStatus(userInfo.user.verify);
-      }
+    // function verify() {
+    if (userInfo) {
+      setVerificationStatus(userInfo.user.verify);
     }
 
-    console.log(verfifcationStatus);
+    if (token && id) {
+      setAuth(true);
+      setUniqueID(id);
+    }
 
-    verify();
+
+    // verify();
 
     return () => {
       didCancel = true;
     };
   }, [userInfo]);
 
-  async function logoutUser() {
+  function logoutUser() {
     localStorage.removeItem("loginToken");
-    localStorage.clear();
+    localStorage.removeItem("uniqueID");
     setFirstName("");
     setLastName("");
     setEmail("");
     setUniqueID("");
     setVerificationStatus("");
-    setAuth(!auth);
+    setAuth(false);
     setProfileImage("");
   }
 
-  async function login(data) {
-    await localStorage.setItem("loginToken", data.login.token);
-    await localStorage.setItem("uniqueID", data.login.user);
+  function login(data) {
+    localStorage.setItem("loginToken", data.login.token);
+    localStorage.setItem("uniqueID", data.login.user);
 
     if (data) {
     }
