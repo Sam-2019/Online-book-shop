@@ -7,7 +7,9 @@ import {
   InMemoryCache,
   gql,
   ApolloProvider,
+  createHttpLink,
 } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
 import Okukus from "./Pages/Okukus";
 import { ContextProvider } from "./Pages/Context";
@@ -17,8 +19,24 @@ const AppBackgroundColour = styled.div`
   background: #ababab3c;
 `;
 
+const httpLink = createHttpLink({
+  uri: "http://localhost:5000/graphql",
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem("loginToken");
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
+
 const client = new ApolloClient({
-  uri: "https://new-ecommerce-be.herokuapp.com/graphql",
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
