@@ -67,9 +67,11 @@ const Navigation = ({ toggle }) => {
           />
         </div>
 
-        <div className="object-4 user  ">
-          <Dropdown />
-        </div>
+        {auth && (
+          <div className="object-4 user  ">
+            <Dropdown />
+          </div>
+        )}
 
         {!auth && (
           <div
