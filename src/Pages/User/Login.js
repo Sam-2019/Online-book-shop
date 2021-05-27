@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLazyQuery } from "@apollo/client";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
@@ -27,7 +27,7 @@ const Login = () => {
 
   const [show, hide] = useState("password");
 
-  const [loginUser, { error, data }] = useLazyQuery(LOGIN);
+  const [loginUser, { error, data, refetch }] = useLazyQuery(LOGIN);
 
   let type;
 
@@ -62,11 +62,14 @@ const Login = () => {
         console.log(data);
 
         if (data) {
-          login(data);
+          localStorage.setItem("loginToken", data.login.token);
+          localStorage.setItem("uniqueID", data.login.user);
           clearLogin();
         }
       } catch (err) {
         console.log(err);
+      } finally {
+        Redirect("./");
       }
     }
   };
