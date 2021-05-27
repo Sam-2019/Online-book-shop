@@ -37,6 +37,7 @@ const Product = ({ results }) => {
   const { width } = MediaQuery();
 
   const { uniqueID } = useData();
+
   let history = useHistory();
   let { sku } = useParams();
   let { url } = useRouteMatch();
@@ -89,6 +90,10 @@ const Product = ({ results }) => {
       },
     });
 
+    console.log(cartError)
+    console.log(cartData)
+    console.log(cartLoading)
+
     if (cartError) {
       toast.error(cartError);
     }
@@ -123,7 +128,7 @@ const Product = ({ results }) => {
   };
 
   const buyItem = () => {
-    history.push(`/order/${sku}`)
+    history.push(`/order/${sku}`);
   };
 
   const productRating = Number(`${results.rating}.00`);
