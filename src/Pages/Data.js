@@ -32,7 +32,11 @@ const Data = () => {
 
     // function verify() {
     if (userInfo) {
-      setVerificationStatus(userInfo.user.verify);
+      setVerificationStatus(userInfo.user.verified);
+      setFirstName(userInfo.user.first_name);
+      setLastName(userInfo.user.last_name);
+      setEmail(userInfo.user.email);
+
     }
 
     if (token && id) {
