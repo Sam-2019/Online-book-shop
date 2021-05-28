@@ -43,6 +43,7 @@
 
 .user-name {
   margin-right: 15px;
+  text-transform: capitalize;
 }
 
 .activePage {
