@@ -19,11 +19,7 @@ const Data = () => {
     "https://i.redd.it/liptgenrd1b01.png"
   );
 
-  const {
-    loading,
-    error,
-    data: userInfo,
-  } = useQuery(GET_USER, {
+  const { data: userInfo } = useQuery(GET_USER, {
     variables: { id: id },
   });
 
@@ -36,7 +32,6 @@ const Data = () => {
       setFirstName(userInfo.user.first_name);
       setLastName(userInfo.user.last_name);
       setEmail(userInfo.user.email);
-
     }
 
     if (token && id) {
@@ -49,7 +44,7 @@ const Data = () => {
     return () => {
       didCancel = true;
     };
-  }, [userInfo]);
+  }, [userInfo, id, setAuth, setFirstName, setLastName, setEmail, token]);
 
   function logoutUser() {
     localStorage.removeItem("loginToken");
