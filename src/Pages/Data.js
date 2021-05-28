@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocalStorage } from "./helper";
 import { useQuery } from "@apollo/client";
-import {GET_USER} from './graphQL functions'
+import { GET_USER } from "./graphQL functions";
 
 const Data = () => {
   const [firstName, setFirstName] = useLocalStorage("firstName", "");
@@ -10,7 +10,7 @@ const Data = () => {
   const [uniqueID, setUniqueID] = useState("");
   const [verfifcationStatus, setVerificationStatus] = useState(false);
 
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useLocalStorage("loginToken", "");
 
   const token = localStorage.getItem("loginToken");
   const id = localStorage.getItem("uniqueID");
@@ -27,8 +27,6 @@ const Data = () => {
     variables: { id: id },
   });
 
-
-
   useEffect(() => {
     let didCancel = false;
 
@@ -41,7 +39,6 @@ const Data = () => {
       setAuth(true);
       setUniqueID(id);
     }
-
 
     // verify();
 
