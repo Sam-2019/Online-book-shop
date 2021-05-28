@@ -65,10 +65,10 @@ const WishItem = ({
 
   return (
     <>
-      <div className="item-wrapper item">
+      <div className="item-wrapper ">
         <div className="order-imageXname">
           <div
-            className="image-placeholder  item"
+            className="image-placeholder"
             onClick={() => {
               history.push(`/product/${sku}`);
             }}
