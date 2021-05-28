@@ -360,6 +360,9 @@ export const GET_USER = gql`
   query User($id: ID!) {
     user(id: $id) {
       id
+      first_name
+      last_name
+      email
       verified
     }
   }
