@@ -1,8 +1,8 @@
 import React from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import styled from "styled-components";
 import { toast } from "react-toastify";
-import { GET_VERIFICATION, UPDATE_VERIFICATION } from "../graphQL functions";
+import { UPDATE_VERIFICATION } from "../graphQL functions";
 import { useData } from "../Context";
 
 toast.configure();
@@ -38,16 +38,12 @@ const NotVerified = styled.div`
   }
 `;
 
-const Verify = () => {
+const Verify = ({ verfifcationStatus }) => {
   const { uniqueID } = useData();
 
   const id = String(uniqueID);
 
   const [verifyUser, { data: dataResponse }] = useMutation(UPDATE_VERIFICATION);
-
-  const { data } = useQuery(GET_VERIFICATION, {
-    variables: { id },
-  });
 
   const verify = async (e) => {
     e.preventDefault();
@@ -64,17 +60,13 @@ const Verify = () => {
     }
   };
 
-  if (data) {
-    return (
-      <Verification>
-        <Verified>Verified</Verified>
-      </Verification>
-    );
-  }
-
   return (
     <Verification>
-      <NotVerified onClick={verify}>Unverified</NotVerified>
+      {verfifcationStatus ? (
+        <Verified>Verified</Verified>
+      ) : (
+        <NotVerified onClick={verify}>Unverified</NotVerified>
+      )}
     </Verification>
   );
 };
