@@ -23,7 +23,7 @@ const Cart = () => {
 
   let view;
 
-  if (data === undefined) {
+  if (data === undefined || id == "") {
     return (
       <div className="cart-wrapper">
         <div className="header">
