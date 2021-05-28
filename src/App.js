@@ -20,7 +20,7 @@ const AppBackgroundColour = styled.div`
 `;
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000/graphql",
+  uri: "https://new-ecommerce-be.herokuapp.com/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
