@@ -201,26 +201,26 @@ export const DELETE_WISHLIST = gql`
   }
 `;
 
-export const ADD_ORDER = gql`
-  mutation AddOrder(
-    $user: ID!
-    $products: [ID]
-    $orderNumber: String
-    $orderValue: String
-  ) {
-    addOrder(
-      user: $user
-      products: $products
-      orderNumber: $orderNumber
-      orderValue: $orderValue
-    ) {
-      id
-      user
-      orderNumber
-      orderValue
-    }
-  }
-`;
+ export const ADD_ORDER = gql`
+   mutation AddOrder(
+     $user: ID!
+     $products: [ID]
+     $orderNumber: String
+     $orderValue: String
+   ) {
+     addOrder(
+       user: $user
+       products: $products
+       orderNumber: $orderNumber
+       orderValue: $orderValue
+     ) {
+       id
+       user
+       orderNumber
+       orderValue
+     }
+   }
+ `;
 
 export const GET_ORDER = gql`
   query UserOrder($id: ID!) {
@@ -334,6 +334,14 @@ export const UPDATE_VERIFICATION = gql`
   mutation UpdateUserDetail($id: ID!, $verified: Boolean) {
     updateUserDetail(id: $id, verified: $verified) {
       id
+      verified
+    }
+  }
+`;
+
+export const GET_VERIFICATION = gql`
+  query Verification($id: ID!) {
+    verification(id: $id) {
       verified
     }
   }
