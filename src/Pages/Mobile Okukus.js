@@ -3,6 +3,7 @@ import {
   Route,
   Switch,
   useRouteMatch,
+  Redirect,
 } from "react-router-dom";
 import Navigation from "./Navigation/Head";
 import Cart from "./Cart/Cart";
@@ -23,9 +24,10 @@ import Profile from "./User/Profile";
 import Review from "./Review/Review";
 import TagContent from "./Tags/Content";
 import NotFound from "./404/404";
-
+import { useData } from "./Context";
 
 function Mobile() {
+  const { auth } = useData();
 
   return (
     <Switch>
@@ -55,9 +57,11 @@ function Mobile() {
         <Cart />
       </Route>
 
+      <Route path="/login">{auth ? <Redirect to="/" /> : <Login />}</Route>
+      {/* 
       <Route path="/login">
         <Login />
-      </Route>
+      </Route> */}
 
       <Route path="/signup">
         <Signup />

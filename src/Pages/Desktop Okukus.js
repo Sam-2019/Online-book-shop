@@ -3,6 +3,7 @@ import {
   Route,
   Switch,
   useRouteMatch,
+  Redirect,
 } from "react-router-dom";
 import Navigation from "./Navigation/Head";
 import Cart from "./Cart/Cart";
@@ -22,6 +23,7 @@ import Review from "./Review/Review";
 import TagContent from "./Tags/Content";
 import NotFound from "./404/404";
 import Admin from "./Admin/Admin";
+import { useData } from "./Context";
 
 function Desktop() {
   return (
@@ -33,6 +35,9 @@ function Desktop() {
 }
 
 function Content() {
+  const { auth } = useData();
+
+
   return (
     <Switch>
       <Route exact path="/">
@@ -65,9 +70,11 @@ function Content() {
         <Cart />
       </Route>
 
-      <Route path="/login">
+      <Route path="/login">{auth ? <Redirect to="/" /> : <Login />}</Route>
+
+      {/* <Route path="/login">
         <Login />
-      </Route>
+      </Route> */}
 
       <Route path="/signup">
         <Signup />
