@@ -19,6 +19,10 @@ const ProductsItem = ({ id, name, price, imageURL, sku, quantity }) => {
   const add2Cart = async (e) => {
     e.preventDefault();
 
+    if (uniqueID === "") {
+      return toast.error("Please login to add item to cart");
+    }
+
     addCart({
       variables: {
         user: String(uniqueID),

@@ -34,6 +34,7 @@ const Product = ({ results }) => {
     addWishlist,
     { loading: wishLoading, error: wishError, data: wishData },
   ] = useMutation(ADD_WISHLIST);
+
   const { width } = MediaQuery();
 
   const { uniqueID } = useData();
@@ -44,7 +45,7 @@ const Product = ({ results }) => {
 
   const [loading, setLoading] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
-  const [review, addReview] = React.useState(false);
+  const [reviewbox, setReviewBox] = React.useState(false);
   const [loveFill, setLoveFill] = React.useState(false);
 
   const ToggleDescription = () => {
@@ -74,13 +75,11 @@ const Product = ({ results }) => {
     }
   };
 
-  // console.log(results.id);
-  // console.log(typeof "609bfb663aef9216e4528eed");
-  //  console.log(typeof results.id);
-  //  console.log(typeof results.quantity);
-  // console.log(typeof results.price);
-
   const add2Cart = async () => {
+    if (uniqueID === "") {
+      return toast.error("Please login to add item to cart");
+    }
+
     addCart({
       variables: {
         user: String(uniqueID),
@@ -90,19 +89,22 @@ const Product = ({ results }) => {
       },
     });
 
-    console.log(cartError)
-    console.log(cartData)
-    console.log(cartLoading)
-
     if (cartError) {
       toast.error(cartError);
     }
 
-    toast.success("Item added to cart");
+    if (cartData) {
+      toast.success("Item added to cart");
+    }
   };
 
   const add2WL = async (e) => {
     e.preventDefault();
+
+    if (uniqueID === "") {
+      return toast.error("Please login to add item to wishlist");
+    }
+
     setLoveFill(true);
 
     addWishlist({
@@ -116,22 +118,39 @@ const Product = ({ results }) => {
       toast.error(wishError);
     }
 
+    if (wishData) {
+      toast.success("Item added to wish list");
+    }
+
     const timer = setTimeout(() => {
       setLoveFill(false);
-      toast.success("Item added to wish list");
     }, 2000);
     return () => clearTimeout(timer);
   };
 
   const reviewItem = () => {
-    addReview(true);
+    if (uniqueID === "") {
+      return toast.error("Please login to review item");
+    }
+
+    if (wishError) {
+      toast.error(wishError);
+    }
+
+    setReviewBox(true);
   };
 
   const buyItem = () => {
+    if (uniqueID === "") {
+      return toast.error("Please login to buy item");
+    }
+
     history.push(`/order/${sku}`);
   };
 
-  const productRating = Number(`${results.rating}.00`);
+  const productRating = parseFloat(results.rating.toFixed(2));
+
+
 
   return (
     <div className="product-wrapper">
@@ -202,7 +221,12 @@ const Product = ({ results }) => {
                   {productRating === 0 ? (
                     "No yet ratings yet"
                   ) : (
-                    <StarRating value={productRating} width={15} height={15} />
+                    <StarRating
+                      value={productRating}
+                      width={15}
+                      height={15}
+                      type="product-rating"
+                    />
                   )}
                 </div>
               )}
@@ -259,12 +283,13 @@ const Product = ({ results }) => {
                   {width > 540 && (
                     <div className="rating-stars">
                       {productRating === 0 ? (
-                        "No yet ratings yet"
+                        "No ratings yet"
                       ) : (
                         <StarRating
                           value={productRating}
                           width={15}
                           height={15}
+                          type="product-rating"
                         />
                       )}
                     </div>
@@ -294,11 +319,11 @@ const Product = ({ results }) => {
         </div>
       </div>
 
-      {review && (
-        <PopUp close={() => addReview(false)}>
+      {reviewbox && (
+        <PopUp close={() => setReviewBox(false)}>
           <AddReview
             close={() => {
-              addReview(false);
+              setReviewBox(false);
             }}
             user={uniqueID}
             product={results.id}
