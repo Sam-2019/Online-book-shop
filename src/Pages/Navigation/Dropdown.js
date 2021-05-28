@@ -45,7 +45,7 @@ export default function Dropdown() {
             }}
             className="dropdownItem"
           >
-            Proflie
+            Profile
           </div>
           <div
             onClick={() => {
