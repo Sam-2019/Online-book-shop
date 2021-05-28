@@ -358,9 +358,12 @@ export const GET_USER = gql`
 `;
 
 export const ADD_REVIEW = gql`
-  mutation AddReview($user: ID!, $product: ID!, $rating: Int!, $text: String!) {
+  mutation AddReview($user: ID, $product: ID, $rating: Int, $text: String) {
     addReview(user: $user, product: $product, rating: $rating, text: $text) {
       id
+      user {
+        username
+      }
     }
   }
 `;
