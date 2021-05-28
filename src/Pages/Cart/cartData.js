@@ -48,29 +48,29 @@ const CartData = ({ data, refetch }) => {
     // var data = formData.get("categories");
   };
 
-//  console.log(checked);
+  //  console.log(checked);
 
-  const [
-    addOrder,
-    { loading: orderLoading, error: orderError, data: orderData },
-  ] = useMutation(ADD_ORDER);
+  // const [
+  //   addOrder,
+  //   { loading: orderLoading, error: orderError, data: orderData },
+  // ] = useMutation(ADD_ORDER);
 
   const array = new Uint32Array(1);
   const index = window.crypto.getRandomValues(array);
 
   function orderItem() {
-    addOrder({
-      variables: {
-        user: String(uniqueID),
-        products: checked,
-        orderNumber: String(index),
-        orderValue: String(index),
-      },
-    });
+    // addOrder({
+    //   variables: {
+    //     user: String(uniqueID),
+    //     products: checked,
+    //     orderNumber: String(index),
+    //     orderValue: String(index),
+    //   },
+    // });
 
-    if (!orderData) {
-      return;
-    }
+    // if (!orderData) {
+    //   return;
+    // }
 
     history.push(`/order/${index[0]}`);
   }
