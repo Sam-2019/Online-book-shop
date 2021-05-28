@@ -5,6 +5,7 @@ import { TextArea } from "../Components/Input";
 import Button from "../Components/Button";
 import Message from "../Components/Message";
 import StarRating from "../Components/StarRating";
+import { useData } from "../Context";
 
 const ADD_REVIEW = gql`
   mutation AddReview($user: ID!, $product: ID!, $rating: Int!, $text: String!) {
@@ -19,8 +20,10 @@ const ADD_REVIEW = gql`
 `;
 
 const AddReview = ({ close, user, product }) => {
+  const { uniqueID } = useData();
   const [text, setText] = useState("");
   const [message, setMessage] = useState("");
+  const [starsSelected, setStarsSelected] = useState(0);
 
   const [
     addReview,
@@ -36,9 +39,9 @@ const AddReview = ({ close, user, product }) => {
 
     addReview({
       variables: {
-        user: String(user),
+        user: String(uniqueID),
         product: String(product),
-        rating: Number(4),
+        rating: Number(starsSelected),
         text: String(text),
       },
     });
@@ -47,12 +50,15 @@ const AddReview = ({ close, user, product }) => {
       setMessage(reviewError);
     }
 
-    close();
+     close();
   }
 
   return (
     <form>
-      <StarRating />
+      <StarRating
+        starsSelected={starsSelected}
+        setStarsSelected={setStarsSelected}
+      />
 
       <TextArea
         class_name="text-input "
