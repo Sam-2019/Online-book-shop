@@ -1,4 +1,5 @@
 import React from "react";
+import { useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import PopUp from "../Components/Popup";
@@ -15,13 +16,16 @@ import { okukus } from "../endpoints";
 import { SmallView } from "../styles";
 import { MediaQuery } from "../helper";
 import { useData } from "../Context";
+import { GET_USER } from "../graphQL functions";
 import "./profile.css";
 
 function Proflie() {
   let history = useHistory();
   let { width } = MediaQuery();
 
-  const { profileImage} = useData();
+  const { profileImage, uniqueID, firstName, lastName, verfifcationStatus } =
+    useData();
+  const id = String(uniqueID);
   const breakpoint = 540;
   let activePage;
   const [password, updatePassword] = React.useState(false);
@@ -53,6 +57,10 @@ function Proflie() {
     } else {
     }
   };
+
+  const { data: userData } = useQuery(GET_USER, {
+    variables: { id },
+  });
 
   switch (active) {
     case "Order History":
@@ -119,7 +127,7 @@ function Proflie() {
                 </div>
 
                 <div className="nameXeditXverify">
-                  <UserName name="Ken Jonathan" />
+                  <UserName name={`${firstName}    ${lastName}`} />
                   {/* <Pen
                       width={15}
                       height={15}
@@ -128,7 +136,7 @@ function Proflie() {
                       }}
                     /> */}
 
-                  <Verification />
+                  <Verification  verfifcationStatus={verfifcationStatus}/>
                 </div>
               </div>
             </div>
