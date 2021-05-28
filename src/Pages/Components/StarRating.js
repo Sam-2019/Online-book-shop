@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Star from "./Star";
@@ -32,8 +32,11 @@ const StarRatingWrapper = styled.div`
   }
 `;
 
-const StarRating = ({ totalStars = 5 }) => {
-  const [starsSelected, setStarsSelected] = useState(0);
+const StarRating = ({
+  totalStars = 5,
+  starsSelected = 0,
+  setStarsSelected,
+}) => {
   let state;
 
   switch (starsSelected) {
@@ -57,6 +60,7 @@ const StarRating = ({ totalStars = 5 }) => {
             action={() => setStarsSelected(i + 1)}
             width={25}
             height={25}
+         
           />
         ))}
       </StarRatingWrapper>
