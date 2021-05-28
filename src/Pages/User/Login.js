@@ -62,14 +62,13 @@ const Login = () => {
         console.log(data);
 
         if (data) {
-          localStorage.setItem("loginToken", data.login.token);
-          localStorage.setItem("uniqueID", data.login.user);
+          await localStorage.setItem("loginToken", data.login.token);
+          await localStorage.setItem("uniqueID", data.login.user);
           clearLogin();
+          history.push("./");
         }
       } catch (err) {
         console.log(err);
-      } finally {
-        Redirect("./");
       }
     }
   };
