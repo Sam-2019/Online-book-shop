@@ -201,26 +201,26 @@ export const DELETE_WISHLIST = gql`
   }
 `;
 
- export const ADD_ORDER = gql`
-   mutation AddOrder(
-     $user: ID!
-     $products: [ID]
-     $orderNumber: String
-     $orderValue: String
-   ) {
-     addOrder(
-       user: $user
-       products: $products
-       orderNumber: $orderNumber
-       orderValue: $orderValue
-     ) {
-       id
-       user
-       orderNumber
-       orderValue
-     }
-   }
- `;
+export const ADD_ORDER = gql`
+  mutation AddOrder(
+    $user: ID!
+    $products: [ID]
+    $orderNumber: String
+    $orderValue: String
+  ) {
+    addOrder(
+      user: $user
+      products: $products
+      orderNumber: $orderNumber
+      orderValue: $orderValue
+    ) {
+      id
+      user
+      orderNumber
+      orderValue
+    }
+  }
+`;
 
 export const GET_ORDER = gql`
   query UserOrder($id: ID!) {
@@ -391,6 +391,30 @@ export const GET_PRODUCT_REVIEWS = gql`
       text
       rating
       created_at
+    }
+  }
+`;
+
+export const ADD_PAYMENT = gql`
+  mutation AddPayment(
+    $method: String!
+    $status: String!
+    $momo_name: String!
+    $momo_number: Int!
+    $momo_transaction_id: Int!
+  ) {
+    addPayment(
+      method: $method
+      status: $status
+      momo_name: $momo_name
+      momo_number: $momo_number
+      momo_transaction_id: $momo_transaction_id
+    ) {
+      method
+      status
+      momo_name
+      momo_number
+      momo_transaction_id
     }
   }
 `;
