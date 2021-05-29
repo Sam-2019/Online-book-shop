@@ -400,8 +400,9 @@ export const ADD_PAYMENT = gql`
     $method: String!
     $status: String!
     $momo_name: String!
-    $momo_number: Int!
-    $momo_transaction_id: Int!
+    $momo_number: String!
+    $momo_transaction_id: String!
+    $order_value: String!
   ) {
     addPayment(
       method: $method
@@ -409,12 +410,15 @@ export const ADD_PAYMENT = gql`
       momo_name: $momo_name
       momo_number: $momo_number
       momo_transaction_id: $momo_transaction_id
+      order_value: $order_value
     ) {
+      id
       method
       status
       momo_name
       momo_number
       momo_transaction_id
+      order_value
     }
   }
 `;
