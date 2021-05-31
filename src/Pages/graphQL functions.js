@@ -207,12 +207,14 @@ export const ADD_ORDER = gql`
     $products: [ID]
     $orderNumber: String
     $orderValue: String
+    $payment: ID!
   ) {
     addOrder(
       user: $user
       products: $products
       orderNumber: $orderNumber
       orderValue: $orderValue
+      payment: $payment
     ) {
       id
       user
