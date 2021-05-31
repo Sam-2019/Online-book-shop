@@ -1,4 +1,5 @@
 import React from "react";
+import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
@@ -8,6 +9,9 @@ import PopUp from "../Components/Popup";
 import Question from "../Components/Question";
 import Success from "../Components/Success";
 import { MediaQuery } from "../helper";
+import { ADD_PAYMENT } from "../graphQL functions";
+import { useData } from "../Context";
+import PaymentInstruction from "./PaymentInstruction";
 
 import "./order.css";
 import PaymentProcess from "./PaymentProcess";
@@ -21,19 +25,20 @@ const Order = () => {
   const [state, setState] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
 
-  const [loading, setLoading] = React.useState(true);
+
   const [value, setValue] = React.useState("Pick your location");
-  const [fee, setFee] = React.useState(10);
-  const [items, setItems] = React.useState([]);
+  const fee= 10
+
+
+  const [location, setLocation] = React.useState("");
+  const [address, setAddress] = React.useState("");
+  const [phone_number, setPhoneNumber] = React.useState("");
+
+  const [momo_name, setMomoName] = React.useState("");
+  const [momo_number, setMomoNumber] = React.useState("");
+  const [transaction_id, setTransactionID] = React.useState("");
+
   let show;
-
-  React.useEffect(() => {
-    let unmounted = false;
-
-    return () => {
-      unmounted = true;
-    };
-  }, []);
 
   const showSuccess = () => {
     setSuccess(true);
@@ -69,16 +74,33 @@ const Order = () => {
       show = "(Shipping inclusive)";
   }
 
-  React.useEffect(() => {
-    let didCancel = false;
-
-    return () => {
-      didCancel = true;
-    };
-  }, []);
+  const [
+    addPayment,
+    { loading: paymentrLoading, error: paymentError, data: paymentData },
+  ] = useMutation(ADD_PAYMENT);
 
   function orderItem() {
-    setSuccess(true);
+    // setSuccess(true);
+
+    console.log(location, address, phone_number);
+
+    const orderValue = localStorage.getItem("orderValue")
+
+    addPayment({
+      variables: {
+        method: String(selectedOption),
+        status: String("pending"),
+
+        location,
+        address,
+        phone_number,
+
+        momo_name,
+        momo_number,
+        momo_transaction_id: transaction_id,
+        order_value: String(orderValue),
+      },
+    });
   }
 
   return (
@@ -119,9 +141,26 @@ const Order = () => {
               <option value="bolga">Bolga</option>
             </select>
 
-            <Input class_name="input " placeholder="Location" onChange />
-            <Input class_name="input " placeholder="Digital Address" onChange />
-            <Input class_name="input " placeholder="Phone Number" onChange />
+            <Input
+              class_name="input "
+              placeholder="Location"
+              action={(e) => setLocation(e.target.value)}
+              value={location}
+            />
+
+            <Input
+              class_name="input "
+              placeholder="Digital Address"
+              action={(e) => setAddress(e.target.value)}
+              value={address}
+            />
+
+            <Input
+              class_name="input "
+              placeholder="Phone Number"
+              action={(e) => setPhoneNumber(e.target.value)}
+              value={phone_number}
+            />
 
             <div className="page_title">Payment</div>
             <div className="payment-method ">
@@ -157,16 +196,23 @@ const Order = () => {
                         }}
                       />
                     </div>
-                    <Input class_name="input " placeholder="Name" onChange />
+                    <Input
+                      class_name="input "
+                      placeholder="Name"
+                      action={(e) => setMomoName(e.target.value)}
+                      value={momo_name}
+                    />
                     <Input
                       class_name="input "
                       placeholder="Momo Number"
-                      onChange
+                      action={(e) => setMomoNumber(e.target.value)}
+                      value={momo_number}
                     />
                     <Input
                       class_name="input "
                       placeholder="Transaction ID"
-                      onChange
+                      action={(e) => setTransactionID(e.target.value)}
+                      value={transaction_id}
                     />
                   </div>
                 ) : null}
@@ -186,29 +232,15 @@ const Order = () => {
                    } outline  margin-top 
                   `}
                 >
-                  <div className="payment-instruction">
-                    <div className="pay-know-how ">
-                      <div className="page_title ">How To Pay With Momo</div>
-                      <Question
-                        width={30}
-                        height={30}
-                        action={() => {
-                          setState(true);
-                        }}
-                      />
-                    </div>
-                    <Input class_name="input " placeholder="Name" onChange />
-                    <Input
-                      class_name="input "
-                      placeholder="Momo Number"
-                      onChange
-                    />
-                    <Input
-                      class_name="input "
-                      placeholder="Transaction ID"
-                      onChange
-                    />
-                  </div>
+                  <PaymentInstruction
+                    momo_name={momo_name}
+                    setMomoName={setMomoName}
+                    momo_number={momo_number}
+                    setMomoNumber={setMomoNumber}
+                    transaction_id={transaction_id}
+                    setTransactionID={setTransactionID}
+                    setState={setState}
+                  />
                 </div>
               ) : null}
             </>
