@@ -44,33 +44,36 @@ const CartData = ({ data, refetch }) => {
 
     setChecked(all);
     formData.set("categories", all);
-    //  console.log(all);
+   // console.log(all);
     // var data = formData.get("categories");
   };
 
   //  console.log(checked);
 
-  // const [
-  //   addOrder,
-  //   { loading: orderLoading, error: orderError, data: orderData },
-  // ] = useMutation(ADD_ORDER);
+  const [
+    addOrder,
+    { loading: orderLoading, error: orderError, data: orderData },
+  ] = useMutation(ADD_ORDER);
 
   const array = new Uint32Array(1);
   const index = window.crypto.getRandomValues(array);
 
   function orderItem() {
-    // addOrder({
-    //   variables: {
-    //     user: String(uniqueID),
-    //     products: checked,
-    //     orderNumber: String(index),
-    //     orderValue: String(index),
-    //   },
-    // });
 
-    // if (!orderData) {
-    //   return;
-    // }
+    addOrder({
+      variables: {
+        user: String(uniqueID),
+        products: checked,
+        orderNumber: String(index),
+        orderValue: String(index),
+        payment: String(uniqueID),
+        delivery: String(uniqueID),
+      },
+    });
+
+    if (!orderData) {
+      return;
+    }
 
     history.push(`/order/${index[0]}`);
   }
