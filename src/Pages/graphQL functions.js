@@ -208,6 +208,7 @@ export const ADD_ORDER = gql`
     $orderNumber: String
     $orderValue: String
     $payment: ID!
+    $delivery: ID!
   ) {
     addOrder(
       user: $user
@@ -215,6 +216,7 @@ export const ADD_ORDER = gql`
       orderNumber: $orderNumber
       orderValue: $orderValue
       payment: $payment
+      delivery: $delivery
     ) {
       id
       user
@@ -405,6 +407,9 @@ export const ADD_PAYMENT = gql`
     $momo_number: String!
     $momo_transaction_id: String!
     $order_value: String!
+    $location: String
+    $address: String
+    $phone_number: String
   ) {
     addPayment(
       method: $method
@@ -413,6 +418,9 @@ export const ADD_PAYMENT = gql`
       momo_number: $momo_number
       momo_transaction_id: $momo_transaction_id
       order_value: $order_value
+      location: $location
+      address: $address
+      phone_number: $phone_number
     ) {
       id
       method
