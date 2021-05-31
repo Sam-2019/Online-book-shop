@@ -60,6 +60,8 @@ const CartData = ({ data, refetch }) => {
 
   function orderItem() {
 
+    localStorage.setItem("orderValue", index)
+
     addOrder({
       variables: {
         user: String(uniqueID),
