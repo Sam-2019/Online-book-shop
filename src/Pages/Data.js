@@ -1,259 +1,75 @@
-import React, { useState } from "react";
-import axios from "axios";
-import {
-  cartSummary,
-  orderHistory,
-  wishList,
-  profileImageGet,
-  userValidate,
-  userProfileUpdate,
-  userEmailUpdate,
-  userAccountReset,
-  userAccountVerify,
-  userCreateEmailVerify,
-  cartCheckout,
-  orderCreate,
-  userWelcome,
-  dev_site,
-} from "./endpoints";
-import { useQuery } from "react-query";
-import { axiosMethod, fetch, useLocalStorage } from "./helper";
-import image from "./Placeholders/250x350.png";
-
-const instance = axios.create({
-  baseURL: dev_site,
-});
+import { useState, useEffect } from "react";
+import { useLocalStorage } from "./helper";
+import { useQuery } from "@apollo/client";
+import { GET_USER } from "./graphQL functions";
 
 const Data = () => {
-  const [auth, setAuth] = useLocalStorage("loginToken", "");
   const [firstName, setFirstName] = useLocalStorage("firstName", "");
   const [lastName, setLastName] = useLocalStorage("lastName", "");
   const [email, setEmail] = useLocalStorage("email", "");
-  const [uniqueID, setUniqueID] = useLocalStorage("uniqueID", "");
+  const [uniqueID, setUniqueID] = useState("");
   const [verfifcationStatus, setVerificationStatus] = useState(false);
 
-  const [amount, setAmount] = useState(0);
-  const [quantity, setQuantity] = useState(0);
+  const [auth, setAuth] = useLocalStorage("loginToken", "");
 
-  const [profileImage, setProfileImage] = useState(image);
+  const token = localStorage.getItem("loginToken");
+  const id = localStorage.getItem("uniqueID");
 
-  const [orderLength, setOrderLength] = useState(0);
-  const [wishlistLength, setWishlistLength] = useState(0);
+  const [profileImage, setProfileImage] = useState(
+    "https://i.redd.it/liptgenrd1b01.png"
+  );
 
-  var formData = new FormData();
-  formData.set("buyer_unique_id", uniqueID);
+  const { data: userInfo } = useQuery(GET_USER, {
+    variables: { id: id },
+  });
 
-  async function logoutUser() {
+  useEffect(() => {
+    let didCancel = false;
+
+    // function verify() {
+    if (userInfo) {
+      setVerificationStatus(userInfo.user.verified);
+      setFirstName(userInfo.user.first_name);
+      setLastName(userInfo.user.last_name);
+      setEmail(userInfo.user.email);
+    }
+
+    if (token && id) {
+      setAuth(true);
+      setUniqueID(id);
+    }
+
+    // verify();
+
+    return () => {
+      didCancel = true;
+    };
+  }, [userInfo, id, setAuth, setFirstName, setLastName, setEmail, token]);
+
+  function logoutUser() {
     localStorage.removeItem("loginToken");
-    localStorage.clear();
+    localStorage.removeItem("uniqueID");
     setFirstName("");
     setLastName("");
     setEmail("");
     setUniqueID("");
     setVerificationStatus("");
-    setAuth(!auth);
-    setProfileImage(image);
-    setQuantity(0);
-    setAmount(0);
-    setOrderLength(0);
-    setWishlistLength(0);
+    setAuth(false);
+    setProfileImage("");
   }
 
-  async function isLoggedIn() {
-    const loginToken = localStorage.getItem("loginToken");
-    var formData = new FormData();
+  function login(data) {
+    localStorage.setItem("loginToken", data.login.token);
+    localStorage.setItem("uniqueID", data.login.user);
 
-    formData.set("token", loginToken);
-
-    if (!loginToken) return;
-
-    //Adding JWT token to axios default header
-    instance.defaults.headers.common["Authorization"] = "bearer " + loginToken;
-
-    const data = await fetch(userValidate, formData);
-
-    //console.log(data);
-
-    if (data.validity === true && data.buyer === null) {
-      localStorage.removeItem("loginToken");
+    if (data) {
     }
-
-    if (data.error === true) {
-      localStorage.removeItem("loginToken");
-    }
-
-    return (
-      setAuth((prevAuth) => !prevAuth),
-      setFirstName(data.buyer.firstname),
-      setLastName(data.buyer.lastname),
-      setEmail(data.buyer.email),
-      setUniqueID(data.buyer.unique_id),
-      setVerificationStatus(data.buyer.verification_status)
-      //setProfileImage(data.buyer.unique_id)
-    );
   }
-
-  async function verifyUserAccount(formData) {
-    const data = await fetch(userAccountVerify, formData);
-    return data;
-  }
-
-  async function checkoutCart(formData) {
-    const { data } = await axiosMethod("post", cartCheckout, formData);
-    console.log(data);
-    return data;
-  }
-
-  async function createOrder(formData) {
-    const { data } = await axiosMethod("post", orderCreate, formData);
-    return data;
-  }
-
-  async function welcomeUser(formData) {
-    const { data } = await axiosMethod("post", userWelcome, formData);
-    return data;
-  }
-
-  useQuery("summaryData", () =>
-    axiosMethod("post", cartSummary, formData)
-      .then((data) => {
-        if (
-          data.data.message === "cart is empty" ||
-          "no value for post variable"
-        ) {
-          setQuantity(0);
-          setAmount(0);
-        }
-
-        if (data.data.message === "cart contains items") {
-          setQuantity(Number(data.data.data.total_quantity));
-          setAmount(Number(data.data.data.total_amount));
-          // console.log("Success:", data.data.data);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  useQuery("orderLength", () =>
-    axiosMethod("post", orderHistory, formData)
-      .then((data) => {
-        if (
-          data.data.message === "cart is empty" ||
-          "no value for post variable"
-        ) {
-          setOrderLength(0);
-        } else {
-          setOrderLength(Number(data.data.data.length));
-          //    console.log("Success:", data);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  useQuery("wishlistLength", () =>
-    axiosMethod("post", wishList, formData)
-      .then((data) => {
-        if (
-          data.data.message === "cart is empty" ||
-          "no value for post variable"
-        ) {
-          setWishlistLength(0);
-        } else {
-          setWishlistLength(Number(data.data.data.length));
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  useQuery("profileImage", () =>
-    axiosMethod("post", profileImageGet, formData)
-      .then((data) => {
-        if (data.data.message === "account found") {
-          setProfileImage(data.data.data.profile_photo_url);
-        } else {
-          setProfileImage(image);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  useQuery("updateName", () =>
-    axiosMethod("post", userProfileUpdate, formData)
-      .then((data) => {
-        if (data.error === false) {
-          setFirstName(data.data.firstname);
-          setLastName(data.data.lastname);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  useQuery("updateEmail", () =>
-    axiosMethod("post", userEmailUpdate, formData)
-      .then((data) => {
-        if (data.error === false) {
-          setEmail(data.data.email);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  useQuery("updatePassword", () =>
-    axiosMethod("post", userEmailUpdate, formData)
-      .then((data) => {
-        if (data.error === false) {
-          setEmail(data.data.email);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-  );
-
-  // async function updateUserProfile(formData) {
-  //   const data = await fetch(userProfileUpdate, formData);
-
-  //   if (data.error === false) {
-  //     setFirstName(data.data.firstname);
-  //     setLastName(data.data.lastname);
-  //   }
-  //   return data;
-  // }
-
-  // async function updateUserEmail(formData) {
-  //   const data = await fetch(userEmailUpdate, formData);
-
-  //   if (data.error === false) {
-  //     setEmail(data.data.email);
-  //   }
-  //   return data;
-  // }
-
-  //const cartData = useAsync(cartSummary, formData);
-  // console.log(cartData);
 
   return {
     auth,
     logoutUser,
-    isLoggedIn,
-
-    verifyUserAccount,
-
-    checkoutCart,
-
-    createOrder,
+    login,
 
     firstName,
     lastName,
@@ -261,13 +77,7 @@ const Data = () => {
     uniqueID,
     verfifcationStatus,
 
-    welcomeUser,
-
-    amount,
-    quantity,
     profileImage,
-    orderLength,
-    wishlistLength,
   };
 };
 

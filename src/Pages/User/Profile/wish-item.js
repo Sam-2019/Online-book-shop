@@ -1,36 +1,35 @@
 import React from "react";
+import { useMutation } from "@apollo/client";
 import PropTypes from "prop-types";
-import { useQueryClient } from "react-query";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import PopUp from "../../Components/Popup";
-import {ConfirmDelete} from "../../styles";
+import { ConfirmDelete } from "../../styles";
 import Button from "../../Components/Button";
-import { okukus, wishDelete, buyerID } from "../../endpoints";
-import { MediaQuery, axiosMethod } from "../../helper";
+import { MediaQuery } from "../../helper";
 import "./wishitem.css";
+
+import { DELETE_WISHLIST } from "../../graphQL functions";
 
 toast.configure();
 
 const WishItem = ({
-  availablity,
-  cover_photo_url,
-  existence,
-  id,
-  product_author,
-  product_category,
-  product_description,
-  product_name,
-  product_unique_id,
-  stock,
-  unique_id,
-  unit_price,
+  wishID,
+  productID,
+  name,
+  sku,
+  price,
+  imageURL,
+  refetch,
 }) => {
   const breakpoint = 540;
   const { width } = MediaQuery();
   const [confirm, setConfirm] = React.useState(false);
 
-  const queryClient = useQueryClient();
+  const [
+    deleteWish,
+    { loading: deleteLoading, error: deleteError, data: deleteData },
+  ] = useMutation(DELETE_WISHLIST);
 
   let history = useHistory();
 
@@ -45,36 +44,37 @@ const WishItem = ({
   const removeItem = async (e) => {
     e.preventDefault();
 
-    var formData = new FormData();
-    formData.set("buyer_unique_id", buyerID);
-    formData.set("item_unique_id", unique_id);
+    deleteWish({
+      variables: {
+        id: String(wishID),
+      },
+    });
 
-    const { data } = await axiosMethod("post", wishDelete, formData);
-
-    if (data.message === "wishlist item deleted successfully") {
-      queryClient.invalidateQueries("wishlistLength");
-      setConfirm(false);
-      notify(data.message);
-      queryClient.invalidateQueries("wishlistLength");
+    if (deleteError) {
+      toast.error(deleteError);
     }
 
-    notify(data.error);
+    const timer = setTimeout(() => {
+      setConfirm(false);
+      toast.success("Item deleted");
+      refetch();
+    }, 1000);
 
-    queryClient.invalidateQueries("wishlist");
+    return () => clearTimeout(timer);
   };
 
   return (
     <>
-      <div className="item-wrapper">
+      <div className="item-wrapper ">
         <div className="order-imageXname">
           <div
-            className="image-placeholder  loading"
+            className="image-placeholder"
             onClick={() => {
-              history.push(`/product/${product_unique_id}`);
+              history.push(`/product/${sku}`);
             }}
           >
             <img
-              src={`${okukus}/${cover_photo_url}`}
+              src={imageURL}
               alt="peecha"
               className="image-placeholder-original"
             />
@@ -84,19 +84,19 @@ const WishItem = ({
             <div
               className="order-item-name"
               onClick={() => {
-                history.push(`/product/${product_unique_id}`);
+                history.push(`/product/${sku}`);
               }}
             >
-              {product_name}
+              {sku}
             </div>
 
             <div
               className="order-Item-price-quantity"
               onClick={() => {
-                history.push(`/product/${product_unique_id}`);
+                history.push(`/product/${sku}`);
               }}
             >
-              <div className="order-item-price">GHc ₵{unit_price}</div>
+              <div className="order-item-price">GHc ₵{price}</div>
 
               {/* <div className=" bin-width">
                 <Bin width={18} height={20} action={updateBin} />
@@ -159,8 +159,8 @@ WishItem.propTypes = {
   product_category: PropTypes.string,
   product_description: PropTypes.string,
   product_name: PropTypes.string,
-  product_unique_id: PropTypes.string,
+  sku: PropTypes.string,
   stock: PropTypes.string,
   unique_id: PropTypes.string,
-  unit_price: PropTypes.string,
+  price: PropTypes.string,
 };

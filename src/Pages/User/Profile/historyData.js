@@ -1,14 +1,15 @@
 import React from "react";
 import OrderItem from "./order-item";
 
-const historyData = ({ data }) => {
+const HistoryData = ({ data }) => {
+
   return (
     <>
-      {data.map((data, i) => (
-        <OrderItem {...data} key={i} />
-      ))}
+  {data.map((item, i) => (
+        <OrderItem {...item} key={i} />
+      ))} 
     </>
   );
 };
 
-export default historyData;
+export default HistoryData;

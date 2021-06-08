@@ -30,24 +30,24 @@ const Navigation = ({ toggle }) => {
   return (
     <header className="nav-header ">
       <div className="category ">
-        <Justify
+        {/* <Justify
           width={breakpoint < width ? 30 : 20}
           height={breakpoint < width ? 30 : 20}
           action={toggle}
-        />
+        /> */}
         <div className="okukus" onClick={home}>
-          OKUKUS
+          MAJORS
         </div>
       </div>
 
-      {width > 540 ? (
+      {width > 540 && (
         <div className="category">
           <SearchBox />
         </div>
-      ) : null}
+      )}
 
       <div className="category">
-        {width <= 540 ? (
+        {width <= 540 && (
           <div className="object-3 search  ">
             <Search
               width={breakpoint < width ? 30 : 20}
@@ -55,7 +55,7 @@ const Navigation = ({ toggle }) => {
               action={newSearch}
             />
           </div>
-        ) : null}
+        )}
 
         <div className="object-4 cart  ">
           <Cart
@@ -67,11 +67,13 @@ const Navigation = ({ toggle }) => {
           />
         </div>
 
-        {auth ? (
+        {auth && (
           <div className="object-4 user  ">
             <Dropdown />
           </div>
-        ) : (
+        )}
+
+        {!auth && (
           <div
             className="object-4 user  "
             onClick={() => {

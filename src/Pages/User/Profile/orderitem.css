@@ -22,6 +22,7 @@
 
 .order-item-name {
   width: 180px;
+  text-transform: capitalize;
 }
 
 .order-Item-price-quantity {

@@ -1,57 +1,48 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useQueryClient, useMutation } from "react-query";
+import { useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
 import Button from "../Components/Button";
 import Add from "../Components/Add";
 import Subtract from "../Components/Subtract";
 import Bin from "../Components/Bin";
-import { fetch } from "../helper";
 import BinFIll from "../Components/BinFill";
 import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
 import PopUp from "../Components/Popup";
 import { ConfirmDelete } from "../styles";
-import {
-  okukus,
-  cartDelete,
-  buyerID,
-  wishCreate,
-  cartUpdate,
-} from "../endpoints";
-import { axiosMethod } from "../helper";
+import { DELETE_CART, ADD_WISHLIST } from "../graphQL functions";
 import { useData } from "../Context";
 import "./cartItem.css";
 
 toast.configure();
 
 const CartItem = ({
+  productID,
+  sku,
+  price,
+  imageURL,
   quantity,
-  product_unique_id,
-  unique_id,
-  cover_photo_url,
-  product_name,
-  unit_price,
-  id,
   handleToggle,
+  cartID,
+  refetch,
 }) => {
-  const { uniqueID } = useData();
   const [loveFill, setLoveFill] = React.useState(false);
   const [binFill, setBinFill] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
+  const { uniqueID } = useData();
 
   const [count, setCount] = React.useState(Number(quantity));
-  var formData = new FormData();
 
-  const queryClient = useQueryClient();
+  const [
+    deleteCart,
+    { loading: deleteLoading, error: deleteError, data: deleteData },
+  ] = useMutation(DELETE_CART);
 
-  const notify = (data) => {
-    toast.success(data);
-  };
-
-  const mutation = useMutation((formData) => {
-    return fetch(cartUpdate, formData);
-  });
+  const [
+    addWishlist,
+    { loading: wishLoading, error: wishError, data: wishData },
+  ] = useMutation(ADD_WISHLIST);
 
   const updateBin = () => {
     setBinFill(true);
@@ -66,96 +57,64 @@ const CartItem = ({
   const deleteItem = async (e) => {
     e.preventDefault();
 
-    formData.set("buyer_unique_id", buyerID);
-    formData.set("item_unique_id", unique_id);
-    const { data } = await axiosMethod("post", cartDelete, formData);
+    setBinFill(true);
 
-    if (data.message === "cart item deleted successfully") {
-      queryClient.invalidateQueries("summaryData");
-      notify(data.message);
-      setConfirm(false);
-      queryClient.invalidateQueries("summaryData");
+    deleteCart({
+      variables: {
+        id: String(cartID),
+        user: String(uniqueID),
+      },
+    });
+
+    if (deleteError) {
+      toast.error(deleteError);
     }
 
-    notify(data.error);
+    const timer = setTimeout(() => {
+      setBinFill(false);
+      setConfirm(false);
+      toast.success("Item deleted");
+      refetch();
+    }, 1000);
 
-    queryClient.invalidateQueries("carts");
+    return () => clearTimeout(timer);
   };
 
   const add2WL = async (e) => {
     e.preventDefault();
+    setLoveFill(true);
 
-    formData.set("product_unique_id", product_unique_id);
-    formData.set("buyer_unique_id", buyerID);
+    addWishlist({
+      variables: {
+        user: String(uniqueID),
+        product: String(productID),
+      },
+    });
 
-    setLoveFill(false);
-
-    const { data } = await axiosMethod("post", wishCreate, formData);
-
-    if (!data.error) {
-      setLoveFill(true);
-      notify(data.message);
-      queryClient.invalidateQueries("wishlistLength");
-      queryClient.invalidateQueries("wishlist");
+    if (wishError) {
+      toast.error(wishError);
     }
-
-    notify(data.error);
 
     const timer = setTimeout(() => {
       setLoveFill(false);
+      toast.success("Item added to wish list");
     }, 2000);
     return () => clearTimeout(timer);
   };
 
   const plusItem = async (event) => {
     event.preventDefault();
-    let empty = id && count;
 
-    if (empty === "") {
-    }
-
-    if (empty !== "") {
-      formData.set("buyer_unique_id", uniqueID);
-      formData.set("item_unique_id", unique_id);
-      formData.set("item_quantity", count);
-
-      try {
-        const data = await mutation.mutateAsync(formData);
-        notify(data.message);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setCount((count) => count + 1);
-        queryClient.invalidateQueries("summaryData");
-        queryClient.invalidateQueries("carts");
-      }
-    }
+    setCount((c) => c + 1);
   };
 
   const minusItem = async (e) => {
     e.preventDefault();
+
     if (count <= 1) {
       return;
     }
-
-    if (count >= 1) {
-      //let empty = unique_id && count;
-
-      formData.set("buyer_unique_id", uniqueID);
-      formData.set("item_unique_id", unique_id);
-      formData.set("item_quantity", count);
-
-      try {
-        const data = await mutation.mutateAsync(formData);
-        notify(data.message);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setCount((count) => count - 1);
-        queryClient.invalidateQueries("summaryData");
-        queryClient.invalidateQueries("carts");
-      }
-    }
+    return setCount((c) => c - 1);
   };
 
   return (
@@ -163,11 +122,11 @@ const CartItem = ({
       <div className="cart_item_wrapper">
         <div className="checkBox">
           <input
-            onChange={handleToggle(unique_id)}
+            onChange={handleToggle(cartID)}
             type="checkbox"
-            value={unique_id}
-            id={product_name}
-            name={product_name}
+            value={cartID}
+            id={sku}
+            name={sku}
             className="checker"
           />
         </div>
@@ -176,18 +135,18 @@ const CartItem = ({
           <div className="imageXname">
             <div className="image-placeholder-original ">
               <img
-                src={`${okukus}/${cover_photo_url}`}
+                src={imageURL}
                 alt="peecha"
                 className="image-placeholder-original"
               />
             </div>
 
             <div className="nameXprice">
-              <label htmlFor={product_name} className="item-name">
-                {product_name}
+              <label htmlFor={sku} className="item-name">
+                {sku}
               </label>
 
-              <div className="item-price">GHc {unit_price}</div>
+              <div className="item-price">$ {price}</div>
             </div>
           </div>
 
@@ -231,8 +190,7 @@ const CartItem = ({
       {confirm ? (
         <PopUp>
           <ConfirmDelete>
-            Are you sure you want to remove this product from your shopping
-            cart?
+            Are you sure you want to remove this id from your shopping cart?
           </ConfirmDelete>
 
           <Button class_name="primary" name="Remove" action={deleteItem} />
@@ -249,13 +207,4 @@ const CartItem = ({
 
 export default CartItem;
 
-CartItem.propTypes = {
-  handleToggle: PropTypes.func,
-  unique_id: PropTypes.string,
-  cover_photo_url: PropTypes.string,
-  product_name: PropTypes.string,
-  unit_price: PropTypes.string,
-  quantity: PropTypes.string,
-  product_unique_id: PropTypes.string,
-  id: PropTypes.string,
-};
+CartItem.propTypes = {};

@@ -1,60 +1,48 @@
 import React, { useState } from "react";
-import { useQueryClient,useMutation } from "react-query";
+import { useMutation } from "@apollo/client";
 import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
-import { userProfileUpdate } from "../../endpoints";
+
+import { UPDATE_NAME } from "../../graphQL functions";
 import { useData } from "../../Context";
-import { fetch } from "../../helper";
 
 import "./change.css";
 
 const ChangeName = ({ close }) => {
-  const { uniqueID } = useData();
-
-  const [loading, setLoading] = useState(false);
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [message, setMessage] = useState("");
 
-  const queryClient = useQueryClient();
+  const { uniqueID } = useData();
+
+  const [updateName, { loading, error, data }] = useMutation(UPDATE_NAME);
+
   const clear = () => {
     setFirstName("");
     setLastName("");
   };
 
-  const mutation = useMutation((formData) => {
-    return fetch(userProfileUpdate, formData);
-  });
-
   const updateDetail = async (event) => {
     setMessage("");
     event.preventDefault();
 
-    var formData = new FormData();
-
     let empty = first_name && last_name;
 
     if (empty === "") {
-      setMessage("Please fill the form");
+      return setMessage("Please fill the form");
     }
 
-    if (empty !== "") {
-      setLoading(true);
-      formData.set("buyer_unique_id", uniqueID);
-      formData.set("firstname", first_name);
-      formData.set("lastname", last_name);
+    await updateName({
+      variables: {
+        id: String(uniqueID),
+        first_name: String(first_name),
+        last_name: String(last_name),
+      },
+    });
 
-      try {
-        const data = await mutation.mutateAsync(formData);
-        setMessage(data.message);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        clear();
-        queryClient.invalidateQueries("updateName");
-      }
+    if (loading === false) {
+      clear();
     }
   };
 

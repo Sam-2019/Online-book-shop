@@ -1,10 +1,9 @@
 import React from "react";
-import { useMutation } from "react-query";
+import { useMutation } from "@apollo/client";
 import styled from "styled-components";
 import { toast } from "react-toastify";
+import { UPDATE_VERIFICATION } from "../graphQL functions";
 import { useData } from "../Context";
-import { userCreateEmailVerify } from "../endpoints";
-import { fetch } from "../helper";
 
 toast.configure();
 
@@ -39,38 +38,31 @@ const NotVerified = styled.div`
   }
 `;
 
-const Verify = () => {
-  const { verfifcationStatus, email } = useData();
+const Verify = ({ verfifcationStatus }) => {
+  const { uniqueID } = useData();
 
-  const notify = (data) => {
-    toast.success(data);
-  };
+  const id = String(uniqueID);
 
-  const mutation = useMutation((formData) => {
-    return fetch(userCreateEmailVerify, formData);
-  });
+  const [verifyUser, { data: dataResponse }] = useMutation(UPDATE_VERIFICATION);
 
-  const verify = async (event) => {
-    var formData = new FormData();
-    event.preventDefault();
-    formData.set("buyer_email", email);
+  const verify = async (e) => {
+    e.preventDefault();
 
-    try {
-      const data = await mutation.mutateAsync(formData);
-      console.log(data);
+    await verifyUser({
+      variables: {
+        id: String(uniqueID),
+        verified: Boolean(true),
+      },
+    });
 
-      if (data) {
-        notify(data.message);
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
+    if (dataResponse) {
+      toast.success("Message sent");
     }
   };
 
   return (
     <Verification>
-      {verfifcationStatus === "Verified" ? (
+      {verfifcationStatus ? (
         <Verified>Verified</Verified>
       ) : (
         <NotVerified onClick={verify}>Unverified</NotVerified>

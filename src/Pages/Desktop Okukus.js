@@ -3,7 +3,7 @@ import {
   Route,
   Switch,
   useRouteMatch,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 import Navigation from "./Navigation/Head";
 import Cart from "./Cart/Cart";
@@ -22,8 +22,7 @@ import Profile from "./User/Profile";
 import Review from "./Review/Review";
 import TagContent from "./Tags/Content";
 import NotFound from "./404/404";
-import Footer from "./Footer/Footer";
-
+import Admin from "./Admin/Admin";
 import { useData } from "./Context";
 
 function Desktop() {
@@ -37,16 +36,27 @@ function Desktop() {
 
 function Content() {
   const { auth } = useData();
+
+
   return (
     <Switch>
       <Route exact path="/">
         <Home />
-        <Footer />
       </Route>
 
-      <Route path="/checkout"> {auth ? <Checkout /> : <Redirect to="/" />}  </Route>
-      <Route path="/order/:id">{auth ? <Order /> : <Redirect to="/" />}</Route>
-      <Route path="/user">{auth ? <User /> : <Redirect to="/" />}</Route>
+      <Route path="/admin">
+        <Admin />
+      </Route>
+
+      <Route path="/checkout">
+        <Checkout />
+      </Route>
+      <Route path="/order/:id">
+        <Order />
+      </Route>
+      <Route path="/user">
+        <User />
+      </Route>
 
       <Route path="/account">
         <Account />
@@ -60,9 +70,11 @@ function Content() {
         <Cart />
       </Route>
 
-      <Route path="/login">
+      <Route path="/login">{auth ? <Redirect to="/" /> : <Login />}</Route>
+
+      {/* <Route path="/login">
         <Login />
-      </Route>
+      </Route> */}
 
       <Route path="/signup">
         <Signup />
@@ -95,11 +107,11 @@ function ProductPage() {
   let { path } = useRouteMatch();
   return (
     <Switch>
-      <Route exact path={`${path}/:id`}>
+      <Route exact path={`${path}/:sku`}>
         <Product />
       </Route>
 
-      <Route path={`${path}/:id/review`}>
+      <Route path={`${path}/:sku/review`}>
         <Review />
       </Route>
     </Switch>

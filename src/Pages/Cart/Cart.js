@@ -1,45 +1,69 @@
 import React from "react";
-import { useQuery } from "react-query";
-import { useHistory } from "react-router-dom";
-import { MediaQuery, fetchMore } from "../helper";
+import { useQuery } from "@apollo/client";
+
 import Back from "../Components/Back";
-import Button from "../Components/Button";
-import Summary from "../Summary/Summary";
+
 import CartData from "./cartData";
-import CartHeader from "./cartHeader";
-import { useData } from "../Context";
-import { cartGet } from "../endpoints";
+
 import "./cart.css";
+import { GET_CART } from "../graphQL functions";
 
 import SVGcontainer from "../SVGs/SVGcontainer";
 import EmptyCart from "../SVGs/empty-cart";
+import { useData } from "../Context";
 
 const Cart = () => {
-  const { uniqueID, amount, quantity, auth } = useData();
-  const history = useHistory();
-  const { width } = MediaQuery();
-  const breakpoint = 540;
+  const { uniqueID } = useData();
 
-  var formData = new FormData();
-  formData.set("buyer_unique_id", uniqueID);
+  const id = String(uniqueID);
 
-  const { data } = useQuery(
-    ["carts", uniqueID],
-    () => fetchMore(cartGet, formData),
-    {
-      keepPreviousData: true,
-      staleTime: 5000,
-      cacheTime: 20000,
-    }
-  );
+  const { loading, error, data, refetch } = useQuery(GET_CART, {
+    variables: { id },
+  });
 
-  const array = new Uint32Array(1);
-  const index = window.crypto.getRandomValues(array);
+  let view;
 
-  function orderItem() {
-    if (auth) {
-      history.push(`/order/${index[0]}`);
-    }
+  if (data === undefined || id == "") {
+    return (
+      <div className="cart-wrapper">
+        <div className="header">
+          <div className="category">
+            <div className="object-1">
+              <Back width={30} height={30} />
+            </div>
+            <div className="object-2"> Cart </div>
+          </div>
+        </div>
+
+        <div>
+          <SVGcontainer>
+            <EmptyCart />
+            <p className="text-3">
+              No item in <b>your</b> cart yet!
+            </p>
+          </SVGcontainer>
+        </div>
+      </div>
+    );
+  }
+
+  if (data.carts.length === 0) {
+    view = (
+      <SVGcontainer>
+        <EmptyCart />
+        <p className="text-3">
+          No item in <b>your</b> cart yet!
+        </p>
+      </SVGcontainer>
+    );
+  }
+
+  if (data.carts.length > 0) {
+    view = (
+      <div className="">
+        <CartData data={data.carts} refetch={refetch} />
+      </div>
+    );
   }
 
   return (
@@ -49,40 +73,11 @@ const Cart = () => {
           <div className="object-1">
             <Back width={30} height={30} />
           </div>
-          <div className="object-2"> Cart ({quantity})</div>
+          <div className="object-2"> Cart </div>
         </div>
       </div>
 
-      <div className="main">
-        {data === undefined ? (
-          <SVGcontainer>
-            <EmptyCart />
-            <p className="text-3">
-              No item in <b>your</b> cart yet!
-            </p>
-          </SVGcontainer>
-        ) : null}
-
-        {data ? (
-          <>
-            {width > breakpoint ? <CartHeader /> : null}
-            <CartData data={data} />
-          </>
-        ) : null}
-      </div>
-
-      <Summary>
-        <div className="amountX">
-          <div className="amount">
-            Total: ${Intl.NumberFormat().format(amount)}
-          </div>
-        </div>
-        <Button
-          class_name="checkout"
-          name={`Check Out  (${quantity})`}
-          action={orderItem}
-        />
-      </Summary>
+      <div>{view}</div>
     </div>
   );
 };

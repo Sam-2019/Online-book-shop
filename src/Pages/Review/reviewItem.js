@@ -8,8 +8,8 @@ import FillText from "./fillText";
 
 import "./review.css";
 
-const ReviewItem = ({ picture, name, time_stamp, rating, comment }) => {
-  var date = new Date(time_stamp).toLocaleString();
+const ReviewItem = ({ id, rating, text, created_at, user }) => {
+  var date = new Date(Number(created_at)).toLocaleString();
 
   const [fullText, setFullTest] = React.useState(false);
 
@@ -21,14 +21,13 @@ const ReviewItem = ({ picture, name, time_stamp, rating, comment }) => {
     <div className=" review-wrapper">
       <div className="review-head ">
         <div className="profile-image">
-          <ProfilePhoto className="image" src={picture} />
+          <ProfilePhoto className="image" src={user.photoURL} />
         </div>
 
         <div className="usernameXstar ">
           <div className="nameXtime">
-
             <div className="nameDate">
-              <UserName name={name} />
+              <UserName name={`${user.first_name} ${user.last_name}`} />
 
               <TimeStamp timestamp={date} />
             </div>
@@ -38,13 +37,13 @@ const ReviewItem = ({ picture, name, time_stamp, rating, comment }) => {
         </div>
       </div>
 
-      {comment.length > 150 ? (
+      {text.length > 150 ? (
         <>
           {fullText ? (
-            <FillText comment={comment} toggle={toggle} />
+            <FillText comment={text} toggle={toggle} />
           ) : (
             <>
-              {comment.substr(0, 218)}{" "}
+              {text.substr(0, 218)}{" "}
               <span className="read-more" onClick={toggle}>
                 ...more
               </span>
@@ -52,7 +51,7 @@ const ReviewItem = ({ picture, name, time_stamp, rating, comment }) => {
           )}
         </>
       ) : (
-        <> {comment} </>
+        <> {text} </>
       )}
 
       <div>
@@ -65,9 +64,9 @@ const ReviewItem = ({ picture, name, time_stamp, rating, comment }) => {
 export default ReviewItem;
 
 ReviewItem.propTypes = {
-  comment: PropTypes.string,
-  picture: PropTypes.string,
+  text: PropTypes.string,
+  user: PropTypes.object,
   name: PropTypes.string,
-  time_stamp: PropTypes.string,
-  rating: PropTypes.string,
+  created_at: PropTypes.string,
+  rating: PropTypes.number,
 };

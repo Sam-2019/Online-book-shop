@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useMutation } from "react-query";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Message from "../Components/Message";
-import { fetch } from "../helper";
-import { userAccountReset } from "../endpoints";
+
 
 import "./user.css";
 
@@ -14,9 +12,7 @@ const PasswordReset = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const mutation = useMutation((formData) => {
-    return fetch(userAccountReset, formData);
-  });
+
 
   const clear = () => {
     setEmail("");
@@ -36,13 +32,10 @@ const PasswordReset = () => {
     if (empty !== "") {
       setLoading(true);
 
-      var formData = new FormData();
-      formData.set("buyer_email", email);
+
 
       try {
-        const data = await mutation.mutateAsync(formData);
-        console.log(data);
-        setMessage(data.message);
+
         setLoading(false);
       } catch (error) {
         console.error(error);

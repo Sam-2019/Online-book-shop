@@ -1,22 +1,23 @@
 import React, { useState } from "react";
-import { useQueryClient,useMutation } from "react-query";
-import { useHistory } from "react-router-dom";
+import { useLazyQuery } from "@apollo/client";
+import { Redirect, useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Message from "../Components/Message";
 import { EyeShow, EyeHide } from "../Components/Eye";
-import { MediaQuery, fetch } from "../helper";
-import { userLogin } from "../endpoints";
+import { MediaQuery } from "../helper";
+import { LOGIN } from "../graphQL functions";
 import { useData } from "../Context";
+
 import "./user.css";
 
 const Login = () => {
   let history = useHistory();
-  const { isLoggedIn } = useData();
 
   const breakpoint = 540;
   const { width } = MediaQuery();
+  const { login } = useData();
 
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ const Login = () => {
 
   const [show, hide] = useState("password");
 
-  const queryClient = useQueryClient();
+  const [loginUser, { error, data, refetch }] = useLazyQuery(LOGIN);
 
   let type;
 
@@ -38,17 +39,6 @@ const Login = () => {
       type = "password";
   }
 
-  // const mutation = useMutation((formData) => {
-  //   return loginUser(formData);
-  // });
-
-  const mutation = useMutation((formData) => {
-    return fetch(userLogin, formData);
-  });
-
-  const home = () => {
-    history.push("./");
-  };
   const clearLogin = () => {
     setEmail("");
     setPassword("");
@@ -56,7 +46,6 @@ const Login = () => {
 
   const logIn = async (event) => {
     event.preventDefault();
-    var formData = new FormData();
 
     setMessage("");
 
@@ -67,27 +56,19 @@ const Login = () => {
     }
 
     if (empty !== "") {
-      setLoading(true);
-
-      formData.set("email", email);
-      formData.set("password", password);
-
       try {
-        const data = await mutation.mutateAsync(formData);
-        // console.log(data);
-        setMessage(data.message);
-        await localStorage.setItem("loginToken", data.token);
-        await isLoggedIn();
+        loginUser({ variables: { email, password } });
 
-        if (data.error === false) {
-          home();
+        console.log(data);
+
+        if (data) {
+          await localStorage.setItem("loginToken", data.login.token);
+          await localStorage.setItem("uniqueID", data.login.user);
+          clearLogin();
+          history.push("./");
         }
-      } catch (error) {
-        console.error(error);
-      } finally {
-        clearLogin();
-        setLoading(false);
-        queryClient.invalidateQueries("summaryData");
+      } catch (err) {
+        console.log(err);
       }
     }
   };
@@ -161,7 +142,7 @@ const Login = () => {
             </span>
           </div>
 
-          {message ? <Message class_name="message " message={message} /> : null}
+          {message && <Message class_name="message " message={message} />}
 
           <Button
             name="Login"
@@ -170,7 +151,7 @@ const Login = () => {
             loading={loading}
           />
 
-          {width > breakpoint ? (
+          {width > breakpoint && (
             <Button
               name="Signup"
               class_name="secondary"
@@ -178,10 +159,11 @@ const Login = () => {
                 history.push("/signup");
               }}
             />
-          ) : null}
+          )}
         </form>
       </div>
     </div>
   );
 };
+
 export default Login;

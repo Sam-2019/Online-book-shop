@@ -1,18 +1,4 @@
-.primary,
-.secondary,
-.header-primary,
-.header-primary2,
-.header-secondary,
-.cancel-order,
-.whatsapp,
-.facebook,
-.twitter,
-.checkout,
-.addCart,
-.buyNow,
-.uploadImage,
-.disabled-buyNow,
-.disabled-addCart {
+button {
   background-color: transparent;
   border: 1px solid transparent;
   outline: none;
@@ -21,6 +7,16 @@
   text-transform: uppercase;
   transition: transform 80ms ease-in;
 }
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+
 
 .header-primary2 {
   border-radius: 0 10px 10px 0;
@@ -60,7 +56,7 @@
   padding: 2px 5px;
 }
 
-.primary:active,
+/* .primary:active,
 .secondary:active,
 .header-primary:active,
 .header-primary2:active,
@@ -74,11 +70,11 @@
 .addCart:active,
 .addReview:active,
 .uploadImage:active,
-.not-verify:active{
+.not-verify:active {
   transform: scale(0.95);
-}
+} */
 
-.primary:focus,
+/* .primary:focus,
 .secondary:focus,
 .header-primary:focus,
 .header-primary2:focus,
@@ -94,7 +90,7 @@
 .disabled-addCart:focus,
 .uploadImage:focus {
   outline: none;
-}
+} */
 
 .primary,
 .header-primary,
@@ -113,7 +109,7 @@
   color: #00d919;
 }
 
-.disabled-buyNow{
+.disabled-buyNow {
   background-color: #808080;
   border: 1px solid #808080;
   color: #ffffff;

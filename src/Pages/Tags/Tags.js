@@ -1,14 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useQuery } from "react-query";
-import { tagsGet } from "../endpoints";
-import { fetch } from "../helper";
 import TagData from "./tagsData";
 import "./tag.css";
 
 const Tags = ({ toggle }) => {
-  const { data } = useQuery(["tagList", tagsGet], () => fetch(tagsGet));
-
   return (
     <div className="tag-wrapper">
       <div className="back-container" onClick={toggle}>
@@ -31,7 +26,9 @@ const Tags = ({ toggle }) => {
         </svg>
       </div>
 
-      {data ? <TagData data={data} toggle={toggle} /> : <>Loading</>}
+      <TagData toggle={toggle} />
+
+      <>Loading</>
     </div>
   );
 };

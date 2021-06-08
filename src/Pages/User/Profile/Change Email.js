@@ -1,58 +1,48 @@
 import React, { useState } from "react";
-import { useQueryClient,useMutation } from "react-query";
+import { useMutation } from "@apollo/client";
 import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
-import { userEmailUpdate } from "../../endpoints";
+
+import { UPDATE_EMAIL } from "../../graphQL functions";
 import { useData } from "../../Context";
-import { fetch } from "../../helper";
+
 import "./change.css";
 
 const ChangeEmail = ({ close }) => {
-  const { uniqueID } = useData();
-  const [loading, setLoading] = useState(false);
-
   const [email, setEmail] = useState("");
   const [new_email, setNewEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const queryClient = useQueryClient();
-  const reset = () => {
+  const { uniqueID } = useData();
+
+  const [updateEmail, { loading, error, data }] = useMutation(UPDATE_EMAIL);
+
+  const clear = () => {
     setEmail("");
     setNewEmail("");
   };
 
-  const mutation = useMutation((formData) => {
-    return fetch(userEmailUpdate, formData);
-  });
-
-  const updateEmail = async (event) => {
+  const update = async (event) => {
     event.preventDefault();
     setMessage("");
 
-    var formData = new FormData();
-
-    let empty = email;
+    let empty = email & new_email;
 
     if (empty === "") {
-      setMessage("Please fill the form");
+      return setMessage("Please fill the form");
     }
 
-    if (empty !== "") {
-      setLoading(true);
-      formData.set("buyer_unique_id", uniqueID);
-      formData.set("email", email);
+    await updateEmail({
+      variables: {
+        id: String(uniqueID),
+        email: String(email),
+        new_email: String(new_email),
+      },
+    });
 
-      try {
-        const data = await mutation.mutateAsync(formData);
-        setMessage(data.message);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        reset();
-        queryClient.invalidateQueries("updateEmail");
-      }
+    if (loading === false) {
+      clear();
     }
   };
 
@@ -78,7 +68,7 @@ const ChangeEmail = ({ close }) => {
       <Button
         class_name="primary"
         name="Update"
-        action={updateEmail}
+        action={update}
         loading={loading}
       />
 

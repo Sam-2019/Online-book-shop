@@ -1,0 +1,102 @@
+.admin-wrapper {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-page {
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#admin-form-wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: #bfbfbf48;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  -webkit-transition: all ease 0.7s;
+  transition: all ease 0.7s;
+  z-index: 11;
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+}
+
+#admin-form {
+  margin: auto;
+  transition: all 0.6s ease-in-out;
+  max-width: 600px;
+  background-color: #ffffff;
+  transition: all 0.6s ease-in-out;
+  color: #000000;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.admin-buttons {
+  padding: 20px 10px;
+  background-color: #00d919;
+  border: 1px solid #00d919;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.button-wrapper {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.submitForm-button,
+.cancelForm-button {
+  letter-spacing: 1px;
+  padding: 12px 15px;
+  font-size: 12px;
+  width: 30%;
+}
+
+.submitForm-button {
+  background-color: #00d919;
+  border: 1px solid #00d919;
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+.cancelForm-button {
+  background-color: #ffffff;
+  border: 1px solid #00d919;
+  color: #00d919;
+}
+
+.book-image {
+  width: 50px;
+}
+
+.product-view {
+}
+
+.product-item {
+}
+
+.product-container {
+  background-color: antiquewhite;
+  padding: 8px 0 0 0;
+
+  display: grid;
+  /* grid-template-columns: 25% 25% 25% 25% ;
+  padding-right: 10px;
+  padding-top: 10px; */
+
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+}

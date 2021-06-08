@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useHistory, useRouteMatch, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useQueryClient } from "react-query";
-import Back from "../Components/Back";
-import Home from '../Components/Home'
+import { useHistory, useRouteMatch, useParams } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import Home from "../Components/Home";
 import Up from "../Components/Up";
 import Down from "../Components/Down";
 import Right from "../Components/Right";
@@ -18,29 +17,36 @@ import LoveFill from "../Components/LoveFill";
 import ReviewItem from "../Review/reviewItem";
 import AddReview from "../Review/addReview";
 import Summary from "../Summary/Summary";
-import { MediaQuery, axiosMethod } from "../helper";
-import { okukus, cartAdd, buyerID, wishCreate } from "../endpoints";
-import { useData } from "../Context";
+import { MediaQuery } from "../helper";
 import { Spacer } from "../Placeholders/Product";
+import { useData } from "../Context";
 import "./product.css";
 
+import { ADD_CART, ADD_WISHLIST } from "../graphQL functions";
 
 toast.configure();
 
-const Product = ({ data }) => {
-  let history = useHistory();
-  let { id } = useParams();
-  let { url } = useRouteMatch();
+const Product = ({ results }) => {
+  const [addCart, { loading: cartLoading, error: cartError, data: cartData }] =
+    useMutation(ADD_CART);
 
-  const { auth } = useData();
+  const [
+    addWishlist,
+    { loading: wishLoading, error: wishError, data: wishData },
+  ] = useMutation(ADD_WISHLIST);
 
   const { width } = MediaQuery();
 
+  const { uniqueID } = useData();
+
+  let history = useHistory();
+  let { sku } = useParams();
+  let { url } = useRouteMatch();
+
   const [loading, setLoading] = React.useState(false);
   const [contractDescription, expandDescription] = React.useState(true);
-  const [review, addReview] = React.useState(false);
+  const [reviewbox, setReviewBox] = React.useState(false);
   const [loveFill, setLoveFill] = React.useState(false);
-  const [reviewData, setReviewData] = React.useState([]);
 
   const ToggleDescription = () => {
     expandDescription(!contractDescription);
@@ -69,74 +75,82 @@ const Product = ({ data }) => {
     }
   };
 
-  const queryClient = useQueryClient();
-  queryClient.invalidateQueries("product");
+  const add2Cart = async () => {
+    if (uniqueID === "") {
+      return toast.error("Please login to add item to cart");
+    }
 
-  var formData = new FormData();
-  formData.set("product_unique_id", id);
-  formData.set("buyer_unique_id", buyerID);
+    addCart({
+      variables: {
+        user: String(uniqueID),
+        product: String(results.id),
+        quantity: String(1),
+        price: String(results.price),
+      },
+    });
 
-  const add2Cart = async (e) => {
-    e.preventDefault();
-    if (auth) {
-      setLoading(true);
+    if (cartError) {
+      toast.error(cartError);
+    }
 
-      const { data } = await axiosMethod("post", cartAdd, formData);
-
-      if (!data.error) {
-        queryClient.invalidateQueries("carts");
-        queryClient.invalidateQueries("summaryData");
-        queryClient.invalidateQueries("orderLength");
-        toast.success(data.message);
-      }
-
-      setLoading(false);
-      toast.error(data.error);
+    if (cartData) {
+      toast.success("Item added to cart");
     }
   };
 
   const add2WL = async (e) => {
     e.preventDefault();
-    if (auth) {
-      setLoveFill(false);
 
-      const { data } = await axiosMethod("post", wishCreate, formData);
-
-      if (!data.error) {
-        setLoveFill(true);
-        toast.success(data.message);
-        queryClient.invalidateQueries("wishlistLength");
-        queryClient.invalidateQueries("wishlist");
-      }
-
-      toast.error(data.error);
-
-      const timer = setTimeout(() => {
-        setLoveFill(false);
-      }, 2000);
-      return () => clearTimeout(timer);
+    if (uniqueID === "") {
+      return toast.error("Please login to add item to wishlist");
     }
+
+    setLoveFill(true);
+
+    addWishlist({
+      variables: {
+        user: String(uniqueID),
+        product: String(results.id),
+      },
+    });
+
+    if (wishError) {
+      toast.error(wishError);
+    }
+
+    if (wishData) {
+      toast.success("Item added to wish list");
+    }
+
+    const timer = setTimeout(() => {
+      setLoveFill(false);
+    }, 2000);
+    return () => clearTimeout(timer);
   };
 
   const reviewItem = () => {
-    if (!auth) {
-      toast.warning("Login to write a review ");
+    if (uniqueID === "") {
+      return toast.error("Please login to review item");
     }
 
-    if (auth) {
-      addReview(true);
+    if (wishError) {
+      toast.error(wishError);
     }
+
+    setReviewBox(true);
   };
 
   const buyItem = () => {
-    if (auth) {
-      history.push(`/order/${id}`);
+    if (uniqueID === "") {
+      return toast.error("Please login to buy item");
     }
 
-    if (!auth) {
-      toast.warning("Login to buy item ");
-    }
+    history.push(`/order/${sku}`);
   };
+
+  const productRating = parseFloat(results.rating.toFixed(2));
+
+
 
   return (
     <div className="product-wrapper">
@@ -145,7 +159,7 @@ const Product = ({ data }) => {
           <div className="object-1">
             <Home width={30} height={30} />
           </div>
-          <div className="object-2">{data.data.product_name}</div>
+          <div className="object-2">{results.sku}</div>
         </div>
 
         <div className="category ">
@@ -161,7 +175,7 @@ const Product = ({ data }) => {
             <div className="product-divide">
               <div className="product-image-wrapper">
                 <img
-                  src={`${okukus}/${data.data.cover_photo_url}`}
+                  src={results.imageURL}
                   alt="peecha"
                   className="product-image"
                 />
@@ -170,8 +184,8 @@ const Product = ({ data }) => {
               <Social
                 width={22}
                 height={25}
-                postTitle={data.data.product_name}
-                postUrl={`https://okukus.com/product/${id}`}
+                postTitle={results.name}
+                postUrl={`https://okukus.com/product/${results.sku}`}
                 hashtags="okukus, okukusBooks, books, shopOkukus, shop@Okukus, okukus.com"
                 via
               />
@@ -180,7 +194,7 @@ const Product = ({ data }) => {
             <div className="product-detail  ">
               <div className="nameXauthor outline">
                 <div className="nameXaction">
-                  <div className="product-name "> {data.data.product_name}</div>
+                  <div className="product-name ">{results.name}</div>
 
                   <div className="love " onClick={add2WL}>
                     {loveFill ? (
@@ -191,14 +205,10 @@ const Product = ({ data }) => {
                   </div>
                 </div>
 
-                <span className="product-author  ">
-                  {data.data.product_author}
-                </span>
+                <span className="product-author  ">{results.author}</span>
 
                 <div className="prices">
-                  <div className="product-price">
-                    GHC {data.data.unit_price}
-                  </div>
+                  <div className="product-price">$ {results.price}</div>
 
                   <div className="spacer"></div>
 
@@ -208,7 +218,16 @@ const Product = ({ data }) => {
 
               {width > 540 ? null : (
                 <div className="rateItem outline">
-                  <StarRating value={3.7} width={15} height={15} />
+                  {productRating === 0 ? (
+                    "No yet ratings yet"
+                  ) : (
+                    <StarRating
+                      value={productRating}
+                      width={15}
+                      height={15}
+                      type="product-rating"
+                    />
+                  )}
                 </div>
               )}
 
@@ -217,7 +236,7 @@ const Product = ({ data }) => {
 
                 {width > 540 ? (
                   <div className="product-description-full">
-                    {data.data.product_description}{" "}
+                    {results.detail}
                   </div>
                 ) : (
                   <>
@@ -228,7 +247,7 @@ const Product = ({ data }) => {
                           : "product-description-full"
                       }
                     >
-                      {data.data.product_description}{" "}
+                      {results.detail}
                     </div>
                     <div className="down">
                       {contractDescription ? (
@@ -246,9 +265,9 @@ const Product = ({ data }) => {
               </div>
 
               <div className="review-box outline">
-                {width > 540 ? (
+                {width > 540 && (
                   <div className="product-title ">Ratings and Reviews</div>
-                ) : null}
+                )}
 
                 {width > 540 ? null : (
                   <div className="product-title ">Reviews</div>
@@ -261,11 +280,20 @@ const Product = ({ data }) => {
                     </div>
                   )}
 
-                  {width > 540 ? (
+                  {width > 540 && (
                     <div className="rating-stars">
-                      <StarRating value={3.7} width={15} height={15} />
+                      {productRating === 0 ? (
+                        "No ratings yet"
+                      ) : (
+                        <StarRating
+                          value={productRating}
+                          width={15}
+                          height={15}
+                          type="product-rating"
+                        />
+                      )}
                     </div>
-                  ) : null}
+                  )}
 
                   <div className="see-more">
                     <span
@@ -282,35 +310,33 @@ const Product = ({ data }) => {
               </div>
 
               <div>
-                {reviewData ? (
-                  <>
-                    {reviewData.slice(0, 2).map((item, index) => (
-                      <ReviewItem key={index} {...item} />
-                    ))}
-                  </>
-                ) : null}
+                {results.review.slice(0, 3).map((item, index) => (
+                  <ReviewItem key={index} {...item} />
+                ))}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {review ? (
-        <PopUp close={() => addReview(false)}>
+      {reviewbox && (
+        <PopUp close={() => setReviewBox(false)}>
           <AddReview
             close={() => {
-              addReview(false);
+              setReviewBox(false);
             }}
+            user={uniqueID}
+            product={results.id}
           />
         </PopUp>
-      ) : null}
+      )}
 
       <Summary>
-        {width > 540 ? (
+        {width > 540 && (
           <div className="addReview2 " onClick={reviewItem}>
             Add Review
           </div>
-        ) : null}
+        )}
 
         <div className="product-action">
           <Button
@@ -332,5 +358,10 @@ const Product = ({ data }) => {
 export default Product;
 
 Product.propTypes = {
-  data: PropTypes.object,
+  results: PropTypes.object,
+  id: PropTypes.string,
+  user: PropTypes.string,
+  product: PropTypes.string,
+  price: PropTypes.string,
+  quantity: PropTypes.string,
 };

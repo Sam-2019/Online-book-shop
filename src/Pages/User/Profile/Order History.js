@@ -1,28 +1,65 @@
 import React from "react";
-import { useQuery } from "react-query";
 import Back from "../../Components/Back";
-import { orderHistory } from "../../endpoints";
-import { fetchMore } from "../../helper";
+import { useQuery } from "@apollo/client";
+import { GET_ORDER } from "../../graphQL functions";
 import { useData } from "../../Context";
-import EmptyOrderHistory from "../../SVGs/empty-orderhistory";
-import SVGContainer from "../../SVGs/SVGcontainer";
+
 import HistoryData from "./historyData";
 
+import EmptyOrderHistory from "../../SVGs/empty-orderhistory";
+import SVGContainer from "../../SVGs/SVGcontainer";
+
 const OrderHistory = () => {
-  const { uniqueID, orderLength } = useData();
+  const { uniqueID } = useData();
 
-  var formData = new FormData();
-  formData.set("buyer_unique_id", uniqueID);
+  const id = String(uniqueID);
 
-  const { status, data } = useQuery(
-    ["orderHistory", uniqueID, orderHistory],
-    () => fetchMore(orderHistory, formData),
-    {
-      keepPreviousData: true,
-      staleTime: 5000,
-      cacheTime: 5000,
-    }
-  );
+  const { loading, error, data, refetch } = useQuery(GET_ORDER, {
+    variables: { id },
+  });
+
+  let view;
+
+  if (loading) {
+    return (
+      <div className="user-wrapper">
+        <div className="header">
+          <div className="category">
+            <div className="object-1">
+              <Back width={30} height={30} />
+            </div>
+            <div className="object-2"> Orders </div>
+          </div>
+        </div>
+
+        <div className="main">
+          <div className="wrapper-item">
+            <SVGContainer>
+              <EmptyOrderHistory />
+              <p className="text-3">
+                No item in <b>your</b> order history yet!
+              </p>
+            </SVGContainer>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (data.userOrder.length === 0) {
+    view = (
+      <SVGContainer>
+        <EmptyOrderHistory />
+        <p className="text-3">
+          No item in <b>your</b> order history yet!
+        </p>
+      </SVGContainer>
+    );
+  }
+
+  if (data.userOrder.length > 0) {
+    view = <HistoryData data={data.userOrder} />;
+  }
 
   return (
     <div className="user-wrapper">
@@ -31,23 +68,12 @@ const OrderHistory = () => {
           <div className="object-1">
             <Back width={30} height={30} />
           </div>
-          <div className="object-2"> Orders ({orderLength})</div>
+          <div className="object-2"> Orders ({data.userOrder.length})</div>
         </div>
       </div>
 
       <div className="main">
-        <div className="wrapper-item">
-          {data === undefined ? (
-            <SVGContainer>
-              <EmptyOrderHistory />
-              <p className="text-3">
-                No item in <b>your</b> order history yet!
-              </p>
-            </SVGContainer>
-          ) : null}
-
-          {data ? <HistoryData data={data} /> : null}
-        </div>
+        <div className="wrapper-item">{view}</div>
       </div>
     </div>
   );

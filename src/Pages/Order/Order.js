@@ -1,6 +1,6 @@
 import React from "react";
-import axios from "axios";
-import { useParams, useHistory } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
@@ -9,64 +9,36 @@ import PopUp from "../Components/Popup";
 import Question from "../Components/Question";
 import Success from "../Components/Success";
 import { MediaQuery } from "../helper";
+import { ADD_PAYMENT } from "../graphQL functions";
 import { useData } from "../Context";
-
-import { buyerID, locationsGet, feeGet } from "../endpoints";
+import PaymentInstruction from "./PaymentInstruction";
 
 import "./order.css";
 import PaymentProcess from "./PaymentProcess";
 
 const Order = () => {
-  const { amount, quantity, auth } = useData();
-
   let breakpoint = 540;
   let history = useHistory();
-  let { id } = useParams();
+
   const { width } = MediaQuery();
   const [paymentMethod, setPaymentMethod] = React.useState("");
   const [state, setState] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
 
-  const [loading, setLoading] = React.useState(true);
+
   const [value, setValue] = React.useState("Pick your location");
-  const [fee, setFee] = React.useState(0);
-  const [items, setItems] = React.useState([]);
+  const fee= 10
+
+
+  const [location, setLocation] = React.useState("");
+  const [address, setAddress] = React.useState("");
+  const [phone_number, setPhoneNumber] = React.useState("");
+
+  const [momo_name, setMomoName] = React.useState("");
+  const [momo_number, setMomoNumber] = React.useState("");
+  const [transaction_id, setTransactionID] = React.useState("");
+
   let show;
-  var formData = new FormData();
-
-  React.useEffect(() => {
-    let unmounted = false;
-
-    async function fetchData() {
-      formData.set("buyer_unique_id", buyerID);
-      const response = await axios({
-        method: "post",
-        url: locationsGet,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
-      const body = await response.data;
-
-      if (!unmounted) {
-        setItems(
-          body.data.map(({ location, unique_id, disabled }) => ({
-            uniqueID: unique_id,
-            label: location,
-            value: location,
-            disable: disabled,
-          }))
-        );
-        setLoading(false);
-      }
-    }
-
-    fetchData();
-
-    return () => {
-      unmounted = true;
-    };
-  }, []);
 
   const showSuccess = () => {
     setSuccess(true);
@@ -102,54 +74,33 @@ const Order = () => {
       show = "(Shipping inclusive)";
   }
 
-  // const getFee = async () => {
-  //   formData.set("buyer_unique_id", buyerID);
-  //   formData.set("location_name", value);
-
-  //   const response = await axios({
-  //     method: "post",
-  //     url: feeGet,
-  //     data: formData,
-  //     headers: { "Content-Type": "multipart/form-data" },
-  //   });
-  //   response ? setFee(response.data.data) : setFee(0);
-  // };
-
-  // React.useEffect(() => {
-  //   getFee();
-  // }, [getFee]);
-
-  React.useEffect(() => {
-    let didCancel = false;
-
-    const getFee = async () => {
-      formData.set("buyer_unique_id", buyerID);
-      formData.set("location_name", value);
-
-      const response = await axios({
-        method: "post",
-        url: feeGet,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
-      if (!didCancel) {
-        response ? setFee(response.data.data) : setFee(0);
-      }
-    };
-
-    getFee();
-
-    return () => {
-      didCancel = true;
-    };
-  }, [formData]);
+  const [
+    addPayment,
+    { loading: paymentrLoading, error: paymentError, data: paymentData },
+  ] = useMutation(ADD_PAYMENT);
 
   function orderItem() {
-    if (auth) {
-      history.push(`/order/${id}`);
-      setSuccess(true);
-    }
+    // setSuccess(true);
+
+    console.log(location, address, phone_number);
+
+    const orderValue = localStorage.getItem("orderValue")
+
+    addPayment({
+      variables: {
+        method: String(selectedOption),
+        status: String("pending"),
+
+        location,
+        address,
+        phone_number,
+
+        momo_name,
+        momo_number,
+        momo_transaction_id: transaction_id,
+        order_value: String(orderValue),
+      },
+    });
   }
 
   return (
@@ -182,26 +133,34 @@ const Order = () => {
         `}
           >
             <div className="page_title"> Shipping Information</div>
-            <select
-              id="select"
-              className="input"
-              autoFocus
-              required
-              disabled={loading}
-              value={value}
-              onChange={(e) => {
-                setValue(e.target.value);
-              }}
-            >
-              {items.map(({ value, disable }) => (
-                <option key={value} value={value} disabled={disable}>
-                  {value}
-                </option>
-              ))}
+
+            <select name="locations" id="select" className="input">
+              <option value="tema">Tema</option>
+              <option value="accra">Accra</option>
+              <option value="kumasi">Kumasi</option>
+              <option value="bolga">Bolga</option>
             </select>
-            <Input class_name="input " placeholder="Location" onChange />
-            <Input class_name="input " placeholder="Digital Address" onChange />
-            <Input class_name="input " placeholder="Phone Number" onChange />
+
+            <Input
+              class_name="input "
+              placeholder="Location"
+              action={(e) => setLocation(e.target.value)}
+              value={location}
+            />
+
+            <Input
+              class_name="input "
+              placeholder="Digital Address"
+              action={(e) => setAddress(e.target.value)}
+              value={address}
+            />
+
+            <Input
+              class_name="input "
+              placeholder="Phone Number"
+              action={(e) => setPhoneNumber(e.target.value)}
+              value={phone_number}
+            />
 
             <div className="page_title">Payment</div>
             <div className="payment-method ">
@@ -237,16 +196,23 @@ const Order = () => {
                         }}
                       />
                     </div>
-                    <Input class_name="input " placeholder="Name" onChange />
+                    <Input
+                      class_name="input "
+                      placeholder="Name"
+                      action={(e) => setMomoName(e.target.value)}
+                      value={momo_name}
+                    />
                     <Input
                       class_name="input "
                       placeholder="Momo Number"
-                      onChange
+                      action={(e) => setMomoNumber(e.target.value)}
+                      value={momo_number}
                     />
                     <Input
                       class_name="input "
                       placeholder="Transaction ID"
-                      onChange
+                      action={(e) => setTransactionID(e.target.value)}
+                      value={transaction_id}
                     />
                   </div>
                 ) : null}
@@ -266,29 +232,15 @@ const Order = () => {
                    } outline  margin-top 
                   `}
                 >
-                  <div className="payment-instruction">
-                    <div className="pay-know-how ">
-                      <div className="page_title ">How To Pay With Momo</div>
-                      <Question
-                        width={30}
-                        height={30}
-                        action={() => {
-                          setState(true);
-                        }}
-                      />
-                    </div>
-                    <Input class_name="input " placeholder="Name" onChange />
-                    <Input
-                      class_name="input "
-                      placeholder="Momo Number"
-                      onChange
-                    />
-                    <Input
-                      class_name="input "
-                      placeholder="Transaction ID"
-                      onChange
-                    />
-                  </div>
+                  <PaymentInstruction
+                    momo_name={momo_name}
+                    setMomoName={setMomoName}
+                    momo_number={momo_number}
+                    setMomoNumber={setMomoNumber}
+                    transaction_id={transaction_id}
+                    setTransactionID={setTransactionID}
+                    setState={setState}
+                  />
                 </div>
               ) : null}
             </>
@@ -299,22 +251,14 @@ const Order = () => {
       <Summary>
         <div className="amountXshipping">
           <div className={show ? "amount2" : "amount1"}>
-            {/* Total: {fee === undefined ? ` $${amount}` : ` $${amount + fee}`} */}
-            Total:{" "}
-            {fee === undefined ? (
-              <>${Intl.NumberFormat().format(amount)}</>
-            ) : (
-              <>${Intl.NumberFormat().format(amount + fee)}</>
-            )}
+            Total: ${Intl.NumberFormat().format(100)}
           </div>
-          <div className="shipping">
-            {value === "Pick your location" ? <></> : <>(Shipping ${fee})</>}
-          </div>
+          <div className="shipping">(Shipping ${fee})</div>
         </div>
 
         <Button
           class_name="checkout"
-          name={`Order  (${quantity})`}
+          name={`Order  (100)`}
           action={orderItem}
         />
       </Summary>
@@ -323,10 +267,7 @@ const Order = () => {
         <PopUp>
           <Success />
           <div className="order-success">
-            <div>
-              {/* Hi <span className="customer-name">Kenneth Akanpaacharuk</span>, */}
-            </div>{" "}
-            Thank you for shopping with us! Your order{" "}
+            <div></div> Thank you for shopping with us! Your order{" "}
             <span className="orderID">11111111111</span> has been placed,
             pending confirmation. We will call you within 24 hours (calling
             hours: Mon-Fri 8:30am-5:30pm) to confirm your order . Once the order

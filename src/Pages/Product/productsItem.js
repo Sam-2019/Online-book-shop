@@ -1,43 +1,42 @@
 import React from "react";
+import { useMutation } from "@apollo/client";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
-import { useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 import Cart from "../Components/Cart";
-import { okukus, buyerID, cartAdd } from "../endpoints";
-import { axiosMethod } from "../helper";
 import { useData } from "../Context";
+import { ADD_CART } from "../graphQL functions";
 
 toast.configure();
 
-const ProductsItem = ({
-  unique_id,
-  cover_photo_url,
-  product_name,
-  unit_price,
-}) => {
+const ProductsItem = ({ id, name, price, imageURL, sku, quantity }) => {
   let history = useHistory();
-  const { auth } = useData();
+  const { uniqueID } = useData();
 
-  const queryClient = useQueryClient();
+  const [addCart, { loading: cartLoading, error: cartError, data: cartData }] =
+    useMutation(ADD_CART);
 
   const add2Cart = async (e) => {
     e.preventDefault();
-    if (auth) {
-      var formData = new FormData();
-      formData.set("product_unique_id", unique_id);
-      formData.set("buyer_unique_id", buyerID);
 
-      const { data } = await axiosMethod("post", cartAdd, formData);
-
-      queryClient.invalidateQueries("summaryData");
-
-      if (!data.error) {
-        toast.success(data.message);
-      }
-
-      toast.error(data.error);
+    if (uniqueID === "") {
+      return toast.error("Please login to add item to cart");
     }
+
+    addCart({
+      variables: {
+        user: String(uniqueID),
+        product: String(id),
+        quantity: String(1),
+        price: String(price),
+      },
+    });
+
+    if (cartError) {
+      toast.error(cartError);
+    }
+
+    toast.success("Item added to cart");
   };
 
   return (
@@ -47,22 +46,18 @@ const ProductsItem = ({
         <div
           className="products-image-wrapper"
           onClick={() => {
-            history.push(`/product/${unique_id}`);
+            history.push(`/product/${sku}`);
           }}
         >
-          <img
-            src={`${okukus}/${cover_photo_url}`}
-            alt="alt"
-            className="products-image"
-          />
+          <img src={imageURL} alt="alt" className="products-image" />
         </div>
         <div
           className="products-name "
           onClick={() => {
-            history.push(`/product/${unique_id}`);
+            history.push(`/product/${sku}`);
           }}
         >
-          <span className="item_name ">{product_name}</span>
+          <span className="item_name ">{name}</span>
         </div>
 
         {/* <div
@@ -75,7 +70,7 @@ const ProductsItem = ({
         </div>  */}
 
         <div className="priceXcart">
-          <div className="products-price">₵{unit_price}</div>
+          <div className="products-price">${price}</div>
           <div className="products-add2cart" onClick={add2Cart}>
             <Cart width={17} height={17} color="white" />
           </div>
@@ -88,8 +83,9 @@ const ProductsItem = ({
 export default ProductsItem;
 
 ProductsItem.propTypes = {
-  unique_id: PropTypes.string,
-  cover_photo_url: PropTypes.string,
-  product_name: PropTypes.string,
-  unit_price: PropTypes.string,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  imageURL: PropTypes.string,
+  price: PropTypes.string,
+  sku: PropTypes.string,
 };
