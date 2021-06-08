@@ -36,7 +36,17 @@ const Signup = () => {
   }
 
   const [signup, { loading: Loading, error: Error, data: Data }] =
-    useMutation(SIGNUP);
+    useMutation(SIGNUP, {
+      onCompleted: data => {
+        console.log(data)
+        // store the token
+     //   localStorage.setItem('token', data.signUp);
+        // update the local cache
+      //  client.writeData({ data: { isLoggedIn: true } });
+        // redirect the user to the homepage
+      //  props.history.push('/');
+      }
+    });
 
   const clearSignup = () => {
     setFirstName("");
