@@ -5,6 +5,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.17",
     "@codesandbox/react-embed": "0.0.14",
+    "@reduxjs/toolkit": "^1.6.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.2.2",
@@ -28,6 +29,7 @@
     "react-motion": "^0.5.2",
     "react-motion-drawer": "^3.1.0",
     "react-query": "^3.12.0",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-spring": "^8.0.27",
