@@ -59,10 +59,13 @@ const Data = () => {
   }
 
   function login(data) {
-    localStorage.setItem("loginToken", data.login.token);
-    localStorage.setItem("uniqueID", data.login.user);
+    
+    //  localStorage.setItem("loginToken", data.login.token);
+    //   localStorage.setItem("uniqueID", data.login.user);
 
     if (data) {
+      setAuth(data.login.token);
+      setUniqueID(data.login.user);
     }
   }
 
