@@ -2,7 +2,7 @@
 
 [Demo](https://majorbooks.netlify.app), improved look for [old project](https://okukus.netlify.app).
 
-Create your own account or use `username: qaz@1.com` and `password: 123`
+Create your own account
 
 ## Getting Started
 
@@ -13,13 +13,13 @@ Please follow the instructions below to set up this project locally.
 1. Clone the repo
 
 ```
-git clone https://github.com/Sam-2019/Okukus-Mobile.git
+git clone https://github.com/Sam-2019/Online-book-shop.git
 ```
 
 via GitHub CLI
 
 ```
-gh repo clone Sam-2019/Okukus-Mobile
+gh repo clone Sam-2019/Online-book-shop
 ```
 
 2. Install NPM packages
