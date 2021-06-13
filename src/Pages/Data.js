@@ -47,38 +47,26 @@ const Data = () => {
   }, [userInfo, id, setAuth, setFirstName, setLastName, setEmail, token]);
 
   function logoutUser() {
-    localStorage.removeItem("loginToken");
-    localStorage.removeItem("uniqueID");
     setFirstName("");
     setLastName("");
     setEmail("");
     setUniqueID("");
     setVerificationStatus("");
-    setAuth(false);
+    setAuth("");
     setProfileImage("");
-  }
-
-  function login(data) {
-    
-    //  localStorage.setItem("loginToken", data.login.token);
-    //   localStorage.setItem("uniqueID", data.login.user);
-
-    if (data) {
-      setAuth(data.login.token);
-      setUniqueID(data.login.user);
-    }
   }
 
   return {
     auth,
     logoutUser,
-    login,
 
     firstName,
     lastName,
     email,
     uniqueID,
     verfifcationStatus,
+    setAuth,
+    setUniqueID,
 
     profileImage,
   };
