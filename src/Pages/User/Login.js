@@ -17,7 +17,7 @@ const Login = () => {
 
   const breakpoint = 540;
   const { width } = MediaQuery();
-  const { login } = useData();
+  const { login, setAuth, setUniqueID } = useData();
 
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
@@ -27,13 +27,12 @@ const Login = () => {
 
   const [show, hide] = useState("password");
 
-  const [loginUser, {  error }] = useLazyQuery(LOGIN, {
+  const [loginUser, { error }] = useLazyQuery(LOGIN, {
     onCompleted: (data) => {
-      console.log(data);
-      console.log(data.loginUser);
+      //console.log(data);
+      setAuth(data.login.token);
+      setUniqueID(data.login.user);
 
-      //  localStorage.setItem("loginToken", data.login.token);
-      //  localStorage.setItem("uniqueID", data.login.user);
       clearLogin();
       history.push("./");
 
