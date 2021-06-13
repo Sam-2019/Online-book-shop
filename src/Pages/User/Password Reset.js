@@ -4,15 +4,12 @@ import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Message from "../Components/Message";
 
-
 import "./user.css";
 
 const PasswordReset = () => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-
-
 
   const clear = () => {
     setEmail("");
@@ -32,10 +29,7 @@ const PasswordReset = () => {
     if (empty !== "") {
       setLoading(true);
 
-
-
       try {
-
         setLoading(false);
       } catch (error) {
         console.error(error);
