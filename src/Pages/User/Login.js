@@ -27,7 +27,7 @@ const Login = () => {
 
   const [show, hide] = useState("password");
 
-  const [loginUser, { loading, error }] = useLazyQuery(LOGIN, {
+  const [loginUser, {  error }] = useLazyQuery(LOGIN, {
     onCompleted: (data) => {
       console.log(data);
       console.log(data.loginUser);

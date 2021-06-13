@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import Drawer from "react-motion-drawer";
+// import Drawer from "react-motion-drawer";
 import Tag from "../Tags/Tags";
-import { slide as Menu } from "react-burger-menu";
+// import { slide as Menu } from "react-burger-menu";
 import Navigation from "./Navigation";
 import "./navigation.css";
 
@@ -13,7 +13,7 @@ function Nav() {
   }
   return (
     <Fragment>
-      <Drawer
+      {/* <Drawer
         open={show}
         width={300}
         noTouchOpen={true}
@@ -27,7 +27,7 @@ function Nav() {
         overlayColor="rgba(52, 52, 52, 0.866)"
       >
         {(val) => <Tag toggle={Toggle} />}
-      </Drawer>
+      </Drawer> */}
 
       {/* <Show pageWrapId={"page-wrap"} outerContainerId={"App"} /> */}
 
@@ -37,10 +37,10 @@ function Nav() {
 }
 export default Nav;
 
-const Show = ({ props }) => {
-  return (
-    <Menu {...props}>
-      <Tag />
-    </Menu>
-  );
-};
+// const Show = ({ props }) => {
+//   return (
+//     <Menu {...props}>
+//       <Tag />
+//     </Menu>
+//   );
+// };

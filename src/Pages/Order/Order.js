@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
@@ -25,10 +25,8 @@ const Order = () => {
   const [state, setState] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
 
-
   const [value, setValue] = React.useState("Pick your location");
-  const fee= 10
-
+  const fee = 10;
 
   const [location, setLocation] = React.useState("");
   const [address, setAddress] = React.useState("");
@@ -84,7 +82,7 @@ const Order = () => {
 
     console.log(location, address, phone_number);
 
-    const orderValue = localStorage.getItem("orderValue")
+    const orderValue = localStorage.getItem("orderValue");
 
     addPayment({
       variables: {
@@ -114,11 +112,11 @@ const Order = () => {
         </div>
       </div>
 
-      {state ? (
+      {state && (
         <PopUp close={() => setState(false)}>
           <PaymentProcess buttonAction={() => setState(false)} />
         </PopUp>
-      ) : null}
+      )}
 
       <div className="main">
         <form
@@ -184,7 +182,7 @@ const Order = () => {
 
             {width > breakpoint ? null : (
               <div>
-                {selectedOption === "momo" ? (
+                {selectedOption === "momo" && (
                   <div className="payment-instruction ">
                     <div className="pay-know-how  ">
                       <div className="page_title2  ">How To Pay With Momo</div>
@@ -215,14 +213,14 @@ const Order = () => {
                       value={transaction_id}
                     />
                   </div>
-                ) : null}
+                )}
               </div>
             )}
           </div>
 
-          {width > breakpoint ? (
+          {width > breakpoint && (
             <Fragment>
-              {selectedOption === "momo" ? (
+              {selectedOption === "momo" && (
                 <div
                   className={`
                    ${
@@ -242,9 +240,9 @@ const Order = () => {
                     setState={setState}
                   />
                 </div>
-              ) : null}
+              )}
             </Fragment>
-          ) : null}
+          )}
         </form>
       </div>
 
@@ -263,7 +261,7 @@ const Order = () => {
         />
       </Summary>
 
-      {success ? (
+      {success && (
         <PopUp>
           <Success />
           <div className="order-success">
@@ -283,7 +281,7 @@ const Order = () => {
             }}
           />
         </PopUp>
-      ) : null}
+      )}
     </div>
   );
 };

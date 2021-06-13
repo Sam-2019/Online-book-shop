@@ -12,7 +12,6 @@ import WishList from "./Profile/Wish List";
 import Photo from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
 import Verification from "../Components/Verify";
-import { okukus } from "../endpoints";
 import { SmallView } from "../styles";
 import { MediaQuery } from "../helper";
 import { useData } from "../Context";
