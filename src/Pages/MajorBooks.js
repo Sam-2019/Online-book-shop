@@ -2,13 +2,13 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ToastContainer, Slide } from "react-toastify";
 import { MediaQuery } from "./helper";
 
-import Mobile from "./Mobile Okukus";
-import Desktop from "./Desktop Okukus";
+import Mobile from "./Mobile MajorBooks";
+import Desktop from "./Desktop MajorBooks";
 
 
 const breakpoint = 540;
 
-const Okukus = () => {
+const MajorBooks = () => {
   const { width } = MediaQuery();
 
   return (
@@ -50,4 +50,4 @@ const Okukus = () => {
   );
 };
 
-export default Okukus;
+export default MajorBooks;

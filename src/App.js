@@ -11,9 +11,9 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
-import Okukus from "./Pages/Okukus";
+import MajorBooks from "./Pages/MajorBooks";
 import { ContextProvider } from "./Pages/Context";
-import "./Pages/okukus.css";
+import "./Pages/majorbooks.css";
 
 const AppBackgroundColour = styled.div`
   background: #ababab3c;
@@ -59,7 +59,7 @@ function App() {
     <ApolloProvider client={client}>
       <AppBackgroundColour>
         <ContextProvider>
-          <Okukus />
+          <MajorBooks />
         </ContextProvider>
       </AppBackgroundColour>
     </ApolloProvider>
