@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
@@ -118,7 +118,7 @@ const CartItem = ({
   };
 
   return (
-    <>
+    <Fragment>
       <div className="cart_item_wrapper">
         <div className="checkBox">
           <input
@@ -201,7 +201,7 @@ const CartItem = ({
           />
         </PopUp>
       ) : null}
-    </>
+    </Fragment>
   );
 };
 

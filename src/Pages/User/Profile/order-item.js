@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Fragment} from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import Button from "../../Components/Button";
@@ -50,7 +50,7 @@ const OrderItem = ({ imageURL, price, name, status, sku, quantity }) => {
   }
 
   return (
-    <>
+    <Fragment>
       <div className="item-wrapper ">
         <div className="order-imageXname">
           <div className="image-placeholder  loading">
@@ -101,7 +101,7 @@ const OrderItem = ({ imageURL, price, name, status, sku, quantity }) => {
           />
         </PopUp>
       ) : null}
-    </>
+    </Fragment>
   );
 };
 

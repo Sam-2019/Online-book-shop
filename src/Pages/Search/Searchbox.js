@@ -1,11 +1,11 @@
-import React from "react";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 
 const Searchbox = ({ action, input, setInput }) => {
   return (
-    <>
+    <Fragment>
       <Input
         type="search"
         class_name="header-input  "
@@ -15,7 +15,7 @@ const Searchbox = ({ action, input, setInput }) => {
       />
 
       <Button name="Search" class_name="header-primary2" action={action} />
-    </>
+    </Fragment>
   );
 };
 

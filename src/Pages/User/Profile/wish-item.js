@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Fragment} from "react";
 import { useMutation } from "@apollo/client";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
@@ -64,7 +64,7 @@ const WishItem = ({
   };
 
   return (
-    <>
+    <Fragment>
       <div className="item-wrapper ">
         <div className="order-imageXname">
           <div
@@ -144,7 +144,7 @@ const WishItem = ({
           />
         </PopUp>
       ) : null}
-    </>
+    </Fragment>
   );
 };
 

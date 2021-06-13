@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import PropTypes from "prop-types";
@@ -81,7 +81,7 @@ const CartData = ({ data, refetch }) => {
   }
 
   return (
-    <>
+    <Fragment>
       <div className="main">
         {width > breakpoint ? <CartHeader /> : null}
         {data.map((data, index) => (
@@ -103,7 +103,7 @@ const CartData = ({ data, refetch }) => {
           action={orderItem}
         />
       </Summary>
-    </>
+    </Fragment>
   );
 };
 

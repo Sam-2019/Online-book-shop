@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import { useHistory } from "react-router-dom";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
@@ -17,7 +17,7 @@ const Searchbox = () => {
   }
 
   return (
-    <>
+    <Fragment>
       <Input
         type="search"
         class_name="header-input  "
@@ -27,7 +27,7 @@ const Searchbox = () => {
       />
 
       <Button name="Search" class_name="header-primary2" action={Query} />
-    </>
+    </Fragment>
   );
 };
 

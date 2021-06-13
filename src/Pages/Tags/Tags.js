@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import TagData from "./tagsData";
 import "./tag.css";
@@ -28,7 +28,7 @@ const Tags = ({ toggle }) => {
 
       <TagData toggle={toggle} />
 
-      <>Loading</>
+      <Fragment>Loading</Fragment>
     </div>
   );
 };

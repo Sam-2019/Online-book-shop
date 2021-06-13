@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{Fragment}from "react";
 import { useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
@@ -34,6 +34,7 @@ function Proflie() {
   const [profilePhoto, updateProfilePhoto] = React.useState(false);
 
   const [active, setActive] = React.useState("Order History");
+  let okukus
 
   const WebShare = (event) => {
     event.preventDefault();
@@ -143,7 +144,7 @@ function Proflie() {
 
             <div className="options">
               {width > breakpoint ? (
-                <>
+                <Fragment>
                   <div
                     className="option-list"
                     onClick={() => {
@@ -194,9 +195,9 @@ function Proflie() {
                   <div className="option-list" onClick={WebShare}>
                     <span>Invite a friend</span>
                   </div>
-                </>
+                </Fragment>
               ) : (
-                <>
+                <Fragment>
                   <div
                     className="option-list"
                     onClick={() => {
@@ -249,7 +250,7 @@ function Proflie() {
                   <div className="option-list" onClick={WebShare}>
                     <span>Invite a friend</span>
                   </div>
-                </>
+                </Fragment>
               )}
             </div>
           </div>

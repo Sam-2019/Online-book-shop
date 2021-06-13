@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -84,13 +85,13 @@ function Mobile() {
 
 function Home() {
   return (
-    <>
+    <Fragment>
       <Navigation />
 
       <div className="main">
         <Products />
       </div>
-    </>
+    </Fragment>
   );
 }
 

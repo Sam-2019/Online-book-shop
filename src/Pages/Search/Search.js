@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import { useLazyQuery } from "@apollo/client";
 import { SEARCH } from "../graphQL functions";
 import Back from "../Components/Back";
@@ -30,7 +30,7 @@ const Search = () => {
       <div className="search-wrapper ">
         <div className="header">
           {state ? (
-            <>
+            <Fragment>
               <div className="object-1">
                 <Back width={30} height={30} />
               </div>
@@ -51,9 +51,9 @@ const Search = () => {
                   />
                 </div>
               </div>
-            </>
+            </Fragment>
           ) : (
-            <>
+            <Fragment>
               <div className="category">
                 <div className="object-1">
                   <Back width={30} height={30} />
@@ -74,7 +74,7 @@ const Search = () => {
                   />
                 </div>
               </div>
-            </>
+            </Fragment>
           )}
         </div>
         <div className="main">
@@ -102,7 +102,7 @@ const Search = () => {
     <div className="search-wrapper ">
       <div className="header">
         {state ? (
-          <>
+          <Fragment>
             <div className="object-1">
               <Back width={30} height={30} />
             </div>
@@ -123,9 +123,9 @@ const Search = () => {
                 />
               </div>
             </div>
-          </>
+          </Fragment>
         ) : (
-          <>
+          <Fragment>
             <div className="category">
               <div className="object-1">
                 <Back width={30} height={30} />
@@ -146,7 +146,7 @@ const Search = () => {
                 />
               </div>
             </div>
-          </>
+          </Fragment>
         )}
       </div>
 

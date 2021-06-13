@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
@@ -221,7 +221,7 @@ const Order = () => {
           </div>
 
           {width > breakpoint ? (
-            <>
+            <Fragment>
               {selectedOption === "momo" ? (
                 <div
                   className={`
@@ -243,7 +243,7 @@ const Order = () => {
                   />
                 </div>
               ) : null}
-            </>
+            </Fragment>
           ) : null}
         </form>
       </div>

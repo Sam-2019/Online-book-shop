@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { useHistory, useRouteMatch, useParams } from "react-router-dom";
@@ -56,7 +56,7 @@ const Product = ({ results }) => {
     event.preventDefault();
     const title = "google.com";
 
-    const url = document.location.href;
+    let url = document.location.href;
     const canonicalElement = document.querySelector("link[rel=canonical]");
 
     if (navigator.share) {
@@ -150,8 +150,6 @@ const Product = ({ results }) => {
 
   const productRating = parseFloat(results.rating.toFixed(2));
 
-
-
   return (
     <div className="product-wrapper">
       <div className="header">
@@ -239,7 +237,7 @@ const Product = ({ results }) => {
                     {results.detail}
                   </div>
                 ) : (
-                  <>
+                  <Fragment>
                     <div
                       className={
                         contractDescription
@@ -260,7 +258,7 @@ const Product = ({ results }) => {
                         <Up width={18} height={20} action={ToggleDescription} />
                       )}
                     </div>
-                  </>
+                  </Fragment>
                 )}
               </div>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Drawer from "react-motion-drawer";
 import Tag from "../Tags/Tags";
 import { slide as Menu } from "react-burger-menu";
@@ -12,7 +12,7 @@ function Nav() {
     hide(!show);
   }
   return (
-    <>
+    <Fragment>
       <Drawer
         open={show}
         width={300}
@@ -32,7 +32,7 @@ function Nav() {
       {/* <Show pageWrapId={"page-wrap"} outerContainerId={"App"} /> */}
 
       <Navigation toggle={Toggle} />
-    </>
+    </Fragment>
   );
 }
 export default Nav;

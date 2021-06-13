@@ -1,10 +1,10 @@
-import React from "react";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import Button from "../Components/Button";
 
 const PaymentProcess = ({ buttonAction }) => {
   return (
-    <>
+    <Fragment>
       <ol className="">
         <li>Dial *170# on your phone</li>
         <li>Select MoMoPay &amp; PayBill</li>
@@ -25,7 +25,7 @@ const PaymentProcess = ({ buttonAction }) => {
       <div className="popup-action">
         <Button class_name="primary" name="Close" action={buttonAction} />
       </div>
-    </>
+    </Fragment>
   );
 };
 

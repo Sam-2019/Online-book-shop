@@ -1,10 +1,10 @@
+import React, { Fragment } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ToastContainer, Slide } from "react-toastify";
 import { MediaQuery } from "./helper";
 
 import Mobile from "./Mobile MajorBooks";
 import Desktop from "./Desktop MajorBooks";
-
 
 const breakpoint = 540;
 
@@ -14,7 +14,7 @@ const MajorBooks = () => {
   return (
     <Router>
       {width > breakpoint ? (
-        <>
+        <Fragment>
           <Desktop />
           <ToastContainer
             position="top-right"
@@ -28,9 +28,9 @@ const MajorBooks = () => {
             pauseOnHover
             transition={Slide}
           />
-        </>
+        </Fragment>
       ) : (
-        <>
+        <Fragment>
           <Mobile />
           <ToastContainer
             position="bottom-center"
@@ -44,7 +44,7 @@ const MajorBooks = () => {
             pauseOnHover
             transition={Slide}
           />
-        </>
+        </Fragment>
       )}
     </Router>
   );

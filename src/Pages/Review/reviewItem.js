@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{Fragment}from "react";
 import PropTypes from "prop-types";
 import StarRating from "../Components/Stars";
 import ProfilePhoto from "../Components/Profile Photo";
@@ -38,20 +38,20 @@ const ReviewItem = ({ id, rating, text, created_at, user }) => {
       </div>
 
       {text.length > 150 ? (
-        <>
+        <Fragment>
           {fullText ? (
             <FillText comment={text} toggle={toggle} />
           ) : (
-            <>
+            <Fragment>
               {text.substr(0, 218)}{" "}
               <span className="read-more" onClick={toggle}>
                 ...more
               </span>
-            </>
+            </Fragment>
           )}
-        </>
+        </Fragment>
       ) : (
-        <> {text} </>
+        <Fragment> {text} </Fragment>
       )}
 
       <div>

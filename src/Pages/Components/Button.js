@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import "./button.css";
 
@@ -46,7 +46,7 @@ const Button = ({ class_name, action, name, loading }) => {
 
   return (
     <button className={class_name} onClick={action} disabled={loading}>
-      {loading ? "Loading..." : <>{name}</>}
+      {loading ? "Loading..." : <Fragment>{name}</Fragment>}
     </button>
   );
 };

@@ -1,30 +1,30 @@
-import React from "react";
+import React, {Fragment} from "react";
 import Cart from "../Components/Cart";
 import { MediaQuery } from "../helper";
-import image from './150.png';
+import image from "./150.png";
 import "./products.css";
 
 const Mobile = () => {
   return (
-    <>
+    <Fragment>
       {Array(6)
         .fill()
-        .map((item, index) => (
+        .map((index) => (
           <Item key={index} />
         ))}
-    </>
+    </Fragment>
   );
 };
 
 const Desktop = () => {
   return (
-    <>
+    <Fragment>
       {Array(12)
         .fill()
-        .map((item, index) => (
+        .map((index) => (
           <Item key={index} />
         ))}
-    </>
+    </Fragment>
   );
 };
 
@@ -44,11 +44,7 @@ const Item = () => {
       {/* <div className="products-discount-rate">-30%</div> */}
       <div className="products-group">
         <div className="products-image-wrapper">
-          <img
-            src={image}
-            alt="alt"
-            className="products-image"
-          />
+          <img src={image} alt="alt" className="products-image" />
         </div>
         <div className="placeholder-products-name  ">
           <span className="placeholder-item_name  ">{}</span>

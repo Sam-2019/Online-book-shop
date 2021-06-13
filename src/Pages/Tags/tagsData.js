@@ -1,9 +1,9 @@
-import React from "react";
+import React,{Fragment} from "react";
 import PropTypes from "prop-types";
 import TagItem from "./tagItem";
 
 const TagData = () => {
-  return <></>;
+  return <Fragment></Fragment>;
 };
 
 export default TagData;
