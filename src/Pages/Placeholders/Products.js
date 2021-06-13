@@ -1,42 +1,8 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import Cart from "../Components/Cart";
 import { MediaQuery } from "../helper";
 import image from "./150.png";
 import "./products.css";
-
-const Mobile = () => {
-  return (
-    <Fragment>
-      {Array(6)
-        .fill()
-        .map((index) => (
-          <Item key={index} />
-        ))}
-    </Fragment>
-  );
-};
-
-const Desktop = () => {
-  return (
-    <Fragment>
-      {Array(12)
-        .fill()
-        .map((index) => (
-          <Item key={index} />
-        ))}
-    </Fragment>
-  );
-};
-
-const Placeholder = () => {
-  const { width } = MediaQuery();
-
-  return (
-    <div className="products">{width > 540 ? <Desktop /> : <Mobile />}</div>
-  );
-};
-
-export default Placeholder;
 
 const Item = () => {
   return (
@@ -69,3 +35,37 @@ const Item = () => {
     </div>
   );
 };
+
+const Mobile = () => {
+  return (
+    <Fragment>
+      {Array(6)
+        .fill()
+        .map((item, index) => (
+          <Item key={index} />
+        ))}
+    </Fragment>
+  );
+};
+
+const Desktop = () => {
+  return (
+    <Fragment>
+      {Array(12)
+        .fill()
+        .map((item, index) => (
+          <Item key={index} />
+        ))}
+    </Fragment>
+  );
+};
+
+const Placeholder = () => {
+  const { width } = MediaQuery();
+
+  return (
+    <div className="products">{width > 540 ? <Desktop /> : <Mobile />}</div>
+  );
+};
+
+export default Placeholder;
