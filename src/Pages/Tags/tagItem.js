@@ -17,4 +17,6 @@ const TagItem = ({ toggle }) => {
 
 export default TagItem;
 
-TagItem.propTypes = {};
+TagItem.propTypes = {
+    toggle: PropTypes.func,
+};
