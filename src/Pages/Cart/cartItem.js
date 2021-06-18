@@ -207,4 +207,13 @@ const CartItem = ({
 
 export default CartItem;
 
-CartItem.propTypes = {};
+CartItem.propTypes = {
+  productID: propTypes.String,
+  sku: propTypes.String,
+  price: propTypes.String,
+  imageURL: propTypes.String,
+  quantity: propTypes.String,
+  handleToggle: propTypes.String,
+  cartID: propTypes.String,
+  refetch: propTypes.func,
+};
