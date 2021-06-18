@@ -109,4 +109,7 @@ const CartData = ({ data, refetch }) => {
 
 export default CartData;
 
-CartData.propTypes = {};
+CartData.propTypes = {
+  data: PropTypes.array,
+  refetch: PropTypes.func,
+};
