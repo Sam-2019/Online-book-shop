@@ -8,8 +8,8 @@ import FillText from "./fillText";
 
 import "./review.css";
 
-const ReviewItem = ({ id, rating, text, created_at, user }) => {
-  var date = new Date(Number(created_at)).toLocaleString();
+const ReviewItem = ({ id, rating, text, createdAt, user }) => {
+  var date = new Date(Number(createdAt)).toLocaleString();
 
   const [fullText, setFullTest] = React.useState(false);
 
@@ -27,7 +27,7 @@ const ReviewItem = ({ id, rating, text, created_at, user }) => {
         <div className="usernameXstar ">
           <div className="nameXtime">
             <div className="nameDate">
-              <UserName name={`${user.first_name} ${user.last_name}`} />
+              <UserName name={`${user.firstName} ${user.lastName}`} />
 
               <TimeStamp timestamp={date} />
             </div>
@@ -67,6 +67,6 @@ ReviewItem.propTypes = {
   text: PropTypes.string,
   user: PropTypes.object,
   name: PropTypes.string,
-  created_at: PropTypes.string,
+  createdAt: PropTypes.string,
   rating: PropTypes.number,
 };
