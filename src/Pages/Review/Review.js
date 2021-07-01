@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
-import Back from "../Components/Back";
 import ReviewData from "./reviewData";
-
+import PageWrapper from "./PageWrapper";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT_REVIEWS } from "../graphQL functions";
 import "./review.css";
@@ -19,20 +18,9 @@ const Review = () => {
 
   if (loading) {
     return (
-      <div className="page-wrapper">
-        <div className="header">
-          <div className="category">
-            <div className="object-1">
-              <Back width={30} height={30} />
-            </div>
-            <div className="object-2">Review</div>
-          </div>
-        </div>
-
-        <div className="main">
-          <div className=" wrapper-item">Loading...</div>
-        </div>
-      </div>
+      <PageWrapper pageTitle="Review">
+        <p className="text-3">Loading..</p>
+      </PageWrapper>
     );
   }
 
@@ -44,22 +32,7 @@ const Review = () => {
     view = <ReviewData data={data.reviews} />;
   }
 
-  return (
-    <div className="page-wrapper">
-      <div className="header">
-        <div className="category">
-          <div className="object-1">
-            <Back width={30} height={30} />
-          </div>
-          <div className="object-2">Review</div>
-        </div>
-      </div>
-
-      <div className="main">
-        <div className=" wrapper-item">{view}</div>
-      </div>
-    </div>
-  );
+  return <PageWrapper pageTitle="Review">{view}</PageWrapper>;
 };
 
 export default Review;
