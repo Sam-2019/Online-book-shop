@@ -40,19 +40,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-// client
-//   .query({
-//     query: gql`
-//       query {
-//         products {
-//           id
-//           name
-//           sku
-//         }
-//       }
-//     `,
-//   })
-//   .then((result) => console.log(result));
 
 function App() {
   return (
