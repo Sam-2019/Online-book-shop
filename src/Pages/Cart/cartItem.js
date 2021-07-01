@@ -208,12 +208,12 @@ const CartItem = ({
 export default CartItem;
 
 CartItem.propTypes = {
-  productID: propTypes.String,
-  sku: propTypes.String,
-  price: propTypes.String,
-  imageURL: propTypes.String,
-  quantity: propTypes.String,
-  handleToggle: propTypes.String,
-  cartID: propTypes.String,
-  refetch: propTypes.func,
+  productID: PropTypes.String,
+  sku: PropTypes.String,
+  price: PropTypes.String,
+  imageURL: PropTypes.String,
+  quantity: PropTypes.String,
+  handleToggle: PropTypes.String,
+  cartID: PropTypes.String,
+  refetch: PropTypes.func,
 };
