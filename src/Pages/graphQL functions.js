@@ -60,10 +60,10 @@ export const GET_PRODUCT = gql`
         id
         rating
         text
-        created_at
+        createdAt
         user {
-          first_name
-          last_name
+          firstName
+          lastName
           photoURL
         }
       }
@@ -141,20 +141,20 @@ export const DELETE_CART = gql`
 export const SIGNUP = gql`
   mutation Signup(
     $password: String!
-    $first_name: String!
-    $last_name: String!
+    $firstName: String!
+    $lastName: String!
     $email: String!
   ) {
     signup(
       password: $password
-      first_name: $first_name
-      last_name: $last_name
+      firstName: $firstName
+      lastName: $lastName
       email: $email
     ) {
       id
       password
-      first_name
-      last_name
+      firstName
+      lastName
       email
     }
   }
@@ -253,8 +253,8 @@ export const UPDATE_USER = gql`
     $id: ID!
     $password: String
     $username: String
-    $first_name: String
-    $last_name: String
+    $firstName: String
+    $lastName: String
     $email: String
     $phone_number: String
   ) {
@@ -262,16 +262,16 @@ export const UPDATE_USER = gql`
       id: $id
       password: $password
       username: $username
-      first_name: $first_name
-      last_name: $last_name
+      firstName: $firstName
+      lastName: $lastName
       email: $email
       phone_number: $phone_number
     ) {
       id
       username
       password
-      last_name
-      last_name
+      lastName
+      lastName
       email
       photoURL
       phone_number
@@ -281,11 +281,11 @@ export const UPDATE_USER = gql`
 `;
 
 export const UPDATE_NAME = gql`
-  mutation UpdateUserName($id: ID!, $first_name: String, $last_name: String) {
-    updateUserName(id: $id, first_name: $first_name, last_name: $last_name) {
+  mutation UpdateUserName($id: ID!, $firstName: String, $lastName: String) {
+    updateUserName(id: $id, firstName: $firstName, lastName: $lastName) {
       id
-      first_name
-      last_name
+      firstName
+      lastName
     }
   }
 `;
@@ -364,8 +364,8 @@ export const GET_USER = gql`
   query User($id: ID!) {
     user(id: $id) {
       id
-      first_name
-      last_name
+      firstName
+      lastName
       email
       verified
     }
@@ -373,7 +373,7 @@ export const GET_USER = gql`
 `;
 
 export const ADD_REVIEW = gql`
-  mutation AddReview($user: ID, $product: ID, $rating: Int, $text: String) {
+  mutation AddReview($user: ID!, $product: ID, $rating: Int, $text: String) {
     addReview(user: $user, product: $product, rating: $rating, text: $text) {
       id
       user {
@@ -384,19 +384,19 @@ export const ADD_REVIEW = gql`
 `;
 
 export const GET_PRODUCT_REVIEWS = gql`
-  query Review($sku: String!) {
-    reviews(sku: $sku) {
-      id
-      user {
-        first_name
-        last_name
-        photoURL
-      }
-      text
-      rating
-      created_at
+query Review($sku: String!) {
+  reviews(sku: $sku) {
+    id
+    user {
+      firstName
+      lastName
+      photoURL
     }
+    text
+    rating
+    createdAt
   }
+}
 `;
 
 export const ADD_PAYMENT = gql`
