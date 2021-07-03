@@ -8,41 +8,38 @@ import HistoryData from "./historyData";
 
 import EmptyOrderHistory from "../../SVGs/empty-orderhistory";
 import SVGContainer from "../../SVGs/SVGcontainer";
+import PageWrapper from '../../Components/PageWrapper'
 
 const OrderHistory = () => {
   const { uniqueID } = useData();
 
   const id = String(uniqueID);
+ // console.log(id)
 
   const { loading, error, data, refetch } = useQuery(GET_ORDER, {
     variables: { id },
   });
 
+//trese
+//rurouni kenshin
+//mortal combat
+//shadow and bones
+//nevers
+
   let view;
 
   if (loading) {
     return (
-      <div className="user-wrapper">
-        <div className="header">
-          <div className="category">
-            <div className="object-1">
-              <Back width={30} height={30} />
-            </div>
-            <div className="object-2"> Orders </div>
-          </div>
+      <PageWrapper pageTitle="Orders" wrapper="user-wrapper">
+        <div className="wrapper-item">
+          <SVGContainer>
+            <EmptyOrderHistory />
+            <p className="text-3">
+              No item in <b>your</b> order history yet!
+            </p>
+          </SVGContainer>
         </div>
-
-        <div className="main">
-          <div className="wrapper-item">
-            <SVGContainer>
-              <EmptyOrderHistory />
-              <p className="text-3">
-                No item in <b>your</b> order history yet!
-              </p>
-            </SVGContainer>
-          </div>
-        </div>
-      </div>
+      </PageWrapper>
     );
   }
 
