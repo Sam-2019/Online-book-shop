@@ -17,8 +17,8 @@ const Signup = () => {
   const breakpoint = 540;
   const { width } = MediaQuery();
   const [loading, setLoading] = useState(false);
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -59,7 +59,7 @@ const Signup = () => {
     event.preventDefault();
 
     setMessage("");
-    let empty = firstname && lastname && email && password;
+    let empty = firstName && lastName && email && password;
 
     if (empty === "") {
       setMessage("Please fill the form");
@@ -72,8 +72,8 @@ const Signup = () => {
         signup({
           variables: {
             password: String(password),
-            first_name: String(firstname),
-            last_name: String(lastname),
+            firstName: String(firstName),
+            lastName: String(lastName),
             email: String(email),
           },
         });
@@ -115,7 +115,7 @@ const Signup = () => {
             class_name="input "
             placeholder="First name "
             action={(e) => setFirstName(e.target.value)}
-            value={firstname}
+            value={firstName}
             autocomplete="First Name"
           />
 
@@ -123,7 +123,7 @@ const Signup = () => {
             class_name="input "
             placeholder="Last name "
             action={(e) => setLastName(e.target.value)}
-            value={lastname}
+            value={lastName}
             autocomplete="Last Name"
           />
 
