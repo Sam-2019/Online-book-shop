@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import ReviewData from "./reviewData";
-import PageWrapper from "./PageWrapper";
+import PageWrapper from "../Components/PageWrapper";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT_REVIEWS } from "../graphQL functions";
 import "./review.css";
@@ -18,7 +18,7 @@ const Review = () => {
 
   if (loading) {
     return (
-      <PageWrapper pageTitle="Review">
+      <PageWrapper pageTitle="Review" wrapper="page-wrapper">
         <p className="text-3">Loading..</p>
       </PageWrapper>
     );
