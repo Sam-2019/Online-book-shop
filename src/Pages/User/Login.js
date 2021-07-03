@@ -29,19 +29,14 @@ const Login = () => {
 
   const [loginUser, { error }] = useLazyQuery(LOGIN, {
     onCompleted: (data) => {
-      //console.log(data);
+  
       setAuth(data.login.token);
       setUniqueID(data.login.user);
 
       clearLogin();
       history.push("./");
 
-      // store the token
-      //   localStorage.setItem('token', data.signUp);
-      // update the local cache
-      //  client.writeData({ data: { isLoggedIn: true } });
-      // redirect the user to the homepage
-      //  props.history.push('/');
+
     },
   });
   let type;
