@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Back from "../Components/Back";
+import Back from "./Back";
 
-const PageWrapper = ({ pageTitle, children }) => {
+const PageWrapper = ({ pageTitle, children , wrapper}) => {
   return (
-    <div className="page-wrapper">
+    <div className={wrapper}>
       <div className="header">
         <div className="category">
           <div className="object-1">
@@ -24,7 +24,7 @@ const PageWrapper = ({ pageTitle, children }) => {
 export default PageWrapper;
 
 PageWrapper.propTypes = {
-    pageTitle: PropTypes.string,
-    children: PropTypes.any
-  };
-  
+  pageTitle: PropTypes.string,
+  children: PropTypes.any,
+  wrapper: PropTypes.string,
+};
