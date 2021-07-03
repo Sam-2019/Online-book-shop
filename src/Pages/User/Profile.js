@@ -62,6 +62,8 @@ function Proflie() {
     variables: { id },
   });
 
+ 
+
   switch (active) {
     case "Order History":
       activePage = <OrderHistory />;
