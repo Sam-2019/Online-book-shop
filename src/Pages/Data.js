@@ -49,13 +49,11 @@ const Data = () => {
   return {
     auth,
     logoutUser,
-
     firstName,
     lastName,
     email,
     verfifcationStatus,
     setAuth,
-
     profileImage,
   };
 };
