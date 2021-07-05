@@ -5,7 +5,6 @@ import Button from "../../Components/Button";
 import Message from "../../Components/Message";
 
 import { UPDATE_NAME } from "../../graphQL functions";
-import { useData } from "../../Context";
 
 import "./change.css";
 
@@ -13,8 +12,6 @@ const ChangeName = ({ close }) => {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [message, setMessage] = useState("");
-
-  const { uniqueID } = useData();
 
   const [updateName, { loading, error, data }] = useMutation(UPDATE_NAME);
 
@@ -35,7 +32,6 @@ const ChangeName = ({ close }) => {
 
     await updateName({
       variables: {
-        id: String(uniqueID),
         first_name: String(first_name),
         last_name: String(last_name),
       },

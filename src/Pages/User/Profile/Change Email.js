@@ -5,7 +5,6 @@ import Button from "../../Components/Button";
 import Message from "../../Components/Message";
 
 import { UPDATE_EMAIL } from "../../graphQL functions";
-import { useData } from "../../Context";
 
 import "./change.css";
 
@@ -13,8 +12,6 @@ const ChangeEmail = ({ close }) => {
   const [email, setEmail] = useState("");
   const [new_email, setNewEmail] = useState("");
   const [message, setMessage] = useState("");
-
-  const { uniqueID } = useData();
 
   const [updateEmail, { loading, error, data }] = useMutation(UPDATE_EMAIL);
 
@@ -35,7 +32,6 @@ const ChangeEmail = ({ close }) => {
 
     await updateEmail({
       variables: {
-        id: String(uniqueID),
         email: String(email),
         new_email: String(new_email),
       },

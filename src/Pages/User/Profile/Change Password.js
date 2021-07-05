@@ -4,7 +4,6 @@ import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
 import { EyeShow, EyeHide } from "../../Components/Eye";
-import { useData } from "../../Context";
 import "./change.css";
 import { UPDATE_PASSWORD } from "../../graphQL functions";
 
@@ -14,8 +13,6 @@ const ChangePassword = ({ close }) => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
-
-  const { uniqueID } = useData();
 
   const [updatePassword, { loading, error, data }] =
     useMutation(UPDATE_PASSWORD);
@@ -53,7 +50,6 @@ const ChangePassword = ({ close }) => {
     if (newPassword === confirmPassword) {
       await updatePassword({
         variables: {
-          id: String(uniqueID),
           password: String(currentPassword),
           new_password: String(newPassword),
           confirm_password: String(confirmPassword),

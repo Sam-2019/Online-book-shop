@@ -1,4 +1,4 @@
-import React ,{Fragment}from "react";
+import React, { Fragment } from "react";
 import { useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
@@ -22,9 +22,7 @@ function Proflie() {
   let history = useHistory();
   let { width } = MediaQuery();
 
-  const { profileImage, uniqueID, firstName, lastName, verfifcationStatus } =
-    useData();
-  const id = String(uniqueID);
+  const { profileImage, firstName, lastName, verfifcationStatus } = useData();
   const breakpoint = 540;
   let activePage;
   const [password, updatePassword] = React.useState(false);
@@ -33,7 +31,7 @@ function Proflie() {
   const [profilePhoto, updateProfilePhoto] = React.useState(false);
 
   const [active, setActive] = React.useState("Order History");
-  let okukus
+  let okukus;
 
   const WebShare = (event) => {
     event.preventDefault();
@@ -58,11 +56,9 @@ function Proflie() {
     }
   };
 
-  const { data: userData } = useQuery(GET_USER, {
-    variables: { id },
-  });
+  const { loading, error, data }= useQuery(GET_USER);
 
- 
+  console.log(data);
 
   switch (active) {
     case "Order History":
@@ -138,7 +134,7 @@ function Proflie() {
                       }}
                     /> */}
 
-                  <Verification  verfifcationStatus={verfifcationStatus}/>
+                  <Verification verfifcationStatus={verfifcationStatus} />
                 </div>
               </div>
             </div>
