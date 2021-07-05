@@ -3,7 +3,6 @@ import Back from "../../Components/Back";
 import { useQuery } from "@apollo/client";
 import { GET_ORDER } from "../../graphQL functions";
 
-
 import HistoryData from "./historyData";
 
 import EmptyOrderHistory from "../../SVGs/empty-orderhistory";
