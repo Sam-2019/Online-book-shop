@@ -96,13 +96,11 @@ export const DELETE_PRODUCT = gql`
 
 export const ADD_CART = gql`
   mutation AddCart(
-    $user: ID!
     $product: ID!
     $quantity: String!
     $price: String!
   ) {
     addCart(
-      user: $user
       product: $product
       quantity: $quantity
       price: $price
@@ -131,8 +129,8 @@ export const GET_CART = gql`
 `;
 
 export const DELETE_CART = gql`
-  mutation DeleteCart($id: ID!, $user: ID!) {
-    deleteCart(id: $id, user: $user) {
+  mutation DeleteCart($id: ID!) {
+    deleteCart(id: $id) {
       id
     }
   }
@@ -171,8 +169,8 @@ export const LOGIN = gql`
 `;
 
 export const ADD_WISHLIST = gql`
-  mutation AddWishlist($user: ID!, $product: ID!) {
-    addWishlist(user: $user, product: $product) {
+  mutation AddWishlist( $product: ID!) {
+    addWishlist( product: $product) {
       id
       user
       product
@@ -181,8 +179,8 @@ export const ADD_WISHLIST = gql`
 `;
 
 export const GET_WISHLIST = gql`
-  query Wishlist($id: ID!) {
-    wishlist(id: $id) {
+  query {
+    wishlist {
       wishID
       productID
       name
@@ -203,7 +201,6 @@ export const DELETE_WISHLIST = gql`
 
 export const ADD_ORDER = gql`
   mutation AddOrder(
-    $user: ID!
     $products: [ID]
     $orderNumber: String
     $orderValue: String
@@ -211,7 +208,6 @@ export const ADD_ORDER = gql`
     $delivery: ID!
   ) {
     addOrder(
-      user: $user
       products: $products
       orderNumber: $orderNumber
       orderValue: $orderValue
@@ -227,8 +223,8 @@ export const ADD_ORDER = gql`
 `;
 
 export const GET_ORDER = gql`
-  query UserOrder($id: ID!) {
-    userOrder(id: $id) {
+  query {
+    userOrder {
       id
       name
       sku
@@ -250,7 +246,6 @@ export const DELETE_ORDER = gql`
 
 export const UPDATE_USER = gql`
   mutation UpdateUser(
-    $id: ID!
     $password: String
     $username: String
     $firstName: String
@@ -259,7 +254,6 @@ export const UPDATE_USER = gql`
     $phone_number: String
   ) {
     updateUser(
-      id: $id
       password: $password
       username: $username
       firstName: $firstName
@@ -281,8 +275,8 @@ export const UPDATE_USER = gql`
 `;
 
 export const UPDATE_NAME = gql`
-  mutation UpdateUserName($id: ID!, $firstName: String, $lastName: String) {
-    updateUserName(id: $id, firstName: $firstName, lastName: $lastName) {
+  mutation UpdateUserName( $firstName: String, $lastName: String) {
+    updateUserName(firstName: $firstName, lastName: $lastName) {
       id
       firstName
       lastName
@@ -292,12 +286,10 @@ export const UPDATE_NAME = gql`
 
 export const UPDATE_PASSWORD = gql`
   mutation UpdateUserPassword(
-    $id: ID!
     $password: String
     $new_password: String
   ) {
     updateUserPassword(
-      id: $id
       password: $password
       new_password: $new_password
     ) {
@@ -308,8 +300,8 @@ export const UPDATE_PASSWORD = gql`
 `;
 
 export const UPDATE_EMAIL = gql`
-  mutation UpdateUserEmail($id: ID!, $email: String, $new_email: String) {
-    updateUserEmail(id: $id, email: $email, new_email: $new_email) {
+  mutation UpdateUserEmail( $email: String, $new_email: String) {
+    updateUserEmail( email: $email, new_email: $new_email) {
       id
       email
     }
@@ -317,8 +309,8 @@ export const UPDATE_EMAIL = gql`
 `;
 
 export const UPDATE_USERNAME = gql`
-  mutation UpdateUserDetail($id: ID!, $username: String) {
-    updateUserDetail(id: $id, username: $username) {
+  mutation UpdateUserDetail( $username: String) {
+    updateUserDetail( username: $username) {
       id
       username
     }
@@ -326,8 +318,8 @@ export const UPDATE_USERNAME = gql`
 `;
 
 export const UPDATE_PHONE_NUMBER = gql`
-  mutation UpdateUserDetail($id: ID!, $phone_number: String) {
-    updateUserDetail(id: $id, phone_number: $phone_number) {
+  mutation UpdateUserDetail($phone_number: String) {
+    updateUserDetail( phone_number: $phone_number) {
       id
       phone_number
     }
@@ -335,8 +327,8 @@ export const UPDATE_PHONE_NUMBER = gql`
 `;
 
 export const UPDATE_VERIFICATION = gql`
-  mutation UpdateUserDetail($id: ID!, $verified: Boolean) {
-    updateUserDetail(id: $id, verified: $verified) {
+  mutation UpdateUserDetail( $verified: Boolean) {
+    updateUserDetail( verified: $verified) {
       id
       verified
     }
@@ -344,16 +336,16 @@ export const UPDATE_VERIFICATION = gql`
 `;
 
 export const GET_VERIFICATION = gql`
-  query Verification($id: ID!) {
-    verification(id: $id) {
+  query  {
+    verification {
       verified
     }
   }
 `;
 
 export const UPDATE_PHOTOURL = gql`
-  mutation UpdateUserDetail($id: ID!, $photoURL: String) {
-    updateUserDetail(id: $id, photoURL: $photoURL) {
+  mutation UpdateUserDetail( $photoURL: String) {
+    updateUserDetail( photoURL: $photoURL) {
       id
       photoURL
     }
@@ -361,8 +353,8 @@ export const UPDATE_PHOTOURL = gql`
 `;
 
 export const GET_USER = gql`
-  query User($id: ID!) {
-    user(id: $id) {
+  query {
+    user {
       id
       firstName
       lastName
@@ -373,8 +365,8 @@ export const GET_USER = gql`
 `;
 
 export const ADD_REVIEW = gql`
-  mutation AddReview($user: ID!, $product: ID, $rating: Int, $text: String) {
-    addReview(user: $user, product: $product, rating: $rating, text: $text) {
+  mutation AddReview( $product: ID, $rating: Int, $text: String) {
+    addReview( product: $product, rating: $rating, text: $text) {
       id
       user {
         username
@@ -384,19 +376,19 @@ export const ADD_REVIEW = gql`
 `;
 
 export const GET_PRODUCT_REVIEWS = gql`
-query Review($sku: String!) {
-  reviews(sku: $sku) {
-    id
-    user {
-      firstName
-      lastName
-      photoURL
+  query Review($sku: String!) {
+    reviews(sku: $sku) {
+      id
+      user {
+        firstName
+        lastName
+        photoURL
+      }
+      text
+      rating
+      createdAt
     }
-    text
-    rating
-    createdAt
   }
-}
 `;
 
 export const ADD_PAYMENT = gql`
