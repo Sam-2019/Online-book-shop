@@ -2,29 +2,22 @@ import React from "react";
 import Back from "../../Components/Back";
 import { useQuery } from "@apollo/client";
 import { GET_ORDER } from "../../graphQL functions";
-import { useData } from "../../Context";
+
 
 import HistoryData from "./historyData";
 
 import EmptyOrderHistory from "../../SVGs/empty-orderhistory";
 import SVGContainer from "../../SVGs/SVGcontainer";
-import PageWrapper from '../../Components/PageWrapper'
+import PageWrapper from "../../Components/PageWrapper";
 
 const OrderHistory = () => {
-  const { uniqueID } = useData();
+  const { loading, error, data, refetch } = useQuery(GET_ORDER);
 
-  const id = String(uniqueID);
- // console.log(id)
-
-  const { loading, error, data, refetch } = useQuery(GET_ORDER, {
-    variables: { id },
-  });
-
-//trese
-//rurouni kenshin
-//mortal combat
-//shadow and bones
-//nevers
+  //trese
+  //rurouni kenshin
+  //mortal combat
+  //shadow and bones
+  //nevers
 
   let view;
 

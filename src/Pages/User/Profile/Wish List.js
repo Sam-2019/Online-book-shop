@@ -5,18 +5,10 @@ import Back from "../../Components/Back";
 import EmptyWishList from "../../SVGs/empty-wishlist";
 import SVGContainer from "../../SVGs/SVGcontainer";
 
-import { useData } from "../../Context";
-
 import { GET_WISHLIST } from "../../graphQL functions";
 
 const WishList = () => {
-  const { uniqueID } = useData();
-
-  const id = String(uniqueID);
-
-  const { loading, error, data, refetch } = useQuery(GET_WISHLIST, {
-    variables: { id },
-  });
+  const { loading, error, data, refetch } = useQuery(GET_WISHLIST);
 
   let view;
 
