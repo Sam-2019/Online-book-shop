@@ -1,29 +1,19 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-
 import Back from "../Components/Back";
-
 import CartData from "./cartData";
-
 import "./cart.css";
 import { GET_CART } from "../graphQL functions";
 
 import SVGcontainer from "../SVGs/SVGcontainer";
 import EmptyCart from "../SVGs/empty-cart";
-import { useData } from "../Context";
 
 const Cart = () => {
-  const { uniqueID } = useData();
-
-  const id = String(uniqueID);
-
-  const { loading, error, data, refetch } = useQuery(GET_CART, {
-    variables: { id },
-  });
+  const { loading, error, data, refetch } = useQuery(GET_CART);
 
   let view;
 
-  if (data === undefined || id == "") {
+  if (data === undefined) {
     return (
       <div className="cart-wrapper">
         <div className="header">

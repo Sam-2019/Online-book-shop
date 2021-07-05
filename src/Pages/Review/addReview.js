@@ -1,26 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { TextArea } from "../Components/Input";
 import Button from "../Components/Button";
 import Message from "../Components/Message";
 import StarRating from "../Components/StarRating";
-import { useData } from "../Context";
+import { ADD_REVIEW } from "../graphQL functions";
 
-const ADD_REVIEW = gql`
-  mutation AddReview($user: ID!, $product: ID!, $rating: Int!, $text: String!) {
-    addReview(user: $user, product: $product, rating: $rating, text: $text) {
-      id
-      user
-      product
-      rating
-      text
-    }
-  }
-`;
-
-const AddReview = ({ close, user, product }) => {
-  const { uniqueID } = useData();
+const AddReview = ({ close, product }) => {
   const [text, setText] = useState("");
   const [message, setMessage] = useState("");
   const [starsSelected, setStarsSelected] = useState(0);
@@ -39,7 +26,6 @@ const AddReview = ({ close, user, product }) => {
 
     addReview({
       variables: {
-        user: String(uniqueID),
         product: String(product),
         rating: Number(starsSelected),
         text: String(text),
@@ -50,7 +36,7 @@ const AddReview = ({ close, user, product }) => {
       setMessage(reviewError);
     }
 
-     close();
+    close();
   }
 
   return (
