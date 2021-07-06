@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import {
   ApolloClient,
   InMemoryCache,
-  gql,
   ApolloProvider,
   createHttpLink,
 } from "@apollo/client";
@@ -24,9 +23,8 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem("loginToken");
-  // return the headers to the context so httpLink can read them
+  const token = JSON.parse(localStorage.getItem("loginToken"));
+
   return {
     headers: {
       ...headers,
@@ -39,7 +37,6 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-
 
 function App() {
   return (
