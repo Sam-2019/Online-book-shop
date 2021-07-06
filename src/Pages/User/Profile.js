@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import PopUp from "../Components/Popup";
@@ -15,7 +14,6 @@ import Verification from "../Components/Verify";
 import { SmallView } from "../styles";
 import { MediaQuery } from "../helper";
 import { useData } from "../Context";
-import { GET_USER } from "../graphQL functions";
 import "./profile.css";
 
 function Proflie() {
@@ -55,10 +53,6 @@ function Proflie() {
     } else {
     }
   };
-
-  const { loading, error, data }= useQuery(GET_USER);
-
-  console.log(data);
 
   switch (active) {
     case "Order History":
