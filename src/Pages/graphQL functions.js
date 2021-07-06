@@ -156,6 +156,7 @@ export const LOGIN = gql`
       firstName
       lastName
       email
+      verified
       token
       tokenexpiration
     }
