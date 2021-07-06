@@ -22,18 +22,27 @@ import { Spacer } from "../Placeholders/Product";
 import { useData } from "../Context";
 import "./product.css";
 
-import { ADD_CART, ADD_WISHLIST } from "../graphQL functions";
+import {
+  ADD_CART,
+  ADD_WISHLIST,
+  GET_CART,
+  GET_WISHLIST,
+} from "../graphQL functions";
 
 toast.configure();
 
 const Product = ({ results }) => {
   const [addCart, { loading: cartLoading, error: cartError, data: cartData }] =
-    useMutation(ADD_CART);
+    useMutation(ADD_CART, {
+      refetchQueries: [{ query: GET_CART }],
+    });
 
   const [
     addWishlist,
     { loading: wishLoading, error: wishError, data: wishData },
-  ] = useMutation(ADD_WISHLIST);
+  ] = useMutation(ADD_WISHLIST, {
+    refetchQueries: [{ query: GET_WISHLIST }],
+  });
 
   const { width } = MediaQuery();
 

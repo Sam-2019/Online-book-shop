@@ -11,7 +11,7 @@ import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
 import PopUp from "../Components/Popup";
 import { ConfirmDelete } from "../styles";
-import { DELETE_CART, ADD_WISHLIST } from "../graphQL functions";
+import { DELETE_CART, ADD_WISHLIST, GET_CART , GET_WISHLIST} from "../graphQL functions";
 import { useData } from "../Context";
 import "./cartItem.css";
 
@@ -37,12 +37,16 @@ const CartItem = ({
   const [
     deleteCart,
     { loading: deleteLoading, error: deleteError, data: deleteData },
-  ] = useMutation(DELETE_CART);
+  ] = useMutation(DELETE_CART, {
+    refetchQueries: [{ query: GET_CART }],
+  });
 
   const [
     addWishlist,
     { loading: wishLoading, error: wishError, data: wishData },
-  ] = useMutation(ADD_WISHLIST);
+  ] = useMutation(ADD_WISHLIST, {
+    refetchQueries: [{ query: GET_WISHLIST }],
+  });
 
   const updateBin = () => {
     setBinFill(true);
