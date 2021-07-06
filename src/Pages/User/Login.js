@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLazyQuery } from "@apollo/client";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
@@ -17,7 +17,13 @@ const Login = () => {
 
   const breakpoint = 540;
   const { width } = MediaQuery();
-  const { login, setAuth, setUniqueID } = useData();
+  const {
+    setAuth,
+    setFirstName,
+    setLastName,
+    setUserEmail,
+    setVerificationStatus,
+  } = useData();
 
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
@@ -29,14 +35,14 @@ const Login = () => {
 
   const [loginUser, { error }] = useLazyQuery(LOGIN, {
     onCompleted: (data) => {
-  
       setAuth(data.login.token);
-      setUniqueID(data.login.user);
+      setFirstName(data.login.firstName);
+      setLastName(data.login.lastName);
+      setUserEmail(data.login.Email);
+      setVerificationStatus(data.login.verified);
 
       clearLogin();
       history.push("./");
-
-
     },
   });
   let type;
