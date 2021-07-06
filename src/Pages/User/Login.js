@@ -33,12 +33,12 @@ const Login = () => {
 
   const [show, hide] = useState("password");
 
-  const [loginUser, { error }] = useLazyQuery(LOGIN, {
+  const [loginUser, { data, error }] = useLazyQuery(LOGIN, {
     onCompleted: (data) => {
       setAuth(data.login.token);
       setFirstName(data.login.firstName);
       setLastName(data.login.lastName);
-      setUserEmail(data.login.Email);
+      setUserEmail(data.login.email);
       setVerificationStatus(data.login.verified);
 
       clearLogin();
@@ -78,6 +78,7 @@ const Login = () => {
         console.log(err);
       }
     }
+
   };
 
   return (
