@@ -44,7 +44,9 @@ const Login = () => {
       clearLogin();
       history.push("./");
     },
+
   });
+
   let type;
 
   switch (show) {
@@ -78,7 +80,6 @@ const Login = () => {
         console.log(err);
       }
     }
-
   };
 
   return (
