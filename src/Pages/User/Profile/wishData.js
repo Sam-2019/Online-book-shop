@@ -1,11 +1,11 @@
 import React, {Fragment} from "react";
 import WishItem from "./wish-item";
 
-const wishData = ({ data, refetch }) => {
+const wishData = ({ data }) => {
   return (
     <Fragment>
       {data.map((data, i) => (
-        <WishItem {...data} key={i} refetch={refetch} />
+        <WishItem {...data} key={i} />
       ))}
     </Fragment>
   );
