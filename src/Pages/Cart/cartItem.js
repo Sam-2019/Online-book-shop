@@ -11,7 +11,12 @@ import Love from "../Components/Love";
 import LoveFill from "../Components/LoveFill";
 import PopUp from "../Components/Popup";
 import { ConfirmDelete } from "../styles";
-import { DELETE_CART, ADD_WISHLIST, GET_CART , GET_WISHLIST} from "../graphQL functions";
+import {
+  DELETE_CART,
+  ADD_WISHLIST,
+  GET_CART,
+  GET_WISHLIST,
+} from "../graphQL functions";
 import { useData } from "../Context";
 import "./cartItem.css";
 
@@ -25,7 +30,6 @@ const CartItem = ({
   quantity,
   handleToggle,
   cartID,
-  refetch,
 }) => {
   const [loveFill, setLoveFill] = React.useState(false);
   const [binFill, setBinFill] = React.useState(false);
@@ -74,12 +78,11 @@ const CartItem = ({
       toast.error(deleteError);
     }
 
-    const timer = setTimeout(() => {
-      setBinFill(false);
-      setConfirm(false);
-      toast.success("Item deleted");
-      refetch();
-    }, 1000);
+    setConfirm(false);
+    toast.success("Item deleted");
+    setBinFill(false);
+
+    const timer = setTimeout(() => {}, 1000);
 
     return () => clearTimeout(timer);
   };
@@ -212,12 +215,11 @@ const CartItem = ({
 export default CartItem;
 
 CartItem.propTypes = {
-  productID: PropTypes.String,
-  sku: PropTypes.String,
-  price: PropTypes.String,
-  imageURL: PropTypes.String,
-  quantity: PropTypes.String,
-  handleToggle: PropTypes.String,
-  cartID: PropTypes.String,
-  refetch: PropTypes.func,
+  productID: PropTypes.string,
+  sku: PropTypes.string,
+  price: PropTypes.string,
+  imageURL: PropTypes.string,
+  quantity: PropTypes.string,
+  handleToggle: PropTypes.func,
+  cartID: PropTypes.string,
 };
