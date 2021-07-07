@@ -83,7 +83,9 @@ const Product = ({ results }) => {
     }
   };
 
-  const add2Cart = async () => {
+  const add2Cart = async (e) => {
+    e.preventDefault();
+
     if (auth === "") {
       return toast.error("Please login to add item to cart");
     }
@@ -100,9 +102,7 @@ const Product = ({ results }) => {
       toast.error(cartError);
     }
 
-    if (cartData) {
-      toast.success("Item added to cart");
-    }
+    toast.success("Item added to cart");
   };
 
   const add2WL = async (e) => {
