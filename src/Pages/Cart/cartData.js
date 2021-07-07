@@ -2,23 +2,18 @@ import React, { useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import PropTypes from "prop-types";
-
 import CartItem from "./cartItem";
-
 import Button from "../Components/Button";
 import Summary from "../Summary/Summary";
 import { useData } from "../Context";
-
 import { ADD_ORDER } from "../graphQL functions";
-
 import { MediaQuery } from "../helper";
-
 import CartHeader from "./cartHeader";
 
 const CartData = ({ data, refetch }) => {
   let history = useHistory();
 
-  const { uniqueID } = useData();
+  const {  } = useData();
   const breakpoint = 540;
   const { width } = MediaQuery();
   const [formData, setFormData] = useState("");
@@ -64,12 +59,11 @@ const CartData = ({ data, refetch }) => {
 
     addOrder({
       variables: {
-        user: String(uniqueID),
         products: checked,
         orderNumber: String(index),
         orderValue: String(index),
-        payment: String(uniqueID),
-        delivery: String(uniqueID),
+        payment: String(index),
+        delivery: String(index),
       },
     });
 
