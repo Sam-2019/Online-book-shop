@@ -1,4 +1,4 @@
-import React,{Fragment} from "react";
+import React, { Fragment } from "react";
 import { useMutation } from "@apollo/client";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
@@ -9,19 +9,11 @@ import Button from "../../Components/Button";
 import { MediaQuery } from "../../helper";
 import "./wishitem.css";
 
-import { DELETE_WISHLIST } from "../../graphQL functions";
+import { DELETE_WISHLIST, GET_WISHLIST } from "../../graphQL functions";
 
 toast.configure();
 
-const WishItem = ({
-  wishID,
-  productID,
-  name,
-  sku,
-  price,
-  imageURL,
-  refetch,
-}) => {
+const WishItem = ({ wishID, productID, name, sku, price, imageURL }) => {
   const breakpoint = 540;
   const { width } = MediaQuery();
   const [confirm, setConfirm] = React.useState(false);
@@ -29,13 +21,11 @@ const WishItem = ({
   const [
     deleteWish,
     { loading: deleteLoading, error: deleteError, data: deleteData },
-  ] = useMutation(DELETE_WISHLIST);
+  ] = useMutation(DELETE_WISHLIST, {
+    refetchQueries: [{ query: GET_WISHLIST }],
+  });
 
   let history = useHistory();
-
-  const notify = (data) => {
-    toast.success(data);
-  };
 
   const updateBin = () => {
     setConfirm(true);
@@ -54,12 +44,10 @@ const WishItem = ({
       toast.error(deleteError);
     }
 
-    const timer = setTimeout(() => {
-      setConfirm(false);
-      toast.success("Item deleted");
-      refetch();
-    }, 1000);
+    toast.success("Item deleted");
+    setConfirm(false);
 
+    const timer = setTimeout(() => {}, 1000);
     return () => clearTimeout(timer);
   };
 
