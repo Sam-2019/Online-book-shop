@@ -11,23 +11,23 @@ toast.configure();
 
 const ProductsItem = ({ id, name, price, imageURL, sku, quantity }) => {
   let history = useHistory();
-  const { uniqueID } = useData();
-  
+  const { auth } = useData();
+
   const [addCart, { loading: cartLoading, error: cartError, data: cartData }] =
     useMutation(ADD_CART, {
       refetchQueries: [{ query: GET_CART }],
+      onCompleted: (data) => {},
     });
 
   const add2Cart = async (e) => {
     e.preventDefault();
 
-    if (uniqueID === "") {
+    if (auth === "") {
       return toast.error("Please login to add item to cart");
     }
 
     addCart({
       variables: {
-        user: String(uniqueID),
         product: String(id),
         quantity: String(1),
         price: String(price),
@@ -36,6 +36,13 @@ const ProductsItem = ({ id, name, price, imageURL, sku, quantity }) => {
 
     if (cartError) {
       toast.error(cartError);
+    }
+
+    if (cartData) {
+      const getQuantity = Number(cartData.addCart.quantity);
+      return getQuantity > 1
+        ? toast.success("Item already added to cart")
+        : null;
     }
 
     toast.success("Item added to cart");
