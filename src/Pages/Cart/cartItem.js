@@ -43,6 +43,9 @@ const CartItem = ({
     { loading: deleteLoading, error: deleteError, data: deleteData },
   ] = useMutation(DELETE_CART, {
     refetchQueries: [{ query: GET_CART }],
+    onCompleted: (data) => {
+ 
+    },
   });
 
   const [
@@ -50,6 +53,9 @@ const CartItem = ({
     { loading: wishLoading, error: wishError, data: wishData },
   ] = useMutation(ADD_WISHLIST, {
     refetchQueries: [{ query: GET_WISHLIST }],
+    onCompleted: (data) => {
+ 
+    },
   });
 
   const updateBin = () => {

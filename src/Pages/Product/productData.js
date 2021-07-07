@@ -35,6 +35,9 @@ const Product = ({ results }) => {
   const [addCart, { loading: cartLoading, error: cartError, data: cartData }] =
     useMutation(ADD_CART, {
       refetchQueries: [{ query: GET_CART }],
+      onCompleted: (data) => {
+ 
+      },
     });
 
   const [
@@ -42,6 +45,9 @@ const Product = ({ results }) => {
     { loading: wishLoading, error: wishError, data: wishData },
   ] = useMutation(ADD_WISHLIST, {
     refetchQueries: [{ query: GET_WISHLIST }],
+    onCompleted: (data) => {
+ 
+    },
   });
 
   const { width } = MediaQuery();
@@ -128,7 +134,7 @@ const Product = ({ results }) => {
 
     const timer = setTimeout(() => {
       setLoveFill(false);
-    }, 2000);
+    }, 1000);
     return () => clearTimeout(timer);
   };
 
