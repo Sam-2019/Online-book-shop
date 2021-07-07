@@ -35,7 +35,7 @@ const WishList = () => {
   }
 
   if (data.wishlist.length > 0) {
-    view = <WishData data={data.wishlist} refetch={refetch} />;
+    view = <WishData data={data.wishlist} />;
   }
 
   return (
