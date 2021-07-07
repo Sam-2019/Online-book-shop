@@ -15,6 +15,7 @@ const Data = () => {
 
   return {
     auth,
+    setAuth,
     logoutUser,
     profileImage,
   };
