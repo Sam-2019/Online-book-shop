@@ -38,7 +38,6 @@ const Signup = () => {
   const [signup, { loading: Loading, error: Error, data: Data }] =
     useMutation(SIGNUP, {
       onCompleted: data => {
-        console.log(data)
         // store the token
      //   localStorage.setItem('token', data.signUp);
         // update the local cache
