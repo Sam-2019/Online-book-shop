@@ -86,11 +86,12 @@ const CartItem = ({
 
   const add2WL = async (e) => {
     e.preventDefault();
-    setLoveFill(true);
 
     if (auth === "") {
       return toast.error("Please login to add item to wishlist");
     }
+
+    setLoveFill(true);
 
     addWishlist({
       variables: {
@@ -102,10 +103,12 @@ const CartItem = ({
       toast.error(wishError);
     }
 
+
+    toast.success("Item added to wish list");
+
     const timer = setTimeout(() => {
       setLoveFill(false);
-      toast.success("Item added to wish list");
-    }, 2000);
+    }, 1000);
     return () => clearTimeout(timer);
   };
 
