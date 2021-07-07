@@ -35,9 +35,7 @@ const Product = ({ results }) => {
   const [addCart, { loading: cartLoading, error: cartError, data: cartData }] =
     useMutation(ADD_CART, {
       refetchQueries: [{ query: GET_CART }],
-      onCompleted: (data) => {
- 
-      },
+      onCompleted: (data) => {},
     });
 
   const [
@@ -45,9 +43,7 @@ const Product = ({ results }) => {
     { loading: wishLoading, error: wishError, data: wishData },
   ] = useMutation(ADD_WISHLIST, {
     refetchQueries: [{ query: GET_WISHLIST }],
-    onCompleted: (data) => {
- 
-    },
+    onCompleted: (data) => {},
   });
 
   const { width } = MediaQuery();
@@ -108,8 +104,17 @@ const Product = ({ results }) => {
       toast.error(cartError);
     }
 
+    if (cartData) {
+      const getQuantity = Number(cartData.addCart.quantity);
+      return getQuantity > 1
+        ? toast.success("Item already added to cart")
+        : null;
+    }
+
     toast.success("Item added to cart");
   };
+
+
 
   const add2WL = async (e) => {
     e.preventDefault();
@@ -128,6 +133,13 @@ const Product = ({ results }) => {
 
     if (wishError) {
       toast.error(wishError);
+    }
+
+    if (wishData) {
+      const findProduct = Number(wishData.addWishlist.product);
+      return findProduct === results.id
+        ? toast.success("Item already added to wishlist")
+        : null;
     }
 
     toast.success("Item added to wish list");
