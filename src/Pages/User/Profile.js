@@ -88,8 +88,6 @@ function Proflie() {
       break;
   }
 
-  console.log(data);
-
   return (
     <div className="user-wrapper">
       <div className="header ">
