@@ -5,14 +5,14 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import Cart from "../Components/Cart";
 import { useData } from "../Context";
-import { ADD_CART, GET_CART} from "../graphQL functions";
+import { ADD_CART, GET_CART } from "../graphQL functions";
 
 toast.configure();
 
 const ProductsItem = ({ id, name, price, imageURL, sku, quantity }) => {
   let history = useHistory();
   const { uniqueID } = useData();
-
+  
   const [addCart, { loading: cartLoading, error: cartError, data: cartData }] =
     useMutation(ADD_CART, {
       refetchQueries: [{ query: GET_CART }],
