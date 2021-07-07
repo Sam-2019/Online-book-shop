@@ -2,11 +2,6 @@ import { useState } from "react";
 import { useLocalStorage } from "./helper";
 
 const Data = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setUserEmail] = useState("");
-  const [verfifcationStatus, setVerificationStatus] = useState(false);
-
   const [auth, setAuth] = useLocalStorage("loginToken", "");
 
   const [profileImage, setProfileImage] = useState(
@@ -14,10 +9,6 @@ const Data = () => {
   );
 
   function logoutUser() {
-    setFirstName("");
-    setLastName("");
-    setUserEmail("");
-    setVerificationStatus("");
     setAuth("");
     setProfileImage("");
   }
@@ -25,17 +16,7 @@ const Data = () => {
   return {
     auth,
     logoutUser,
-    firstName,
-    lastName,
-    email,
-    verfifcationStatus,
     profileImage,
-
-    setAuth,
-    setFirstName,
-    setLastName,
-    setUserEmail,
-    setVerificationStatus,
   };
 };
 
