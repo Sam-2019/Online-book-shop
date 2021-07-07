@@ -30,7 +30,7 @@ function Proflie() {
   const [profilePhoto, updateProfilePhoto] = React.useState(false);
   const [active, setActive] = React.useState("Order History");
 
-  const { loading, error, data } = useQuery(GET_USER);
+  const { loading, data } = useQuery(GET_USER);
 
   const WebShare = (event) => {
     event.preventDefault();
