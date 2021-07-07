@@ -34,7 +34,7 @@ const CartItem = ({
   const [loveFill, setLoveFill] = React.useState(false);
   const [binFill, setBinFill] = React.useState(false);
   const [confirm, setConfirm] = React.useState(false);
-  const { uniqueID } = useData();
+  const { auth } = useData();
 
   const [count, setCount] = React.useState(Number(quantity));
 
@@ -64,13 +64,11 @@ const CartItem = ({
 
   const deleteItem = async (e) => {
     e.preventDefault();
-
     setBinFill(true);
 
     deleteCart({
       variables: {
         id: String(cartID),
-        user: String(uniqueID),
       },
     });
 
@@ -83,7 +81,6 @@ const CartItem = ({
     setBinFill(false);
 
     const timer = setTimeout(() => {}, 1000);
-
     return () => clearTimeout(timer);
   };
 
@@ -91,9 +88,12 @@ const CartItem = ({
     e.preventDefault();
     setLoveFill(true);
 
+    if (auth === "") {
+      return toast.error("Please login to add item to wishlist");
+    }
+
     addWishlist({
       variables: {
-        user: String(uniqueID),
         product: String(productID),
       },
     });
