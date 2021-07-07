@@ -17,13 +17,7 @@ const Login = () => {
 
   const breakpoint = 540;
   const { width } = MediaQuery();
-  const {
-    setAuth,
-    setFirstName,
-    setLastName,
-    setUserEmail,
-    setVerificationStatus,
-  } = useData();
+  const { setAuth } = useData();
 
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
@@ -36,15 +30,10 @@ const Login = () => {
   const [loginUser, { data, error }] = useLazyQuery(LOGIN, {
     onCompleted: (data) => {
       setAuth(data.login.token);
-      setFirstName(data.login.firstName);
-      setLastName(data.login.lastName);
-      setUserEmail(data.login.email);
-      setVerificationStatus(data.login.verified);
 
       clearLogin();
       history.push("./");
     },
-
   });
 
   let type;
