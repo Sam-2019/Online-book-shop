@@ -349,6 +349,7 @@ export const GET_USER = gql`
       lastName
       email
       verified
+      photoURL
     }
   }
 `;
