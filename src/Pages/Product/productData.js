@@ -45,8 +45,7 @@ const Product = ({ results }) => {
   });
 
   const { width } = MediaQuery();
-
-  const { uniqueID } = useData();
+  const { auth } = useData();
 
   let history = useHistory();
   let { sku } = useParams();
@@ -85,13 +84,12 @@ const Product = ({ results }) => {
   };
 
   const add2Cart = async () => {
-    if (uniqueID === "") {
+    if (auth === "") {
       return toast.error("Please login to add item to cart");
     }
 
     addCart({
       variables: {
-        user: String(uniqueID),
         product: String(results.id),
         quantity: String(1),
         price: String(results.price),
@@ -110,7 +108,7 @@ const Product = ({ results }) => {
   const add2WL = async (e) => {
     e.preventDefault();
 
-    if (uniqueID === "") {
+    if (auth === "") {
       return toast.error("Please login to add item to wishlist");
     }
 
@@ -118,7 +116,6 @@ const Product = ({ results }) => {
 
     addWishlist({
       variables: {
-        user: String(uniqueID),
         product: String(results.id),
       },
     });
@@ -131,14 +128,14 @@ const Product = ({ results }) => {
       toast.success("Item added to wish list");
     }
 
-    const timer = setTimeout(() => {
-      setLoveFill(false);
-    }, 2000);
+    setLoveFill(false);
+
+    const timer = setTimeout(() => {}, 2000);
     return () => clearTimeout(timer);
   };
 
   const reviewItem = () => {
-    if (uniqueID === "") {
+    if (auth === "") {
       return toast.error("Please login to review item");
     }
 
@@ -150,7 +147,7 @@ const Product = ({ results }) => {
   };
 
   const buyItem = () => {
-    if (uniqueID === "") {
+    if (auth === "") {
       return toast.error("Please login to buy item");
     }
 
@@ -332,7 +329,7 @@ const Product = ({ results }) => {
             close={() => {
               setReviewBox(false);
             }}
-            user={uniqueID}
+            user={auth}
             product={results.id}
           />
         </PopUp>
