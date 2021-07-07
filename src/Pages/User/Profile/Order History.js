@@ -10,7 +10,7 @@ import SVGContainer from "../../SVGs/SVGcontainer";
 import PageWrapper from "../../Components/PageWrapper";
 
 const OrderHistory = () => {
-  const { loading, error, data, refetch } = useQuery(GET_ORDER);
+  const { loading, data } = useQuery(GET_ORDER);
 
   //trese
   //rurouni kenshin
