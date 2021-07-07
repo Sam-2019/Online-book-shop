@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import PopUp from "../Components/Popup";
@@ -11,25 +12,25 @@ import WishList from "./Profile/Wish List";
 import Photo from "../Components/Profile Photo";
 import UserName from "../Components/UserName";
 import Verification from "../Components/Verify";
+import { GET_USER } from "../graphQL functions";
 import { SmallView } from "../styles";
 import { MediaQuery } from "../helper";
-import { useData } from "../Context";
 import "./profile.css";
 
 function Proflie() {
   let history = useHistory();
   let { width } = MediaQuery();
-
-  const { profileImage, firstName, lastName, verfifcationStatus } = useData();
-  const breakpoint = 540;
   let activePage;
+  let okukus;
+
+  const breakpoint = 540;
   const [password, updatePassword] = React.useState(false);
   const [email, updateEmail] = React.useState(false);
   const [name, updateName] = React.useState(false);
   const [profilePhoto, updateProfilePhoto] = React.useState(false);
-
   const [active, setActive] = React.useState("Order History");
-  let okukus;
+
+  const { loading, error, data } = useQuery(GET_USER);
 
   const WebShare = (event) => {
     event.preventDefault();
@@ -87,6 +88,8 @@ function Proflie() {
       break;
   }
 
+  console.log(data);
+
   return (
     <div className="user-wrapper">
       <div className="header ">
@@ -108,19 +111,24 @@ function Proflie() {
         <div className="user-detailsXother-pages">
           <div className="left-side">
             <div className="user-detail">
-              <div className="user-category">
-                <div
-                  className="object-5"
-                  onClick={() => {
-                    updateProfilePhoto(true);
-                  }}
-                >
-                  <Photo src={profileImage} className="image" />
-                </div>
+              {loading ? (
+                "Loading"
+              ) : (
+                <div className="user-category">
+                  <div
+                    className="object-5"
+                    onClick={() => {
+                      updateProfilePhoto(true);
+                    }}
+                  >
+                    <Photo src={data.user.photoURL} className="image" />
+                  </div>
 
-                <div className="nameXeditXverify">
-                  <UserName name={`${firstName}    ${lastName}`} />
-                  {/* <Pen
+                  <div className="nameXeditXverify">
+                    <UserName
+                      name={`${data.user.firstName}    ${data.user.lastName}`}
+                    />
+                    {/* <Pen
                       width={15}
                       height={15}
                       action={() => {
@@ -128,9 +136,10 @@ function Proflie() {
                       }}
                     /> */}
 
-                  <Verification verfifcationStatus={verfifcationStatus} />
+                    <Verification verfifcationStatus={data.user.verified} />
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             <div className="options">
