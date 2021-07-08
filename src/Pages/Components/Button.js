@@ -46,7 +46,7 @@ const Button = ({ class_name, action, name, loading }) => {
 
   return (
     <button className={class_name} onClick={action} disabled={loading}>
-      {loading ? "Loading..." : <Fragment>{name}</Fragment>}
+      {loading && class_name ? "Loading..." : <Fragment>{name}</Fragment>}
     </button>
   );
 };
