@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-
-import { toast } from "react-toastify";
+import { useMutation } from "@apollo/client";
 import ProfilePhoto from "../../Components/Profile Photo";
 import Button from "../../Components/Button";
 import { Spacer } from "../../styles";
+
+import { UPDATE_PHOTOURL, GET_USER } from "../../graphQL functions";
 
 import "./change.css";
 
@@ -16,6 +17,11 @@ const ProfiilePhotoUpdate = ({ close }) => {
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+
+  const [updatePhoto, { loading, error, data }] = useMutation(UPDATE_PHOTOURL, {
+    refetchQueries: [{ query: GET_USER }],
+    onCompleted: (data) => {},
+  });
 
   const notify = (data) => {};
 
@@ -45,10 +51,11 @@ const ProfiilePhotoUpdate = ({ close }) => {
 
     try {
       setLoading(false);
+      photoUpdate({
+        variables: {},
+      });
     } catch (error) {
       console.error(error);
-    } finally {
-      close();
     }
   };
 
