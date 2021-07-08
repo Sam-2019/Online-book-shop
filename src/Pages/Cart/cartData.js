@@ -10,16 +10,14 @@ import { ADD_ORDER } from "../graphQL functions";
 import { MediaQuery } from "../helper";
 import CartHeader from "./cartHeader";
 
-const CartData = ({ data, refetch }) => {
+const CartData = ({ data }) => {
   let history = useHistory();
 
-  const {  } = useData();
+  const {} = useData();
   const breakpoint = 540;
   const { width } = MediaQuery();
   const [formData, setFormData] = useState("");
-  const [checked, setChecked] = useState([]); //cart items from DB
-
-  // console.log(data.length);
+  const [checked, setChecked] = useState([]);
 
   useEffect(() => {
     setFormData(new FormData());
@@ -39,7 +37,7 @@ const CartData = ({ data, refetch }) => {
 
     setChecked(all);
     formData.set("categories", all);
-   // console.log(all);
+    // console.log(all);
     // var data = formData.get("categories");
   };
 
@@ -54,8 +52,7 @@ const CartData = ({ data, refetch }) => {
   const index = window.crypto.getRandomValues(array);
 
   function orderItem() {
-
-    localStorage.setItem("orderValue", index)
+    localStorage.setItem("orderValue", index);
 
     addOrder({
       variables: {
@@ -79,12 +76,7 @@ const CartData = ({ data, refetch }) => {
       <div className="main">
         {width > breakpoint ? <CartHeader /> : null}
         {data.map((data, index) => (
-          <CartItem
-            key={index}
-            {...data}
-            handleToggle={handleToggle}
-            refetch={refetch}
-          />
+          <CartItem key={index} {...data} handleToggle={handleToggle} />
         ))}
       </div>
       <Summary>
@@ -105,5 +97,4 @@ export default CartData;
 
 CartData.propTypes = {
   data: PropTypes.array,
-  refetch: PropTypes.func,
 };
