@@ -4,7 +4,7 @@ import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
 
-import { UPDATE_EMAIL } from "../../graphQL functions";
+import { UPDATE_EMAIL, GET_USER } from "../../graphQL functions";
 
 import "./change.css";
 
@@ -13,7 +13,10 @@ const ChangeEmail = ({ close }) => {
   const [new_email, setNewEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const [updateEmail, { loading, error, data }] = useMutation(UPDATE_EMAIL);
+  const [updateEmail, { loading, error, data }] = useMutation(UPDATE_EMAIL, {
+    refetchQueries: [{ query: GET_USER }],
+    onCompleted: (data) => {},
+  });
 
   const clear = () => {
     setEmail("");
