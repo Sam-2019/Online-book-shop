@@ -7,33 +7,45 @@ import { GET_CART } from "../graphQL functions";
 
 import SVGcontainer from "../SVGs/SVGcontainer";
 import EmptyCart from "../SVGs/empty-cart";
+import PageWrapper from "../Components/PageWrapper";
 
 const Cart = () => {
-  const { loading, error, data, refetch } = useQuery(GET_CART);
+  const { loading, error, data } = useQuery(GET_CART);
 
   let view;
 
   if (data === undefined) {
     return (
-      <div className="cart-wrapper">
-        <div className="header">
-          <div className="category">
-            <div className="object-1">
-              <Back width={30} height={30} />
-            </div>
-            <div className="object-2"> Cart </div>
-          </div>
-        </div>
+      // <div className="cart-wrapper">
+      //   <div className="header">
+      //     <div className="category">
+      //       <div className="object-1">
+      //         <Back width={30} height={30} />
+      //       </div>
+      //       <div className="object-2"> Cart </div>
+      //     </div>
+      //   </div>
 
-        <div>
-          <SVGcontainer>
-            <EmptyCart />
+      //   <div>
+      //     <SVGcontainer>
+      //       <EmptyCart />
+      //       <p className="text-3">
+      //         No item in <b>your</b> cart yet!
+      //       </p>
+      //     </SVGcontainer>
+      //   </div>
+      // </div>
+
+      <PageWrapper pageTitle="Cart" wrapper="cart-wrapper">
+        <div className="wrapper-item">
+          <SVGContainer>
+          <EmptyCart />
             <p className="text-3">
               No item in <b>your</b> cart yet!
             </p>
-          </SVGcontainer>
+          </SVGContainer>
         </div>
-      </div>
+      </PageWrapper>
     );
   }
 
@@ -49,11 +61,7 @@ const Cart = () => {
   }
 
   if (data.carts.length > 0) {
-    view = (
-      <div className="">
-        <CartData data={data.carts} refetch={refetch} />
-      </div>
-    );
+    view = <CartData data={data.carts} />;
   }
 
   return (
