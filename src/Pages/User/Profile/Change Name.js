@@ -4,7 +4,7 @@ import { Input } from "../../Components/Input";
 import Button from "../../Components/Button";
 import Message from "../../Components/Message";
 
-import { UPDATE_NAME } from "../../graphQL functions";
+import { UPDATE_NAME , GET_USER} from "../../graphQL functions";
 
 import "./change.css";
 
@@ -13,7 +13,12 @@ const ChangeName = ({ close }) => {
   const [last_name, setLastName] = useState("");
   const [message, setMessage] = useState("");
 
-  const [updateName, { loading, error, data }] = useMutation(UPDATE_NAME);
+  const [updateName, { loading, error, data }] = useMutation(UPDATE_NAME, {
+    refetchQueries: [{ query: GET_USER }],
+    onCompleted: (data) => {
+ 
+    },
+  });
 
   const clear = () => {
     setFirstName("");
