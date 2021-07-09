@@ -16,35 +16,13 @@ const Cart = () => {
 
   if (data === undefined) {
     return (
-      // <div className="cart-wrapper">
-      //   <div className="header">
-      //     <div className="category">
-      //       <div className="object-1">
-      //         <Back width={30} height={30} />
-      //       </div>
-      //       <div className="object-2"> Cart </div>
-      //     </div>
-      //   </div>
-
-      //   <div>
-      //     <SVGcontainer>
-      //       <EmptyCart />
-      //       <p className="text-3">
-      //         No item in <b>your</b> cart yet!
-      //       </p>
-      //     </SVGcontainer>
-      //   </div>
-      // </div>
-
       <PageWrapper pageTitle="Cart" wrapper="cart-wrapper">
-        <div className="wrapper-item">
-          <SVGContainer>
+        <SVGcontainer>
           <EmptyCart />
-            <p className="text-3">
-              No item in <b>your</b> cart yet!
-            </p>
-          </SVGContainer>
-        </div>
+          <p className="text-3">
+            No item in <b>your</b> cart yet!
+          </p>
+        </SVGcontainer>
       </PageWrapper>
     );
   }
