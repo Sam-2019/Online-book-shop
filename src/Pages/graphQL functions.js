@@ -128,6 +128,24 @@ export const DELETE_CART = gql`
   }
 `;
 
+export const INCREMENT_QUANTITY = gql`
+  mutation IncrementCartItem($product: ID!, $quantity: String!) {
+    incrementCartItem(product: $product, quantity: $quantity) {
+      product
+      quantity
+    }
+  }
+`;
+
+export const DECREMENT_QUANTITY = gql`
+  mutation DecrementCartItem($product: ID!, $quantity: String!) {
+    decrementCartItem(product: $product, quantity: $quantity) {
+      product
+      quantity
+    }
+  }
+`;
+
 export const SIGNUP = gql`
   mutation Signup(
     $password: String!
@@ -198,14 +216,12 @@ export const ADD_ORDER = gql`
   mutation AddOrder(
     $products: [ID]
     $orderNumber: String
-    $orderValue: String
     $payment: ID!
     $delivery: ID!
   ) {
     addOrder(
       products: $products
       orderNumber: $orderNumber
-      orderValue: $orderValue
       payment: $payment
       delivery: $delivery
     ) {
@@ -411,6 +427,27 @@ export const ADD_PAYMENT = gql`
       momo_number
       momo_transaction_id
       order_value
+    }
+  }
+`;
+
+export const GET_LOCATIONS = gql`
+  query {
+    location {
+      id
+      location
+      fee
+      disable
+    }
+  }
+`;
+
+export const ADD_LOCATION = gql`
+  mutation AddLocation($location: String!, $fee: String!) {
+    addLocation(location: $location, fee: $fee) {
+      id
+      location
+      fee
     }
   }
 `;
