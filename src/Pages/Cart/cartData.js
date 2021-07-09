@@ -24,7 +24,6 @@ const CartData = ({ data }) => {
   }, []);
 
   const handleToggle = (c) => () => {
-    // return the first index or -1
     const clickedCategory = checked.indexOf(c);
 
     const all = [...checked];
@@ -41,32 +40,31 @@ const CartData = ({ data }) => {
     // var data = formData.get("categories");
   };
 
-  //  console.log(checked);
-
   const [
     addOrder,
     { loading: orderLoading, error: orderError, data: orderData },
-  ] = useMutation(ADD_ORDER);
+  ] = useMutation(ADD_ORDER, {
+    onCompleted: (data) => {},
+  });
 
   const array = new Uint32Array(1);
   const index = window.crypto.getRandomValues(array);
 
   function orderItem() {
-    localStorage.setItem("orderValue", index);
+    if (checked.length === 0) {
+      return;
+    }
+
+    localStorage.setItem("orderValue", index[0]);
 
     addOrder({
       variables: {
         products: checked,
-        orderNumber: String(index),
-        orderValue: String(index),
-        payment: String(index),
-        delivery: String(index),
+        orderNumber: String(index[0]),
+        payment: "60e23f8ffea3c01654963635",
+        delivery: "60e23f8ffea3c01654963635",
       },
     });
-
-    if (!orderData) {
-      return;
-    }
 
     history.push(`/order/${index[0]}`);
   }
