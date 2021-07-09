@@ -213,20 +213,9 @@ export const DELETE_WISHLIST = gql`
 `;
 
 export const ADD_ORDER = gql`
-  mutation AddOrder(
-    $products: [ID]
-    $orderNumber: String
-    $payment: ID!
-    $delivery: ID!
-  ) {
-    addOrder(
-      products: $products
-      orderNumber: $orderNumber
-      payment: $payment
-      delivery: $delivery
-    ) {
+  mutation AddOrder($products: [ID], $orderNumber: String) {
+    addOrder(products: $products, orderNumber: $orderNumber) {
       id
-      user
       orderNumber
       orderValue
     }
@@ -400,33 +389,32 @@ export const GET_PRODUCT_REVIEWS = gql`
 export const ADD_PAYMENT = gql`
   mutation AddPayment(
     $method: String!
-    $status: String!
-    $momo_name: String!
-    $momo_number: String!
-    $momo_transaction_id: String!
-    $order_value: String!
+    $momoName: String!
+    $momoNumber: String!
+    $momoTransactionID: String!
+    $orderNumber: String!
     $location: String
     $address: String
-    $phone_number: String
+    $phoneNumber: String
   ) {
     addPayment(
       method: $method
-      status: $status
-      momo_name: $momo_name
-      momo_number: $momo_number
-      momo_transaction_id: $momo_transaction_id
-      order_value: $order_value
+      momoName: $momoName
+      momoNumber: $momoNumber
+      momoTransactionID: $momoTransactionID
+      orderNumber: $orderNumber
       location: $location
       address: $address
-      phone_number: $phone_number
+      phoneNumber: $phoneNumber
     ) {
       id
       method
-      status
-      momo_name
-      momo_number
-      momo_transaction_id
-      order_value
+      momoName
+      momoNumber
+      momoTransactionID
+      orderNumber
+      location
+      phoneNumber
     }
   }
 `;
