@@ -16,6 +16,8 @@ import {
   ADD_WISHLIST,
   GET_CART,
   GET_WISHLIST,
+  INCREMENT_QUANTITY,
+  DECREMENT_QUANTITY,
 } from "../graphQL functions";
 import { useData } from "../Context";
 import "./cartItem.css";
@@ -43,9 +45,7 @@ const CartItem = ({
     { loading: deleteLoading, error: deleteError, data: deleteData },
   ] = useMutation(DELETE_CART, {
     refetchQueries: [{ query: GET_CART }],
-    onCompleted: (data) => {
- 
-    },
+    onCompleted: (data) => {},
   });
 
   const [
@@ -53,9 +53,23 @@ const CartItem = ({
     { loading: wishLoading, error: wishError, data: wishData },
   ] = useMutation(ADD_WISHLIST, {
     refetchQueries: [{ query: GET_WISHLIST }],
-    onCompleted: (data) => {
- 
-    },
+    onCompleted: (data) => {},
+  });
+
+  const [
+    increaseQty,
+    { loading: incrementLoading, error: incrementError, data: incrementData },
+  ] = useMutation(INCREMENT_QUANTITY, {
+    refetchQueries: [{ query: GET_CART }],
+    onCompleted: (data) => {},
+  });
+
+  const [
+    decreaseQty,
+    { loading: decrementLoading, error: decrementError, data: decrementData },
+  ] = useMutation(DECREMENT_QUANTITY, {
+    refetchQueries: [{ query: GET_CART }],
+    onCompleted: (data) => {},
   });
 
   const updateBin = () => {
@@ -109,7 +123,6 @@ const CartItem = ({
       toast.error(wishError);
     }
 
-
     toast.success("Item added to wish list");
 
     const timer = setTimeout(() => {
@@ -121,7 +134,15 @@ const CartItem = ({
   const plusItem = async (event) => {
     event.preventDefault();
 
-    setCount((c) => c + 1);
+    return (
+       setCount((c) => c + 1),
+      increaseQty({
+        variables: {
+          product: String(cartID),
+          quantity: String(count),
+        },
+      })
+    );
   };
 
   const minusItem = async (e) => {
@@ -130,7 +151,16 @@ const CartItem = ({
     if (count <= 1) {
       return;
     }
-    return setCount((c) => c - 1);
+
+    return (
+       setCount((c) => c - 1),
+      decreaseQty({
+        variables: {
+          product: String(cartID),
+          quantity: String(count),
+        },
+      })
+    );
   };
 
   return (
