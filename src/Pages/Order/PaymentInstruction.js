@@ -3,12 +3,12 @@ import { Input } from "../Components/Input";
 import Question from "../Components/Question";
 
 const PaymentInstruction = ({
-  momo_name,
+  momoName,
   setMomoName,
-  momo_number,
+  momoNumber,
   setMomoNumber,
-  transaction_id,
-  setTransactionID,
+  momoTransactionID,
+  setMomoTransactionID,
   setState,
 }) => {
   return (
@@ -27,21 +27,21 @@ const PaymentInstruction = ({
         class_name="input "
         placeholder="Name"
         action={(e) => setMomoName(e.target.value)}
-        value={momo_name}
+        value={momoName}
       />
 
       <Input
         class_name="input "
         placeholder="Momo Number"
         action={(e) => setMomoNumber(e.target.value)}
-        value={momo_number}
+        value={momoNumber}
       />
 
       <Input
         class_name="input "
         placeholder="Transaction ID"
-        action={(e) => setTransactionID(e.target.value)}
-        value={transaction_id}
+        action={(e) => setMomoTransactionID(e.target.value)}
+        value={momoTransactionID}
       />
     </div>
   );
