@@ -18,7 +18,7 @@ const ProfiilePhotoUpdate = ({ close }) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const [updatePhoto, { loading, error, data }] = useMutation(UPDATE_PHOTOURL, {
+  const [updatePhoto, { error, data }] = useMutation(UPDATE_PHOTOURL, {
     refetchQueries: [{ query: GET_USER }],
     onCompleted: (data) => {},
   });
@@ -51,7 +51,7 @@ const ProfiilePhotoUpdate = ({ close }) => {
 
     try {
       setLoading(false);
-      photoUpdate({
+      updatePhoto({
         variables: {},
       });
     } catch (error) {
