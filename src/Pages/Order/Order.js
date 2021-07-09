@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import Back from "../Components/Back";
 import { Input } from "../Components/Input";
@@ -9,7 +9,7 @@ import PopUp from "../Components/Popup";
 import Question from "../Components/Question";
 import Success from "../Components/Success";
 import { MediaQuery } from "../helper";
-import { ADD_PAYMENT } from "../graphQL functions";
+import { ADD_PAYMENT, GET_LOCATIONS } from "../graphQL functions";
 import { useData } from "../Context";
 import PaymentInstruction from "./PaymentInstruction";
 
@@ -26,7 +26,7 @@ const Order = () => {
   const [success, setSuccess] = React.useState(false);
 
   const [value, setValue] = React.useState("Pick your location");
-  const fee = 10;
+  const [items, setItems] = React.useState([]);
 
   const [location, setLocation] = React.useState("");
   const [address, setAddress] = React.useState("");
@@ -35,6 +35,19 @@ const Order = () => {
   const [momo_name, setMomoName] = React.useState("");
   const [momo_number, setMomoNumber] = React.useState("");
   const [transaction_id, setTransactionID] = React.useState("");
+
+  const { loading } = useQuery(GET_LOCATIONS, {
+    onCompleted: (data) => {
+      setItems(
+        data.location.map(({ id, location, fee, disable }) => ({
+          id,
+          location,
+          fee,
+          disable,
+        }))
+      );
+    },
+  });
 
   let show;
 
@@ -78,10 +91,6 @@ const Order = () => {
   ] = useMutation(ADD_PAYMENT);
 
   function orderItem() {
-    // setSuccess(true);
-
-    console.log(location, address, phone_number);
-
     const orderValue = localStorage.getItem("orderValue");
 
     addPayment({
@@ -112,12 +121,6 @@ const Order = () => {
         </div>
       </div>
 
-      {state && (
-        <PopUp close={() => setState(false)}>
-          <PaymentProcess buttonAction={() => setState(false)} />
-        </PopUp>
-      )}
-
       <div className="main">
         <form
           className={`
@@ -132,19 +135,30 @@ const Order = () => {
           >
             <div className="page_title"> Shipping Information</div>
 
-            <select name="locations" id="select" className="input">
-              <option value="tema">Tema</option>
-              <option value="accra">Accra</option>
-              <option value="kumasi">Kumasi</option>
-              <option value="bolga">Bolga</option>
+            <select
+              id="select"
+              className="input"
+              autoFocus
+              required
+              disabled={loading}
+              value={value}
+              onChange={(e) => {
+                setValue(e.target.value);
+              }}
+            >
+              {items.map(({ location, fee, id, disable }) => (
+                <option key={id} value={id}>
+                  {location}
+                </option>
+              ))}
             </select>
-
+            {/* 
             <Input
               class_name="input "
               placeholder="Location"
               action={(e) => setLocation(e.target.value)}
               value={location}
-            />
+            /> */}
 
             <Input
               class_name="input "
@@ -251,7 +265,7 @@ const Order = () => {
           <div className={show ? "amount2" : "amount1"}>
             Total: ${Intl.NumberFormat().format(100)}
           </div>
-          <div className="shipping">(Shipping ${fee})</div>
+          <div className="shipping">(Shipping ${})</div>
         </div>
 
         <Button
@@ -260,6 +274,12 @@ const Order = () => {
           action={orderItem}
         />
       </Summary>
+
+      {state && (
+        <PopUp close={() => setState(false)}>
+          <PaymentProcess buttonAction={() => setState(false)} />
+        </PopUp>
+      )}
 
       {success && (
         <PopUp>
