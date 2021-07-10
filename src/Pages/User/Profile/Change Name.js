@@ -9,8 +9,8 @@ import { UPDATE_NAME , GET_USER} from "../../graphQL functions";
 import "./change.css";
 
 const ChangeName = ({ close }) => {
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [message, setMessage] = useState("");
 
   const [updateName, { loading, error, data }] = useMutation(UPDATE_NAME, {
@@ -29,7 +29,7 @@ const ChangeName = ({ close }) => {
     setMessage("");
     event.preventDefault();
 
-    let empty = first_name && last_name;
+    let empty = firstName && lastName;
 
     if (empty === "") {
       return setMessage("Please fill the form");
@@ -37,8 +37,8 @@ const ChangeName = ({ close }) => {
 
     await updateName({
       variables: {
-        first_name: String(first_name),
-        last_name: String(last_name),
+        firstName: String(firstName),
+        lastName: String(lastName),
       },
     });
 
@@ -52,14 +52,14 @@ const ChangeName = ({ close }) => {
       <Input
         class_name="input "
         placeholder="First Name"
-        value={first_name}
+        value={firstName}
         action={(e) => setFirstName(e.target.value)}
         autocomplete="First Name"
       />
       <Input
         class_name="input "
         placeholder="Last Name"
-        value={last_name}
+        value={lastName}
         action={(e) => setLastName(e.target.value)}
         autocomplete="Last Name"
       />
