@@ -236,9 +236,9 @@ export const GET_ORDER = gql`
   }
 `;
 
-export const DELETE_ORDER = gql`
-  mutation DeleteOrder($id: ID!) {
-    deleteOrder(id: $id) {
+export const DELETE_ORDER_ITEM = gql`
+  mutation DeleteOrderItem($id: ID!) {
+    deleteOrderItem(id: $id) {
       id
     }
   }
@@ -436,6 +436,13 @@ export const ADD_LOCATION = gql`
       id
       location
       fee
+    }
+  }
+`;
+export const GET_ORDER_AMOUNT = gql`
+  query GetOrderAmount($orderNumber: String!) {
+    getOrderAmount(orderNumber: $orderNumber) {
+      orderValue
     }
   }
 `;
