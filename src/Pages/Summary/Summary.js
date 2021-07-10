@@ -11,7 +11,7 @@ const SummaryWrapper = styled.div`
   position: fixed;
   top: auto;
   bottom: 0;
-  padding: 0px 10px;
+  padding: 5px 10px;
   background-color: #ffffff;
   border-top: 1px solid #abababb5;
 
