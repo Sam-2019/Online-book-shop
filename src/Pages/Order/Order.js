@@ -6,11 +6,14 @@ import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Summary from "../Summary/Summary";
 import PopUp from "../Components/Popup";
-import Question from "../Components/Question";
 import Success from "../Components/Success";
 import { MediaQuery } from "../helper";
-import { ADD_PAYMENT, GET_LOCATIONS } from "../graphQL functions";
-import { useData } from "../Context";
+import {
+  ADD_PAYMENT,
+  GET_LOCATIONS,
+  GET_ORDER_AMOUNT,
+} from "../graphQL functions";
+
 import PaymentInstruction from "./PaymentInstruction";
 
 import "./order.css";
@@ -23,18 +26,25 @@ const Order = () => {
   const { width } = MediaQuery();
   const [paymentMethod, setPaymentMethod] = React.useState("");
   const [state, setState] = React.useState(false);
+  const [alert, setAlert] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
 
   const [value, setValue] = React.useState("Pick your location");
   const [items, setItems] = React.useState([]);
 
-  const [location, setLocation] = React.useState("");
   const [address, setAddress] = React.useState("");
-  const [phone_number, setPhoneNumber] = React.useState("");
+  const [phoneNumber, setPhoneNumber] = React.useState("");
 
-  const [momo_name, setMomoName] = React.useState("");
-  const [momo_number, setMomoNumber] = React.useState("");
-  const [transaction_id, setTransactionID] = React.useState("");
+  const [momoName, setMomoName] = React.useState("");
+  const [momoNumber, setMomoNumber] = React.useState("");
+  const [momoTransactionID, setMomoTransactionID] = React.useState("");
+
+  const orderNumber = localStorage.getItem("orderNumber");
+
+  const { loading: loadAmount, data: dataAmount } = useQuery(GET_ORDER_AMOUNT, {
+    variables: { orderNumber },
+  });
+  console.log(dataAmount);
 
   const { loading } = useQuery(GET_LOCATIONS, {
     onCompleted: (data) => {
@@ -88,24 +98,38 @@ const Order = () => {
   const [
     addPayment,
     { loading: paymentrLoading, error: paymentError, data: paymentData },
-  ] = useMutation(ADD_PAYMENT);
+  ] = useMutation(ADD_PAYMENT, {
+    onCompleted: (data) => {
+      setPaymentMethod("");
+      setValue("Pick your location");
+      setAddress("");
+      setPhoneNumber("");
+      setMomoName("");
+      setMomoNumber("");
+      setMomoTransactionID("");
+      setSuccess(true);
+    },
+  });
 
   function orderItem() {
-    const orderValue = localStorage.getItem("orderValue");
+    if (value === "Pick your location") {
+      return setAlert(true);
+    }
+
+    if (!orderNumber && !paymentMethod && !selectedOption) {
+      return;
+    }
 
     addPayment({
       variables: {
         method: String(selectedOption),
-        status: String("pending"),
-
-        location,
+        location: value,
+        orderNumber: String(orderNumber),
         address,
-        phone_number,
-
-        momo_name,
-        momo_number,
-        momo_transaction_id: transaction_id,
-        order_value: String(orderValue),
+        phoneNumber,
+        momoName,
+        momoNumber,
+        momoTransactionID,
       },
     });
   }
@@ -152,13 +176,8 @@ const Order = () => {
                 </option>
               ))}
             </select>
-            {/* 
-            <Input
-              class_name="input "
-              placeholder="Location"
-              action={(e) => setLocation(e.target.value)}
-              value={location}
-            /> */}
+
+            {alert && <div id="alert">Please select your location</div>}
 
             <Input
               class_name="input "
@@ -171,7 +190,7 @@ const Order = () => {
               class_name="input "
               placeholder="Phone Number"
               action={(e) => setPhoneNumber(e.target.value)}
-              value={phone_number}
+              value={phoneNumber}
             />
 
             <div className="page_title">Payment</div>
@@ -197,36 +216,15 @@ const Order = () => {
             {width > breakpoint ? null : (
               <div>
                 {selectedOption === "momo" && (
-                  <div className="payment-instruction ">
-                    <div className="pay-know-how  ">
-                      <div className="page_title2  ">How To Pay With Momo</div>
-                      <Question
-                        width={30}
-                        height={30}
-                        action={() => {
-                          setState(true);
-                        }}
-                      />
-                    </div>
-                    <Input
-                      class_name="input "
-                      placeholder="Name"
-                      action={(e) => setMomoName(e.target.value)}
-                      value={momo_name}
-                    />
-                    <Input
-                      class_name="input "
-                      placeholder="Momo Number"
-                      action={(e) => setMomoNumber(e.target.value)}
-                      value={momo_number}
-                    />
-                    <Input
-                      class_name="input "
-                      placeholder="Transaction ID"
-                      action={(e) => setTransactionID(e.target.value)}
-                      value={transaction_id}
-                    />
-                  </div>
+                  <PaymentInstruction
+                    momoName={momoName}
+                    setMomoName={setMomoName}
+                    momoNumber={momoNumber}
+                    setMomoNumber={setMomoNumber}
+                    momoTransactionID={momoTransactionID}
+                    setMomoTransactionID={setMomoTransactionID}
+                    setState={setState}
+                  />
                 )}
               </div>
             )}
@@ -245,12 +243,12 @@ const Order = () => {
                   `}
                 >
                   <PaymentInstruction
-                    momo_name={momo_name}
+                    momoName={momoName}
                     setMomoName={setMomoName}
-                    momo_number={momo_number}
+                    momoNumber={momoNumber}
                     setMomoNumber={setMomoNumber}
-                    transaction_id={transaction_id}
-                    setTransactionID={setTransactionID}
+                    momoTransactionID={momoTransactionID}
+                    setMomoTransactionID={setMomoTransactionID}
                     setState={setState}
                   />
                 </div>
@@ -263,16 +261,21 @@ const Order = () => {
       <Summary>
         <div className="amountXshipping">
           <div className={show ? "amount2" : "amount1"}>
-            Total: ${Intl.NumberFormat().format(100)}
+            {loadAmount ? (
+              "Loading"
+            ) : (
+              <span>
+                Total: $
+                {`${Intl.NumberFormat().format(
+                  dataAmount.getOrderAmount.orderValue
+                )}`}
+              </span>
+            )}
           </div>
           <div className="shipping">(Shipping ${})</div>
         </div>
 
-        <Button
-          class_name="checkout"
-          name={`Order  (100)`}
-          action={orderItem}
-        />
+        <Button class_name="checkout" name="Order" action={orderItem} />
       </Summary>
 
       {state && (
@@ -286,7 +289,7 @@ const Order = () => {
           <Success />
           <div className="order-success">
             <div></div> Thank you for shopping with us! Your order{" "}
-            <span className="orderID">11111111111</span> has been placed,
+            <span className="orderID">{orderNumber}</span> has been placed,
             pending confirmation. We will call you within 24 hours (calling
             hours: Mon-Fri 8:30am-5:30pm) to confirm your order . Once the order
             is confirmed, you will not be able to change your order details (e.g
