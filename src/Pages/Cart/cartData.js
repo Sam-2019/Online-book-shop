@@ -55,14 +55,12 @@ const CartData = ({ data }) => {
       return;
     }
 
-    localStorage.setItem("orderValue", index[0]);
+    localStorage.setItem("orderNumber", index[0]);
 
     addOrder({
       variables: {
         products: checked,
         orderNumber: String(index[0]),
-        payment: "60e23f8ffea3c01654963635",
-        delivery: "60e23f8ffea3c01654963635",
       },
     });
 
@@ -72,20 +70,14 @@ const CartData = ({ data }) => {
   return (
     <Fragment>
       <div className="main">
-        {width > breakpoint ? <CartHeader /> : null}
+        {width > breakpoint && <CartHeader />}
         {data.map((data, index) => (
           <CartItem key={index} {...data} handleToggle={handleToggle} />
         ))}
       </div>
       <Summary>
-        <div className="amountX">
-          <div className="amount">Total: $100</div>
-        </div>
-        <Button
-          class_name="checkout"
-          name={`Check Out  ()`}
-          action={orderItem}
-        />
+        <div className="amountX"></div>
+        <Button class_name="checkout" name="Check out" action={orderItem} />
       </Summary>
     </Fragment>
   );
