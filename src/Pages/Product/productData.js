@@ -31,7 +31,7 @@ import {
 
 toast.configure();
 
-const Product = ({ results }) => {
+const Product = ({ results, refetch }) => {
   const [addCart, { loading: cartLoading, error: cartError, data: cartData }] =
     useMutation(ADD_CART, {
       refetchQueries: [{ query: GET_CART }],
@@ -113,8 +113,6 @@ const Product = ({ results }) => {
 
     toast.success("Item added to cart");
   };
-
-
 
   const add2WL = async (e) => {
     e.preventDefault();
@@ -345,8 +343,8 @@ const Product = ({ results }) => {
             close={() => {
               setReviewBox(false);
             }}
-            user={auth}
             product={results.id}
+            refetch={refetch}
           />
         </PopUp>
       )}
