@@ -11,6 +11,7 @@ import {
   GET_LOCATIONS,
   GET_ORDER_AMOUNT,
   GET_CART,
+  GET_ORDER
 } from "../graphQL functions";
 
 import PaymentInstruction from "./PaymentInstruction";
@@ -92,6 +93,7 @@ const Order = () => {
     { loading: paymentrLoading, error: paymentError, data: paymentData },
   ] = useMutation(ADD_PAYMENT, {
     refetchQueries: [{ query: GET_CART }],
+    refetchQueries: [{ query: GET_ORDER }],
     onCompleted: (data) => {
       setPaymentMethod("");
       setValue("Pick your location");
