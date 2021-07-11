@@ -5,23 +5,22 @@ import Back from "../Components/Back";
 import { Input } from "../Components/Input";
 import Button from "../Components/Button";
 import Summary from "../Summary/Summary";
-import PopUp from "../Components/Popup";
-import Success from "../Components/Success";
 import { MediaQuery } from "../helper";
 import {
   ADD_PAYMENT,
   GET_LOCATIONS,
   GET_ORDER_AMOUNT,
+  GET_CART,
 } from "../graphQL functions";
 
 import PaymentInstruction from "./PaymentInstruction";
+import NotifyOrderSuccess from "./notifyOrderSuccess";
 
 import "./order.css";
 import PaymentProcess from "./PaymentProcess";
 
 const Order = () => {
   let breakpoint = 540;
-  let history = useHistory();
 
   const { width } = MediaQuery();
   const [paymentMethod, setPaymentMethod] = React.useState("");
@@ -38,13 +37,6 @@ const Order = () => {
   const [momoName, setMomoName] = React.useState("");
   const [momoNumber, setMomoNumber] = React.useState("");
   const [momoTransactionID, setMomoTransactionID] = React.useState("");
-
-  const orderNumber = localStorage.getItem("orderNumber");
-
-  const { loading: loadAmount, data: dataAmount } = useQuery(GET_ORDER_AMOUNT, {
-    variables: { orderNumber },
-  });
-  console.log(dataAmount);
 
   const { loading } = useQuery(GET_LOCATIONS, {
     onCompleted: (data) => {
@@ -99,6 +91,7 @@ const Order = () => {
     addPayment,
     { loading: paymentrLoading, error: paymentError, data: paymentData },
   ] = useMutation(ADD_PAYMENT, {
+    refetchQueries: [{ query: GET_CART }],
     onCompleted: (data) => {
       setPaymentMethod("");
       setValue("Pick your location");
@@ -108,6 +101,16 @@ const Order = () => {
       setMomoNumber("");
       setMomoTransactionID("");
       setSuccess(true);
+    },
+  });
+
+  const [orderValue, setOrderValue] = React.useState("0");
+
+  const orderNumber = localStorage.getItem("orderNumber");
+  const { loading: loadAmount } = useQuery(GET_ORDER_AMOUNT, {
+    variables: { orderNumber },
+    onCompleted: (data) => {
+
     },
   });
 
@@ -264,12 +267,8 @@ const Order = () => {
             {loadAmount ? (
               "Loading"
             ) : (
-              <span>
-                Total: $
-                {`${Intl.NumberFormat().format(
-                  dataAmount.getOrderAmount.orderValue
-                )}`}
-              </span>
+              // <span>Total: ${`${Intl.NumberFormat().format(orderValue)}`}</span>
+              <span>Total: ${`${orderValue}`}</span>
             )}
           </div>
           <div className="shipping">(Shipping ${})</div>
@@ -279,32 +278,13 @@ const Order = () => {
       </Summary>
 
       {state && (
-        <PopUp close={() => setState(false)}>
-          <PaymentProcess buttonAction={() => setState(false)} />
-        </PopUp>
+        <PaymentProcess
+          close={() => setState(false)}
+          buttonAction={() => setState(false)}
+        />
       )}
 
-      {success && (
-        <PopUp>
-          <Success />
-          <div className="order-success">
-            <div></div> Thank you for shopping with us! Your order{" "}
-            <span className="orderID">{orderNumber}</span> has been placed,
-            pending confirmation. We will call you within 24 hours (calling
-            hours: Mon-Fri 8:30am-5:30pm) to confirm your order . Once the order
-            is confirmed, you will not be able to change your order details (e.g
-            recipient, delivery address).
-          </div>
-
-          <Button
-            name="Go Home"
-            class_name="primary"
-            action={() => {
-              history.push("/");
-            }}
-          />
-        </PopUp>
-      )}
+      {success && <NotifyOrderSuccess />}
     </div>
   );
 };
