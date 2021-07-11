@@ -43,6 +43,7 @@ const Cart = () => {
   }
 
   return (
+    
     <div className="cart-wrapper">
       <div className="header">
         <div className="category">
