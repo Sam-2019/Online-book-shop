@@ -12,14 +12,14 @@ import "./product.css";
 const Product = () => {
   let { sku } = useParams();
 
-  const { loading, error, data } = useQuery(GET_PRODUCT, {
+  const { loading, error, data,refetch } = useQuery(GET_PRODUCT, {
     variables: { sku: sku },
   });
 
   if (loading) return <Placeholder />;
   if (error) return <Error>{`Error! ${error}`}</Error>;
 
-  return <ProductData results={data.product} />;
+  return <ProductData results={data.product} refetch={refetch} />;
 };
 
 export default Product;
