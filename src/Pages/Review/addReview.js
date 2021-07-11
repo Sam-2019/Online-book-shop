@@ -7,15 +7,19 @@ import Message from "../Components/Message";
 import StarRating from "../Components/StarRating";
 import { ADD_REVIEW } from "../graphQL functions";
 
-const AddReview = ({ close, product }) => {
+const AddReview = ({ close, product, refetch }) => {
   const [text, setText] = useState("");
   const [message, setMessage] = useState("");
   const [starsSelected, setStarsSelected] = useState(0);
 
   const [
     addReview,
-    { loading: reviewLoading, error: reviewError, data: reviewData },
-  ] = useMutation(ADD_REVIEW);
+    { error: reviewError },
+  ] = useMutation(ADD_REVIEW, {
+    onCompleted: (data) => {
+      refetch();
+    },
+  });
 
   function submit(e) {
     e.preventDefault();
