@@ -8,7 +8,7 @@ import SVGContainer from "../../SVGs/SVGcontainer";
 import { GET_WISHLIST } from "../../graphQL functions";
 
 const WishList = () => {
-  const { loading, error, data, refetch } = useQuery(GET_WISHLIST);
+  const { loading, error, data } = useQuery(GET_WISHLIST);
 
   let view;
 
