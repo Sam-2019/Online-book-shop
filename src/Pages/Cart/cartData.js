@@ -6,7 +6,7 @@ import CartItem from "./cartItem";
 import Button from "../Components/Button";
 import Summary from "../Summary/Summary";
 import { useData } from "../Context";
-import { ADD_ORDER } from "../graphQL functions";
+import { ADD_ORDER, GET_CART } from "../graphQL functions";
 import { MediaQuery } from "../helper";
 import CartHeader from "./cartHeader";
 
@@ -44,6 +44,7 @@ const CartData = ({ data }) => {
     addOrder,
     { loading: orderLoading, error: orderError, data: orderData },
   ] = useMutation(ADD_ORDER, {
+    refetchQueries: [{ query:   GET_CART }],
     onCompleted: (data) => {},
   });
 
