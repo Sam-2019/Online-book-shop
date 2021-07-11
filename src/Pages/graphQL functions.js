@@ -363,9 +363,6 @@ export const ADD_REVIEW = gql`
   mutation AddReview($product: ID, $rating: Int, $text: String) {
     addReview(product: $product, rating: $rating, text: $text) {
       id
-      user {
-        username
-      }
     }
   }
 `;
