@@ -1,17 +1,28 @@
-import React,{Fragment} from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
+import { useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
 import Button from "../../Components/Button";
 import PopUp from "../../Components/Popup";
 import { ConfirmDelete } from "../../styles";
+import { DELETE_ORDER_ITEM, GET_ORDER } from "../../graphQL functions";
 import "./orderitem.css";
 
 toast.configure();
 
-const OrderItem = ({ imageURL, price, name, status, sku, quantity }) => {
+const OrderItem = ({ id, imageURL, price, name, status, sku, quantity }) => {
   const [confirm, setConfirm] = React.useState(false);
   let statusColorX;
   let show;
+
+  const [deleteOrder, {}] = useMutation(DELETE_ORDER_ITEM, {
+    refetchQueries: [{ query: GET_ORDER }],
+    onCompleted: (data) => {
+      console.log(data)
+      notify("Order cancelled");
+      setConfirm(false);
+    },
+  });
 
   const notify = (data) => {
     toast.success(data);
@@ -21,9 +32,15 @@ const OrderItem = ({ imageURL, price, name, status, sku, quantity }) => {
     setConfirm(true);
   };
 
-  const Delete = () => {
-    notify("Order cancelled");
-    setConfirm(false);
+  const removeItem = () => {
+    console.log(id);
+
+     deleteOrder({
+      variables: {
+        id: id,
+      },
+    });
+
     // notify(data.error);
   };
 
@@ -93,7 +110,11 @@ const OrderItem = ({ imageURL, price, name, status, sku, quantity }) => {
             Are you sure you want to cancel this order?
           </ConfirmDelete>
 
-          <Button class_name="primary" name="Cancel Order" action={Delete} />
+          <Button
+            class_name="primary"
+            name="Cancel Order"
+            action={removeItem}
+          />
           <Button
             class_name="secondary"
             name="Ignore"
