@@ -36,15 +36,10 @@ const CartData = ({ data }) => {
 
     setChecked(all);
     formData.set("categories", all);
-    // console.log(all);
-    // var data = formData.get("categories");
   };
 
-  const [
-    addOrder,
-    { loading: orderLoading, error: orderError, data: orderData },
-  ] = useMutation(ADD_ORDER, {
-    refetchQueries: [{ query:   GET_CART }],
+  const [addOrder] = useMutation(ADD_ORDER, {
+    refetchQueries: [{ query: GET_CART }],
     onCompleted: (data) => {},
   });
 
