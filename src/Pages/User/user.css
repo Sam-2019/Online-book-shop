@@ -26,7 +26,7 @@
 
 .forgotten_password_wrapper {
   text-align: right;
-  cursor: default;
+  cursor: context-menu;
 }
 
 .forgotten_password {

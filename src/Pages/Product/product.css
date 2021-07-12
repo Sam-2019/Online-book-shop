@@ -166,7 +166,7 @@
   text-transform: uppercase;
   transition: transform 80ms ease-in;
   padding: 2px 0 2px 0;
-  cursor: pointer;
+  cursor: context-menu;
 }
 
 .see-more {

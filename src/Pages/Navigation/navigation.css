@@ -17,7 +17,7 @@
   color: chartreuse;
   font-weight: 500;
   font-size: 28px;
-  cursor: pointer;
+  cursor: context-menu;
 }
 .nav-category {
 }
