@@ -9,7 +9,6 @@ import {
   ADD_PAYMENT,
   GET_LOCATIONS,
   GET_ORDER_AMOUNT,
-  GET_CART,
   GET_ORDER
 } from "../graphQL functions";
 
@@ -53,15 +52,6 @@ const Order = () => {
 
   let show;
 
-  const showSuccess = () => {
-    setSuccess(true);
-
-    const timer = setTimeout(() => {
-      setSuccess(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  };
-
   let selectedOption = null;
   let viewType;
 
@@ -91,7 +81,6 @@ const Order = () => {
     addPayment,
     { loading: paymentrLoading, error: paymentError, data: paymentData },
   ] = useMutation(ADD_PAYMENT, {
-    refetchQueries: [{ query: GET_CART }],
     refetchQueries: [{ query: GET_ORDER }],
     onCompleted: (data) => {
       setPaymentMethod("");
@@ -111,7 +100,6 @@ const Order = () => {
   const { loading: loadAmount } = useQuery(GET_ORDER_AMOUNT, {
     variables: { orderNumber },
     onCompleted: (data) => {
-
     },
   });
 
