@@ -6,6 +6,7 @@ button {
   color: transparent;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
+  cursor: context-menu;
 }
 
 button:focus {
