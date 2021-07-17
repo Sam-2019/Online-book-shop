@@ -13,15 +13,18 @@ const ChangeEmail = ({ close }) => {
   const [new_email, setNewEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const [updateEmail, { loading, error, data }] = useMutation(UPDATE_EMAIL, {
-    refetchQueries: [{ query: GET_USER }],
-    onCompleted: (data) => {},
-  });
-
   const clear = () => {
     setEmail("");
     setNewEmail("");
   };
+
+  const [updateEmail, { loading, error, data }] = useMutation(UPDATE_EMAIL, {
+    refetchQueries: [{ query: GET_USER }],
+    onCompleted: (data) => {
+      clear();
+      setMessage("Email successfully updated");
+    },
+  });
 
   const update = async (event) => {
     event.preventDefault();
@@ -39,10 +42,6 @@ const ChangeEmail = ({ close }) => {
         new_email: String(new_email),
       },
     });
-
-    if (loading === false) {
-      clear();
-    }
   };
 
   return (

@@ -14,8 +14,15 @@ const ChangePassword = ({ close }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const [updatePassword, { loading, error, data }] =
-    useMutation(UPDATE_PASSWORD);
+  const [updatePassword, { loading, error, data }] = useMutation(
+    UPDATE_PASSWORD,
+    {
+      onCompleted: (data) => {
+        clear();
+        setMessage("Password successfully updated");
+      },
+    }
+  );
 
   let type;
 
@@ -56,9 +63,7 @@ const ChangePassword = ({ close }) => {
         },
       });
 
-      if (loading === false) {
-        clear();
-      }
+
     }
   };
 

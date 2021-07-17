@@ -22,6 +22,7 @@ const ChangeName = ({ close }) => {
     refetchQueries: [{ query: GET_USER }],
     onCompleted: (data) => {
       clear();
+      setMessage("Name successfully updated");
     },
   });
 
