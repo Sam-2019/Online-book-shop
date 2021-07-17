@@ -16,7 +16,6 @@ const Signup = () => {
 
   const breakpoint = 540;
   const { width } = MediaQuery();
-  const [loading, setLoading] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -35,24 +34,19 @@ const Signup = () => {
       type = "password";
   }
 
-  const [signup, { loading: Loading, error: Error, data: Data }] =
-    useMutation(SIGNUP, {
-      onCompleted: data => {
-        // store the token
-     //   localStorage.setItem('token', data.signUp);
-        // update the local cache
-      //  client.writeData({ data: { isLoggedIn: true } });
-        // redirect the user to the homepage
-      //  props.history.push('/');
-      }
-    });
-
   const clearSignup = () => {
     setFirstName("");
     setLastName("");
     setEmail("");
     setPassword("");
   };
+
+  const [signup, { loading, error: Error, data: Data }] = useMutation(SIGNUP, {
+    onCompleted: (data) => {
+      setMessage("Signup successful");
+      clearSignup();
+    },
+  });
 
   const signUp = async (event) => {
     event.preventDefault();
@@ -65,8 +59,6 @@ const Signup = () => {
     }
 
     if (empty !== "") {
-      setLoading(true);
-
       try {
         signup({
           variables: {
@@ -76,11 +68,9 @@ const Signup = () => {
             email: String(email),
           },
         });
-        setLoading(false);
       } catch (error) {
         console.error(error);
       } finally {
-        clearSignup();
       }
     }
   };
