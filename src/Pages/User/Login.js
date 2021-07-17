@@ -23,11 +23,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [loading, setLoading] = useState(false);
-
   const [show, hide] = useState("password");
 
-  const [loginUser, { data, error }] = useLazyQuery(LOGIN, {
+  const [loginUser, {loading, data, error }] = useLazyQuery(LOGIN, {
     onCompleted: (data) => {
       setAuth(data.login.token);
 
