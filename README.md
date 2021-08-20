@@ -1,6 +1,6 @@
 # Online Bookstore
 
-[Demo](https://majorbooks.netlify.app), improved look for [old project](https://okukus.netlify.app).
+[Demo](https://majorbooks.netlify.app)
 
 Create your own account
 
